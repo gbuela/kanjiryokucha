@@ -1,0 +1,45 @@
+PODS:
+  - Gloss (1.1.1)
+  - PKHUD (4.0.0)
+  - ReactiveCocoa (5.0.0-alpha.3):
+    - ReactiveSwift (~> 1.0.0-alpha.4)
+  - ReactiveSwift (1.0.0-alpha.4):
+    - Result (~> 3.0)
+  - Realm (2.1.1):
+    - Realm/Headers (= 2.1.1)
+  - Realm/Headers (2.1.1)
+  - RealmSwift (2.1.1):
+    - Realm (= 2.1.1)
+  - Result (3.1.0)
+  - UIColor_Hex_Swift (3.0.2)
+
+DEPENDENCIES:
+  - Gloss (~> 1.1)
+  - PKHUD (~> 4.0)
+  - ReactiveCocoa (from `https://github.com/ReactiveCocoa/ReactiveCocoa.git`, branch `master`)
+  - RealmSwift
+  - UIColor_Hex_Swift (~> 3.0.2)
+
+EXTERNAL SOURCES:
+  ReactiveCocoa:
+    :branch: master
+    :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
+
+CHECKOUT OPTIONS:
+  ReactiveCocoa:
+    :commit: 541dd27693b25ac87e0800b04b1f1afcb586cd8d
+    :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
+
+SPEC CHECKSUMS:
+  Gloss: 4a892694cba7387efa4102a51f86110651366b18
+  PKHUD: 2bb45c936bb8afa39f3cd33ec14e8cc89f624255
+  ReactiveCocoa: 7554f384990ec849760c478a5fe05870b7776259
+  ReactiveSwift: 3fa49d2db97609ea700cd2b8f1bfbdd162024f97
+  Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
+  RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
+
+PODFILE CHECKSUM: c4f5c43e34de3705c16bd172186ef1ab24b4e33c
+
+COCOAPODS: 1.1.1

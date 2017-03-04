@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="KanjiRyokucha" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="07g-Vg-pei" id="JeH-Fw-fsf"/>
+                <outlet property="usernameLabel" destination="U0Z-4O-7pf" id="anA-Hz-pof"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="07g-Vg-pei">
+                    <rect key="frame" x="0.0" y="86" width="375" height="581"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ljX-y9-MG5"/>
+                        <outlet property="delegate" destination="-1" id="eCg-XF-QF0"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-IV-whH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0Z-4O-7pf">
+                            <rect key="frame" x="14" y="32.5" width="253" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhD-BJ-7QH" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <rect key="frame" x="286" y="26" width="75" height="34"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="dRr-Ky-5t8"/>
+                            </constraints>
+                            <state key="normal" title="logout"/>
+                            <connections>
+                                <action selector="logoutTapped" destination="-1" eventType="touchUpInside" id="9zO-2G-Lix"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="U0Z-4O-7pf" firstAttribute="centerY" secondItem="RDh-IV-whH" secondAttribute="centerY" id="6EB-Bt-T0s"/>
+                        <constraint firstItem="LhD-BJ-7QH" firstAttribute="centerY" secondItem="U0Z-4O-7pf" secondAttribute="centerY" id="AOE-01-6bz"/>
+                        <constraint firstAttribute="height" constant="86" id="EvM-Eg-XAI"/>
+                        <constraint firstItem="U0Z-4O-7pf" firstAttribute="leading" secondItem="RDh-IV-whH" secondAttribute="leading" constant="14" id="Kj2-Is-Wph"/>
+                        <constraint firstAttribute="trailing" secondItem="LhD-BJ-7QH" secondAttribute="trailing" constant="14" id="YJj-Ou-FuM"/>
+                        <constraint firstItem="LhD-BJ-7QH" firstAttribute="leading" secondItem="U0Z-4O-7pf" secondAttribute="trailing" constant="19" id="yEk-8K-Ucq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="07g-Vg-pei" secondAttribute="trailing" id="0UC-YP-hea"/>
+                <constraint firstItem="07g-Vg-pei" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EzS-wO-D7v"/>
+                <constraint firstAttribute="bottom" secondItem="07g-Vg-pei" secondAttribute="bottom" id="Izf-tb-OV2"/>
+                <constraint firstAttribute="trailing" secondItem="RDh-IV-whH" secondAttribute="trailing" id="Liv-XM-6Xp"/>
+                <constraint firstItem="RDh-IV-whH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PM1-ac-jc8"/>
+                <constraint firstItem="07g-Vg-pei" firstAttribute="top" secondItem="RDh-IV-whH" secondAttribute="bottom" id="R21-cn-Fbw"/>
+                <constraint firstItem="RDh-IV-whH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="m41-bu-Seo"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

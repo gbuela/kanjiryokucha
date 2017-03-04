@@ -1,0 +1,72 @@
+digraph G {
+
+subgraph cluster_0 {
+style=filled;
+color=lightgrey;
+node [style=filled,color=white];
+label = "viewModel";
+
+startedSession [shape=box];
+toSubmitCount [shape=box];
+toReviewCount [shape=box];
+reviewState [shape=box];
+reviewTypeInProgress [shape=box];
+reviewEntries [shape=box];
+shouldEnableReview [shape=box];
+shouldEnableSubmit [shape=box];
+
+GetStatusRq -> statusAction -> updateCardCount;
+
+"read current review" -> reviewTypeInProgress [ label = "ReviewType" ];
+"read current review" -> reviewEntries [ label = "ReviewEntry[]" ];
+
+SRSStartRq_due -> StartAction_due [ label = "StartedSession" ];
+SRSStartRq_new -> StartAction_new [ label = "StartedSession" ];
+SRSStartRq_fai -> StartAction_fai [ label = "StartedSession" ];
+{ StartAction_due StartAction_new StartAction_fai } -> "StartSignals[]" [ label = "StartedSession" ];
+"StartSignals[]" -> startedSession [ label = "merge/filter" ];
+startedSession -> saveSession [ label = "StartedSession" ];
+saveSession -> reviewEntries;
+reviewEntries -> toSubmitCount [ label = "Int" ];
+reviewEntries -> toReviewCount [ label = "Int" ];
+saveSession -> reviewTypeInProgress;
+reviewEntries -> reviewState [ label="ReviewState"];
+toReviewCount -> shouldEnableReview [ label="Bool"];
+toSubmitCount -> shouldEnableSubmit [ label="Bool"];
+CardFetchRq -> reviewAction [label="ReviewEntry[]"];
+shouldEnableReview -> reviewAction;
+SyncRq -> submitAction [label="ReviewEntry[]"];
+shouldEnableSubmit -> submitAction;
+}
+
+subgraph cluster_1 {
+node [style=filled];
+label = "viewController";
+color=blue
+
+sessionCell_reviewState [shape=box];
+reviewBtn [shape=box];
+submitBtn [shape=box];
+displaySession;
+controlAction_due;
+controlAction_new;
+controlAction_fai;
+reviewControlAction;
+submitControlAction;
+
+reviewBtn -> reviewControlAction;
+submitBtn -> submitControlAction;
+}
+
+shouldEnableReview -> reviewBtn [label="bkgColor/enabled"];
+shouldEnableSubmit -> submitBtn [label="bkgColor/enabled"];
+StartAction_due -> controlAction_due;
+StartAction_new -> controlAction_new;
+StartAction_fai -> controlAction_fai;
+
+reviewAction -> reviewControlAction;
+reviewEntries -> reviewControlAction;
+
+reviewState -> sessionCell_reviewState;
+reviewState -> displaySession;
+}

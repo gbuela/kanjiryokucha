@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CardBackView" customModule="KanjiRyokucha" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="331" height="511"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdc-E5-ZX9" userLabel="Root view">
+                    <rect key="frame" x="0.0" y="0.0" width="331" height="511"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="59L-8V-wHH">
+                            <rect key="frame" x="8" y="8" width="315" height="26.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寛" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFh-HD-qOr">
+                            <rect key="frame" x="8" y="42.5" width="120" height="142"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="120"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJ2-uF-VGx">
+                            <rect key="frame" x="8" y="192.5" width="150" height="150"/>
+                            <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="DJ2-uF-VGx" secondAttribute="height" multiplier="1:1" id="pAY-7t-4jY"/>
+                                <constraint firstAttribute="width" constant="150" id="th8-N1-iFR" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                                            <real key="value" value="125"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-1T-Akn" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <rect key="frame" x="166" y="283.5" width="157" height="49"/>
+                            <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="no"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="N1M-8x-THi" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                                            <real key="value" value="42"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
+                            <state key="normal" title="👎">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="3dX-2h-Sdd"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3e-L7-iyw" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <rect key="frame" x="166" y="202.5" width="157" height="49"/>
+                            <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="yes"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="356-gS-WbP" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                                            <real key="value" value="42"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
+                            <state key="normal" title="👍">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="nLj-BX-lQ8"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SJc-5n-7rS">
+                            <rect key="frame" x="8" y="362.5" width="315" height="29"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-Ve-UCv" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="29"/>
+                                    <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="Nzd-kr-Nkh"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="easy">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="cm6-kn-Fz6"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovc-78-r7W" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <rect key="frame" x="80.5" y="0.0" width="50" height="29"/>
+                                    <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="hard">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="dOk-fU-Epd"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNk-RQ-8Gc" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <rect key="frame" x="160.5" y="0.0" width="74" height="29"/>
+                                    <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="74" id="Y1p-xI-hNE"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="options"/>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="F61-dc-APs"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9V-En-UcJ" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                                    <rect key="frame" x="265" y="0.0" width="50" height="29"/>
+                                    <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="50p-su-Yya"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="quit"/>
+                                    <connections>
+                                        <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="dft-9N-n1W"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Ovc-78-r7W" firstAttribute="width" secondItem="EOh-Ve-UCv" secondAttribute="width" id="Mf6-zX-Osy"/>
+                            </constraints>
+                        </stackView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tkf-lp-AZA">
+                            <rect key="frame" x="136" y="42" width="187" height="143"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="DJ2-uF-VGx" firstAttribute="leading" secondItem="MFh-HD-qOr" secondAttribute="leading" id="5T4-bD-3Oh"/>
+                        <constraint firstItem="59L-8V-wHH" firstAttribute="leading" secondItem="tdc-E5-ZX9" secondAttribute="leading" constant="8" id="5iV-Z0-fsQ"/>
+                        <constraint firstItem="59L-8V-wHH" firstAttribute="top" secondItem="tdc-E5-ZX9" secondAttribute="top" constant="8" id="5ot-dx-r1c"/>
+                        <constraint firstItem="tkf-lp-AZA" firstAttribute="leading" secondItem="MFh-HD-qOr" secondAttribute="trailing" constant="8" symbolic="YES" id="AvV-f5-sxh"/>
+                        <constraint firstItem="tkf-lp-AZA" firstAttribute="bottom" secondItem="MFh-HD-qOr" secondAttribute="bottom" id="Cob-Ff-sTK"/>
+                        <constraint firstItem="R3e-L7-iyw" firstAttribute="top" secondItem="DJ2-uF-VGx" secondAttribute="top" constant="10" id="HNN-Ou-Su1"/>
+                        <constraint firstItem="NLb-1T-Akn" firstAttribute="bottom" secondItem="DJ2-uF-VGx" secondAttribute="bottom" constant="-10" id="K14-aO-WmK"/>
+                        <constraint firstAttribute="trailing" secondItem="SJc-5n-7rS" secondAttribute="trailing" constant="8" id="RGE-3f-9XP"/>
+                        <constraint firstItem="SJc-5n-7rS" firstAttribute="top" secondItem="DJ2-uF-VGx" secondAttribute="bottom" constant="20" id="S3T-cw-7SL"/>
+                        <constraint firstItem="NLb-1T-Akn" firstAttribute="leading" secondItem="R3e-L7-iyw" secondAttribute="leading" id="VLg-7w-QBx"/>
+                        <constraint firstItem="tkf-lp-AZA" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="top" id="WlP-Ql-icf"/>
+                        <constraint firstAttribute="trailing" secondItem="R3e-L7-iyw" secondAttribute="trailing" constant="8" id="dPe-Rz-dkd"/>
+                        <constraint firstItem="R3e-L7-iyw" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="trailing" constant="8" symbolic="YES" id="dd6-fA-hW1"/>
+                        <constraint firstItem="MFh-HD-qOr" firstAttribute="leading" secondItem="59L-8V-wHH" secondAttribute="leading" id="dkK-v6-EuT"/>
+                        <constraint firstItem="MFh-HD-qOr" firstAttribute="top" secondItem="59L-8V-wHH" secondAttribute="bottom" constant="8" symbolic="YES" id="dqD-ho-Mfq"/>
+                        <constraint firstAttribute="trailing" secondItem="NLb-1T-Akn" secondAttribute="trailing" constant="8" id="fuy-5d-sjm"/>
+                        <constraint firstAttribute="trailing" secondItem="59L-8V-wHH" secondAttribute="trailing" constant="8" id="qQ7-cI-g2r"/>
+                        <constraint firstAttribute="trailing" secondItem="tkf-lp-AZA" secondAttribute="trailing" constant="8" id="txW-Hu-s2R"/>
+                        <constraint firstItem="SJc-5n-7rS" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="leading" id="vQh-T0-gq3"/>
+                        <constraint firstItem="DJ2-uF-VGx" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="bottom" constant="8" symbolic="YES" id="xc9-jd-urg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tdc-E5-ZX9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3pF-V2-ele"/>
+                <constraint firstAttribute="trailing" secondItem="tdc-E5-ZX9" secondAttribute="trailing" id="9bL-pm-F27"/>
+                <constraint firstItem="tdc-E5-ZX9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ADP-bg-8i5"/>
+                <constraint firstAttribute="bottom" secondItem="tdc-E5-ZX9" secondAttribute="bottom" id="shS-TZ-zK2"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="drawingImageView" destination="DJ2-uF-VGx" id="OPL-b8-XIf"/>
+                <outlet property="easyButton" destination="EOh-Ve-UCv" id="cEi-cL-rIr"/>
+                <outlet property="hardButton" destination="Ovc-78-r7W" id="SVn-P6-dDB"/>
+                <outlet property="kanjiLabel" destination="MFh-HD-qOr" id="kza-6d-l2c"/>
+                <outlet property="keywordLabel" destination="59L-8V-wHH" id="7vN-wi-eXB"/>
+                <outlet property="noButton" destination="NLb-1T-Akn" id="pZH-3r-nmc"/>
+                <outlet property="optionsButton" destination="VNk-RQ-8Gc" id="YJ7-SJ-dUx"/>
+                <outlet property="quitButton" destination="U9V-En-UcJ" id="dl5-tw-3St"/>
+                <outlet property="readingsTextView" destination="tkf-lp-AZA" id="eDD-4U-nTA"/>
+                <outlet property="yesButton" destination="R3e-L7-iyw" id="SLN-Wu-vBC"/>
+            </connections>
+            <point key="canvasLocation" x="11.5" y="-24.5"/>
+        </view>
+    </objects>
+</document>
