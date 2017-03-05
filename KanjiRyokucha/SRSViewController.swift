@@ -14,6 +14,8 @@ import PKHUD
 import RealmSwift
 import Gloss
 
+let lastSatusRefreshKey = "lastSatusRefresh"
+
 struct ReviewState {
     let totalCards: Int
     let answeredYes: Int
@@ -199,6 +201,8 @@ class SRSViewModel: ReviewEngineProtocol {
         }
         statusAction.react { [weak self] response in
             self?.updateCardCount(response: response)
+            let defaults = UserDefaults()
+            defaults.set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
         }
         
         startSignals = reviewTypeSetups.keys.map { [unowned self] reviewType in
@@ -249,7 +253,7 @@ class SRSViewModel: ReviewEngineProtocol {
         refreshStatus()
     }
     
-    private func refreshStatus() {
+    func refreshStatus() {
         statusAction.consume(())
     }
 
@@ -459,6 +463,17 @@ class SRSViewController: UIViewController, ReviewDelegate {
         wireUp()
         
         viewModel.start()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let lastRefresh = UserDefaults().value(forKey: lastSatusRefreshKey) as? Int {
+            let then = Date(timeIntervalSince1970: TimeInterval(lastRefresh))
+            let calendar = Calendar.current
+            if let hours = calendar.dateComponents([.hour], from: then, to: Date()).hour,
+                hours >= 12 {
+                viewModel.refreshStatus()
+            }
+        }
     }
     
     func setUp() {
