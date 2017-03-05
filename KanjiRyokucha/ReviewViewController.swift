@@ -208,7 +208,7 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                 message: "You have \(pending) unsubmitted answers!",
                 yesOption: "Cancel anyway",
                 noOption: "OMG stay!") {
-                    [weak self] (action: UIAlertAction!) in
+                    [weak self] _ in
                     self?.reviewContainer.isHidden = true
                     _ = self?.reviewEngine.cancelAction.consume(true)
             }

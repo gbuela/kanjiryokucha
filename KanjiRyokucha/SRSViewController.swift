@@ -246,6 +246,10 @@ class SRSViewModel: ReviewEngineProtocol {
 
     public func start() {
         restoreState()
+        refreshStatus()
+    }
+    
+    private func refreshStatus() {
         statusAction.consume(())
     }
 
@@ -263,7 +267,7 @@ class SRSViewModel: ReviewEngineProtocol {
     func saveFetchedCards(response: Response) {
         guard let model = response.model as? CardDataModel else { return }
         
-        var entriesToSave = reviewEntries.value.filter { entry in
+        let entriesToSave = reviewEntries.value.filter { entry in
             model.cards.contains(where: { $0.cardId == entry.cardId })
         }
 
@@ -404,6 +408,8 @@ class SRSViewModel: ReviewEngineProtocol {
         Database.delete(objects: reviewEntries.value)
         reviewEntries.value = []
         currentReviewType.value = nil
+        
+        refreshStatus()
     }
 }
 
