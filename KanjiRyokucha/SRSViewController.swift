@@ -48,9 +48,9 @@ extension Dictionary {
 typealias StartActionType = Action<ReviewType, Response, FetchError>
 typealias StartStarter = ActionStarter<ReviewType, Response, FetchError>
 typealias ButtonActionType = Action<Bool, Bool, NoError>
-typealias ButtonStarter = ActionStarter<Bool, Bool, NoError>
 typealias ReviewActionType = Action<[ReviewEntry], Response, FetchError>
 typealias SubmitActionType = Action<[ReviewEntry], Response, FetchError>
+typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
 struct ReviewTypeSetup {
     let shouldEnable: MutableProperty<Bool>
@@ -148,6 +148,8 @@ extension ReviewEngineProtocol {
 
 class SRSViewModel: ReviewEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
+    var refreshedSinceStartup = false
+    
     private var startSignals: [Signal<StartedSession,NoError>] = []
     private var startedSession: MutableProperty<StartedSession?> = MutableProperty(nil)
 
@@ -201,8 +203,8 @@ class SRSViewModel: ReviewEngineProtocol {
         }
         statusAction.react { [weak self] response in
             self?.updateCardCount(response: response)
-            let defaults = UserDefaults()
-            defaults.set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
+            UserDefaults().set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
+            self?.refreshedSinceStartup = true
         }
         
         startSignals = reviewTypeSetups.keys.map { [unowned self] reviewType in
@@ -432,11 +434,13 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var dueButton: UIButton!
     @IBOutlet weak var newButton: UIButton!
     @IBOutlet weak var failedButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
    
     private var reviewTypeStarters: [ReviewType: StartStarter]!
+    private var refreshStarter: RefreshStarter!
 
     private class func buttonColorsFromReviewType(_ reviewType: ReviewType?) -> ButtonColors {
         if let reviewType = reviewType {
@@ -466,7 +470,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let lastRefresh = UserDefaults().value(forKey: lastSatusRefreshKey) as? Int {
+        super.viewDidAppear(animated)
+        
+        if viewModel.refreshedSinceStartup,
+            let lastRefresh = UserDefaults().value(forKey: lastSatusRefreshKey) as? Int {
             let then = Date(timeIntervalSince1970: TimeInterval(lastRefresh))
             let calendar = Calendar.current
             if let hours = calendar.dateComponents([.hour], from: then, to: Date()).hour,
@@ -550,6 +557,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
         viewModel.emptySessionAttempt.uiReact { [weak self] _ in
             self?.showAlert("Nothing to review!\nUse the Study tab to mark kanji as learned")
         }
+        
+        refreshStarter = RefreshStarter(control: refreshButton,
+                                        action: viewModel.statusAction,
+                                        input: ())
         
         activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
     }

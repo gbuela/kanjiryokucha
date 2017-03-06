@@ -21,6 +21,7 @@
                 <outlet property="newButton" destination="BgW-lN-6Bb" id="o42-Q3-rZl"/>
                 <outlet property="newPadding" destination="qM6-Xh-pnm" id="Bjs-fW-1ti"/>
                 <outlet property="newView" destination="61K-rn-FdX" id="Lh7-ZJ-4kZ"/>
+                <outlet property="refreshButton" destination="lOr-1a-dGS" id="TgA-6Q-4Zo"/>
                 <outlet property="reviewContainer" destination="aSJ-QZ-DOD" id="NNy-b7-hy5"/>
                 <outlet property="topBarView" destination="Ssd-B6-Hsi" id="jU6-wh-qV3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -52,7 +53,7 @@
                                             <state key="normal" title="0"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbV-rh-Xup">
-                                            <rect key="frame" x="30.5" y="70.5" width="29" height="20.5"/>
+                                            <rect key="frame" x="30" y="70.5" width="29" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </label>
@@ -266,6 +267,16 @@
                         <constraint firstItem="rN3-HT-zj9" firstAttribute="top" secondItem="w0O-e6-7LB" secondAttribute="top" id="uj2-Ea-IcP"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOr-1a-dGS">
+                    <rect key="frame" x="115" y="360" width="90" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="refresh status">
+                        <color key="titleColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
                 <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Uij-v0-a4Q">
                     <rect key="frame" x="141" y="221" width="37" height="37"/>
                     <color key="color" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -287,6 +298,8 @@
                 <constraint firstAttribute="trailing" secondItem="aSJ-QZ-DOD" secondAttribute="trailing" constant="9" id="MnN-Ie-x9N"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="top" secondItem="jZU-qW-gn7" secondAttribute="bottom" constant="8" id="QMH-wD-bqb"/>
                 <constraint firstItem="w0O-e6-7LB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Svp-6d-6Kr"/>
+                <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
+                <constraint firstItem="lOr-1a-dGS" firstAttribute="top" secondItem="w0O-e6-7LB" secondAttribute="bottom" constant="8" id="Ymb-sI-Ste"/>
                 <constraint firstAttribute="trailing" secondItem="Ssd-B6-Hsi" secondAttribute="trailing" id="ZfT-dr-SXW"/>
                 <constraint firstItem="jZU-qW-gn7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="oHO-rl-8Io"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="centerY" secondItem="w0O-e6-7LB" secondAttribute="centerY" id="qbC-u8-hnk"/>
