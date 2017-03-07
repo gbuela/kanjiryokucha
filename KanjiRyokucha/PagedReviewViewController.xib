@@ -24,9 +24,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-rh-8f3">
-                    <rect key="frame" x="0.0" y="400" width="375" height="267"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-rh-8f3">
+                    <rect key="frame" x="0.0" y="564" width="375" height="103"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="103" id="K1p-5i-D41"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-GO-HNd">
                     <rect key="frame" x="20" y="40" width="335" height="562"/>
@@ -63,18 +65,21 @@
                 </view>
                 <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8QP-Ir-Jng">
                     <rect key="frame" x="20" y="604" width="335" height="2.5"/>
-                    <color key="progressTintColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="progressTintColor" red="0.54094521648539973" green="0.66909365110759489" blue="0.11462493714819369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="trackTintColor" red="0.87450980389999999" green="1" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                 </progressView>
             </subviews>
             <constraints>
                 <constraint firstItem="CRY-GO-HNd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="2LE-Kq-Daj"/>
                 <constraint firstItem="8QP-Ir-Jng" firstAttribute="leading" secondItem="CRY-GO-HNd" secondAttribute="leading" id="6KA-O0-Jkc"/>
+                <constraint firstAttribute="bottom" secondItem="c7K-rh-8f3" secondAttribute="bottom" id="6uS-KP-d5l"/>
                 <constraint firstItem="CRY-GO-HNd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="881-Ej-liC"/>
                 <constraint firstAttribute="trailing" secondItem="CRY-GO-HNd" secondAttribute="trailing" constant="20" symbolic="YES" id="94W-6o-iFm"/>
                 <constraint firstItem="8QP-Ir-Jng" firstAttribute="width" secondItem="CRY-GO-HNd" secondAttribute="width" id="AS8-w9-E0r"/>
                 <constraint firstAttribute="bottom" secondItem="8QP-Ir-Jng" secondAttribute="bottom" constant="61.5" id="CSv-Ol-4iw"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="top" secondItem="CRY-GO-HNd" secondAttribute="top" id="Gew-rC-yUJ"/>
+                <constraint firstAttribute="trailing" secondItem="c7K-rh-8f3" secondAttribute="trailing" id="GzU-75-4se"/>
+                <constraint firstItem="c7K-rh-8f3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UdE-HR-PQL"/>
                 <constraint firstItem="8QP-Ir-Jng" firstAttribute="top" secondItem="CRY-GO-HNd" secondAttribute="bottom" constant="2" id="g1w-2D-to0"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="leading" secondItem="CRY-GO-HNd" secondAttribute="leading" id="ll7-iv-jGW"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="height" secondItem="CRY-GO-HNd" secondAttribute="height" id="rTc-oK-non"/>
