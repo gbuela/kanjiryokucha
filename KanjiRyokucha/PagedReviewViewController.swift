@@ -30,13 +30,16 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     var reviewEngine: ReviewEngineProtocol?
     
     @IBOutlet weak var pageContainer: UIView!
-    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var videoPanel: UIView!
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var currentFront: CardFrontView?
     var currentBack: CardBackView?
     var showingFront = true
+    var currentPage = 0
+    var totalCount = 0
     
     var lastPoint = CGPoint.zero
     var brushWidth: CGFloat = 5.0
@@ -52,15 +55,29 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
 
         global = Database.getGlobal()
         
-        self.view.backgroundColor = UIColor.ryokuchaTranslucent
+        view.backgroundColor = UIColor.ryokuchaTranslucent
         
-        self.videoPanel.isHidden = true
-        pageControl.numberOfPages = cards?.count ?? 0
+        setupGradient()
+        
+        videoPanel.isHidden = true
+        
+        if let reviewCount = reviewEngine?.toReviewCount.value {
+            totalCount = reviewCount
+        }
         showPage()
     }
+    
+    private func setupGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = gradientView.bounds
+        gradient.colors = [UIColor.ryokuchaDark.withAlphaComponent(0.0).cgColor,
+                           UIColor.ryokuchaDark.withAlphaComponent(1.0).cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradientView.layer.insertSublayer(gradient, at: 0)
+    }
 
-    func pageForward() {
-        let newPage = pageControl.currentPage + 1
+    private func pageForward() {
+        let newPage = currentPage + 1
         
         if let count = cards?.count,
             newPage == count {
@@ -74,12 +91,11 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
             engine.fetchMissingCards(cardModels: cardModels) { [weak self] cardDataModel in
                 print("fetched \(cardDataModel.cards.count) additional cards")
                 self?.cards?.append(contentsOf: cardDataModel.cards)
-                self?.pageControl.numberOfPages += cardDataModel.cards.count
             }
         }
         
         // Animated transition to next card 
-        pageControl.currentPage = newPage
+        currentPage = newPage
         
         if global.useAnimations {
             let originalX = pageContainer.frame.origin.x
@@ -97,13 +113,13 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
     }
     
-    func pageBack() {
-        let newPage = pageControl.currentPage - 1
+    private func pageBack() {
+        let newPage = currentPage - 1
         
         guard newPage >= 0 else { return }
         
         // Animated transition to previous card
-        pageControl.currentPage = newPage
+        currentPage = newPage
         
         if global.useAnimations {
             let originalX = pageContainer.frame.origin.x
@@ -121,39 +137,41 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
     }
     
-    func showPage() {
-        if let card = cards?[pageControl.currentPage] {
-            
-            currentFront?.removeFromSuperview()
-            currentBack?.removeFromSuperview()
-            
-            let frontView = CardFrontView.loadFromNib()
-            let backView = CardBackView.loadFromNib()
-            
-            frontView.keywordLabel.text = card.keyword
-            backView.keywordLabel.text = card.keyword
-            if let scalar = UnicodeScalar(card.cardId) {
-                backView.kanjiLabel.text = String(describing: scalar)
-            } else {
-                backView.kanjiLabel.text = ""
-            }
-            
-            backView.readingsTextView.text = ""
-
-            pageContainer.addSubview(frontView)
-            pageContainer.layoutAttachAll(subview: frontView)
-            frontView.buttonHandler = self
-            backView.buttonHandler = self
-            showingFront = true
-            
-            currentFront = frontView
-            currentBack = backView
-            
-            findReading(card: card)
+    private func showPage() {
+        guard let card = cards?[currentPage] else { return }
+        
+        currentFront?.removeFromSuperview()
+        currentBack?.removeFromSuperview()
+        
+        let newProgress = Float(currentPage + 1) / Float(totalCount)
+        progressView.setProgress(newProgress, animated: true)
+        
+        let frontView = CardFrontView.loadFromNib()
+        let backView = CardBackView.loadFromNib()
+        
+        frontView.keywordLabel.text = card.keyword
+        backView.keywordLabel.text = card.keyword
+        if let scalar = UnicodeScalar(card.cardId) {
+            backView.kanjiLabel.text = String(describing: scalar)
+        } else {
+            backView.kanjiLabel.text = ""
         }
+        
+        backView.readingsTextView.text = ""
+        
+        pageContainer.addSubview(frontView)
+        pageContainer.layoutAttachAll(subview: frontView)
+        frontView.buttonHandler = self
+        backView.buttonHandler = self
+        showingFront = true
+        
+        currentFront = frontView
+        currentBack = backView
+        
+        findReading(card: card)
     }
     
-    func findReading(card: CardModel) {
+    private func findReading(card: CardModel) {
         DispatchQueue.global(qos: .background).async { [weak self] in
             
             let hexId = String(format:"%x", card.cardId) + ","
@@ -179,7 +197,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
     }
     
-    func formatReadings(line: String) -> String {
+    private func formatReadings(line: String) -> String {
         let mainComponents = line.components(separatedBy: ",n,")
         let mainReadings = mainComponents[0].components(separatedBy: ",").dropFirst().joined(separator: "\n")
         if mainComponents.count == 2 {
@@ -240,7 +258,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
     }
     
-    func showFrontOptions() {
+    private func showFrontOptions() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         alertController.addAction(optionButtonPreviousCard())
@@ -251,7 +269,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showBackOptions() {
+    private func showBackOptions() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         alertController.addAction(optionButtonStroke())
@@ -316,7 +334,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
             print("Stroke order tapped")
 
             guard let sself = self,
-                let card = sself.cards?[sself.pageControl.currentPage],
+                let card = sself.cards?[sself.currentPage],
                 let scalar = UnicodeScalar(card.cardId) else { return }
             
             let detailsAction = Action<String,Response,FetchError> { kanji in
@@ -367,7 +385,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
             print("Study page tapped")
             
             guard let sself = self,
-                let card = sself.cards?[sself.pageControl.currentPage],
+                let card = sself.cards?[sself.currentPage],
                 let scalar = UnicodeScalar(card.cardId),
                 let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
             
@@ -402,7 +420,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     }
 
     func userAnswered(answer: CardAnswer) {
-        guard let card = cards?[pageControl.currentPage] else {
+        guard let card = cards?[currentPage] else {
             return
         }
         let reviewAnswer = ReviewAnswer(cardId: card.cardId, answer: answer)
@@ -422,7 +440,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
     }
     
-    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+    private func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
         guard let frontView = currentFront else {
             return
         }
@@ -482,5 +500,4 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         
         frontView.tempImageView.image = nil
     }
-
 }
