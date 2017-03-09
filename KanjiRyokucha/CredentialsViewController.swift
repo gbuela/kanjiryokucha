@@ -17,21 +17,38 @@ let httpStatusMovedTemp = 302
 
 class CredentialsViewController: UIViewController, UITextFieldDelegate {
     
+    private class func notEmpty(string: String?) -> Bool {
+        return string != nil && string != ""
+    }
+    
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var loginContainer: UIView!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var storeSwitch: UISwitch!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupButton: UIButton!
     
     let loginController = LoginController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(userTappedBackground))
+        view.addGestureRecognizer(tap)
+        
+        loginButton.isEnabled = false
+        
+        loginButton.reactive.isEnabled <~
+            usernameField.reactive.continuousTextValues.map(CredentialsViewController.notEmpty).combineLatest(with: passwordField.reactive.continuousTextValues.map(CredentialsViewController.notEmpty)).map { $0 && $1 }
+    }
     
     func enteredCredentials(username: String, password: String) {
         loginController.callLogin(username: username, password: password, handler: loginController.loginHandler)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func userTappedBackground() {
+        view.endEditing(true)
     }
     
     @IBAction func loginPressed(_ sender: AnyObject) {
