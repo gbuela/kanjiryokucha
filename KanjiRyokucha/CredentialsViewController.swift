@@ -10,6 +10,7 @@ import UIKit
 import PKHUD
 import Result
 import ReactiveSwift
+import SafariServices
 
 let usernameKey = "username"
 let passwordKey = "passwordKey"
@@ -85,5 +86,16 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
         }
         
         return false
+    }
+    
+    @IBAction func signupPressed(_ sender: AnyObject) {
+        guard let url = URL(string: "http://kanji.koohii.com/account/create") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        if #available(iOS 10.0, *) {
+            safariVC.preferredBarTintColor = .ryokuchaDark
+        } else {
+            safariVC.view.tintColor = .ryokuchaDark
+        }
+        present(safariVC, animated: true, completion: nil)
     }
 }
