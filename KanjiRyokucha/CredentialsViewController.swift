@@ -93,6 +93,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
         let safariVC = SFSafariViewController(url: url)
         if #available(iOS 10.0, *) {
             safariVC.preferredBarTintColor = .ryokuchaDark
+            safariVC.preferredControlTintColor = .white
         } else {
             safariVC.view.tintColor = .ryokuchaDark
         }
