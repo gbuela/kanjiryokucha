@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReactiveSwift
 
 class KRButton : UIButton {
     
@@ -23,18 +22,17 @@ class KRButton : UIButton {
         setTitleColor(.ryokuchaLight, for: .disabled)
         
         backgroundColor = .ryokuchaFaint
-        
-        reactive.backgroundColor <~ reactive.controlEvents(.touchDown).map {_ in UIColor.ryokuchaDark}
-        reactive.backgroundColor <~ reactive.controlEvents(.touchUpInside).map {_ in UIColor.ryokuchaFaint}
     }
     
     override var isEnabled: Bool {
-        get {
-            return super.isEnabled
+        didSet {
+            backgroundColor = isEnabled ? .ryokuchaFaint : .white
         }
-        set {
-            super.isEnabled = newValue
-            backgroundColor = newValue ? .ryokuchaFaint : .white
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? .ryokuchaDark : .ryokuchaFaint
         }
     }
 }
