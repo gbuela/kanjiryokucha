@@ -27,6 +27,8 @@ class StudyViewController: UITableViewController, UIViewControllerPreviewingDele
         
         title = "Study"
         
+        tableView.tableFooterView = UIView()
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "All learned", style: .plain, target: self, action: #selector(learnedTapped))
 
         let nib = UINib(nibName: "StudyCell", bundle: Bundle.main)
