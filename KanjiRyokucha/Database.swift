@@ -14,6 +14,7 @@ struct Database {
         do {
             let realm = try Realm()
             let global = realm.objects(Global.self).first ?? Global()
+            Global.studyPhaseFlag.value = global.useStudyPhase
             return global
         } catch {
             // TODO: db fail

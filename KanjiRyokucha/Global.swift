@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import ReactiveSwift
 
 enum ReviewType: Int {
     case expired = 1
@@ -39,6 +40,9 @@ enum ReviewType: Int {
 }
 
 class Global : Object {
+    
+    static let studyPhaseFlag = MutableProperty(true)
+    
     dynamic var id = 0
     let reviewType = RealmOptional<Int>()
     dynamic var useAnimations = true

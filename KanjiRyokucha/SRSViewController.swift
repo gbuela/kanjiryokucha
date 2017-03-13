@@ -347,9 +347,9 @@ class SRSViewModel: ReviewEngineProtocol {
         }
         
         if case .failed = reviewType {
-            nonReadyCountProperty <~ studyEntries.map { [weak self] entries in
-                guard let sself = self,
-                    sself.global.useStudyPhase else { return 0 } // FIXME: need to have a signal on this flag to bind along with studyEntries
+            nonReadyCountProperty <~ studyEntries.combineLatest(with: Global.studyPhaseFlag)
+                .map { (entries, studyPhase) in
+                guard studyPhase else { return 0 }
                 return entries.filter({!$0.learned}).count
             }
         }

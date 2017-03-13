@@ -49,6 +49,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func switchedStudy(isOn: Bool) {
         Database.write(object: global) {
             global.useStudyPhase = isOn
+            Global.studyPhaseFlag.value = isOn
         }
     }
     
