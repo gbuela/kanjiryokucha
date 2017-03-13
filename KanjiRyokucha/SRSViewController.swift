@@ -523,7 +523,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             self.activityIndicator.reactive.isAnimating <~ setup.action.isExecuting
             
-            button.reactive.title(for: .normal) <~ setup.cardCount.combineLatest(with: setup.nonReadyCount).map { "\($0 - $1)" }
+            button.reactive.title(for: .normal) <~ setup.cardCount.combineLatest(with: setup.nonReadyCount).map { "\(max($0 - $1, 0))" }
+            
             view.reactive.backgroundColor <~ setup.cardCount.combineLatest(with: self.viewModel.currentReviewType).map { (count, currentRevType) in
                 let colors = SRSViewController.buttonColorsFromReviewType(reviewType)
                 if let current = currentRevType,
