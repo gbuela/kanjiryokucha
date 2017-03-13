@@ -55,6 +55,7 @@ typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 struct ReviewTypeSetup {
     let shouldEnable: MutableProperty<Bool>
     let cardCount: MutableProperty<Int>
+    let nonReadyCount: MutableProperty<Int>
     let action: StartActionType
 }
 
@@ -336,6 +337,7 @@ class SRSViewModel: ReviewEngineProtocol {
     private func reviewTypeSetupCreator(from reviewType:ReviewType) -> (ReviewType,ReviewTypeSetup) {
         let shouldEnable: MutableProperty<Bool> = MutableProperty(false)
         let countProperty: MutableProperty<Int> = MutableProperty(0)
+        let nonReadyCountProperty: MutableProperty<Int> = MutableProperty(0)
         
         shouldEnable <~ shouldEnableStartSignal(countProperty: countProperty,
                                                 reviewType: reviewType)
@@ -344,8 +346,17 @@ class SRSViewModel: ReviewEngineProtocol {
             return SRSStartRequest(reviewType: reviewType).requestProducer()!
         }
         
+        if case .failed = reviewType {
+            nonReadyCountProperty <~ studyEntries.map { [weak self] entries in
+                guard let sself = self,
+                    sself.global.useStudyPhase else { return 0 } // FIXME: need to have a signal on this flag to bind along with studyEntries
+                return entries.filter({!$0.learned}).count
+            }
+        }
+        
         let setup = ReviewTypeSetup(shouldEnable: shouldEnable,
                                     cardCount: countProperty,
+                                    nonReadyCount: nonReadyCountProperty,
                                     action: action)
         return (reviewType, setup)
     }
@@ -438,6 +449,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
+    @IBOutlet weak var toStudyLabel: UILabel!
    
     private var reviewTypeStarters: [ReviewType: StartStarter]!
     private var refreshStarter: RefreshStarter!
@@ -511,7 +523,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             self.activityIndicator.reactive.isAnimating <~ setup.action.isExecuting
             
-            button.reactive.title(for: .normal) <~ setup.cardCount.map { "\($0)" }
+            button.reactive.title(for: .normal) <~ setup.cardCount.combineLatest(with: setup.nonReadyCount).map { "\($0 - $1)" }
             view.reactive.backgroundColor <~ setup.cardCount.combineLatest(with: self.viewModel.currentReviewType).map { (count, currentRevType) in
                 let colors = SRSViewController.buttonColorsFromReviewType(reviewType)
                 if let current = currentRevType,
@@ -530,6 +542,12 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             return (reviewType, starter)
         })
+        
+        let failedSetup = viewModel.reviewTypeSetups[.failed]!
+        toStudyLabel.reactive.text <~ failedSetup.nonReadyCount.map {
+            guard $0 > 0 else { return "" }
+            return "+\($0) to study"
+        }
         
         viewModel.currentReviewType.uiReact { [weak self] reviewType in
             guard let _ = reviewType else {

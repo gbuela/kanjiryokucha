@@ -23,6 +23,7 @@
                 <outlet property="newView" destination="61K-rn-FdX" id="Lh7-ZJ-4kZ"/>
                 <outlet property="refreshButton" destination="lOr-1a-dGS" id="TgA-6Q-4Zo"/>
                 <outlet property="reviewContainer" destination="aSJ-QZ-DOD" id="NNy-b7-hy5"/>
+                <outlet property="toStudyLabel" destination="s25-fk-anm" id="Iuh-1d-jov"/>
                 <outlet property="topBarView" destination="Ssd-B6-Hsi" id="jU6-wh-qV3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -161,8 +162,19 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9L-yc-vci">
                                     <rect key="frame" x="0.0" y="125" width="90" height="0.0"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150 to study" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s25-fk-anm">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <constraints>
+                                        <constraint firstItem="s25-fk-anm" firstAttribute="top" secondItem="W9L-yc-vci" secondAttribute="top" id="PL2-CD-Dgu"/>
+                                        <constraint firstItem="s25-fk-anm" firstAttribute="leading" secondItem="W9L-yc-vci" secondAttribute="leading" id="eg9-fS-zdG"/>
                                         <constraint firstAttribute="height" id="gUN-le-5jg"/>
+                                        <constraint firstAttribute="trailing" secondItem="s25-fk-anm" secondAttribute="trailing" id="jAh-xo-JLJ"/>
                                     </constraints>
                                 </view>
                             </subviews>
