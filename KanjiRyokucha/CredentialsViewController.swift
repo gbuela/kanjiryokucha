@@ -35,6 +35,9 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        versionLabel.text = versionNumber
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(userTappedBackground))
         view.addGestureRecognizer(tap)
         
