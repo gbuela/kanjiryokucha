@@ -177,12 +177,17 @@ class SRSViewModel: ReviewEngineProtocol {
     }
     
     private class func submitActionProducer(entries:[ReviewEntry]) -> SignalProducer<Response,FetchError> {
+        let submitBatchSize = 10
+        
         let unsubmittedEntries = entries.filter {$0.rawAnswer != CardAnswer.unanswered.rawValue
             && !$0.submitted
         }
         guard unsubmittedEntries.count > 0 else { return SignalProducer.empty }
         
-        let answers = unsubmittedEntries.map { CardSyncModel(cardId:$0.cardId, answer:$0.cardAnswer) }
+        let limit = unsubmittedEntries.count < submitBatchSize ? unsubmittedEntries.count : submitBatchSize
+        let toSubmitEntries = unsubmittedEntries[0..<limit]
+        
+        let answers = toSubmitEntries.map { CardSyncModel(cardId:$0.cardId, answer:$0.cardAnswer) }
         
         let syncRq = SyncAnswersRequest(answers: answers)
         return syncRq.requestProducer()!
