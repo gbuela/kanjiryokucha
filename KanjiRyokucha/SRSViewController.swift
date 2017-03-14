@@ -547,7 +547,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
         let failedSetup = viewModel.reviewTypeSetups[.failed]!
         toStudyLabel.reactive.text <~ failedSetup.nonReadyCount.map {
             guard $0 > 0 else { return "" }
-            return "+\($0) to study"
+            return "+\($0)"
         }
         
         viewModel.currentReviewType.uiReact { [weak self] reviewType in
@@ -582,6 +582,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
                                         input: ())
         
         activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
+        toStudyLabel.reactive.isHidden <~ viewModel.statusAction.isExecuting
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
