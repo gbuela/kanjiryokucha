@@ -9,14 +9,20 @@
 import ReactiveSwift
 import RealmSwift
 import Result
-import PKHUD
+
+enum LoginState {
+    case loggingIn
+    case failure(String)
+}
 
 struct LoginController {
     let window = UIWindow(frame: UIScreen.main.bounds)
+    let autologinVC = AutologinViewController()
+    let state: MutableProperty<LoginState> = MutableProperty(.loggingIn)
     
     func start() {
-        window.rootViewController = UIViewController()
-        window.rootViewController?.view.backgroundColor = .ryokuchaLight
+        window.rootViewController = autologinVC
+        autologinVC.loginController = self
         window.makeKeyAndVisible()
         
         let defaults = UserDefaults()
@@ -50,20 +56,18 @@ struct LoginController {
         let loginRq = LoginRequest(username: username, password: password)
         
         if let sp = loginRq.requestProducer()?.observe(on: UIScheduler()) {
-            HUD.show(.label("Logging in..."))
             
             sp.startWithResult { (result: Result<Response, FetchError>) in
                 if let response = result.value,
                     response.statusCode == httpStatusMovedTemp,
                     let location = response.headers["Location"] as? String,
                     location.hasPrefix(koohiiHost) {
-                    HUD.hide()
                     if let cookie = response.headers["Set-Cookie"] as? String {
                         Response.latestCookies = [ cookie ]
                     }
                     handler(true, username)
                 } else {
-                    HUD.flash(.error, delay:0.5)
+                    self.state.value = .failure("Could not login")
                     handler(false, nil)
                 }
             }
