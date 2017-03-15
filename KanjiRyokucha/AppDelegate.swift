@@ -79,11 +79,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         subscribeNotifications()
         
-        let loginController = LoginController()
-        window = loginController.window
-        loginController.start()
+        startAutologin()
         
         return true
+    }
+    
+    func startAutologin() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let autologinController = AutologinViewController()
+        window?.rootViewController = autologinController
+        window?.makeKeyAndVisible()
     }
     
     func subscribeNotifications() {
@@ -96,9 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleSessionExpired(_: Notification) {
-        let loginController = LoginController()
-        window = loginController.window
-        loginController.start()
+        startAutologin()
     }
     
     func handleSessionStarted(notification: Notification) {

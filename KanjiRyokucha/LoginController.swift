@@ -17,20 +17,20 @@ enum LoginState {
 
 struct LoginController {
     let window = UIWindow(frame: UIScreen.main.bounds)
-    let autologinVC = AutologinViewController()
     let state: MutableProperty<LoginState> = MutableProperty(.loggingIn)
+    let credentialsRequired: MutableProperty<Bool> = MutableProperty(false)
     
     func start() {
-        window.rootViewController = autologinVC
-        autologinVC.loginController = self
-        window.makeKeyAndVisible()
-        
+        autologinOrPrompt()
+    }
+    
+    func autologinOrPrompt() {
         let defaults = UserDefaults()
         if let username = defaults.object(forKey: usernameKey) as? String,
             let password = defaults.object(forKey: passwordKey) as? String {
             callLogin(username: username, password: password, handler: loginHandler)
         } else {
-            promptForCredentials()
+            credentialsRequired.value = true
         }
     }
     
@@ -72,11 +72,6 @@ struct LoginController {
                 }
             }
         }
-    }
-    
-    func promptForCredentials() {
-        window.rootViewController = CredentialsViewController()
-        window.makeKeyAndVisible()
     }
 }
 

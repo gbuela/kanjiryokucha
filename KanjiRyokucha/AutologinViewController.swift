@@ -17,7 +17,7 @@ class AutologinViewController: UIViewController {
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var manualLoginButton: UIButton!
     
-    var loginController: LoginController!
+    let loginController = LoginController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,8 @@ class AutologinViewController: UIViewController {
         view.backgroundColor = .ryokuchaLight
         
         wireUp()
+        
+        loginController.start()
     }
     
     private func wireUp() {
@@ -68,5 +70,24 @@ class AutologinViewController: UIViewController {
                 return true
             }
         }
+        
+        retryButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
+            self?.loginController.autologinOrPrompt()
+        }
+        
+        manualLoginButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
+            self?.loginController.credentialsRequired.value = true
+        }
+        
+        loginController.credentialsRequired.uiReact { [weak self] required in
+            if required {
+                self?.promptForCredentials()
+            }
+        }
+    }
+    
+    private func promptForCredentials() {
+        let credentialsVC = CredentialsViewController()
+        present(credentialsVC, animated: true, completion: nil)
     }
 }
