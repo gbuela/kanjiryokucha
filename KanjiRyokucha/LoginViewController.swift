@@ -46,6 +46,13 @@ class LoginViewController: UIViewController {
         retryButton.reactive.isHidden <~ viewModel.state.map { !$0.isFailure() }
         manualLoginButton.reactive.isHidden <~ viewModel.state.map { !$0.isFailure() }
         
+        errorMessageLabel.reactive.text <~ viewModel.state.map {
+            switch $0 {
+            case .failure(let message): return message
+            default: return ""
+            }
+        }
+        
         retryButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
             self?.viewModel.autologinOrPrompt()
         }

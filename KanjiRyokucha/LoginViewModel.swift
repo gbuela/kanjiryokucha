@@ -77,16 +77,20 @@ struct LoginViewModel {
         if let sp = loginRq.requestProducer()?.observe(on: UIScheduler()) {
             
             sp.startWithResult { (result: Result<Response, FetchError>) in
-                if let response = result.value,
-                    response.statusCode == httpStatusMovedTemp,
-                    let location = response.headers["Location"] as? String,
-                    location.hasPrefix(koohiiHost) {
-                    if let cookie = response.headers["Set-Cookie"] as? String {
-                        Response.latestCookies = [ cookie ]
+                if let response = result.value {
+                    if response.statusCode == httpStatusMovedTemp,
+                        let location = response.headers["Location"] as? String,
+                        location.hasPrefix(koohiiHost) {
+                        if let cookie = response.headers["Set-Cookie"] as? String {
+                            Response.latestCookies = [ cookie ]
+                        }
+                        handler(true, username)
+                    } else {
+                        self.state.value = .failure("Could not login 🤔")
+                        handler(false, nil)
                     }
-                    handler(true, username)
                 } else {
-                    self.state.value = .failure("Could not login")
+                    self.state.value = .failure("Apparently we're offline ☹️")
                     handler(false, nil)
                 }
             }
