@@ -37,6 +37,24 @@ class AutologinViewController: UIViewController {
     }
     
     private func wireUp() {
+        activityIndicator.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+            switch state {
+            case .loggingIn:
+                return false
+            default:
+                return true
+            }
+        }
+        
+        activityIndicator.reactive.isAnimating <~ loginController.state.map { (state:LoginState) in
+            switch state {
+            case .loggingIn:
+                return true
+            default:
+                return false
+            }
+        }
+        
         errorMessageLabel.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
             switch state {
             case .failure(_): // TODO: shorter way to check this??
@@ -95,6 +113,9 @@ class AutologinViewController: UIViewController {
     
     private func promptForCredentials() {
         let credentialsVC = CredentialsViewController()
+        credentialsVC.enteredCredentialsCallback = { [weak self] (username: String, password: String) in
+            self?.loginController.attemptLogin(withUsername: username, password: password)
+        }
         present(credentialsVC, animated: true, completion: nil)
     }
 }

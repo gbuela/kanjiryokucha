@@ -28,10 +28,15 @@ struct LoginController {
         let defaults = UserDefaults()
         if let username = defaults.object(forKey: usernameKey) as? String,
             let password = defaults.object(forKey: passwordKey) as? String {
-            callLogin(username: username, password: password, handler: loginHandler)
+            attemptLogin(withUsername: username, password: password)
         } else {
             credentialsRequired.value = true
         }
+    }
+    
+    func attemptLogin(withUsername username: String, password: String) {
+        state.value = .loggingIn
+        callLogin(username: username, password: password, handler: loginHandler)
     }
     
     func loginHandler(success: Bool, username: String?) {

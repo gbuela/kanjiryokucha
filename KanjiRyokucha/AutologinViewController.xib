@@ -97,9 +97,8 @@
                         <constraint firstItem="t1P-LL-EWh" firstAttribute="leading" secondItem="jfG-wz-taC" secondAttribute="leading" id="xxu-5L-ade"/>
                     </constraints>
                 </view>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kK6-5r-G1k">
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kK6-5r-G1k">
                     <rect key="frame" x="169" y="315" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logging in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5u-x8-ZAz">
@@ -140,9 +139,11 @@
                 <constraint firstItem="0pK-kA-gVv" firstAttribute="top" secondItem="jfG-wz-taC" secondAttribute="bottom" constant="8" symbolic="YES" id="KJc-uq-Yvb"/>
                 <constraint firstItem="jfG-wz-taC" firstAttribute="top" secondItem="Lqo-85-y95" secondAttribute="bottom" constant="8" symbolic="YES" id="Ow3-Ym-wbA"/>
                 <constraint firstItem="Lqo-85-y95" firstAttribute="width" secondItem="M5u-x8-ZAz" secondAttribute="width" id="PpB-W5-z12"/>
+                <constraint firstItem="kK6-5r-G1k" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Qfs-mE-xfg"/>
                 <constraint firstItem="jfG-wz-taC" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="ULw-MJ-MXO"/>
                 <constraint firstItem="s1Q-O3-Bgi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UvV-xq-QxN"/>
                 <constraint firstItem="Lqo-85-y95" firstAttribute="leading" secondItem="M5u-x8-ZAz" secondAttribute="leading" id="VgN-Pz-S3W"/>
+                <constraint firstItem="kK6-5r-G1k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WQa-rT-FUl"/>
                 <constraint firstItem="0pK-kA-gVv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XXd-u4-VH0"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>

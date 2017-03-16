@@ -30,7 +30,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
-    let loginController = LoginController()
+    var enteredCredentialsCallback: ((String, String) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +43,14 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.isEnabled = false
         
+        wireUp()
+    }
+    
+    func wireUp() {
         loginButton.reactive.isEnabled <~
             usernameField.reactive.continuousTextValues.map(CredentialsViewController.notEmpty).combineLatest(with: passwordField.reactive.continuousTextValues.map(CredentialsViewController.notEmpty)).map { $0 && $1 }
     }
-    
-    func enteredCredentials(username: String, password: String) {
-        loginController.callLogin(username: username, password: password, handler: loginController.loginHandler)
-    }
-    
+
     @IBAction func userTappedBackground() {
         view.endEditing(true)
     }
@@ -93,7 +93,9 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
             defaults.set(nil, forKey: passwordKey)
         }
         
-        enteredCredentials(username: username, password: password)
+        dismiss(animated: true) { [weak self] in
+            self?.enteredCredentialsCallback?(username, password)
+        }
     }
     
     @IBAction func signupPressed(_ sender: AnyObject) {
