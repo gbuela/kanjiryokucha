@@ -17,7 +17,7 @@ class AutologinViewController: UIViewController {
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var manualLoginButton: UIButton!
     
-    let loginController = LoginController()
+    let viewModel = LoginViewModel()
     var started = false
 
     override func viewDidLoad() {
@@ -32,12 +32,12 @@ class AutologinViewController: UIViewController {
         super.viewDidAppear(animated)
         if !started {
             started = true
-            loginController.start()
+            viewModel.start()
         }
     }
     
     private func wireUp() {
-        activityIndicator.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+        activityIndicator.reactive.isHidden <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .loggingIn:
                 return false
@@ -46,7 +46,7 @@ class AutologinViewController: UIViewController {
             }
         }
         
-        activityIndicator.reactive.isAnimating <~ loginController.state.map { (state:LoginState) in
+        activityIndicator.reactive.isAnimating <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .loggingIn:
                 return true
@@ -55,7 +55,7 @@ class AutologinViewController: UIViewController {
             }
         }
         
-        errorMessageLabel.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+        errorMessageLabel.reactive.isHidden <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .failure(_): // TODO: shorter way to check this??
                 return false
@@ -63,7 +63,7 @@ class AutologinViewController: UIViewController {
                 return true
             }
         }
-        loggingInLabel.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+        loggingInLabel.reactive.isHidden <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .loggingIn:
                 return false
@@ -71,7 +71,7 @@ class AutologinViewController: UIViewController {
                 return true
             }
         }
-        errorMessageLabel.reactive.text <~ loginController.state.signal.map { state in
+        errorMessageLabel.reactive.text <~ viewModel.state.signal.map { state in
             switch state {
             case .failure(let message):
                 return message
@@ -79,7 +79,7 @@ class AutologinViewController: UIViewController {
                 return nil
             }
         }
-        retryButton.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+        retryButton.reactive.isHidden <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .failure(_):
                 return false
@@ -87,7 +87,7 @@ class AutologinViewController: UIViewController {
                 return true
             }
         }
-        manualLoginButton.reactive.isHidden <~ loginController.state.map { (state:LoginState) in
+        manualLoginButton.reactive.isHidden <~ viewModel.state.map { (state:LoginState) in
             switch state {
             case .failure(_):
                 return false
@@ -97,14 +97,14 @@ class AutologinViewController: UIViewController {
         }
         
         retryButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
-            self?.loginController.autologinOrPrompt()
+            self?.viewModel.autologinOrPrompt()
         }
         
         manualLoginButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
-            self?.loginController.credentialsRequired.value = true
+            self?.viewModel.credentialsRequired.value = true
         }
         
-        loginController.credentialsRequired.uiReact { [weak self] required in
+        viewModel.credentialsRequired.uiReact { [weak self] required in
             if required {
                 self?.promptForCredentials()
             }
@@ -114,7 +114,7 @@ class AutologinViewController: UIViewController {
     private func promptForCredentials() {
         let credentialsVC = CredentialsViewController()
         credentialsVC.enteredCredentialsCallback = { [weak self] (username: String, password: String) in
-            self?.loginController.attemptLogin(withUsername: username, password: password)
+            self?.viewModel.attemptLogin(withUsername: username, password: password)
         }
         present(credentialsVC, animated: true, completion: nil)
     }

@@ -15,7 +15,7 @@ enum LoginState {
     case failure(String)
 }
 
-struct LoginController {
+struct LoginViewModel {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let state: MutableProperty<LoginState> = MutableProperty(.loggingIn)
     let credentialsRequired: MutableProperty<Bool> = MutableProperty(false)
@@ -56,7 +56,7 @@ struct LoginController {
         Realm.Configuration.defaultConfiguration = config
     }
     
-    func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {
+    private func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {
         
         let loginRq = LoginRequest(username: username, password: password)
         
