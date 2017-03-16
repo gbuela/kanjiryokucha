@@ -56,6 +56,23 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: AnyObject) {
+        attemptLogin()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1;
+        
+        if let nextView = textField.superview?.viewWithTag(nextTag) {
+            nextView.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            attemptLogin()
+        }
+        
+        return false
+    }
+    
+    private func attemptLogin() {
         guard let username = usernameField.text,
             let password = passwordField.text,
             username != "" &&
@@ -77,18 +94,6 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
         }
         
         enteredCredentials(username: username, password: password)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1;
-        
-        if let nextView = textField.superview?.viewWithTag(nextTag) {
-            nextView.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        
-        return false
     }
     
     @IBAction func signupPressed(_ sender: AnyObject) {
