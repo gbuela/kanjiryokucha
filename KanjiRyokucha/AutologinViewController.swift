@@ -18,6 +18,7 @@ class AutologinViewController: UIViewController {
     @IBOutlet weak var manualLoginButton: UIButton!
     
     let loginController = LoginController()
+    var started = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,14 @@ class AutologinViewController: UIViewController {
         view.backgroundColor = .ryokuchaLight
         
         wireUp()
-        
-        loginController.start()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !started {
+            started = true
+            loginController.start()
+        }
     }
     
     private func wireUp() {
