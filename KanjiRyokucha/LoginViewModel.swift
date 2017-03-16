@@ -13,6 +13,20 @@ import Result
 enum LoginState {
     case loggingIn
     case failure(String)
+    
+    func isLoggingIn() -> Bool {
+        switch self {
+        case .loggingIn: return true
+        default: return false
+        }
+    }
+    
+    func isFailure() -> Bool {
+        switch self {
+        case .failure(_): return true
+        default: return false
+        }
+    }
 }
 
 struct LoginViewModel {

@@ -86,8 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func startAutologin() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let autologinController = AutologinViewController()
-        window?.rootViewController = autologinController
+        let loginController = LoginViewController()
+        window?.rootViewController = loginController
         window?.makeKeyAndVisible()
     }
     
