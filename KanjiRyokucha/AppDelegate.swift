@@ -40,7 +40,7 @@ struct AppController {
         viewModel.wireUp()
 
         let tabs: [TabModel] = [
-            TabModel(title: "Review", imageName: "tabcards", viewController: srsViewController),
+            TabModel(title: "Review", imageName: "tabreview", viewController: srsViewController),
             TabModel(title: "Study", imageName: "tabstudy", viewController: studyNav),
             TabModel(title: "Free review", imageName: "tabfree", viewController: FreeReviewViewController()),
             TabModel(title: "Settings", imageName: "tabsettings", viewController: settingsNav)
