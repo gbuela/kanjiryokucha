@@ -588,6 +588,14 @@ class SRSViewController: UIViewController, ReviewDelegate {
         
         activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
         toStudyLabel.reactive.isHidden <~ viewModel.statusAction.isExecuting
+        
+        viewModel.statusAction.uiReact { [weak self] response in
+            if let model = response.model as? GetStatusModel,
+                let tabBarItem = self?.tabBarItem {
+                tabBarItem.badgeValue = model.expiredCards > 0 ? "\(model.expiredCards)" : nil
+            }
+        }
+        
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {

@@ -64,6 +64,9 @@ class StudyViewController: UITableViewController, UIViewControllerPreviewingDele
                 return entries.count > 0
             }
         }
+        studyEntries.uiReact { [weak self] entries in
+            self?.navigationController?.tabBarItem.badgeValue = entries.count > 0 ? "\(entries.count)" : nil
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
