@@ -52,7 +52,7 @@ struct AppController {
         for tab in tabs {
             tab.viewController.tabBarItem = UITabBarItem(title: tab.title,
                                                          image: UIImage(named:tab.imageName)?.withRenderingMode(.alwaysOriginal),
-                                                         selectedImage: UIImage(named:tab.imageName))
+                                                         selectedImage: UIImage(named:"sel-" + tab.imageName))
         }
         
         window.makeKeyAndVisible()
