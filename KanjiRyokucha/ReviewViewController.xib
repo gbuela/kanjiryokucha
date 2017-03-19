@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,16 +34,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idl-cm-zI8" userLabel="Review container">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due cards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-ym-lxx" userLabel="review title">
-                            <rect key="frame" x="145" y="8" width="85" height="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="due cards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-ym-lxx" userLabel="review title">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="9DQ-vF-J86"/>
+                                <constraint firstAttribute="height" constant="44" id="9DQ-vF-J86"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcW-x1-wWF" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="20" y="56" width="80" height="70"/>
+                            <rect key="frame" x="20" y="54" width="80" height="70"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="iHa-Fz-jE2" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -60,13 +62,13 @@
                             <state key="normal" title="review"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ago-gB-V6X">
-                            <rect key="frame" x="20" y="105" width="80" height="17"/>
+                            <rect key="frame" x="20" y="103" width="80" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                             <color key="textColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8oO-ee-ZI0" userLabel="Performance Chart" customClass="ARPieChart" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="119" y="132" width="138" height="138"/>
+                            <rect key="frame" x="119" y="130" width="138" height="138"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="138" id="EiK-cm-AVQ" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                                     <userDefinedRuntimeAttributes>
@@ -79,32 +81,32 @@
                             </constraints>
                         </view>
                         <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8Q-8l-XcK" userLabel="Submission Chart" customClass="ARPieChart" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="119" y="132" width="138" height="138"/>
+                            <rect key="frame" x="119" y="130" width="138" height="138"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="138" id="M6e-vA-Gz5"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😞" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6md-8e-sMA" userLabel="Performance emoji">
-                            <rect key="frame" x="121" y="132" width="138" height="138"/>
+                            <rect key="frame" x="121" y="130" width="138" height="138"/>
                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LK2-LB-CYB" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="275" y="56" width="80" height="70"/>
+                            <rect key="frame" x="275" y="54" width="80" height="70"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <state key="normal" title="submit"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNu-ZC-ivU">
-                            <rect key="frame" x="275" y="105" width="80" height="17"/>
+                            <rect key="frame" x="275" y="103" width="80" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                             <color key="textColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfT-8E-Vql" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="148" y="290" width="80" height="40"/>
+                            <rect key="frame" x="148" y="288" width="80" height="40"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DON-mC-aJp"/>
@@ -116,13 +118,13 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your score:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osC-Ij-uPI">
-                            <rect key="frame" x="151" y="60" width="73" height="17"/>
+                            <rect key="frame" x="151" y="58" width="73" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="838-t2-OSa" userLabel="Score">
-                            <rect key="frame" x="158" y="77" width="59" height="29"/>
+                            <rect key="frame" x="158" y="75" width="59" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -130,6 +132,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ch3-ym-lxx" secondAttribute="trailing" id="4Qj-Qd-oFB"/>
                         <constraint firstItem="F8Q-8l-XcK" firstAttribute="leading" secondItem="8oO-ee-ZI0" secondAttribute="leading" id="51W-xh-qs9"/>
                         <constraint firstItem="kNu-ZC-ivU" firstAttribute="width" secondItem="LK2-LB-CYB" secondAttribute="width" id="604-hD-jGd"/>
                         <constraint firstItem="6md-8e-sMA" firstAttribute="leading" secondItem="F8Q-8l-XcK" secondAttribute="leading" constant="2" id="D8e-eU-NBl" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -144,6 +147,7 @@
                         </constraint>
                         <constraint firstItem="Ago-gB-V6X" firstAttribute="bottom" secondItem="ZcW-x1-wWF" secondAttribute="bottom" constant="-4" id="ETN-9k-qzp"/>
                         <constraint firstItem="F8Q-8l-XcK" firstAttribute="height" secondItem="8oO-ee-ZI0" secondAttribute="height" id="EzL-I4-Q3e"/>
+                        <constraint firstItem="ch3-ym-lxx" firstAttribute="leading" secondItem="Idl-cm-zI8" secondAttribute="leading" id="HjY-ZI-HIU"/>
                         <constraint firstItem="hfT-8E-Vql" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="MAm-GG-n2i"/>
                         <constraint firstItem="kNu-ZC-ivU" firstAttribute="bottom" secondItem="LK2-LB-CYB" secondAttribute="bottom" constant="-4" id="NpQ-fi-8DO"/>
                         <constraint firstItem="8oO-ee-ZI0" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="SiN-Az-27w"/>
@@ -157,15 +161,14 @@
                         <constraint firstItem="F8Q-8l-XcK" firstAttribute="width" secondItem="8oO-ee-ZI0" secondAttribute="width" id="e8g-Vg-6Jd"/>
                         <constraint firstItem="Ago-gB-V6X" firstAttribute="leading" secondItem="ZcW-x1-wWF" secondAttribute="leading" id="eia-pC-OT2"/>
                         <constraint firstItem="6md-8e-sMA" firstAttribute="top" secondItem="F8Q-8l-XcK" secondAttribute="top" id="gdC-71-sJY"/>
-                        <constraint firstItem="ch3-ym-lxx" firstAttribute="top" secondItem="Idl-cm-zI8" secondAttribute="top" constant="8" id="gfM-YQ-bu2"/>
-                        <constraint firstItem="ZcW-x1-wWF" firstAttribute="top" secondItem="ch3-ym-lxx" secondAttribute="bottom" constant="8" symbolic="YES" id="gvp-tm-0NF"/>
+                        <constraint firstItem="ch3-ym-lxx" firstAttribute="top" secondItem="Idl-cm-zI8" secondAttribute="top" id="gfM-YQ-bu2"/>
+                        <constraint firstItem="ZcW-x1-wWF" firstAttribute="top" secondItem="ch3-ym-lxx" secondAttribute="bottom" constant="10" id="gvp-tm-0NF"/>
                         <constraint firstItem="ZcW-x1-wWF" firstAttribute="leading" secondItem="Idl-cm-zI8" secondAttribute="leading" constant="20" symbolic="YES" id="h1R-wv-laR"/>
                         <constraint firstItem="osC-Ij-uPI" firstAttribute="top" secondItem="ZcW-x1-wWF" secondAttribute="top" constant="4" id="lai-IH-hR0"/>
                         <constraint firstItem="6md-8e-sMA" firstAttribute="height" secondItem="F8Q-8l-XcK" secondAttribute="height" id="oUM-Sd-VTV"/>
                         <constraint firstAttribute="trailing" secondItem="LK2-LB-CYB" secondAttribute="trailing" constant="20" symbolic="YES" id="pXs-JP-Tmq"/>
                         <constraint firstItem="838-t2-OSa" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="qgz-mI-73Y"/>
                         <constraint firstItem="osC-Ij-uPI" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="sJS-r0-1gt"/>
-                        <constraint firstItem="ch3-ym-lxx" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="sOn-Uu-OkP"/>
                         <constraint firstItem="8oO-ee-ZI0" firstAttribute="top" secondItem="ZcW-x1-wWF" secondAttribute="bottom" constant="6" id="tQy-WP-TBT"/>
                         <constraint firstItem="Ago-gB-V6X" firstAttribute="width" secondItem="ZcW-x1-wWF" secondAttribute="width" id="u9m-Ql-Cd8"/>
                         <constraint firstItem="LK2-LB-CYB" firstAttribute="top" secondItem="ZcW-x1-wWF" secondAttribute="top" id="vP0-m0-BDH"/>

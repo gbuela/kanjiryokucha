@@ -25,6 +25,7 @@ class FreeViewModel: ReviewEngineProtocol {
         return ((fromInt, toInt), nil)
     }
     let reviewTitle: MutableProperty<String?> = MutableProperty("free review")
+    let reviewColor: MutableProperty<UIColor> = MutableProperty(.ryokuchaDark)
 
     let emptySessionAttempt = MutableProperty(false)
 

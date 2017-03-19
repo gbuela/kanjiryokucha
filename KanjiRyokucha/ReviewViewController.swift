@@ -146,11 +146,15 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
         
         reviewLabel.textColor = .ryokuchaDark
         submitLabel.textColor = .ryokuchaDark
+        
+        view.layer.cornerRadius = 8.0
+        view.layer.borderColor = reviewEngine.reviewColor.value.cgColor
+        view.layer.borderWidth = 1.0
+        reviewTitle.backgroundColor = reviewEngine.reviewColor.value
+        reviewTitle.text = reviewEngine.reviewTitle.value
     }
     
     func wireUp() {
-        reviewTitle.reactive.text <~ reviewEngine.reviewTitle
-
         reviewLabel.reactive.text <~ reviewEngine.toReviewCount.map { "\($0)" }
         submitLabel.reactive.text <~ reviewEngine.toSubmitCount.map { "\($0)" }
         

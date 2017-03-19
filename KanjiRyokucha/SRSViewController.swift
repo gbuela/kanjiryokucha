@@ -76,6 +76,7 @@ extension Array where Element : ReviewEntry {
 
 protocol ReviewEngineProtocol: class {
     var reviewTitle: MutableProperty<String?> { get }
+    var reviewColor: MutableProperty<UIColor> { get }
     var reviewInProgress: MutableProperty<Bool> { get }
     var toReviewCount: MutableProperty<Int> { get }
     var toSubmitCount: MutableProperty<Int> { get }
@@ -155,6 +156,7 @@ class SRSViewModel: ReviewEngineProtocol {
     private var startedSession: MutableProperty<StartedSession?> = MutableProperty(nil)
 
     let reviewTitle: MutableProperty<String?> = MutableProperty(nil)
+    let reviewColor: MutableProperty<UIColor> = MutableProperty(.ryokuchaDark)
     var reviewTypeSetups: [ReviewType: ReviewTypeSetup] = [:]
     let reviewInProgress: MutableProperty<Bool> = MutableProperty(false)
     var currentReviewType: MutableProperty<ReviewType?> = MutableProperty(nil)
@@ -254,6 +256,7 @@ class SRSViewModel: ReviewEngineProtocol {
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         
         reviewTitle <~ currentReviewType.map(SRSViewModel.titleFromReviewType)
+        reviewColor <~ currentReviewType.map { $0?.colors.enabledColor ?? .ryokuchaDark}
     }
 
     public func start() {
@@ -331,7 +334,10 @@ class SRSViewModel: ReviewEngineProtocol {
     
     private func startSignalCreator(from reviewType:ReviewType) -> Signal<StartedSession,NoError> {
         let setup = reviewTypeSetups[reviewType]!
-        return setup.action.values.map { response in
+        let validValues = setup.action.values.filter { response in
+            return response.model is CardIdsModel
+        }
+        return validValues.map { response in
             let model = response.model as! CardIdsModel
             print("Binding \(reviewType) cards with ids: \(model.ids)")
             return StartedSession(reviewType: reviewType,
