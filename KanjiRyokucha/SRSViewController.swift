@@ -345,6 +345,7 @@ class SRSViewModel: ReviewEngineProtocol {
         let nonReadyCountProperty: MutableProperty<Int> = MutableProperty(0)
         
         shouldEnable <~ shouldEnableStartSignal(countProperty: countProperty,
+                                                nonReadyCountProperty: nonReadyCountProperty,
                                                 reviewType: reviewType)
         
         let action = StartActionType(enabledIf: shouldEnable) { _ in
@@ -378,12 +379,15 @@ class SRSViewModel: ReviewEngineProtocol {
         }
     }
 
-    private func shouldEnableStartSignal(countProperty: MutableProperty<Int>, reviewType: ReviewType) -> Signal<Bool, NoError> {
-        return countProperty.signal
-            .combineLatest(with: currentReviewType.signal)
-            .map { (count:Int, inProgressReview:ReviewType?) -> Bool in
-                return inProgressReview == nil && count > 0
+    private func shouldEnableStartSignal(countProperty: MutableProperty<Int>,
+                                         nonReadyCountProperty: MutableProperty<Int>,
+                                         reviewType: ReviewType) -> Signal<Bool, NoError> {
+        
+        let result = Property.combineLatest(countProperty, nonReadyCountProperty, currentReviewType)
+            .map { (count:Int, nonReadyCount: Int, inProgressReview:ReviewType?) -> Bool in
+                return inProgressReview == nil && (count - nonReadyCount) > 0
         }
+        return result.signal
     }
 
     func saveSession(startSession: StartedSession?) {
@@ -531,13 +535,13 @@ class SRSViewController: UIViewController, ReviewDelegate {
             
             button.reactive.title(for: .normal) <~ setup.cardCount.combineLatest(with: setup.nonReadyCount).map { "\(max($0 - $1, 0))" }
             
-            view.reactive.backgroundColor <~ setup.cardCount.combineLatest(with: self.viewModel.currentReviewType).map { (count, currentRevType) in
+            view.reactive.backgroundColor <~ setup.shouldEnable.combineLatest(with: self.viewModel.currentReviewType).map { (shouldEnable, currentRevType) in
                 let colors = SRSViewController.buttonColorsFromReviewType(reviewType)
                 if let current = currentRevType,
                     current != reviewType {
                     return colors.disabledColor
                 }
-                return count == 0 ? colors.disabledColor : colors.enabledColor
+                return shouldEnable ? colors.enabledColor : colors.disabledColor
             }
             
             self.viewModel.currentReviewType.uiReact { rtyp in
@@ -549,8 +553,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             return (reviewType, starter)
         })
-        
-        let failedSetup = viewModel.reviewTypeSetups[.failed]!
         
         viewModel.currentReviewType.uiReact { [weak self] reviewType in
             guard let _ = reviewType else {
