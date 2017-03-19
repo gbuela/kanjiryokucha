@@ -527,6 +527,19 @@ class SRSViewController: UIViewController, ReviewDelegate {
             let starter = ActionStarter(control: button,
                                         action: setup.action,
                                         input: reviewType)
+            
+            button.reactive.controlEvents(.touchDown).uiReact { _ in
+                UIView.animate(withDuration: 0.3,
+                               animations: {
+                                view.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                })
+            }
+            button.reactive.controlEvents([.touchUpInside, .touchDragExit]).uiReact { _ in
+                UIView.animate(withDuration: 0.3,
+                               animations: {
+                                view.transform = CGAffineTransform.identity
+                })
+            }
 
             self.activityIndicator.reactive.isAnimating <~ setup.action.isExecuting
             
