@@ -38,6 +38,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: switchedStudy),
             createSeparatorCell()
         ]
+        
+        tableView.tableFooterView = UIView()
     }
     
     private func switchedAnimations(isOn: Bool) {
