@@ -31,8 +31,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         title = "Settings"
         
         usernameLabel.text = username
+        
+        let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
         cells = [
+            createInfoCell(title: "Version", value: versionNumber),
             createSeparatorCell(),
             createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: switchedAnimations),
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: switchedStudy),
@@ -61,6 +64,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.subtitle.text = subtitle
         cell.uiswitch.isOn = state
         cell.uiswitch.reactive.isOnValues.react(handler)
+        return cell
+    }
+    
+    private func createInfoCell(title: String, value: String) -> SettingsInfoCell {
+        let cell = Bundle.main.loadNibNamed("SettingsInfoCell", owner: self, options: nil)!.first as! SettingsInfoCell
+        cell.titleLabel.text = title
+        cell.valueLabel.text = value
         return cell
     }
     
@@ -103,6 +113,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             return 84
         case is SeparatorCell:
             return 30
+        case is SettingsInfoCell:
+            return 53
         default:
             return 45
         }

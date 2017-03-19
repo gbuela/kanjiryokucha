@@ -47,6 +47,8 @@
 		C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */; };
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
+		C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */; };
+		C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
 		C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */; };
 		C4603DF31E6B27C800A56C9A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C47589FD1DF3659C0019AF57 /* SRSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47589FB1DF3659C0019AF57 /* SRSViewController.swift */; };
@@ -123,6 +125,8 @@
 		C43DCC451E57E4C1006F2C0C /* StudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCell.xib; sourceTree = "<group>"; };
 		C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatusRequest.swift; sourceTree = "<group>"; };
+		C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoCell.swift; sourceTree = "<group>"; };
+		C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsInfoCell.xib; sourceTree = "<group>"; };
 		C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C4603DF21E6B27C800A56C9A /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		C47589FB1DF3659C0019AF57 /* SRSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRSViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */,
 				C4EF331D1E64EF34004F67C4 /* SettingsSwitchCell.swift */,
 				C4EF331E1E64EF34004F67C4 /* SettingsSwitchCell.xib */,
+				C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */,
+				C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
 				C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */,
 				C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */,
+				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
 				C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
 				C4F213BF1DEA532900EF5214 /* Assets.xcassets in Resources */,
@@ -549,6 +556,7 @@
 				C4758A041DF395F00019AF57 /* Colors.swift in Sources */,
 				C4F213B81DEA532900EF5214 /* AppDelegate.swift in Sources */,
 				C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */,
+				C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */,
 				C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */,
 				C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */,
 				C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */,
