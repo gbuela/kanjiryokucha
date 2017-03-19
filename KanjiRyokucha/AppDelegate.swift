@@ -77,6 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
 
+        if #available(iOS 10, *) {
+            UITabBarItem.appearance().badgeColor = .ryokuchaLighter
+            let badgeTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+            UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
+        }
+        
         subscribeNotifications()
         
         startAutologin()
