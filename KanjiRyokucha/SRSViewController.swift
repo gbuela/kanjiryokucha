@@ -498,6 +498,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
                 viewModel.refreshStatus()
             }
         }
+        
+        viewModel.studyEntries.value = viewModel.studyEntries.value
     }
     
     func setUp() {
@@ -596,6 +598,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
         }
         
+        viewModel.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (entries, studyPhase) in
+            let badge = studyPhase && entries.count > 0 ? "\(entries.count)" : nil
+            self?.tabBarController?.tabBar.items![1].badgeValue = badge
+        }
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
