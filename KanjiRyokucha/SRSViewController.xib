@@ -276,7 +276,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSJ-QZ-DOD" userLabel="Review container">
                     <rect key="frame" x="8" y="123" width="303" height="350"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="350" id="ypg-Ku-32Z"/>
+                        <constraint firstAttribute="height" constant="350" id="ypg-Ku-32Z" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                                    <real key="value" value="315"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
                     </constraints>
                 </view>
             </subviews>
