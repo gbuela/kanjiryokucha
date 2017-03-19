@@ -64,8 +64,10 @@ class StudyViewController: UITableViewController, UIViewControllerPreviewingDele
                 return entries.count > 0
             }
         }
-        studyEntries.uiReact { [weak self] entries in
-            self?.navigationController?.tabBarItem.badgeValue = entries.count > 0 ? "\(entries.count)" : nil
+        
+        studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (entries, studyPhase) in
+                let badge = studyPhase && entries.count > 0 ? "\(entries.count)" : nil
+                self?.navigationController?.tabBarItem.badgeValue = badge
         }
     }
     
