@@ -23,7 +23,6 @@
                 <outlet property="newView" destination="61K-rn-FdX" id="Lh7-ZJ-4kZ"/>
                 <outlet property="refreshButton" destination="lOr-1a-dGS" id="TgA-6Q-4Zo"/>
                 <outlet property="reviewContainer" destination="aSJ-QZ-DOD" id="NNy-b7-hy5"/>
-                <outlet property="topBarView" destination="Ssd-B6-Hsi" id="jU6-wh-qV3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -185,13 +184,6 @@
                         <constraint firstItem="XMl-mV-2B2" firstAttribute="width" secondItem="W9l-Tc-mmv" secondAttribute="width" id="qHU-BJ-mqa"/>
                     </constraints>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssd-B6-Hsi" userLabel="Top bar">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="LGQ-g6-qh2"/>
-                    </constraints>
-                </view>
                 <view userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w0O-e6-7LB" userLabel="kanji background">
                     <rect key="frame" x="47" y="127" width="225" height="225"/>
                     <subviews>
@@ -291,7 +283,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="centerX" secondItem="w0O-e6-7LB" secondAttribute="centerX" id="3cc-cL-jAl"/>
-                <constraint firstItem="Ssd-B6-Hsi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5dO-L5-AYy"/>
                 <constraint firstAttribute="trailing" secondItem="jZU-qW-gn7" secondAttribute="trailing" id="8Iq-Rb-zDg"/>
                 <constraint firstItem="w0O-e6-7LB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BIv-4v-BCY"/>
                 <constraint firstItem="jZU-qW-gn7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E7W-OY-W70"/>
@@ -300,10 +291,8 @@
                 <constraint firstItem="w0O-e6-7LB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Svp-6d-6Kr"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="top" secondItem="w0O-e6-7LB" secondAttribute="bottom" constant="8" id="Ymb-sI-Ste"/>
-                <constraint firstAttribute="trailing" secondItem="Ssd-B6-Hsi" secondAttribute="trailing" id="ZfT-dr-SXW"/>
                 <constraint firstItem="jZU-qW-gn7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="oHO-rl-8Io"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="centerY" secondItem="w0O-e6-7LB" secondAttribute="centerY" id="qbC-u8-hnk"/>
-                <constraint firstItem="Ssd-B6-Hsi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qiW-fD-qf9"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="uZT-Vi-5ln"/>
             </constraints>
             <point key="canvasLocation" x="34" y="54"/>

@@ -447,7 +447,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var reviewContainer: UIView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var topBarView: UIView!
     @IBOutlet weak var dueView: UIView!
     @IBOutlet weak var newView: UIView!
     @IBOutlet weak var failedView: UIView!
@@ -516,8 +515,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
     }
     
     func wireUp() {        
-        topBarView.reactive.backgroundColor <~ viewModel.currentReviewType.map(SRSViewController.buttonColorsFromReviewType).map { $0.enabledColor }
-        topBarView.reactive.isHidden <~ viewModel.currentReviewType.map { $0 == nil }
         reviewContainer.reactive.isHidden <~ viewModel.currentReviewType.map { $0 == nil }
         
         reviewTypeStarters = Dictionary(elements: ReviewType.allTypes.map { [unowned self] reviewType in
