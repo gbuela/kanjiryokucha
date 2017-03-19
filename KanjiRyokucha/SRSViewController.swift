@@ -454,7 +454,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
-    @IBOutlet weak var toStudyLabel: UILabel!
    
     private var reviewTypeStarters: [ReviewType: StartStarter]!
     private var refreshStarter: RefreshStarter!
@@ -552,10 +551,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
         })
         
         let failedSetup = viewModel.reviewTypeSetups[.failed]!
-        toStudyLabel.reactive.text <~ failedSetup.nonReadyCount.map {
-            guard $0 > 0 else { return "" }
-            return "+\($0)"
-        }
         
         viewModel.currentReviewType.uiReact { [weak self] reviewType in
             guard let _ = reviewType else {
@@ -589,7 +584,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
                                         input: ())
         
         activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
-        toStudyLabel.reactive.isHidden <~ viewModel.statusAction.isExecuting
         
         viewModel.statusAction.uiReact { [weak self] response in
             if let model = response.model as? GetStatusModel,
