@@ -102,7 +102,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         case is SettingsSwitchCell:
             return 84
         case is SeparatorCell:
-            return 40
+            return 30
         default:
             return 45
         }
