@@ -17,6 +17,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     var cells: [UITableViewCell]!
+    var aboutCell: UITableViewCell!
+    var selectableCells: [UITableViewCell]!
     var username: String?
     var global: Global!
 
@@ -34,12 +36,17 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
+        aboutCell = createDisclosureCell(title: "About")
+        
+        selectableCells = [aboutCell]
+        
         cells = [
-            createInfoCell(title: "Version", value: versionNumber),
             createSeparatorCell(),
             createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: switchedAnimations),
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: switchedStudy),
-            createSeparatorCell()
+            createSeparatorCell(),
+            createInfoCell(title: "Version", value: versionNumber),
+            aboutCell
         ]
         
         tableView.tableFooterView = UIView()
@@ -74,6 +81,14 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    private func createDisclosureCell(title: String) -> SettingsInfoCell {
+        let cell = Bundle.main.loadNibNamed("SettingsInfoCell", owner: self, options: nil)!.first as! SettingsInfoCell
+        cell.titleLabel.text = title
+        cell.valueLabel.text = nil
+        cell.accessoryType = .detailButton
+        return cell
+    }
+    
     private func createSeparatorCell() -> SeparatorCell {
         let cell = SeparatorCell()
         cell.backgroundColor = .ryokuchaLight
@@ -99,12 +114,17 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - Table datasource
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        switch cells[indexPath.row] {
-        case is SettingsSwitchCell, is SeparatorCell:
-            return nil
-        default:
-            return indexPath
+        let cell = cells[indexPath.row]
+        return selectableCells.contains(cell) ? indexPath : nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = cells[indexPath.row]
+        if cell == aboutCell {
+            let aboutPageVC = AboutViewController()
+            navigationController?.pushViewController(aboutPageVC, animated: true)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

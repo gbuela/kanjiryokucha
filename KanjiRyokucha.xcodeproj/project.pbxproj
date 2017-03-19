@@ -49,6 +49,9 @@
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
 		C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */; };
 		C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
+		C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE701E7F288A00A34FD9 /* AboutViewController.swift */; };
+		C458FE731E7F288B00A34FD9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE711E7F288B00A34FD9 /* AboutViewController.xib */; };
+		C458FE751E7F29B900A34FD9 /* about.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C458FE741E7F29B900A34FD9 /* about.rtf */; };
 		C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */; };
 		C4603DF31E6B27C800A56C9A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C47589FD1DF3659C0019AF57 /* SRSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47589FB1DF3659C0019AF57 /* SRSViewController.swift */; };
@@ -127,6 +130,9 @@
 		C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatusRequest.swift; sourceTree = "<group>"; };
 		C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoCell.swift; sourceTree = "<group>"; };
 		C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsInfoCell.xib; sourceTree = "<group>"; };
+		C458FE701E7F288A00A34FD9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		C458FE711E7F288B00A34FD9 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		C458FE741E7F29B900A34FD9 /* about.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = about.rtf; sourceTree = "<group>"; };
 		C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C4603DF21E6B27C800A56C9A /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		C47589FB1DF3659C0019AF57 /* SRSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRSViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +327,8 @@
 				C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */,
 				C4A593631E79C99A0098CB99 /* LoginViewController.swift */,
 				C4A593641E79C99A0098CB99 /* LoginViewController.xib */,
+				C458FE701E7F288A00A34FD9 /* AboutViewController.swift */,
+				C458FE711E7F288B00A34FD9 /* AboutViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -329,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				C43DCC381E51198B006F2C0C /* readings.csv */,
+				C458FE741E7F29B900A34FD9 /* about.rtf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -426,6 +435,7 @@
 			files = (
 				C4F213C21DEA532900EF5214 /* LaunchScreen.storyboard in Resources */,
 				C42BBAAB1E10484100361C89 /* CardBackView.xib in Resources */,
+				C458FE751E7F29B900A34FD9 /* about.rtf in Resources */,
 				C43DCC2B1E4D4828006F2C0C /* ReviewViewController.xib in Resources */,
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
 				C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */,
@@ -435,6 +445,7 @@
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
 				C4F213BF1DEA532900EF5214 /* Assets.xcassets in Resources */,
 				C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */,
+				C458FE731E7F288B00A34FD9 /* AboutViewController.xib in Resources */,
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
@@ -589,6 +600,7 @@
 				C43DCC231E481030006F2C0C /* LayoutConstraint.swift in Sources */,
 				C42BBAA91E0F187900361C89 /* CardFetchRequest.swift in Sources */,
 				C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */,
+				C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */,
 				C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */,
 				C43668E11E00C0520080D768 /* GermansUtils.swift in Sources */,
 				C43DCC351E501769006F2C0C /* KanjialiveRequest.swift in Sources */,
