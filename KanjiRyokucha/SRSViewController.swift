@@ -150,6 +150,7 @@ extension ReviewEngineProtocol {
 
 class SRSViewModel: ReviewEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
+    var learnedIdsAction: Action<Void, Response, FetchError>!
     var refreshedSinceStartup = false
     
     private var startSignals: [Signal<StartedSession,NoError>] = []
@@ -213,6 +214,10 @@ class SRSViewModel: ReviewEngineProtocol {
             self?.updateCardCount(response: response)
             UserDefaults().set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
             self?.refreshedSinceStartup = true
+        }
+        
+        learnedIdsAction = Action<Void, Response, FetchError> { _ in
+            return GetLearnedIdsRequest().requestProducer()!
         }
         
         startSignals = reviewTypeSetups.keys.map { [unowned self] reviewType in
@@ -600,7 +605,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
         refreshStarter = RefreshStarter(control: refreshButton,
                                         action: viewModel.statusAction,
                                         input: ())
-        
+
         activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
         
         viewModel.statusAction.uiReact { [weak self] response in
