@@ -13,16 +13,19 @@ struct GetStatusModel: Decodable {
     let newCards: Int
     let expiredCards: Int
     let failedCards: Int
+    let learnedCards: Int
     
     init?(json: JSON) {
         guard let new: Int = "new_cards" <~~ json,
             let expired: Int = "due_cards" <~~ json,
-            let failed: Int = "relearn_cards" <~~ json else {
+            let failed: Int = "relearn_cards" <~~ json,
+            let learnedCards: Int = "learned_cards" <~~ json else {
                 return nil
         }
         self.newCards = new
         self.expiredCards = expired
         self.failedCards = failed
+        self.learnedCards = learnedCards
     }
 }
 
