@@ -364,11 +364,15 @@ class SRSViewModel: ReviewEngineProtocol {
         } else {
             actualCountProperty = countProperty
         }
-        
         shouldEnable <~ shouldEnableStartSignal(countProperty: actualCountProperty,
                                                 reviewType: reviewType)
         
-        let action = StartActionType(enabledIf: shouldEnable) { _ in
+        let action = StartActionType(enabledIf: shouldEnable) { [weak self] _ in
+            if case .failed = reviewType,
+                let sself = self,
+                sself.global.useStudyPhase {
+                return GetLearnedIdsRequest().requestProducer()!
+            }
             return SRSStartRequest(reviewType: reviewType).requestProducer()!
         }
         
@@ -399,6 +403,8 @@ class SRSViewModel: ReviewEngineProtocol {
 
     private func shouldEnableStartSignal(countProperty: MutableProperty<Int>,
                                          reviewType: ReviewType) -> Signal<Bool, NoError> {
+        
+        print("--\(reviewType): \(countProperty.value)")
         
         let result = Property.combineLatest(countProperty, currentReviewType)
             .map { (count:Int, inProgressReview:ReviewType?) -> Bool in
