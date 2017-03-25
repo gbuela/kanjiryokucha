@@ -9,8 +9,8 @@
 import UIKit
 import ReactiveSwift
 
-typealias ReviewStarter = ActionStarter<[ReviewEntry], Response, FetchError>
-typealias SubmitStarter = ActionStarter<[ReviewEntry], Response, FetchError>
+fileprivate typealias ReviewStarter = ActionStarter<[ReviewEntry], Response, FetchError>
+fileprivate typealias SubmitStarter = ActionStarter<[ReviewEntry], Response, FetchError>
 
 
 struct PieChartItem {

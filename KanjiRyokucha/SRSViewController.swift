@@ -16,6 +16,11 @@ import Gloss
 
 let lastSatusRefreshKey = "lastSatusRefresh"
 
+struct StudyChanges {
+    let notLearned: [Int]
+    let learned: [Int]
+}
+
 struct ReviewState {
     let totalCards: Int
     let answeredYes: Int
@@ -173,6 +178,8 @@ class SRSViewModel: ReviewEngineProtocol {
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let emptySessionAttempt: MutableProperty<Bool> = MutableProperty(false)
+    let studyChanges: MutableProperty<StudyChanges> = MutableProperty(StudyChanges(notLearned: [], learned: []))
+    let toStudyCount: MutableProperty<Int> = MutableProperty(0)
     
     var global: Global!
     
@@ -207,6 +214,14 @@ class SRSViewModel: ReviewEngineProtocol {
    
     public func wireUp() {
         reviewTypeSetups = Dictionary(elements: ReviewType.allTypes.map(reviewTypeSetupCreator))
+        
+        let failedSetup = reviewTypeSetups[.failed]!
+        
+        toStudyCount <~ Property.combineLatest(failedSetup.cardCount,
+                                               failedSetup.learnedCount).map { cc, lc in
+                                                let ts = cc - lc
+                                                return max(ts, 0)
+        }
         
         statusAction = Action<Void, Response, FetchError> { _ in
             return GetStatusRequest().requestProducer()!
@@ -268,6 +283,9 @@ class SRSViewModel: ReviewEngineProtocol {
     public func start() {
         restoreState()
         refreshStatus()
+        studyChanges.value = studyChanges.value // FIXME: restore
+ //       toStudyCount.value = toStudyCount.value
+        Global.studyPhaseFlag.value = global.useStudyPhase
     }
     
     func refreshStatus() {
@@ -627,8 +645,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
         }
         
-        viewModel.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (entries, studyPhase) in
-            let badge = studyPhase && entries.count > 0 ? "\(entries.count)" : nil
+        viewModel.toStudyCount.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (count, studyPhase) in
+            let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
         }
     }

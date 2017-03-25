@@ -23,16 +23,16 @@ struct AppController {
     
     let viewModel = SRSViewModel()
     let srsViewController = SRSViewController()
-    let studyViewController = StudyViewController()
+    let studyHomeViewController = StudyHomeViewController()
     let settingsViewController = SettingsViewController()
 
     let tabBarController = UITabBarController()
     
     func start(username: String) {
         srsViewController.viewModel = viewModel
-        studyViewController.viewModel = viewModel
+        studyHomeViewController.viewModel = viewModel
         
-        let studyNav = UINavigationController(rootViewController: studyViewController)
+        let studyNav = UINavigationController(rootViewController: studyHomeViewController)
         
         settingsViewController.username = username
         let settingsNav = UINavigationController(rootViewController: settingsViewController)

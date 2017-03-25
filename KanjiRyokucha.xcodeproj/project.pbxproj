@@ -75,6 +75,10 @@
 		C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
 		C409A1E81E860D01006EEE77 /* GetLearnedIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */; };
 		C409A1E91E860D01006EEE77 /* GetLearnedIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */; };
+		C409A1EC1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
+		C409A1ED1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
+		C409A1EE1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */; };
+		C409A1EF1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */; };
 		C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
 		C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C410E92F1E626AAE006C6837 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */; };
@@ -159,6 +163,8 @@
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
 		C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLearnedIds.swift; sourceTree = "<group>"; };
+		C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHomeViewController.swift; sourceTree = "<group>"; };
+		C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyHomeViewController.xib; sourceTree = "<group>"; };
 		C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStudyCell.swift; sourceTree = "<group>"; };
 		C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStudyCell.xib; sourceTree = "<group>"; };
 		C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -409,6 +415,8 @@
 				C4A593641E79C99A0098CB99 /* LoginViewController.xib */,
 				C458FE701E7F288A00A34FD9 /* AboutViewController.swift */,
 				C458FE711E7F288B00A34FD9 /* AboutViewController.xib */,
+				C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */,
+				C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -551,6 +559,7 @@
 				C409A1D61E86011E006EEE77 /* SRSViewController.xib in Resources */,
 				C409A1D71E86011E006EEE77 /* AboutViewController.xib in Resources */,
 				C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */,
+				C409A1EF1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */,
 				C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */,
 				C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */,
 				C409A1DB1E86011E006EEE77 /* StudyCell.xib in Resources */,
@@ -578,6 +587,7 @@
 				C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */,
 				C458FE731E7F288B00A34FD9 /* AboutViewController.xib in Resources */,
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
+				C409A1EE1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
 				C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */,
@@ -767,6 +777,7 @@
 				C409A1B61E86011E006EEE77 /* ButtonHandler.swift in Sources */,
 				C409A1B71E86011E006EEE77 /* CredentialsViewController.swift in Sources */,
 				C409A1B81E86011E006EEE77 /* Global.swift in Sources */,
+				C409A1ED1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */,
 				C409A1B91E86011E006EEE77 /* StudyViewController.swift in Sources */,
 				C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
@@ -818,6 +829,7 @@
 				C42BBAB51E1728E800361C89 /* ButtonHandler.swift in Sources */,
 				C4FFBEEB1E05CC4A0061CB18 /* CredentialsViewController.swift in Sources */,
 				C4758A071DF63F8D0019AF57 /* Global.swift in Sources */,
+				C409A1EC1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */,
 				C43DCC3F1E554466006F2C0C /* StudyViewController.swift in Sources */,
 				C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,
