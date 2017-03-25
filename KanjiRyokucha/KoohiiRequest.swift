@@ -8,7 +8,16 @@
 
 import ReactiveSwift
 
-let koohiiDomain = "kanji.koohii.com"
+func resolveDomain() -> String {
+    if let dev = Bundle.main.infoDictionary?["DEVBUILD"] as? Bool,
+        dev {
+        return "localhost:8888"
+    } else {
+        return "kanji.koohii.com"
+    }
+}
+
+let koohiiDomain = resolveDomain()
 let koohiiHost = "http://" + koohiiDomain
 fileprivate let endpoint = koohiiHost + "/api/v1/"
 
