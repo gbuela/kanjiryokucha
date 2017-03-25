@@ -56,6 +56,7 @@ struct ReviewTypeSetup {
     let shouldEnable: MutableProperty<Bool>
     let cardCount: MutableProperty<Int>
     let learnedCount: MutableProperty<Int>
+    let actualCount: MutableProperty<Int>
     let action: StartActionType
 }
 
@@ -354,8 +355,17 @@ class SRSViewModel: ReviewEngineProtocol {
         let shouldEnable: MutableProperty<Bool> = MutableProperty(false)
         let countProperty: MutableProperty<Int> = MutableProperty(0)
         let learnedCountProperty: MutableProperty<Int> = MutableProperty(0)
+        var actualCountProperty: MutableProperty<Int> = MutableProperty(0)
         
-        shouldEnable <~ shouldEnableStartSignal(countProperty: countProperty,
+        if case .failed = reviewType {
+            actualCountProperty <~ Property.combineLatest(countProperty, learnedCountProperty, Global.studyPhaseFlag).map { c, lc, s in
+                return s ? min(c,lc) : c
+            }
+        } else {
+            actualCountProperty = countProperty
+        }
+        
+        shouldEnable <~ shouldEnableStartSignal(countProperty: actualCountProperty,
                                                 reviewType: reviewType)
         
         let action = StartActionType(enabledIf: shouldEnable) { _ in
@@ -365,6 +375,7 @@ class SRSViewModel: ReviewEngineProtocol {
         let setup = ReviewTypeSetup(shouldEnable: shouldEnable,
                                     cardCount: countProperty,
                                     learnedCount: learnedCountProperty,
+                                    actualCount: actualCountProperty,
                                     action: action)
         return (reviewType, setup)
     }
@@ -549,9 +560,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             self.activityIndicator.reactive.isAnimating <~ setup.action.isExecuting
 
-            button.reactive.title(for: .normal) <~ Property.combineLatest(setup.cardCount, setup.learnedCount, Global.studyPhaseFlag).map { cc, lc, spf in
-                return spf ? "\(min(cc,lc))" : "\(cc)"
-            }
+            button.reactive.title(for: .normal) <~ setup.actualCount.map { "\($0)" }
             
             view.reactive.backgroundColor <~ setup.shouldEnable.combineLatest(with: self.viewModel.currentReviewType).map { (shouldEnable, currentRevType) in
                 let colors = SRSViewController.buttonColorsFromReviewType(reviewType)

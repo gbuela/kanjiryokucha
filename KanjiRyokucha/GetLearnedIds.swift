@@ -9,20 +9,8 @@
 import Foundation
 import Gloss
 
-struct GetLearnedIds: Decodable {
-    let cardIds: [Int]
-    
-    init?(json: JSON) {
-        guard let ids: [Int] = "ids" <~~ json else {
-                return nil
-        }
-        print(json)
-        self.cardIds = ids
-    }
-}
-
 struct GetLearnedIdsRequest: KoohiiRequest {
-    typealias ModelType = GetLearnedIds
+    typealias ModelType = CardIdsModel
     let apiMethod = "srs/learned"
     let useEndpoint = true
     let sendApiKey = true
