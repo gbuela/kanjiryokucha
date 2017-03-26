@@ -9,6 +9,7 @@
 import UIKit
 import PKHUD
 import ReactiveSwift
+import RealmSwift
 
 fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
@@ -88,6 +89,33 @@ class StudyHomeViewController: UIViewController {
     }
     
     func updateStudyData(studyIds: StudyIdsModel) {
-        
+        viewModel.studyEntries.value.forEach { studyEntry in
+            studyEntry.synced = false
+        }
+        Database.write { realm in
+            studyIds.ids.forEach { studyId in
+                let isLearned = studyIds.learnedIds.contains(studyId)
+                if let studyEntry = viewModel.studyEntries.value.first(where: { studyId == $0.cardId }) {
+                    studyEntry.learned = isLearned
+                    studyEntry.synced = true
+                    realm.add(studyEntry, update: true)
+                } else {
+                    let studyEntry = StudyEntry()
+                    studyEntry.cardId = studyId
+                    studyEntry.keyword = "#\(studyId)" // TODO: need to get the keyword
+                    studyEntry.learned = isLearned
+                    studyEntry.synced = true
+                    realm.add(studyEntry, update: false)
+                    viewModel.studyEntries.value.append(studyEntry)
+                }
+            }
+            let unsyncedEntries = viewModel.studyEntries.value.filter { !$0.synced }
+            unsyncedEntries.forEach { studyEntry in
+                if let index = viewModel.studyEntries.value.index(of: studyEntry) {
+                    viewModel.studyEntries.value.remove(at: index)
+                }
+                realm.delete(studyEntry)
+            }
+        }
     }
 }

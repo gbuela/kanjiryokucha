@@ -283,7 +283,6 @@ class SRSViewModel: ReviewEngineProtocol {
         restoreState()
         refreshStatus()
         studyChanges.value = studyChanges.value // FIXME: restore
- //       toStudyCount.value = toStudyCount.value
         Global.studyPhaseFlag.value = global.useStudyPhase
     }
     

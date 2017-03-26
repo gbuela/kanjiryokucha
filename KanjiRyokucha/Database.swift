@@ -23,6 +23,18 @@ struct Database {
         }
     }
     
+    static func write(closure: ((Realm) -> ())) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                closure(realm)
+            }
+        } catch {
+            // TODO: db fail
+            print("Realm failed: \(error.localizedDescription)")
+        }
+    }
+    
     // TODO: write in transaction on background thread
     // https://realm.io/docs/swift/latest/#background-operations
 
@@ -31,7 +43,9 @@ struct Database {
             let realm = try Realm()
             try realm.write {
                 closure()
-                realm.add(object, update: true)
+                if let object = object {
+                    realm.add(object, update: true)
+                }
             }
         } catch {
             // TODO: db fail
