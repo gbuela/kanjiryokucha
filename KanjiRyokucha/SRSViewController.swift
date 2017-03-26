@@ -15,11 +15,6 @@ import Gloss
 
 let lastSatusRefreshKey = "lastSatusRefresh"
 
-struct StudyChanges {
-    let notLearned: [Int]
-    let learned: [Int]
-}
-
 struct ReviewState {
     let totalCards: Int
     let answeredYes: Int
@@ -177,7 +172,6 @@ class SRSViewModel: ReviewEngineProtocol {
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let emptySessionAttempt: MutableProperty<Bool> = MutableProperty(false)
-    let studyChanges: MutableProperty<StudyChanges> = MutableProperty(StudyChanges(notLearned: [], learned: []))
     let toStudyCount: MutableProperty<Int> = MutableProperty(0)
     
     var global: Global!
@@ -282,7 +276,6 @@ class SRSViewModel: ReviewEngineProtocol {
     public func start() {
         restoreState()
         refreshStatus()
-        studyChanges.value = studyChanges.value // FIXME: restore
         Global.studyPhaseFlag.value = global.useStudyPhase
     }
     

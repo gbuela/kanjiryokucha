@@ -257,6 +257,7 @@ class StudyViewController: UITableViewController, UIViewControllerPreviewingDele
 
         Database.write(object: entry) {
             entry.learned = toLearned
+            entry.synced = false
         }
         
         viewModel.studyEntries.value = viewModel.studyEntries.value
