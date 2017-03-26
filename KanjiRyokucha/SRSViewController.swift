@@ -10,7 +10,6 @@ import UIKit
 import ReactiveSwift
 import ReactiveCocoa
 import Result
-import PKHUD
 import RealmSwift
 import Gloss
 
@@ -55,7 +54,7 @@ typealias StartStarter = ActionStarter<ReviewType, Response, FetchError>
 typealias ButtonActionType = Action<Bool, Bool, NoError>
 typealias ReviewActionType = Action<[ReviewEntry], Response, FetchError>
 typealias SubmitActionType = Action<[ReviewEntry], Response, FetchError>
-typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
+fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
 struct ReviewTypeSetup {
     let shouldEnable: MutableProperty<Bool>
@@ -421,8 +420,6 @@ class SRSViewModel: ReviewEngineProtocol {
 
     private func shouldEnableStartSignal(countProperty: MutableProperty<Int>,
                                          reviewType: ReviewType) -> Signal<Bool, NoError> {
-        
-        print("--\(reviewType): \(countProperty.value)")
         
         let result = Property.combineLatest(countProperty, currentReviewType)
             .map { (count:Int, inProgressReview:ReviewType?) -> Bool in

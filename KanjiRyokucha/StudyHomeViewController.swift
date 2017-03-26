@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import PKHUD
 import ReactiveSwift
 
+fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
+fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 fileprivate typealias SubmitAction = Action<StudyChanges, Response, FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<StudyChanges, Response, FetchError>
 
@@ -26,6 +29,8 @@ class StudyHomeViewController: UIViewController {
     let changeCount: MutableProperty<Int> = MutableProperty(0)
     private var submitAction: SubmitAction!
     private var submitStarter: SubmitStarter!
+    private var refreshAction: RefreshAction!
+    private var refreshStarter: RefreshStarter!
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
 
     @IBOutlet weak var toStudyLabel: UILabel!
@@ -65,5 +70,24 @@ class StudyHomeViewController: UIViewController {
         
         activityIndicator.reactive.isAnimating <~ submitAction.isExecuting
         activityIndicator.reactive.isHidden <~ submitAction.isExecuting.map { !$0 }
+        
+        refreshAction = RefreshAction { _ in
+            return StudyRefreshRequest().requestProducer()!
+        }
+        refreshAction.react { [weak self] response in
+            if let ids = response.model as? StudyIdsModel {
+                self?.updateStudyData(studyIds: ids)
+            }
+        }
+        
+        refreshStarter = RefreshStarter(control: refreshButton,
+                                        action: refreshAction,
+                                        input: ())
+        
+        refreshStarter.useHUD()
+    }
+    
+    func updateStudyData(studyIds: StudyIdsModel) {
+        
     }
 }

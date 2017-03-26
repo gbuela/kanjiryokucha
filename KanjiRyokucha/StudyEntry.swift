@@ -12,6 +12,7 @@ class StudyEntry : Object {
     dynamic var cardId = 0
     dynamic var keyword = ""
     dynamic var learned = false
+    dynamic var synced = false
 
     override static func primaryKey() -> String? {
         return "cardId"

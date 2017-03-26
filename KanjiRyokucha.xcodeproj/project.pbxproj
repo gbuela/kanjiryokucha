@@ -73,12 +73,14 @@
 		C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */; };
 		C409A1DD1E86011E006EEE77 /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
-		C409A1E81E860D01006EEE77 /* GetLearnedIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */; };
-		C409A1E91E860D01006EEE77 /* GetLearnedIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */; };
+		C409A1E81E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */; };
+		C409A1E91E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */; };
 		C409A1EC1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
 		C409A1ED1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
 		C409A1EE1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */; };
 		C409A1EF1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */; };
+		C409A1F11E870B06006EEE77 /* StudyRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */; };
+		C409A1F21E870B06006EEE77 /* StudyRefreshRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */; };
 		C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
 		C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C410E92F1E626AAE006C6837 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */; };
@@ -162,9 +164,10 @@
 		C236654509CAD02E8E375EC1 /* Pods_KanjiRyokuchaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokuchaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
-		C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLearnedIds.swift; sourceTree = "<group>"; };
+		C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLearnedIdsRequest.swift; sourceTree = "<group>"; };
 		C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHomeViewController.swift; sourceTree = "<group>"; };
 		C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyHomeViewController.xib; sourceTree = "<group>"; };
+		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
 		C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStudyCell.swift; sourceTree = "<group>"; };
 		C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStudyCell.xib; sourceTree = "<group>"; };
 		C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -320,7 +323,8 @@
 				C43DCC301E5013D7006F2C0C /* KoohiiRequest.swift */,
 				C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */,
 				C43DCC361E501BF3006F2C0C /* KanjiDetailsRequest.swift */,
-				C409A1E71E860D01006EEE77 /* GetLearnedIds.swift */,
+				C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */,
+				C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -784,10 +788,11 @@
 				C409A1BC1E86011E006EEE77 /* LoginViewModel.swift in Sources */,
 				C409A1BD1E86011E006EEE77 /* PagedReviewViewController.swift in Sources */,
 				C409A1BE1E86011E006EEE77 /* Extensions.swift in Sources */,
+				C409A1F21E870B06006EEE77 /* StudyRefreshRequest.swift in Sources */,
 				C409A1BF1E86011E006EEE77 /* LayoutConstraint.swift in Sources */,
 				C409A1C01E86011E006EEE77 /* CardFetchRequest.swift in Sources */,
 				C409A1C11E86011E006EEE77 /* StudyPageViewController.swift in Sources */,
-				C409A1E91E860D01006EEE77 /* GetLearnedIds.swift in Sources */,
+				C409A1E91E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */,
 				C409A1C21E86011E006EEE77 /* AboutViewController.swift in Sources */,
 				C409A1C31E86011E006EEE77 /* EmptyStudyCell.swift in Sources */,
 				C409A1C41E86011E006EEE77 /* GermansUtils.swift in Sources */,
@@ -836,10 +841,11 @@
 				C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */,
 				C42BBAB21E13220700361C89 /* PagedReviewViewController.swift in Sources */,
 				C4F213DA1DEA54D500EF5214 /* Extensions.swift in Sources */,
+				C409A1F11E870B06006EEE77 /* StudyRefreshRequest.swift in Sources */,
 				C43DCC231E481030006F2C0C /* LayoutConstraint.swift in Sources */,
 				C42BBAA91E0F187900361C89 /* CardFetchRequest.swift in Sources */,
 				C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */,
-				C409A1E81E860D01006EEE77 /* GetLearnedIds.swift in Sources */,
+				C409A1E81E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */,
 				C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */,
 				C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */,
 				C43668E11E00C0520080D768 /* GermansUtils.swift in Sources */,
