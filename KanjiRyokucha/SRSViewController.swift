@@ -645,6 +645,11 @@ class SRSViewController: UIViewController, ReviewDelegate {
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
         }
+        
+        viewModel.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (studyEntries, studyPhase) in
+            let badge = studyPhase && studyEntries.count > 0 ? "\(studyEntries.count)" : nil
+            self?.tabBarController?.tabBar.items![1].badgeValue = badge
+        }
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
