@@ -331,6 +331,7 @@ class SRSViewModel: ReviewEngineProtocol {
                 if let studyEntry = studyEntries.value.first(where: { entry.cardId == $0.cardId }) {
                     if entry.cardAnswer == .no || entry.cardAnswer == .skip {
                         studyEntry.learned = false
+                        studyEntry.synced = false
                         realm.add(studyEntry, update: true)
                     } else {
                         if let index = studyEntries.value.index(of: studyEntry) {
@@ -344,6 +345,7 @@ class SRSViewModel: ReviewEngineProtocol {
                         studyEntry.cardId = entry.cardId
                         studyEntry.keyword = entry.keyword
                         studyEntry.learned = false
+                        studyEntry.synced = true
                         realm.add(studyEntry, update: false)
                         studyEntries.value.append(studyEntry)
                     }
@@ -647,7 +649,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
         }
         
         viewModel.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (studyEntries, studyPhase) in
-            let badge = studyPhase && studyEntries.count > 0 ? "\(studyEntries.count)" : nil
+            let count = studyEntries.filter({ !$0.learned && $0.synced }).count
+            let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
         }
     }

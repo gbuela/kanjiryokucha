@@ -48,6 +48,9 @@ class StudyHomeViewController: UIViewController {
         title = "Study"
         view.backgroundColor = .ryokuchaFaint
         
+        let backItem = UIBarButtonItem(title: "Done", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
+        
         wireUp()
     }
     
