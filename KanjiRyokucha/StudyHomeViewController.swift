@@ -86,6 +86,12 @@ class StudyHomeViewController: UIViewController {
                                         input: ())
         
         refreshStarter.useHUD()
+        
+        startButton.reactive.controlEvents(.touchUpInside).uiReact { [weak self] _ in
+            let studyVC = StudyViewController()
+            studyVC.viewModel = self?.viewModel
+            self?.navigationController?.pushViewController(studyVC, animated: true)
+        }
     }
     
     func updateStudyData(studyIds: StudyIdsModel) {
