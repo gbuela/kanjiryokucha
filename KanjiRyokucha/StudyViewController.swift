@@ -64,11 +64,6 @@ class StudyViewController: UITableViewController, UIViewControllerPreviewingDele
                 return entries.count > 0
             }
         }
-        
-        studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (entries, studyPhase) in
-                let badge = studyPhase && entries.count > 0 ? "\(entries.count)" : nil
-                self?.navigationController?.tabBarItem.badgeValue = badge
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
