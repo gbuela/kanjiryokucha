@@ -89,9 +89,8 @@ class StudyHomeViewController: UIViewController {
     }
     
     func updateStudyData(studyIds: StudyIdsModel) {
-        viewModel.studyEntries.value.forEach { studyEntry in
-            studyEntry.synced = false
-        }
+        var unsyncedIds = viewModel.studyEntries.value.map { $0.cardId }
+
         Database.write { realm in
             studyIds.ids.forEach { studyId in
                 let isLearned = studyIds.learnedIds.contains(studyId)
@@ -108,13 +107,18 @@ class StudyHomeViewController: UIViewController {
                     realm.add(studyEntry, update: false)
                     viewModel.studyEntries.value.append(studyEntry)
                 }
-            }
-            let unsyncedEntries = viewModel.studyEntries.value.filter { !$0.synced }
-            unsyncedEntries.forEach { studyEntry in
-                if let index = viewModel.studyEntries.value.index(of: studyEntry) {
-                    viewModel.studyEntries.value.remove(at: index)
+                
+                if let index = unsyncedIds.index(of: studyId) {
+                    unsyncedIds.remove(at: index)
                 }
-                realm.delete(studyEntry)
+            }
+            unsyncedIds.forEach { unsyncedId in
+                if let studyEntry = viewModel.studyEntries.value.first(where: { unsyncedId == $0.cardId }) {
+                    if let index = viewModel.studyEntries.value.index(of: studyEntry) {
+                        viewModel.studyEntries.value.remove(at: index)
+                    }
+                    realm.delete(studyEntry)
+                }
             }
         }
     }
