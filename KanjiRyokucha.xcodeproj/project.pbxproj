@@ -130,6 +130,8 @@
 		C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C4758A041DF395F00019AF57 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C4758A071DF63F8D0019AF57 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
+		C48C9D5F1E88764000679F72 /* SyncStudyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */; };
+		C48C9D601E88764000679F72 /* SyncStudyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */; };
 		C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
 		C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDE92F1DEA5E2F00D25325 /* Network.swift */; };
@@ -217,6 +219,7 @@
 		C47589FC1DF3659C0019AF57 /* SRSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRSViewController.xib; sourceTree = "<group>"; };
 		C4758A031DF395F00019AF57 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C4758A061DF63F8D0019AF57 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStudyRequest.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4A593641E79C99A0098CB99 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 				C43DCC361E501BF3006F2C0C /* KanjiDetailsRequest.swift */,
 				C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */,
 				C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */,
+				C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -764,6 +768,7 @@
 				C409A1A51E86011E006EEE77 /* SettingsSwitchCell.swift in Sources */,
 				C409A1A61E86011E006EEE77 /* LoginRequest.swift in Sources */,
 				C409A1A71E86011E006EEE77 /* ColorStateButton.swift in Sources */,
+				C48C9D601E88764000679F72 /* SyncStudyRequest.swift in Sources */,
 				C409A1A81E86011E006EEE77 /* UIViewController+Utils.swift in Sources */,
 				C409A1A91E86011E006EEE77 /* KanjiDetailsRequest.swift in Sources */,
 				C409A1AA1E86011E006EEE77 /* ReviewEntry.swift in Sources */,
@@ -817,6 +822,7 @@
 				C4EF331F1E64EF34004F67C4 /* SettingsSwitchCell.swift in Sources */,
 				C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */,
 				C43668E31E0372830080D768 /* ColorStateButton.swift in Sources */,
+				C48C9D5F1E88764000679F72 /* SyncStudyRequest.swift in Sources */,
 				C410E92F1E626AAE006C6837 /* UIViewController+Utils.swift in Sources */,
 				C43DCC371E501BF3006F2C0C /* KanjiDetailsRequest.swift in Sources */,
 				C43668BE1DF9C95F0080D768 /* ReviewEntry.swift in Sources */,

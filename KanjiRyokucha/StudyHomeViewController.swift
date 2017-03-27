@@ -16,14 +16,28 @@ fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 fileprivate typealias SubmitAction = Action<[StudyEntry], Response, FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, FetchError>
 
+extension Array {
+    func take(atMost maximum: Int) -> Array {
+        let limit:Int = Swift.min(count, maximum)
+        let result = self[0..<limit]
+        return Array(result)
+    }
+}
+
 class StudyHomeViewController: UIViewController {
     
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
         let submitBatchSize = 10
         
-        guard entries.count > 0 else { return SignalProducer.empty }
+        let learned = entries.filter({ !$0.synced && $0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
+        let notLearned = entries.filter({ !$0.synced && !$0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
         
-        return SignalProducer.empty // FIXME: make rq
+        print("submitting \(learned.count) learned, \(notLearned.count) not learned")
+        
+        guard learned.count > 0 || notLearned.count > 0 else { return SignalProducer.empty }
+        
+        let syncRq = SyncStudyRequest(learned: learned, notLearned: notLearned)
+        return syncRq.requestProducer()!
     }
     
     var viewModel: SRSViewModel!
@@ -40,7 +54,6 @@ class StudyHomeViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var toSubmitLabel: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,9 +86,13 @@ class StudyHomeViewController: UIViewController {
         submitStarter = SubmitStarter(control: submitButton,
                                       action: submitAction,
                                       inputProperty: unsyncedEntries)
+        submitStarter.useHUD()
         
-        activityIndicator.reactive.isAnimating <~ submitAction.isExecuting
-        activityIndicator.reactive.isHidden <~ submitAction.isExecuting.map { !$0 }
+        submitAction.react { [weak self] response in
+            if let result = response.model as? SyncStudyResultModel {
+                self?.updateSyncedData(result: result)
+            }
+        }
         
         refreshAction = RefreshAction { _ in
             return StudyRefreshRequest().requestProducer()!
@@ -99,16 +116,40 @@ class StudyHomeViewController: UIViewController {
         }
     }
     
-    func updateStudyData(studyIds: StudyIdsModel) {
+    private func confirmSync(cardId: Int, learned: Bool, realm: Realm) {
+        if let studyEntry = viewModel.studyEntries.value.first(where: { cardId == $0.cardId }) {
+            confirmSync(entry: studyEntry, learned: learned, realm: realm)
+        }
+    }
+    
+    private func confirmSync(entry: StudyEntry, learned: Bool, realm: Realm) {
+        entry.learned = learned
+        entry.synced = true
+        realm.add(entry, update: true)
+        print("confirmed sync \(entry.cardId)")
+    }
+    
+    private func updateSyncedData(result: SyncStudyResultModel) {
+        print("finished sync \(result)")
+        Database.write { realm in
+            result.putLearned.forEach { studyId in
+                confirmSync(cardId: studyId, learned: true, realm: realm)
+            }
+            result.putNotLearned.forEach { studyId in
+                confirmSync(cardId: studyId, learned: false, realm: realm)
+            }
+        }
+        viewModel.studyEntries.value = viewModel.studyEntries.value
+    }
+    
+    private func updateStudyData(studyIds: StudyIdsModel) {
         var unsyncedIds = viewModel.studyEntries.value.map { $0.cardId }
 
         Database.write { realm in
             studyIds.ids.forEach { studyId in
                 let isLearned = studyIds.learnedIds.contains(studyId)
                 if let studyEntry = viewModel.studyEntries.value.first(where: { studyId == $0.cardId }) {
-                    studyEntry.learned = isLearned
-                    studyEntry.synced = true
-                    realm.add(studyEntry, update: true)
+                    confirmSync(entry: studyEntry, learned: isLearned, realm: realm)
                 } else {
                     let studyEntry = StudyEntry()
                     studyEntry.cardId = studyId

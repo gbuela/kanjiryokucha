@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StudyHomeViewController" customModule="KanjiRyokucha" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="3Tz-FU-Zo4" id="DgC-T4-e1k"/>
                 <outlet property="learnedLabel" destination="SXM-E5-2rE" id="XEQ-AN-fRV"/>
                 <outlet property="refreshButton" destination="z5n-4j-cB8" id="2jD-UV-LaK"/>
                 <outlet property="startButton" destination="c2M-el-9eT" id="X5O-UF-TQ7"/>
@@ -51,12 +50,8 @@
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <state key="normal" title="start"/>
                         </button>
-                        <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Tz-FU-Zo4">
-                            <rect key="frame" x="177" y="157" width="20" height="20"/>
-                            <color key="color" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
-                        </activityIndicatorView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5p-z5-L1F" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="107" y="191" width="160" height="55"/>
+                            <rect key="frame" x="107" y="165" width="160" height="55"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="160" id="3Rd-ke-nQL"/>
@@ -64,16 +59,17 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
+                            <inset key="titleEdgeInsets" minX="-1" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="submit changes"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icI-Fq-7rD">
-                            <rect key="frame" x="107" y="225" width="160" height="17"/>
+                            <rect key="frame" x="107" y="199" width="160" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                             <color key="textColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5n-4j-cB8">
-                            <rect key="frame" x="125.5" y="270" width="125" height="29"/>
+                            <rect key="frame" x="125.5" y="244" width="125" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="refresh study items">
                                 <color key="titleColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,16 +87,13 @@
                         <constraint firstItem="icI-Fq-7rD" firstAttribute="leading" secondItem="G5p-z5-L1F" secondAttribute="leading" id="K3t-sl-ODK"/>
                         <constraint firstItem="icI-Fq-7rD" firstAttribute="width" secondItem="G5p-z5-L1F" secondAttribute="width" id="OHC-oc-OXe"/>
                         <constraint firstItem="G5p-z5-L1F" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="RpB-xr-xPX"/>
-                        <constraint firstItem="G5p-z5-L1F" firstAttribute="top" secondItem="3Tz-FU-Zo4" secondAttribute="bottom" constant="14" id="UvK-MI-bsl"/>
                         <constraint firstAttribute="height" constant="350" id="d3P-Zw-Evi"/>
                         <constraint firstItem="z5n-4j-cB8" firstAttribute="top" secondItem="G5p-z5-L1F" secondAttribute="bottom" constant="24" id="fzY-hR-oZ8"/>
                         <constraint firstItem="c2M-el-9eT" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="gGi-w7-bKm"/>
-                        <constraint firstItem="3Tz-FU-Zo4" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="kIf-Ia-RZE"/>
                         <constraint firstItem="WBL-tU-Xz1" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="lUf-a5-sTo"/>
                         <constraint firstItem="SXM-E5-2rE" firstAttribute="top" secondItem="WBL-tU-Xz1" secondAttribute="bottom" constant="8" symbolic="YES" id="ngD-Vs-avZ"/>
                         <constraint firstItem="SXM-E5-2rE" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="rpU-dG-be2"/>
-                        <constraint firstItem="3Tz-FU-Zo4" firstAttribute="top" secondItem="c2M-el-9eT" secondAttribute="bottom" constant="12" id="tNg-kv-XxU"/>
-                        <constraint firstItem="3Tz-FU-Zo4" firstAttribute="centerX" secondItem="fcc-br-fEH" secondAttribute="centerX" id="yXQ-8y-POc"/>
+                        <constraint firstItem="G5p-z5-L1F" firstAttribute="top" secondItem="c2M-el-9eT" secondAttribute="bottom" constant="20" id="soe-Fv-BN1"/>
                     </constraints>
                 </view>
             </subviews>

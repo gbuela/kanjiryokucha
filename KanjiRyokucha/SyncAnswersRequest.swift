@@ -41,7 +41,7 @@ struct CardSyncModel: Encodable {
     }
 }
 
-struct SyncRoot: Encodable {
+fileprivate struct SyncRoot: Encodable {
     let answers: [CardSyncModel]
 
     func toJSON() -> JSON? {
