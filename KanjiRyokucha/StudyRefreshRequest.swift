@@ -25,7 +25,7 @@ struct StudyIdsModel: Decodable {
 
 struct StudyRefreshRequest: KoohiiRequest {
     typealias ModelType = StudyIdsModel
-    let apiMethod = "study/start"
+    let apiMethod = "study/info"
     let useEndpoint = true
     let sendApiKey = true
     let method = RequestMethod.get

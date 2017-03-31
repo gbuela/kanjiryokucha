@@ -2,7 +2,7 @@
 //  StudyViewController.swift
 //  KanjiRyokucha
 //
-//  Created by German Buela on 3/30/17.
+//  Created by German Buela on 2/15/17.
 //  Copyright © 2017 German Buela. All rights reserved.
 //
 
@@ -10,15 +10,7 @@ import UIKit
 import ReactiveSwift
 import RealmSwift
 
-fileprivate typealias SubmitAction = Action<[StudyEntry], Response, FetchError>
-fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, FetchError>
-
-class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var submitLabel: UILabel!
+class _StudyViewController: UITableViewController, UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
 
     let studyCellId = "studyCellId"
     
@@ -27,38 +19,18 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let learnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     var emptyStudyCell: EmptyStudyCell!
     var emptyLearnedCell: EmptyStudyCell!
-    private var submitAction: SubmitAction!
-    private var submitStarter: SubmitStarter!
-    let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
-    let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     
-    private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
-        let submitBatchSize = 10
-        
-        let learned = entries.filter({ !$0.synced && $0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
-        let notLearned = entries.filter({ !$0.synced && !$0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
-        
-        print("submitting \(learned.count) learned, \(notLearned.count) not learned")
-        
-        guard learned.count > 0 || notLearned.count > 0 else { return SignalProducer.empty }
-        
-        let syncRq = SyncStudyRequest(learned: learned, notLearned: notLearned)
-        return syncRq.requestProducer()!
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.navigationBar.barTintColor = .ryokuchaDark
         
         title = "Study"
-        edgesForExtendedLayout = []
-        view.backgroundColor = .ryokuchaFaint
-
+        
         tableView.tableFooterView = UIView()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "All learned", style: .plain, target: self, action: #selector(learnedTapped))
-        
+
         let nib = UINib(nibName: "StudyCell", bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: studyCellId)
         
@@ -72,7 +44,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         wireUp()
         viewModel.studyEntries.value = viewModel.studyEntries.value
     }
-
+    
     private func createEmptyCell(text: String) -> EmptyStudyCell {
         let cell = Bundle.main.loadNibNamed("EmptyStudyCell", owner: self, options: nil)!.first as! EmptyStudyCell
         cell.label.text = text
@@ -90,27 +62,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let rightButton = navigationItem.rightBarButtonItem {
             rightButton.reactive.isEnabled <~ studyEntries.signal.map { entries in
                 return entries.count > 0
-            }
-        }
-        
-        unsyncedEntries <~ viewModel.studyEntries.map { entries in
-            return entries.filter { !$0.synced }
-        }
-        
-        submitLabel.reactive.text <~ unsyncedEntries.map { "\($0.count)" }
-        
-        shouldEnableSubmit <~ unsyncedEntries.map { $0.count > 0 }
-        
-        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, StudyViewController.submitActionProducer)
-        
-        submitStarter = SubmitStarter(control: submitButton,
-                                      action: submitAction,
-                                      inputProperty: unsyncedEntries)
-        submitStarter.useHUD()
-        
-        submitAction.react { [weak self] response in
-            if let result = response.model as? SyncStudyResultModel {
-                self?.updateSyncedData(result: result)
             }
         }
     }
@@ -134,7 +85,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard let scalar = UnicodeScalar(entry.cardId),
             let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
             else { return nil }
-        
+
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
         let vc = StudyPageViewController()
         vc.urlToOpen = url
@@ -155,7 +106,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             !absoluteRect(cell.learnedButton).contains(location),
             let entry = self.entry(forIndexPath: indexPath),
             let vc = detailViewController(for: entry, indexPath: indexPath) else { return nil }
-        
+
         vc.preferredContentSize = CGSize(width: 0.0, height: 400.0)
         previewingContext.sourceRect = cell.frame
         return vc
@@ -164,14 +115,14 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
-    
+
     // MARK: - Table view data source
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "kanji to learn"
         } else {
@@ -179,7 +130,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width, height: 25))
         label.font = UIFont.systemFont(ofSize: 18)
@@ -191,11 +142,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return view
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             if indexPath.section == 0 && studyEntries.value.count > 0 {
                 return 0
@@ -205,16 +156,16 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         return 70
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return studyEntries.value.count + 1
         } else {
             return learnedEntries.value.count + 1
         }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             return indexPath.section == 0 ? emptyStudyCell : emptyLearnedCell
@@ -223,7 +174,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let idx = indexPath.row - 1
         
         let cell = tableView.dequeueReusableCell(withIdentifier: studyCellId, for: indexPath) as! StudyCell
-        
+
         cell.delegate = self
         if indexPath.section == 0 {
             cell.learnedButton.setTitle("❓", for: .normal)
@@ -241,7 +192,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return tableView.cellForRow(at: indexPath) is StudyCell
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         guard isSelectable(indexPath: indexPath) else {
             return nil
@@ -250,7 +201,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return indexPath
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return isSelectable(indexPath: indexPath)
     }
     
@@ -263,21 +214,19 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         let idx = indexPath.row - 1
-        
+
         return indexPath.section == 0 ?
             studyEntries.value[idx] :
             learnedEntries.value[idx]
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let entry = self.entry(forIndexPath: indexPath),
             let vc = detailViewController(for: entry, indexPath: indexPath) else { return }
         
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    // MARK: - Events
-    
+
     func studyPageMarkLearnedTapped(indexPath: IndexPath) {
         markLearned(indexPath: indexPath)
         _ = navigationController?.popViewController(animated: true)
@@ -290,17 +239,17 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             markLearned(indexPath: IndexPath(row: index + 1, section: 1))
         }
     }
-    
+ 
     private func markLearned(indexPath: IndexPath) {
         guard indexPath.row > 0,
             let entry = self.entry(forIndexPath: indexPath) else { return }
         
         let toLearned = indexPath.section == 0
         let buttonTitle = toLearned ? "✅" : "❓"
-        
+
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
         cell.learnedButton.setTitle(buttonTitle, for: .normal)
-        
+
         Database.write(object: entry) {
             entry.learned = toLearned
             entry.synced = false
@@ -317,33 +266,5 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             tableView.reloadData()
         }
-    }
-    
-    // MARK: - 
-    
-    private func confirmSync(cardId: Int, learned: Bool, realm: Realm) {
-        if let studyEntry = viewModel.studyEntries.value.first(where: { cardId == $0.cardId }) {
-            confirmSync(entry: studyEntry, learned: learned, realm: realm)
-        }
-    }
-    
-    private func confirmSync(entry: StudyEntry, learned: Bool, realm: Realm) {
-        entry.learned = learned
-        entry.synced = true
-        realm.add(entry, update: true)
-        print("confirmed sync \(entry.cardId)")
-    }
-    
-    private func updateSyncedData(result: SyncStudyResultModel) {
-        print("finished sync \(result)")
-        Database.write { realm in
-            result.putLearned.forEach { studyId in
-                confirmSync(cardId: studyId, learned: true, realm: realm)
-            }
-            result.putNotLearned.forEach { studyId in
-                confirmSync(cardId: studyId, learned: false, realm: realm)
-            }
-        }
-        viewModel.studyEntries.value = viewModel.studyEntries.value
     }
 }

@@ -77,10 +77,16 @@ struct SRSStartRequest: StartRequest {
         return qsParams
     }
     
-    init(reviewType: ReviewType) {
+    init(reviewType: ReviewType, learnedOnly: Bool = false) {
         self.reviewType = reviewType
+        
+        var type = reviewType.querystringParam
+        if case .failed = reviewType,
+            learnedOnly {
+            type = "learned"
+        }
         qsParams = [ "mode": "srs",
-                     "type": reviewType.querystringParam ]
+                     "type": type ]
     }
 }
 

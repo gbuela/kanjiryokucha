@@ -37,7 +37,7 @@
 		C409A1B61E86011E006EEE77 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAB41E1728E800361C89 /* ButtonHandler.swift */; };
 		C409A1B71E86011E006EEE77 /* CredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FFBEE91E05CC4A0061CB18 /* CredentialsViewController.swift */; };
 		C409A1B81E86011E006EEE77 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
-		C409A1B91E86011E006EEE77 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3E1E554466006F2C0C /* StudyViewController.swift */; };
+		C409A1B91E86011E006EEE77 /* _StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3E1E554466006F2C0C /* _StudyViewController.swift */; };
 		C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */; };
 		C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668DE1DFB4AFD0080D768 /* UIViewExtensions.swift */; };
 		C409A1BC1E86011E006EEE77 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */; };
@@ -73,8 +73,6 @@
 		C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */; };
 		C409A1DD1E86011E006EEE77 /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
-		C409A1E81E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */; };
-		C409A1E91E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */; };
 		C409A1EC1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
 		C409A1ED1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */; };
 		C409A1EE1E86B3AB006EEE77 /* StudyHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */; };
@@ -112,13 +110,17 @@
 		C43DCC391E51198B006F2C0C /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C43DCC3B1E511CCA006F2C0C /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */; };
 		C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */; };
-		C43DCC3F1E554466006F2C0C /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3E1E554466006F2C0C /* StudyViewController.swift */; };
+		C43DCC3F1E554466006F2C0C /* _StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3E1E554466006F2C0C /* _StudyViewController.swift */; };
 		C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
 		C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C43DCC461E57E4C1006F2C0C /* StudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC441E57E4C1006F2C0C /* StudyCell.swift */; };
 		C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */; };
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
+		C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
+		C44F752C1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
+		C44F752D1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
+		C44F752E1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
 		C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */; };
 		C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
 		C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE701E7F288A00A34FD9 /* AboutViewController.swift */; };
@@ -166,7 +168,6 @@
 		C236654509CAD02E8E375EC1 /* Pods_KanjiRyokuchaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokuchaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
-		C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLearnedIdsRequest.swift; sourceTree = "<group>"; };
 		C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyHomeViewController.swift; sourceTree = "<group>"; };
 		C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyHomeViewController.xib; sourceTree = "<group>"; };
 		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
@@ -201,13 +202,15 @@
 		C43DCC381E51198B006F2C0C /* readings.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readings.csv; sourceTree = "<group>"; };
 		C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyEntry.swift; sourceTree = "<group>"; };
-		C43DCC3E1E554466006F2C0C /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
+		C43DCC3E1E554466006F2C0C /* _StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _StudyViewController.swift; sourceTree = "<group>"; };
 		C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyPageViewController.swift; sourceTree = "<group>"; };
 		C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyPageViewController.xib; sourceTree = "<group>"; };
 		C43DCC441E57E4C1006F2C0C /* StudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCell.swift; sourceTree = "<group>"; };
 		C43DCC451E57E4C1006F2C0C /* StudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCell.xib; sourceTree = "<group>"; };
 		C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatusRequest.swift; sourceTree = "<group>"; };
+		C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
+		C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyViewController.xib; sourceTree = "<group>"; };
 		C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoCell.swift; sourceTree = "<group>"; };
 		C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsInfoCell.xib; sourceTree = "<group>"; };
 		C458FE701E7F288A00A34FD9 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -326,7 +329,6 @@
 				C43DCC301E5013D7006F2C0C /* KoohiiRequest.swift */,
 				C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */,
 				C43DCC361E501BF3006F2C0C /* KanjiDetailsRequest.swift */,
-				C409A1E71E860D01006EEE77 /* GetLearnedIdsRequest.swift */,
 				C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */,
 				C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */,
 			);
@@ -413,7 +415,7 @@
 				C43DCC251E4AA430006F2C0C /* FreeReviewViewController.xib */,
 				C43DCC281E4D4828006F2C0C /* ReviewViewController.swift */,
 				C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */,
-				C43DCC3E1E554466006F2C0C /* StudyViewController.swift */,
+				C43DCC3E1E554466006F2C0C /* _StudyViewController.swift */,
 				C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */,
 				C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */,
 				C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */,
@@ -425,6 +427,8 @@
 				C458FE711E7F288B00A34FD9 /* AboutViewController.xib */,
 				C409A1EA1E86B3AA006EEE77 /* StudyHomeViewController.swift */,
 				C409A1EB1E86B3AB006EEE77 /* StudyHomeViewController.xib */,
+				C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */,
+				C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -563,6 +567,7 @@
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
 				C409A1D31E86011E006EEE77 /* graph in Resources */,
 				C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */,
+				C44F752E1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,
 				C409A1D51E86011E006EEE77 /* Assets.xcassets in Resources */,
 				C409A1D61E86011E006EEE77 /* SRSViewController.xib in Resources */,
 				C409A1D71E86011E006EEE77 /* AboutViewController.xib in Resources */,
@@ -591,6 +596,7 @@
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
 				C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
+				C44F752D1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,
 				C4F213BF1DEA532900EF5214 /* Assets.xcassets in Resources */,
 				C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */,
 				C458FE731E7F288B00A34FD9 /* AboutViewController.xib in Resources */,
@@ -759,6 +765,7 @@
 			files = (
 				C409A19D1E86011E006EEE77 /* Database.swift in Sources */,
 				C409A19E1E86011E006EEE77 /* Colors.swift in Sources */,
+				C44F752C1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */,
 				C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */,
 				C409A1A01E86011E006EEE77 /* ReviewViewController.swift in Sources */,
 				C409A1A11E86011E006EEE77 /* SettingsInfoCell.swift in Sources */,
@@ -787,7 +794,7 @@
 				C409A1B71E86011E006EEE77 /* CredentialsViewController.swift in Sources */,
 				C409A1B81E86011E006EEE77 /* Global.swift in Sources */,
 				C409A1ED1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */,
-				C409A1B91E86011E006EEE77 /* StudyViewController.swift in Sources */,
+				C409A1B91E86011E006EEE77 /* _StudyViewController.swift in Sources */,
 				C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
 				C409A1BC1E86011E006EEE77 /* LoginViewModel.swift in Sources */,
@@ -797,7 +804,6 @@
 				C409A1BF1E86011E006EEE77 /* LayoutConstraint.swift in Sources */,
 				C409A1C01E86011E006EEE77 /* CardFetchRequest.swift in Sources */,
 				C409A1C11E86011E006EEE77 /* StudyPageViewController.swift in Sources */,
-				C409A1E91E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */,
 				C409A1C21E86011E006EEE77 /* AboutViewController.swift in Sources */,
 				C409A1C31E86011E006EEE77 /* EmptyStudyCell.swift in Sources */,
 				C409A1C41E86011E006EEE77 /* GermansUtils.swift in Sources */,
@@ -813,6 +819,7 @@
 			files = (
 				C4603DF31E6B27C800A56C9A /* Database.swift in Sources */,
 				C4758A041DF395F00019AF57 /* Colors.swift in Sources */,
+				C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */,
 				C4F213B81DEA532900EF5214 /* AppDelegate.swift in Sources */,
 				C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */,
 				C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */,
@@ -841,7 +848,7 @@
 				C4FFBEEB1E05CC4A0061CB18 /* CredentialsViewController.swift in Sources */,
 				C4758A071DF63F8D0019AF57 /* Global.swift in Sources */,
 				C409A1EC1E86B3AB006EEE77 /* StudyHomeViewController.swift in Sources */,
-				C43DCC3F1E554466006F2C0C /* StudyViewController.swift in Sources */,
+				C43DCC3F1E554466006F2C0C /* _StudyViewController.swift in Sources */,
 				C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,
 				C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */,
@@ -851,7 +858,6 @@
 				C43DCC231E481030006F2C0C /* LayoutConstraint.swift in Sources */,
 				C42BBAA91E0F187900361C89 /* CardFetchRequest.swift in Sources */,
 				C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */,
-				C409A1E81E860D01006EEE77 /* GetLearnedIdsRequest.swift in Sources */,
 				C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */,
 				C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */,
 				C43668E11E00C0520080D768 /* GermansUtils.swift in Sources */,
