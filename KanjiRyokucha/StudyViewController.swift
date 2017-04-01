@@ -338,7 +338,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         Database.write(object: entry) {
             entry.learned = toLearned
-            entry.synced = false
+            entry.synced = !toLearned
         }
         
         viewModel.studyEntries.value = viewModel.studyEntries.value
