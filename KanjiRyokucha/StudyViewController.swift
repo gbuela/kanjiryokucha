@@ -70,9 +70,9 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         tableView.tableFooterView = UIView()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REFRESH", style: .plain, target: nil, action: nil)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "All learned", style: .plain, target: self, action: #selector(learnedTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ALL LEARNED", style: .plain, target: self, action: #selector(learnedTapped))
         
         let nib = UINib(nibName: "StudyCell", bundle: Bundle.main)
         tableView.register(nib, forCellReuseIdentifier: studyCellId)

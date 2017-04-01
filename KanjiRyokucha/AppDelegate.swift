@@ -71,7 +71,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = .ryokuchaDark
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().isTranslucent = true
-
+        
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)], for: UIControlState.normal)
+        
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().barTintColor = .ryokuchaDark
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .normal)
