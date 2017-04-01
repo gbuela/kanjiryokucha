@@ -30,7 +30,7 @@ class StudyPageViewController: UIViewController {
         super.viewDidLoad()
         
         if case .study = mode {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Mark learned", style: .plain, target: self, action: #selector(learnedTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "MARK LEARNED", style: .plain, target: self, action: #selector(learnedTapped))
         } else if case .review = mode {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(okTapped))
         }
