@@ -34,9 +34,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var viewModel: SRSViewModel!
     let studyEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
-    let learnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     var emptyStudyCell: EmptyStudyCell!
-    var emptyLearnedCell: EmptyStudyCell!
     private var submitAction: SubmitAction!
     private var submitStarter: SubmitStarter!
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
@@ -78,7 +76,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.register(nib, forCellReuseIdentifier: studyCellId)
         
         emptyStudyCell = createEmptyCell(text: "no kanji to learn")
-        emptyLearnedCell = createEmptyCell(text: "no learned kanji")
         
         if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: view)
@@ -99,9 +96,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         studyEntries <~ viewModel.studyEntries.signal.map { entries in
             return entries.filter { entry in !entry.learned }
         }
-        learnedEntries <~ viewModel.studyEntries.signal.map { entries in
-            return entries.filter { entry in entry.learned }
-        }
+
         if let rightButton = navigationItem.rightBarButtonItem {
             rightButton.reactive.isEnabled <~ studyEntries.signal.map { entries in
                 return entries.count > 0
@@ -201,40 +196,10 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "kanji to learn"
-        } else {
-            return "learned kanji"
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
-        let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width, height: 25))
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .black
-        label.text = self.tableView(tableView, titleForHeaderInSection: section)
-        view.addSubview(label)
-        view.backgroundColor = .ryokuchaLight
-        view.autoresizingMask = []
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
-    }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            if indexPath.section == 0 && studyEntries.value.count > 0 {
-                return 0
-            } else if indexPath.section == 1 && learnedEntries.value.count > 0 {
+            if viewModel.studyEntries.value.count > 0 {
                 return 0
             }
         }
@@ -242,17 +207,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return studyEntries.value.count + 1
-        } else {
-            return learnedEntries.value.count + 1
-        }
+        return viewModel.studyEntries.value.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            return indexPath.section == 0 ? emptyStudyCell : emptyLearnedCell
+            return emptyStudyCell
         }
         
         let idx = indexPath.row - 1
@@ -260,15 +221,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: studyCellId, for: indexPath) as! StudyCell
         
         cell.delegate = self
-        if indexPath.section == 0 {
-            cell.learnedButton.setTitle("❓", for: .normal)
-            cell.keywordLabel?.text = studyEntries.value[idx].keyword
-            cell.entry = studyEntries.value[idx]
-        } else {
-            cell.learnedButton.setTitle("✅", for: .normal)
-            cell.keywordLabel?.text = learnedEntries.value[idx].keyword
-            cell.entry = learnedEntries.value[idx]
-        }
+        
+        let entry = viewModel.studyEntries.value[idx]
+        
+        cell.learnedButton.setTitle(entry.learned ? "✅" : "❓", for: .normal)
+        cell.keywordLabel?.text = entry.keyword
+        cell.entry = entry
+        
         return cell
     }
     
@@ -293,15 +252,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard indexPath.row > 0 else { return nil }
         
         if indexPath.row == 1 {
-            guard (indexPath.section == 0 && studyEntries.value.count > 0) ||
-                (indexPath.section == 1 && learnedEntries.value.count > 0) else { return nil }
+            guard viewModel.studyEntries.value.count > 0 else { return nil }
         }
         
         let idx = indexPath.row - 1
-        
-        return indexPath.section == 0 ?
-            studyEntries.value[idx] :
-            learnedEntries.value[idx]
+        return viewModel.studyEntries.value[idx]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -319,10 +274,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func studyCellMarkLearnedTapped(entry: StudyEntry) {
-        if let index = studyEntries.value.index(of: entry) {
+        if let index = viewModel.studyEntries.value.index(of: entry) {
             markLearned(indexPath: IndexPath(row: index + 1, section: 0))
-        } else if let index = learnedEntries.value.index(of: entry) {
-            markLearned(indexPath: IndexPath(row: index + 1, section: 1))
         }
     }
     
@@ -330,7 +283,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard indexPath.row > 0,
             let entry = self.entry(forIndexPath: indexPath) else { return }
         
-        let toLearned = indexPath.section == 0
+        let toLearned = !entry.learned
         let buttonTitle = toLearned ? "✅" : "❓"
         
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
@@ -342,16 +295,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         viewModel.studyEntries.value = viewModel.studyEntries.value
-        
-        let toSection = toLearned ? 1 : 0
-        let prop = toLearned ? learnedEntries : studyEntries
-        if let toIndex = prop.value.index(of: entry) {
-            let toRow = toIndex + 1
-            let toIndexPath = IndexPath(row: toRow, section: toSection)
-            tableView.moveRow(at: indexPath, to: toIndexPath)
-        } else {
-            tableView.reloadData()
-        }
     }
     
     // MARK: - 
