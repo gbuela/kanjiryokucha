@@ -363,50 +363,52 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     private func updateSyncedData(result: SyncStudyResultModel) {
         print("finished sync \(result)")
+        let entriesToRemove = viewModel.studyEntries.value.filter {
+            result.putLearned.contains($0.cardId)
+        }
+        
+        viewModel.studyEntries.value = viewModel.studyEntries.value.filter {
+            !result.putLearned.contains($0.cardId)
+        }
+        
         Database.write { realm in
-            result.putLearned.forEach { studyId in
-                confirmSync(cardId: studyId, learned: true, realm: realm)
+            entriesToRemove.forEach { entry in
+                realm.delete(entry)
             }
             result.putNotLearned.forEach { studyId in
                 confirmSync(cardId: studyId, learned: false, realm: realm)
             }
         }
-        viewModel.studyEntries.value = viewModel.studyEntries.value
+        dataRefreshed.value = true
     }
     
     private func updateStudyData(studyIds: StudyIdsModel) {
-        var unsyncedIds = viewModel.studyEntries.value.map { $0.cardId }
+        let oldStudyEntries = viewModel.studyEntries.value.map { ($0.cardId, $0.keyword) }
+        
+        let newStudyIds = studyIds.ids.filter { !studyIds.learnedIds.contains($0) }
+        
+        Database.delete(objects: viewModel.studyEntries.value)
+        viewModel.studyEntries.value = []
         
         Database.write { realm in
-            studyIds.ids.forEach { studyId in
-                let isLearned = studyIds.learnedIds.contains(studyId)
-                if let studyEntry = viewModel.studyEntries.value.first(where: { studyId == $0.cardId }) {
-                    confirmSync(entry: studyEntry, learned: isLearned, realm: realm)
-                } else {
-                    let studyEntry = StudyEntry()
-                    studyEntry.cardId = studyId
-                    studyEntry.keyword = "#\(studyId)" // TODO: need to get the keyword
-                    studyEntry.learned = isLearned
-                    studyEntry.synced = true
-                    realm.add(studyEntry, update: false)
-                    viewModel.studyEntries.value.append(studyEntry)
+            newStudyIds.forEach { studyId in
+                var keyword = "#\(studyId)" // TODO: need to get the keyword
+
+                if let oldEntry = oldStudyEntries.first(where:{ $0.0 == studyId }) {
+                    keyword = oldEntry.1
                 }
-                
-                if let index = unsyncedIds.index(of: studyId) {
-                    unsyncedIds.remove(at: index)
-                }
-            }
-            unsyncedIds.forEach { unsyncedId in
-                if let studyEntry = viewModel.studyEntries.value.first(where: { unsyncedId == $0.cardId }) {
-                    if let index = viewModel.studyEntries.value.index(of: studyEntry) {
-                        viewModel.studyEntries.value.remove(at: index)
-                    }
-                    realm.delete(studyEntry)
-                }
+
+                let studyEntry = StudyEntry()
+                studyEntry.cardId = studyId
+                studyEntry.keyword = keyword
+                studyEntry.learned = false
+                studyEntry.synced = true
+                realm.add(studyEntry, update: false)
+                viewModel.studyEntries.value.append(studyEntry)
             }
         }
-        
         viewModel.studyEntries.value = viewModel.studyEntries.value
+        
         dataRefreshed.value = true
     }
 }
