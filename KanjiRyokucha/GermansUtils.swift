@@ -13,9 +13,35 @@ import Result
 
 import PKHUD
 
-extension UIControl {
-    func tapReact(_ task:@escaping ((UIControl) -> Void)) {
+public protocol StarterControl {
+    var isEnabledTarget: BindingTarget<Bool> { get }
+    func addTarget(_ target: Any?,
+                   action: Selector,
+                   for controlEvents: UIControlEvents)
+    func tapReact(_ task:@escaping ((UIControl) -> Void))
+}
+
+extension UIControl: StarterControl {
+    public var isEnabledTarget: BindingTarget<Bool> {
+        return reactive.isEnabled
+    }
+    public func tapReact(_ task:@escaping ((UIControl) -> Void)) {
         reactive.controlEvents(.touchUpInside).observe(on: UIScheduler()).observeValues(task)
+    }
+}
+
+extension UIBarButtonItem: StarterControl {
+    public var isEnabledTarget: BindingTarget<Bool> {
+        return reactive.isEnabled
+    }
+    public func addTarget(_ target: Any?,
+                   action: Selector,
+                   for controlEvents: UIControlEvents) {
+        self.target = target as AnyObject?
+        self.action = action
+    }
+    public func tapReact(_ task:@escaping ((UIControl) -> Void)) {
+        // no implementation
     }
 }
 
@@ -121,27 +147,27 @@ extension UITextField {
  */
 public struct ActionStarter<Input, Output, Error: Swift.Error> {
     
-    public let cocoaAction: CocoaAction<UIControl>
+    public let cocoaAction: CocoaAction<StarterControl>
     public let action: Action<Input, Output, Error>
-    private let control: UIControl
+    private let control: StarterControl
     
-    private init(control:UIControl, action:Action<Input, Output, Error>, cocoaAction: CocoaAction<UIControl>, controlEvents: UIControlEvents, syncEnabled: Bool) {
+    private init(control:StarterControl, action:Action<Input, Output, Error>, cocoaAction: CocoaAction<StarterControl>, controlEvents: UIControlEvents, syncEnabled: Bool) {
         self.action = action
         self.control = control
         self.cocoaAction = cocoaAction
         
-        self.control.addTarget(self.cocoaAction, action: CocoaAction<UIControl>.selector, for: controlEvents)
+        self.control.addTarget(self.cocoaAction, action: CocoaAction<StarterControl>.selector, for: controlEvents)
         
         if syncEnabled {
-            control.reactive.isEnabled <~ self.action.isEnabled
+            control.isEnabledTarget <~ self.action.isEnabled
         }
     }
     
-    public init(control:UIControl, action:Action<Input, Output, Error>, inputProperty: MutableProperty<Input>, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
+    public init(control:StarterControl, action:Action<Input, Output, Error>, inputProperty: MutableProperty<Input>, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
         
         self.init(control: control,
                   action: action,
-                  cocoaAction: CocoaAction<UIControl>(action, { _ in
+                  cocoaAction: CocoaAction<StarterControl>(action, { _ in
                     return inputProperty.value
                   }),
                   controlEvents: controlEvents,
@@ -149,11 +175,11 @@ public struct ActionStarter<Input, Output, Error: Swift.Error> {
         )
     }
     
-    public init(control:UIControl, action:Action<Input, Output, Error>, input:Input, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
+    public init(control:StarterControl, action:Action<Input, Output, Error>, input:Input, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
         
         self.init(control: control,
                   action: action,
-                  cocoaAction: CocoaAction<UIControl>(action, input:input),
+                  cocoaAction: CocoaAction<StarterControl>(action, input:input),
                   controlEvents: controlEvents,
                   syncEnabled: syncEnabled
         )

@@ -20,7 +20,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var submitLabel: UILabel!
 
     let studyCellId = "studyCellId"
@@ -62,7 +61,9 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.backgroundColor = .ryokuchaFaint
 
         tableView.tableFooterView = UIView()
-        
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: nil, action: nil)
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "All learned", style: .plain, target: self, action: #selector(learnedTapped))
         
         let nib = UINib(nibName: "StudyCell", bundle: Bundle.main)
@@ -128,8 +129,9 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self?.updateStudyData(studyIds: ids)
             }
         }
-        
-        refreshStarter = RefreshStarter(control: refreshButton,
+        let leftButton = navigationItem.leftBarButtonItem!
+
+        refreshStarter = RefreshStarter(control: leftButton,
                                         action: refreshAction,
                                         input: ())
         
