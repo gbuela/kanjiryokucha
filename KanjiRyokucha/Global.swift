@@ -43,6 +43,8 @@ class Global : Object {
     
     static let studyPhaseFlag = MutableProperty(true)
     
+    dynamic var refreshNeeded = false
+    
     dynamic var id = 0
     let reviewType = RealmOptional<Int>()
     dynamic var useAnimations = true
@@ -50,5 +52,9 @@ class Global : Object {
 
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["refreshNeeded"]
     }
 }

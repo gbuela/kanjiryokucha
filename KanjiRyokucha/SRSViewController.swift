@@ -275,6 +275,7 @@ class SRSViewModel: ReviewEngineProtocol {
     }
     
     func refreshStatus() {
+        global.refreshNeeded = false
         statusAction.consume(())
     }
 
@@ -519,7 +520,9 @@ class SRSViewController: UIViewController, ReviewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if viewModel.refreshedSinceStartup,
+        if viewModel.global.refreshNeeded {
+            viewModel.refreshStatus()
+        } else if viewModel.refreshedSinceStartup,
             let lastRefresh = UserDefaults().value(forKey: lastSatusRefreshKey) as? Int {
             let then = Date(timeIntervalSince1970: TimeInterval(lastRefresh))
             let calendar = Calendar.current

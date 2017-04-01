@@ -44,7 +44,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var refreshAction: RefreshAction!
     private var refreshStarter: RefreshStarter!
     let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
-    
+
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
         let submitBatchSize = 10
         
@@ -388,6 +388,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         dataRefreshed.value = true
+        viewModel.global.refreshNeeded = true
     }
     
     private func updateStudyData(studyIds: StudyIdsModel) {
@@ -418,5 +419,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         viewModel.studyEntries.value = viewModel.studyEntries.value
         
         dataRefreshed.value = true
+        viewModel.global.refreshNeeded = true
     }
 }
