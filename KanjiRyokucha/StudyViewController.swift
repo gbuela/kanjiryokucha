@@ -15,6 +15,14 @@ fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, Fetc
 fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
+extension Array {
+    func take(atMost maximum: Int) -> Array {
+        let limit:Int = Swift.min(count, maximum)
+        let result = self[0..<limit]
+        return Array(result)
+    }
+}
+
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
     UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
     
