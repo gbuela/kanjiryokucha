@@ -276,7 +276,7 @@ class SRSViewModel: ReviewEngineProtocol {
     
     func refreshStatus() {
         global.refreshNeeded = false
-        statusAction.consume(())
+        statusAction.apply(()).start()
     }
 
     func restoreState() {

@@ -214,11 +214,11 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                 noOption: "OMG stay!") {
                     [weak self] _ in
                     self?.reviewContainer.isHidden = true
-                    _ = self?.reviewEngine.cancelAction.consume(true)
+                    self?.reviewEngine.cancelAction.apply(true).start()
             }
         } else {
             reviewContainer.isHidden = true
-            _ = reviewEngine.cancelAction.consume(true)
+            reviewEngine.cancelAction.apply(true).start()
         }
     }
     

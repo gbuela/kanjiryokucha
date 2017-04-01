@@ -353,7 +353,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 self?.showAlert(fetchError.uiMessage)
             }
             HUD.show(.systemActivity)
-            detailsAction.consume(String(scalar))
+            detailsAction.apply(String(scalar)).start()
         })
     }
     
