@@ -8,17 +8,46 @@
 
 import ReactiveSwift
 
-func resolveDomain() -> String {
-    if let dev = Bundle.main.infoDictionary?["DEVBUILD"] as? Bool,
-        dev {
-        return "localhost:8888"
-    } else {
-        return "kanji.koohii.com"
-    }
+enum BuildType {
+    case production
+    case development
+    case staging
 }
 
-let koohiiDomain = resolveDomain()
-let koohiiHost = "http://" + koohiiDomain
+let buildType: BuildType = {
+    if let buildType = Bundle.main.infoDictionary?["BUILDTYPE"] as? String {
+        if buildType == "DEV" {
+            return .development
+        } else if buildType == "STAGING" {
+            return .staging
+        } else if buildType == "PROD" {
+            return .production
+        }
+    }
+    fatalError("Undefined or unknown BUILDTYPE in Info.plist!")
+}()
+
+let koohiiDomain: String = {
+    switch buildType {
+    case .production:
+        return "kanji.koohii.com"
+    case .development:
+        return "localhost:8888"
+    case .staging:
+        return "staging.koohii.com"
+    }
+}()
+
+let koohiiProtocol: String = {
+    switch buildType {
+    case .production:
+        return "http"
+    default:
+        return "http"
+    }
+}()
+
+let koohiiHost = koohiiProtocol + "://" + koohiiDomain
 fileprivate let endpoint = koohiiHost + "/api/v1/"
 
 protocol KoohiiRequest : Request {}
