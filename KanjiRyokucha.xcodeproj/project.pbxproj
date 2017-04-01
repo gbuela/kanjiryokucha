@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CF94B89D490710ACB110FD /* Pods_KanjiRyokucha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */; };
+		42CA7B7AC12B9458E6D6F9FA /* Pods_KanjiRyokucha_DEV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99001DFBAABD74260152CE01 /* Pods_KanjiRyokucha_DEV.framework */; };
+		467452706D2BF45D8A268A8F /* libPods-KanjiRyokuchaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 445DF15802301B6A4A7F0E73 /* libPods-KanjiRyokuchaTests.a */; };
+		4FCFE07ADE7255AB5B99BBA9 /* Pods_KanjiRyokucha_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9FF4D1118803678F84EE28 /* Pods_KanjiRyokucha_Staging.framework */; };
 		5A9EC3B51B37CF3904719066 /* Pods_KanjiRyokucha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */; };
-		5F82B6682705C77EECFE7DAD /* Pods_KanjiRyokuchaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C236654509CAD02E8E375EC1 /* Pods_KanjiRyokuchaTests.framework */; };
 		C409A19D1E86011E006EEE77 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C409A19E1E86011E006EEE77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F213B71DEA532900EF5214 /* AppDelegate.swift */; };
@@ -51,7 +54,6 @@
 		C409A1C51E86011E006EEE77 /* KanjialiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */; };
 		C409A1C61E86011E006EEE77 /* FreeReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC241E4AA430006F2C0C /* FreeReviewViewController.swift */; };
 		C409A1C71E86011E006EEE77 /* KRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC201E47D07B006F2C0C /* KRButton.swift */; };
-		C409A1C91E86011E006EEE77 /* Pods_KanjiRyokucha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */; };
 		C409A1CB1E86011E006EEE77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F213C01DEA532900EF5214 /* LaunchScreen.storyboard */; };
 		C409A1CC1E86011E006EEE77 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAAA1E10484100361C89 /* CardBackView.xib */; };
 		C409A1CD1E86011E006EEE77 /* about.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C458FE741E7F29B900A34FD9 /* about.rtf */; };
@@ -160,7 +162,6 @@
 		C44F755E1E8F213300E00AD9 /* KanjialiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */; };
 		C44F755F1E8F213300E00AD9 /* FreeReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC241E4AA430006F2C0C /* FreeReviewViewController.swift */; };
 		C44F75601E8F213300E00AD9 /* KRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC201E47D07B006F2C0C /* KRButton.swift */; };
-		C44F75621E8F213300E00AD9 /* Pods_KanjiRyokucha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */; };
 		C44F75641E8F213300E00AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F213C01DEA532900EF5214 /* LaunchScreen.storyboard */; };
 		C44F75651E8F213300E00AD9 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAAA1E10484100361C89 /* CardBackView.xib */; };
 		C44F75661E8F213300E00AD9 /* about.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C458FE741E7F29B900A34FD9 /* about.rtf */; };
@@ -223,10 +224,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		121931B4A7BA2B99DB9427C8 /* Pods-KanjiRyokucha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha.release.xcconfig"; sourceTree = "<group>"; };
-		4E27E16E56D2723F37FD77BC /* Pods-KanjiRyokucha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha.debug.xcconfig"; sourceTree = "<group>"; };
+		0F2061E7C4300A3DAF3FDE10 /* Pods-KanjiRyokucha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha.debug.xcconfig"; sourceTree = "<group>"; };
+		445DF15802301B6A4A7F0E73 /* libPods-KanjiRyokuchaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KanjiRyokuchaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CBBB87816EA91E30D7DD6A /* Pods-KanjiRyokuchaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokuchaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokuchaTests/Pods-KanjiRyokuchaTests.release.xcconfig"; sourceTree = "<group>"; };
-		C236654509CAD02E8E375EC1 /* Pods_KanjiRyokuchaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokuchaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F1A396B6957ACF84FF40D1E /* Pods-KanjiRyokucha-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-Staging.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		99001DFBAABD74260152CE01 /* Pods_KanjiRyokucha_DEV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokucha_DEV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C9FF4D1118803678F84EE28 /* Pods_KanjiRyokucha_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokucha_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E2FD38E1C3978AF7752543A /* Pods-KanjiRyokucha-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-Staging.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		9FB3B08744D80BAD612D8535 /* Pods-KanjiRyokucha-DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-DEV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV.debug.xcconfig"; sourceTree = "<group>"; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
 		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
@@ -303,7 +308,9 @@
 		C4FFBEE91E05CC4A0061CB18 /* CredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsViewController.swift; sourceTree = "<group>"; };
 		C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CredentialsViewController.xib; sourceTree = "<group>"; };
 		DFB86EF1FEAD8893A5769C19 /* Pods-KanjiRyokuchaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokuchaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokuchaTests/Pods-KanjiRyokuchaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E19D674597B665F97AB6A4DA /* Pods-KanjiRyokucha-DEV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-DEV.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV.release.xcconfig"; sourceTree = "<group>"; };
 		EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KanjiRyokucha.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D39AC289B6F58C83133728 /* Pods-KanjiRyokucha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha.release.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,7 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C409A1C91E86011E006EEE77 /* Pods_KanjiRyokucha.framework in Frameworks */,
+				42CA7B7AC12B9458E6D6F9FA /* Pods_KanjiRyokucha_DEV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,7 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44F75621E8F213300E00AD9 /* Pods_KanjiRyokucha.framework in Frameworks */,
+				4FCFE07ADE7255AB5B99BBA9 /* Pods_KanjiRyokucha_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A9EC3B51B37CF3904719066 /* Pods_KanjiRyokucha.framework in Frameworks */,
+				04CF94B89D490710ACB110FD /* Pods_KanjiRyokucha.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F82B6682705C77EECFE7DAD /* Pods_KanjiRyokuchaTests.framework in Frameworks */,
+				467452706D2BF45D8A268A8F /* libPods-KanjiRyokuchaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +354,9 @@
 			isa = PBXGroup;
 			children = (
 				EF48AF9048E36A0B96227719 /* Pods_KanjiRyokucha.framework */,
-				C236654509CAD02E8E375EC1 /* Pods_KanjiRyokuchaTests.framework */,
+				99001DFBAABD74260152CE01 /* Pods_KanjiRyokucha_DEV.framework */,
+				9C9FF4D1118803678F84EE28 /* Pods_KanjiRyokucha_Staging.framework */,
+				445DF15802301B6A4A7F0E73 /* libPods-KanjiRyokuchaTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -354,10 +364,14 @@
 		8BE1283C35607D4026E0FE6B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4E27E16E56D2723F37FD77BC /* Pods-KanjiRyokucha.debug.xcconfig */,
-				121931B4A7BA2B99DB9427C8 /* Pods-KanjiRyokucha.release.xcconfig */,
 				DFB86EF1FEAD8893A5769C19 /* Pods-KanjiRyokuchaTests.debug.xcconfig */,
 				50CBBB87816EA91E30D7DD6A /* Pods-KanjiRyokuchaTests.release.xcconfig */,
+				0F2061E7C4300A3DAF3FDE10 /* Pods-KanjiRyokucha.debug.xcconfig */,
+				F4D39AC289B6F58C83133728 /* Pods-KanjiRyokucha.release.xcconfig */,
+				9FB3B08744D80BAD612D8535 /* Pods-KanjiRyokucha-DEV.debug.xcconfig */,
+				E19D674597B665F97AB6A4DA /* Pods-KanjiRyokucha-DEV.release.xcconfig */,
+				5F1A396B6957ACF84FF40D1E /* Pods-KanjiRyokucha-Staging.debug.xcconfig */,
+				9E2FD38E1C3978AF7752543A /* Pods-KanjiRyokucha-Staging.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -516,12 +530,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C409A1E11E86011E006EEE77 /* Build configuration list for PBXNativeTarget "KanjiRyokucha-DEV" */;
 			buildPhases = (
-				C409A19B1E86011E006EEE77 /* [CP] Check Pods Manifest.lock */,
+				72B1E03CEEF2058880BA4BE9 /* [CP] Check Pods Manifest.lock */,
 				C409A19C1E86011E006EEE77 /* Sources */,
 				C409A1C81E86011E006EEE77 /* Frameworks */,
 				C409A1CA1E86011E006EEE77 /* Resources */,
-				C409A1DF1E86011E006EEE77 /* [CP] Embed Pods Frameworks */,
-				C409A1E01E86011E006EEE77 /* [CP] Copy Pods Resources */,
+				B91C86DAB99ABE02A6FBB050 /* [CP] Embed Pods Frameworks */,
+				1E961CA0191553B038263604 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -536,12 +550,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C44F757C1E8F213300E00AD9 /* Build configuration list for PBXNativeTarget "KanjiRyokucha-Staging" */;
 			buildPhases = (
-				C44F75301E8F213300E00AD9 /* [CP] Check Pods Manifest.lock */,
+				67F3D77E117EBE50C253AC48 /* [CP] Check Pods Manifest.lock */,
 				C44F75311E8F213300E00AD9 /* Sources */,
 				C44F75611E8F213300E00AD9 /* Frameworks */,
 				C44F75631E8F213300E00AD9 /* Resources */,
-				C44F757A1E8F213300E00AD9 /* [CP] Embed Pods Frameworks */,
-				C44F757B1E8F213300E00AD9 /* [CP] Copy Pods Resources */,
+				F7F6E5D0F46EC2B5C668F77B /* [CP] Embed Pods Frameworks */,
+				1E53BF18405AE6F74CF65B75 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -753,6 +767,66 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokuchaTests/Pods-KanjiRyokuchaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		1E53BF18405AE6F74CF65B75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E961CA0191553B038263604 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67F3D77E117EBE50C253AC48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		72B1E03CEEF2058880BA4BE9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		AA274C12536CE691F60F8AA7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -798,22 +872,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C409A19B1E86011E006EEE77 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C409A1DF1E86011E006EEE77 /* [CP] Embed Pods Frameworks */ = {
+		B91C86DAB99ABE02A6FBB050 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -825,67 +884,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C409A1E01E86011E006EEE77 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C44F75301E8F213300E00AD9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C44F757A1E8F213300E00AD9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C44F757B1E8F213300E00AD9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E989E409BE3D8FA7C34B1AE9 /* [CP] Embed Pods Frameworks */ = {
@@ -916,6 +915,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F7F6E5D0F46EC2B5C668F77B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1109,8 +1123,9 @@
 /* Begin XCBuildConfiguration section */
 		C409A1E21E86011E006EEE77 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E27E16E56D2723F37FD77BC /* Pods-KanjiRyokucha.debug.xcconfig */;
+			baseConfigurationReference = 9FB3B08744D80BAD612D8535 /* Pods-KanjiRyokucha-DEV.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
@@ -1124,8 +1139,9 @@
 		};
 		C409A1E31E86011E006EEE77 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 121931B4A7BA2B99DB9427C8 /* Pods-KanjiRyokucha.release.xcconfig */;
+			baseConfigurationReference = E19D674597B665F97AB6A4DA /* Pods-KanjiRyokucha-DEV.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
@@ -1139,8 +1155,9 @@
 		};
 		C44F757D1E8F213300E00AD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E27E16E56D2723F37FD77BC /* Pods-KanjiRyokucha.debug.xcconfig */;
+			baseConfigurationReference = 5F1A396B6957ACF84FF40D1E /* Pods-KanjiRyokucha-Staging.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
@@ -1154,8 +1171,9 @@
 		};
 		C44F757E1E8F213300E00AD9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 121931B4A7BA2B99DB9427C8 /* Pods-KanjiRyokucha.release.xcconfig */;
+			baseConfigurationReference = 9E2FD38E1C3978AF7752543A /* Pods-KanjiRyokucha-Staging.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
@@ -1170,6 +1188,7 @@
 		C4F213CF1DEA532A00EF5214 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1220,6 +1239,7 @@
 		C4F213D01DEA532A00EF5214 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1262,8 +1282,9 @@
 		};
 		C4F213D21DEA532A00EF5214 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E27E16E56D2723F37FD77BC /* Pods-KanjiRyokucha.debug.xcconfig */;
+			baseConfigurationReference = 0F2061E7C4300A3DAF3FDE10 /* Pods-KanjiRyokucha.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1277,8 +1298,9 @@
 		};
 		C4F213D31DEA532A00EF5214 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 121931B4A7BA2B99DB9427C8 /* Pods-KanjiRyokucha.release.xcconfig */;
+			baseConfigurationReference = F4D39AC289B6F58C83133728 /* Pods-KanjiRyokucha.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1294,7 +1316,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DFB86EF1FEAD8893A5769C19 /* Pods-KanjiRyokuchaTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1309,7 +1331,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50CBBB87816EA91E30D7DD6A /* Pods-KanjiRyokuchaTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

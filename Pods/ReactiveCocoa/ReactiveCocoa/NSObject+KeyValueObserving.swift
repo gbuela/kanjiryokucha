@@ -13,7 +13,7 @@ extension Reactive where Base: NSObject {
 	///
 	/// - returns:
 	///   A producer emitting values of the property specified by the key path.
-	public func values(forKeyPath keyPath: String) -> SignalProducer<Any?, NoError> {
+	public func producer(forKeyPath keyPath: String) -> SignalProducer<Any?, NoError> {
 		return SignalProducer { observer, disposable in
 			disposable += KeyValueObserver.observe(
 				self.base,
@@ -22,6 +22,32 @@ extension Reactive where Base: NSObject {
 				action: observer.send
 			)
 			disposable += self.lifetime.ended.observeCompleted(observer.sendCompleted)
+		}
+	}
+
+	/// Create a signal all changes of the property specified by the key path.
+	///
+	/// The signal completes when the object deinitializes.
+	///
+	/// - note:
+	///	  Does not send the initial value. See `producer(forKeyPath:)`.
+	///
+	/// - parameters:
+	///   - keyPath: The key path of the property to be observed.
+	///
+	/// - returns:
+	///   A producer emitting values of the property specified by the key path.
+	public func signal(forKeyPath keyPath: String) -> Signal<Any?, NoError> {
+		return Signal { observer in
+			let disposable = CompositeDisposable()
+			disposable += KeyValueObserver.observe(
+				self.base,
+				keyPath: keyPath,
+				options: [.new],
+				action: observer.send
+			)
+			disposable += self.lifetime.ended.observeCompleted(observer.sendCompleted)
+			return disposable
 		}
 	}
 }
@@ -110,13 +136,13 @@ extension KeyValueObserver {
 		//
 		// Attempting to observe non-weak properties using dynamic getters will
 		// result in broken behavior, so don't even try.
-		let shouldObserveDeinit = keyPathHead.withCString { cString -> Bool in
+		let (shouldObserveDeinit, isWeak) = keyPathHead.withCString { cString -> (Bool, Bool) in
 			if let propertyPointer = class_getProperty(type(of: object), cString) {
 				let attributes = PropertyAttributes(property: propertyPointer)
-				return attributes.isObject && attributes.isWeak && attributes.objectClass != NSClassFromString("Protocol") && !attributes.isBlock
+				return (attributes.isObject && attributes.objectClass != NSClassFromString("Protocol") && !attributes.isBlock, attributes.isWeak)
 			}
 
-			return false
+			return (false, false)
 		}
 
 		// Establish the observation.
@@ -126,18 +152,23 @@ extension KeyValueObserver {
 		let observer: KeyValueObserver
 
 		if isNested {
-			observer = KeyValueObserver(observing: object, key: keyPathHead, options: options) { object in
+			observer = KeyValueObserver(observing: object, key: keyPathHead, options: options.union(.initial)) { object in
 				guard let value = object?.value(forKey: keyPathHead) as! NSObject? else {
 					action(nil)
 					return
 				}
 
 				let headDisposable = CompositeDisposable()
-				headSerialDisposable.innerDisposable = headDisposable
+				headSerialDisposable.inner = headDisposable
 
 				if shouldObserveDeinit {
 					let disposable = value.reactive.lifetime.ended.observeCompleted {
-						action(nil)
+						if isWeak {
+							action(nil)
+						}
+
+						// Detach the key path tail observers eagarly.
+						headSerialDisposable.inner = nil
 					}
 					headDisposable += disposable
 				}
@@ -165,7 +196,7 @@ extension KeyValueObserver {
 					let disposable = value.reactive.lifetime.ended.observeCompleted {
 						action(nil)
 					}
-					headSerialDisposable.innerDisposable = disposable
+					headSerialDisposable.inner = disposable
 				}
 
 				// Send the latest value of the key.

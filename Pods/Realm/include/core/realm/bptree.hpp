@@ -180,6 +180,10 @@ public:
     struct unattached_tag {
     };
 
+    // Disable copying, this is not allowed.
+    BpTreeBase& operator=(const BpTreeBase&) = delete;
+    BpTreeBase(const BpTreeBase&) = delete;
+
     // Accessor concept:
     Allocator& get_alloc() const noexcept;
     void destroy() noexcept;
@@ -249,10 +253,10 @@ public:
     BpTree();
     explicit BpTree(BpTreeBase::unattached_tag);
     explicit BpTree(Allocator& alloc);
-    REALM_DEPRECATED("Initialize with MemRef instead") explicit BpTree(std::unique_ptr<Array> init_root)
+    REALM_DEPRECATED("Initialize with MemRef instead")
+    explicit BpTree(std::unique_ptr<Array> init_root)
         : BpTreeBase(std::move(init_root))
     {
-
     }
     explicit BpTree(Allocator& alloc, MemRef mem)
         : BpTreeBase(std::unique_ptr<Array>(new LeafType(alloc)))
@@ -261,6 +265,11 @@ public:
     }
     BpTree(BpTree&&) = default;
     BpTree& operator=(BpTree&&) = default;
+
+    // Disable copying, this is not allowed.
+    BpTree& operator=(const BpTree&) = delete;
+    BpTree(const BpTree&) = delete;
+
     void init_from_ref(Allocator& alloc, ref_type ref);
     void init_from_mem(Allocator& alloc, MemRef mem);
     void init_from_parent();

@@ -1,25 +1,33 @@
 platform :ios, ‘9.3’
 
+# Pods for KanjiRyokucha
+def shared_pods
+    pod "ReactiveCocoa", :git => "https://github.com/ReactiveCocoa/ReactiveCocoa.git", :branch => ‘master’
+    pod 'Gloss', '~> 1.1'
+    pod 'UIColor_Hex_Swift', '~> 3.0.2'
+    pod 'PKHUD', '~> 4.0'
+    pod 'RealmSwift'
+end
+
 target 'KanjiRyokucha' do
+    use_frameworks!
+    shared_pods
+end
 
-  use_frameworks!
+target 'KanjiRyokucha-DEV' do
+    use_frameworks!
+    shared_pods
+end
 
-  # Pods for KanjiRyokucha
-pod "ReactiveCocoa", :git => "https://github.com/ReactiveCocoa/ReactiveCocoa.git", :branch => ‘master’
 
-pod 'Gloss', '~> 1.1'
+target 'KanjiRyokucha-Staging' do
+    use_frameworks!
+    shared_pods
+end
 
-pod 'UIColor_Hex_Swift', '~> 3.0.2'
-
-pod 'PKHUD', '~> 4.0'
-
-pod 'RealmSwift'
-
-  target 'KanjiRyokuchaTests' do
+target 'KanjiRyokuchaTests' do
     inherit! :search_paths
     # Pods for testing
-  end
-
 end
 
 post_install do |installer|

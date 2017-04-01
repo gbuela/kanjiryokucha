@@ -19,23 +19,26 @@
 #ifndef REALM_OS_SYNC_CONFIG_HPP
 #define REALM_OS_SYNC_CONFIG_HPP
 
+#include <realm/util/assert.hpp>
+#include <realm/sync/client.hpp>
+#include <realm/sync/protocol.hpp>
+
 #include <functional>
 #include <memory>
 #include <string>
+#include <system_error>
+#include <unordered_map>
+
+#include <realm/sync/history.hpp>
 
 namespace realm {
 
 class SyncUser;
 class SyncSession;
 
-enum class SyncSessionStopPolicy;
+using ChangesetTransformer = sync::ClientHistory::ChangesetCooker;
 
-enum class SyncSessionError {
-    Debug,        // An informational error, nothing to do. Only for debug purposes.
-    SessionFatal, // The session is invalid and should be killed.
-    AccessDenied, // Permissions error with the session.
-    UserFatal,    // The user associated with the session is invalid.
-};
+enum class SyncSessionStopPolicy;
 
 struct SyncConfig;
 using SyncBindSessionHandler = void(const std::string&,          // path on disk of the Realm file.
@@ -43,7 +46,57 @@ using SyncBindSessionHandler = void(const std::string&,          // path on disk
                                     std::shared_ptr<SyncSession> // the session which should be bound.
                                     );
 
-using SyncSessionErrorHandler = void(std::shared_ptr<SyncSession>, int error_code, std::string message, SyncSessionError);
+struct SyncError;
+using SyncSessionErrorHandler = void(std::shared_ptr<SyncSession>, SyncError);
+
+struct SyncError {
+    using ProtocolError = realm::sync::ProtocolError;
+
+    std::error_code error_code;
+    std::string message;
+    bool is_fatal;
+    std::unordered_map<std::string, std::string> user_info;
+
+    static constexpr const char c_original_file_path_key[] = "ORIGINAL_FILE_PATH";
+    static constexpr const char c_recovery_file_path_key[] = "RECOVERY_FILE_PATH";
+
+    /// The error is a client error, which applies to the client and all its sessions.
+    bool is_client_error() const
+    {
+        return error_code.category() == realm::sync::client_error_category();
+    }
+
+    /// The error is a protocol error, which may either be connection-level or session-level.
+    bool is_connection_level_protocol_error() const
+    {
+        if (error_code.category() != realm::sync::protocol_error_category()) {
+            return false;
+        }
+        return !realm::sync::is_session_level_error(static_cast<ProtocolError>(error_code.value()));
+    }
+
+    /// The error is a connection-level protocol error.
+    bool is_session_level_protocol_error() const
+    {
+        if (error_code.category() != realm::sync::protocol_error_category()) {
+            return false;
+        }
+        return realm::sync::is_session_level_error(static_cast<ProtocolError>(error_code.value()));
+    }
+
+    /// The error indicates a client reset situation.
+    bool is_client_reset_requested() const
+    {
+        if (error_code.category() != realm::sync::protocol_error_category()) {
+            return false;
+        }
+        // Documented here: https://realm.io/docs/realm-object-server/#client-recovery-from-a-backup
+        return (error_code == ProtocolError::bad_server_file_ident
+                || error_code == ProtocolError::bad_client_file_ident
+                || error_code == ProtocolError::bad_server_version
+                || error_code == ProtocolError::diverging_histories);
+    }
+};
 
 struct SyncConfig {
     std::shared_ptr<SyncUser> user;
@@ -51,6 +104,8 @@ struct SyncConfig {
     SyncSessionStopPolicy stop_policy;
     std::function<SyncBindSessionHandler> bind_session_handler;
     std::function<SyncSessionErrorHandler> error_handler;
+    std::shared_ptr<ChangesetTransformer> transformer;
+    util::Optional<std::array<char, 64>> realm_encryption_key;
 };
 
 } // namespace realm

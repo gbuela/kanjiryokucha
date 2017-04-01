@@ -30,6 +30,9 @@ Decodes JSON to objects.
 */
 public struct Decoder {
     
+    /// Default logger
+    public static var logger: Logger = GlossLogger()
+    
     /**
      Decodes JSON to a generic value.
     
@@ -37,12 +40,21 @@ public struct Decoder {
     
     - returns: Value decoded from JSON.
     */
-    public static func decode<T>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> T? {
+    public static func decode<T>(key: String, keyPathDelimiter: String = GlossKeyPathDelimiter, logger: Logger = logger) -> (JSON) -> T? {
         return {
             json in
             
             if let value = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter) as? T {
                 return value
+            }
+            
+            // If Gloss cannot determine the type being decoded, this generic decode function
+            // will be used. At times, this will result in a value being present in the JSON
+            // but Gloss returning nil - in this case, we log the failure.
+            if
+                let value = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter),
+                !(value is NSNull) {
+                logger.log(message: "Value found for key \"\(key)\" but decoding failed.")
             }
             
             return nil
@@ -443,9 +455,8 @@ public struct Decoder {
         return {
             json in
             
-            if let urlString = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter) as? String,
-                let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-                return URL(string: encodedString)
+            if let urlString = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter) as? String {
+                return URL(string: urlString)
             }
             
             return nil
@@ -529,4 +540,45 @@ public struct Decoder {
         }
     }
     
+    /**
+     Decodes JSON to a Decimal.
+     
+     - parameter key: Key used in JSON for decoded value.
+     
+     - returns: Value decoded from JSON.
+     */
+    public static func decode(decimalForKey key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> Decimal? {
+        return {
+            json in
+            
+            if let number = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter) as? NSNumber {
+                return number.decimalValue
+            }
+            
+            return nil
+        }
+    }
+    
+    /**
+     Decodes JSON to a Decimal array.
+     
+     - parameter key: Key used in JSON for decoded value.
+     
+     - returns: Value decoded from JSON.
+     */
+    public static func decode(decimalArrayForKey key: String, keyPathDelimiter: String = GlossKeyPathDelimiter) -> (JSON) -> [Decimal]? {
+        return {
+            json in
+            
+            if let numbers = json.valueForKeyPath(keyPath: key, withDelimiter: keyPathDelimiter) as? [NSNumber] {
+                let decimals: [Decimal] = numbers.map { $0.decimalValue }
+                
+                return decimals
+            }
+            
+            return nil
+        }
+    }
+    
 }
+

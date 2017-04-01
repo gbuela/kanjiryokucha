@@ -1,6 +1,6 @@
 import Dispatch
 import Foundation
-import enum Result.NoError
+import Result
 
 /// Represents an action that will do some work when executed with a value of
 /// type `Input`, then return zero or more values of type `Output` and/or fail
@@ -78,14 +78,17 @@ public final class Action<Input, Output, Error: Swift.Error> {
 	public init<State: PropertyProtocol>(state property: State, enabledIf isEnabled: @escaping (State.Value) -> Bool, _ execute: @escaping (State.Value, Input) -> SignalProducer<Output, Error>) {
 		deinitToken = Lifetime.Token()
 		lifetime = Lifetime(deinitToken)
+		
+		// Retain the `property` for the created `Action`.
+		lifetime.observeEnded { _ = property }
 
 		executeClosure = { state, input in execute(state as! State.Value, input) }
 
 		(events, eventsObserver) = Signal<Event<Output, Error>, NoError>.pipe()
 		(disabledErrors, disabledErrorsObserver) = Signal<(), NoError>.pipe()
 
-		values = events.map { $0.value }.skipNil()
-		errors = events.map { $0.error }.skipNil()
+		values = events.filterMap { $0.value }
+		errors = events.filterMap { $0.error }
 		completed = events.filter { $0.isCompleted }.map { _ in }
 
 		let initial = ActionState(value: property.value, isEnabled: { isEnabled($0 as! State.Value) })
@@ -99,8 +102,8 @@ public final class Action<Input, Output, Error: Swift.Error> {
 				}
 			}
 
-		self.isEnabled = state.map { $0.isEnabled }
-		self.isExecuting = state.map { $0.isExecuting }
+		self.isEnabled = state.map { $0.isEnabled }.skipRepeats()
+		self.isExecuting = state.map { $0.isExecuting }.skipRepeats()
 	}
 
 	/// Initializes an action that will be conditionally enabled, and creates a
@@ -203,7 +206,9 @@ private struct ActionState {
 	}
 }
 
-public protocol ActionProtocol: BindingTargetProtocol {
+/// A protocol used to constraint `Action` initializers.
+@available(swift, deprecated: 3.1, message: "This protocol is no longer necessary and will be removed in a future version of ReactiveSwift. Use Action directly instead.")
+public protocol ActionProtocol: BindingTargetProvider, BindingTargetProtocol {
 	/// The type of argument to apply the action to.
 	associatedtype Input
 	/// The type of values returned by the action.
@@ -255,15 +260,13 @@ public protocol ActionProtocol: BindingTargetProtocol {
 	func apply(_ input: Input) -> SignalProducer<Output, ActionError<Error>>
 }
 
-extension ActionProtocol {
-	public func consume(_ value: Input) {
-		apply(value).start()
-	}
-}
-
 extension Action: ActionProtocol {
 	public var action: Action {
 		return self
+	}
+
+	public var bindingTarget: BindingTarget<Input> {
+		return BindingTarget(lifetime: lifetime) { [weak self] in self?.apply($0).start() }
 	}
 }
 

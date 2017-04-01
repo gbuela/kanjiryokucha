@@ -1,6 +1,0 @@
-framework module Pods_KanjiRyokuchaTests {
-  umbrella header "Pods-KanjiRyokuchaTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

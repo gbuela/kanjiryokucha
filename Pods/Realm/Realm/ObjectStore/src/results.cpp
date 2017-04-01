@@ -36,7 +36,7 @@ Results::~Results() = default;
 Results::Results(SharedRealm r, Query q, SortDescriptor s, SortDescriptor d)
 : m_realm(std::move(r))
 , m_query(std::move(q))
-, m_table(m_query.get_table().get())
+, m_table(m_query.get_table())
 , m_sort(std::move(s))
 , m_distinct(std::move(d))
 , m_mode(Mode::Query)
@@ -45,18 +45,18 @@ Results::Results(SharedRealm r, Query q, SortDescriptor s, SortDescriptor d)
 
 Results::Results(SharedRealm r, Table& table)
 : m_realm(std::move(r))
-, m_table(&table)
 , m_mode(Mode::Table)
 {
+    m_table.reset(&table);
 }
 
 Results::Results(SharedRealm r, LinkViewRef lv, util::Optional<Query> q, SortDescriptor s)
 : m_realm(std::move(r))
 , m_link_view(lv)
-, m_table(&lv->get_target_table())
 , m_sort(std::move(s))
 , m_mode(Mode::LinkView)
 {
+    m_table.reset(&lv->get_target_table());
     if (q) {
         m_query = std::move(*q);
         m_mode = Mode::Query;
@@ -66,11 +66,11 @@ Results::Results(SharedRealm r, LinkViewRef lv, util::Optional<Query> q, SortDes
 Results::Results(SharedRealm r, TableView tv, SortDescriptor s, SortDescriptor d)
 : m_realm(std::move(r))
 , m_table_view(std::move(tv))
-, m_table(&m_table_view.get_parent())
 , m_sort(std::move(s))
 , m_distinct(std::move(d))
 , m_mode(Mode::TableView)
 {
+    m_table.reset(&m_table_view.get_parent());
 }
 
 Results::Results(const Results&) = default;
@@ -82,7 +82,7 @@ Results::Results(Results&& other)
 , m_query(std::move(other.m_query))
 , m_table_view(std::move(other.m_table_view))
 , m_link_view(std::move(other.m_link_view))
-, m_table(other.m_table)
+, m_table(std::move(other.m_table))
 , m_sort(std::move(other.m_sort))
 , m_distinct(std::move(other.m_distinct))
 , m_notifier(std::move(other.m_notifier))
@@ -215,7 +215,11 @@ util::Optional<RowExpr> Results::first()
         case Mode::Query:
         case Mode::TableView:
             update_tableview();
-            return m_table_view.size() == 0 ? util::none : util::make_optional(m_table_view.front());
+            if (m_table_view.size() == 0)
+                return util::none;
+            else if (m_update_policy == UpdatePolicy::Never && !m_table_view.is_row_attached(0))
+                return RowExpr();
+            return m_table_view.front();
     }
     REALM_UNREACHABLE();
 }
@@ -235,7 +239,12 @@ util::Optional<RowExpr> Results::last()
         case Mode::Query:
         case Mode::TableView:
             update_tableview();
-            return m_table_view.size() == 0 ? util::none : util::make_optional(m_table_view.back());
+            auto s = m_table_view.size();
+            if (s == 0)
+                return util::none;
+            else if (m_update_policy == UpdatePolicy::Never && !m_table_view.is_row_attached(s - 1))
+                return RowExpr();
+            return m_table_view.back();
     }
     REALM_UNREACHABLE();
 }
@@ -324,7 +333,7 @@ size_t Results::index_of(size_t row_ndx)
 }
 
 template<typename Int, typename Float, typename Double, typename Timestamp>
-util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_empty,
+util::Optional<Mixed> Results::aggregate(size_t column,
                                          const char* name,
                                          Int agg_int, Float agg_float,
                                          Double agg_double, Timestamp agg_timestamp)
@@ -340,8 +349,6 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
             case Mode::Empty:
                 return none;
             case Mode::Table:
-                if (return_none_for_empty && m_table->size() == 0)
-                    return none;
                 return util::Optional<Mixed>(getter(*m_table));
             case Mode::LinkView:
                 m_query = this->get_query();
@@ -350,10 +357,9 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
             case Mode::Query:
             case Mode::TableView:
                 this->update_tableview();
-                if (return_none_for_empty && m_table_view.size() == 0)
-                    return none;
                 return util::Optional<Mixed>(getter(m_table_view));
         }
+
         REALM_UNREACHABLE();
     };
 
@@ -364,44 +370,51 @@ util::Optional<Mixed> Results::aggregate(size_t column, bool return_none_for_emp
         case type_Float: return do_agg(agg_float);
         case type_Int: return do_agg(agg_int);
         default:
-            throw UnsupportedColumnTypeException{column, m_table, name};
+            throw UnsupportedColumnTypeException{column, m_table.get(), name};
     }
 }
 
 util::Optional<Mixed> Results::max(size_t column)
 {
-    return aggregate(column, true, "max",
-                     [=](auto const& table) { return table.maximum_int(column); },
-                     [=](auto const& table) { return table.maximum_float(column); },
-                     [=](auto const& table) { return table.maximum_double(column); },
-                     [=](auto const& table) { return table.maximum_timestamp(column); });
+    size_t return_ndx = npos;
+    auto results = aggregate(column, "max",
+                             [&](auto const& table) { return table.maximum_int(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_float(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_double(column, &return_ndx); },
+                             [&](auto const& table) { return table.maximum_timestamp(column, &return_ndx); });
+    return return_ndx == npos ? none : results;
 }
 
 util::Optional<Mixed> Results::min(size_t column)
 {
-    return aggregate(column, true, "min",
-                     [=](auto const& table) { return table.minimum_int(column); },
-                     [=](auto const& table) { return table.minimum_float(column); },
-                     [=](auto const& table) { return table.minimum_double(column); },
-                     [=](auto const& table) { return table.minimum_timestamp(column); });
+    size_t return_ndx = npos;
+    auto results = aggregate(column, "min",
+                             [&](auto const& table) { return table.minimum_int(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_float(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_double(column, &return_ndx); },
+                             [&](auto const& table) { return table.minimum_timestamp(column, &return_ndx); });
+    return return_ndx == npos ? none : results;
 }
 
 util::Optional<Mixed> Results::sum(size_t column)
 {
-    return aggregate(column, false, "sum",
+    return aggregate(column, "sum",
                      [=](auto const& table) { return table.sum_int(column); },
                      [=](auto const& table) { return table.sum_float(column); },
                      [=](auto const& table) { return table.sum_double(column); },
-                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table, "sum"}; });
+                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table.get(), "sum"}; });
 }
 
 util::Optional<Mixed> Results::average(size_t column)
 {
-    return aggregate(column, true, "average",
-                     [=](auto const& table) { return table.average_int(column); },
-                     [=](auto const& table) { return table.average_float(column); },
-                     [=](auto const& table) { return table.average_double(column); },
-                     [=](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table, "average"}; });
+    // Initial value to make gcc happy
+    size_t value_count = 0;
+    auto results = aggregate(column, "average",
+                             [&](auto const& table) { return table.average_int(column, &value_count); },
+                             [&](auto const& table) { return table.average_float(column, &value_count); },
+                             [&](auto const& table) { return table.average_double(column, &value_count); },
+                             [&](auto const&) -> util::None { throw UnsupportedColumnTypeException{column, m_table.get(), "average"}; });
+    return value_count == 0 ? none : results;
 }
 
 void Results::clear()
@@ -569,7 +582,7 @@ NotificationToken Results::async(std::function<void (std::exception_ptr)> target
     return {m_notifier, m_notifier->add_callback(wrap)};
 }
 
-NotificationToken Results::add_notification_callback(CollectionChangeCallback cb)
+NotificationToken Results::add_notification_callback(CollectionChangeCallback cb) &
 {
     prepare_async();
     return {m_notifier, m_notifier->add_callback(std::move(cb))};

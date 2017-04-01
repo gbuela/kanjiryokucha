@@ -9,6 +9,7 @@
 import Foundation
 import Dispatch
 import enum Result.NoError
+import struct Result.AnyError
 
 #if os(Linux)
 	import let CDispatch.NSEC_PER_USEC
@@ -61,14 +62,14 @@ extension Reactive where Base: URLSession {
 	/// - note: This method will not send an error event in the case of a server
 	///         side error (i.e. when a response with status code other than
 	///         200...299 is received).
-	public func data(with request: URLRequest) -> SignalProducer<(Data, URLResponse), NSError> {
+	public func data(with request: URLRequest) -> SignalProducer<(Data, URLResponse), AnyError> {
 		return SignalProducer { [base = self.base] observer, disposable in
 			let task = base.dataTask(with: request) { data, response, error in
 				if let data = data, let response = response {
 					observer.send(value: (data, response))
 					observer.sendCompleted()
 				} else {
-					observer.send(error: error as NSError? ?? defaultSessionError)
+					observer.send(error: AnyError(error ?? defaultSessionError))
 				}
 			}
 
@@ -120,7 +121,7 @@ extension DispatchTimeInterval {
 	/// - note: This method is only used internally to "scale down" a time 
 	///			interval. Specifically it's used only to scale intervals to 10% 
 	///			of their original value for the default `leeway` parameter in 
-	///			`SchedulerProtocol.schedule(after:action:)` schedule and similar
+	///			`Scheduler.schedule(after:action:)` schedule and similar
 	///			other methods.
 	///
 	///			If seconds is over 200,000, 10% is ~2,000, and hence we end up
