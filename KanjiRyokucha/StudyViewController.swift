@@ -12,12 +12,15 @@ import RealmSwift
 
 fileprivate typealias SubmitAction = Action<[StudyEntry], Response, FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, FetchError>
+fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
+fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
     UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var submitLabel: UILabel!
 
     let studyCellId = "studyCellId"
@@ -31,6 +34,9 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var submitStarter: SubmitStarter!
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
+    private var refreshAction: RefreshAction!
+    private var refreshStarter: RefreshStarter!
+    let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
     
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
         let submitBatchSize = 10
@@ -112,6 +118,25 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let result = response.model as? SyncStudyResultModel {
                 self?.updateSyncedData(result: result)
             }
+        }
+        
+        refreshAction = RefreshAction { _ in
+            return StudyRefreshRequest().requestProducer()!
+        }
+        refreshAction.react { [weak self] response in
+            if let ids = response.model as? StudyIdsModel {
+                self?.updateStudyData(studyIds: ids)
+            }
+        }
+        
+        refreshStarter = RefreshStarter(control: refreshButton,
+                                        action: refreshAction,
+                                        input: ())
+        
+        refreshStarter.useHUD()
+        
+        dataRefreshed.uiReact { [weak self] _ in
+            self?.tableView.reloadData()
         }
     }
     
@@ -345,5 +370,41 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         viewModel.studyEntries.value = viewModel.studyEntries.value
+    }
+    
+    private func updateStudyData(studyIds: StudyIdsModel) {
+        var unsyncedIds = viewModel.studyEntries.value.map { $0.cardId }
+        
+        Database.write { realm in
+            studyIds.ids.forEach { studyId in
+                let isLearned = studyIds.learnedIds.contains(studyId)
+                if let studyEntry = viewModel.studyEntries.value.first(where: { studyId == $0.cardId }) {
+                    confirmSync(entry: studyEntry, learned: isLearned, realm: realm)
+                } else {
+                    let studyEntry = StudyEntry()
+                    studyEntry.cardId = studyId
+                    studyEntry.keyword = "#\(studyId)" // TODO: need to get the keyword
+                    studyEntry.learned = isLearned
+                    studyEntry.synced = true
+                    realm.add(studyEntry, update: false)
+                    viewModel.studyEntries.value.append(studyEntry)
+                }
+                
+                if let index = unsyncedIds.index(of: studyId) {
+                    unsyncedIds.remove(at: index)
+                }
+            }
+            unsyncedIds.forEach { unsyncedId in
+                if let studyEntry = viewModel.studyEntries.value.first(where: { unsyncedId == $0.cardId }) {
+                    if let index = viewModel.studyEntries.value.index(of: studyEntry) {
+                        viewModel.studyEntries.value.remove(at: index)
+                    }
+                    realm.delete(studyEntry)
+                }
+            }
+        }
+        
+        viewModel.studyEntries.value = viewModel.studyEntries.value
+        dataRefreshed.value = true
     }
 }
