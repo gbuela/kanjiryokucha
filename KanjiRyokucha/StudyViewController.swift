@@ -223,8 +223,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.delegate = self
         
         let entry = viewModel.studyEntries.value[idx]
+        let image = entry.learned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
+       
+     //   cell.learnedButton.setTitle(entry.learned ? "✅" : "❓", for: .normal)
+        cell.learnedButton.setBackgroundImage(image, for: .normal)
         
-        cell.learnedButton.setTitle(entry.learned ? "✅" : "❓", for: .normal)
         cell.keywordLabel?.text = entry.keyword
         cell.entry = entry
         
@@ -284,10 +287,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let entry = self.entry(forIndexPath: indexPath) else { return }
         
         let toLearned = !entry.learned
-        let buttonTitle = toLearned ? "✅" : "❓"
+    //    let buttonTitle = toLearned ? "✅" : "❓"
+        let image = toLearned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
         
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
-        cell.learnedButton.setTitle(buttonTitle, for: .normal)
+     //   cell.learnedButton.setTitle(buttonTitle, for: .normal)
+        cell.learnedButton.setBackgroundImage(image, for: .normal)
         
         Database.write(object: entry) {
             entry.learned = toLearned
