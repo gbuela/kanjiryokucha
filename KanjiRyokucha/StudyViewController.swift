@@ -33,7 +33,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let studyCellId = "studyCellId"
     
     var viewModel: SRSViewModel!
-    let studyEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
+    let notLearnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     var emptyStudyCell: EmptyStudyCell!
     private var submitAction: SubmitAction!
     private var submitStarter: SubmitStarter!
@@ -93,12 +93,12 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func wireUp() {
-        studyEntries <~ viewModel.studyEntries.signal.map { entries in
+        notLearnedEntries <~ viewModel.studyEntries.signal.map { entries in
             return entries.filter { entry in !entry.learned }
         }
 
         if let rightButton = navigationItem.rightBarButtonItem {
-            rightButton.reactive.isEnabled <~ studyEntries.signal.map { entries in
+            rightButton.reactive.isEnabled <~ notLearnedEntries.signal.map { entries in
                 return entries.count > 0
             }
         }
@@ -154,9 +154,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 message: "Are you sure?",
                 yesOption: "Yes",
                 noOption: "Cancel") { [unowned self] _ in
-                    for row in 1...self.viewModel.studyEntries.value.count {
-                        self.markLearned(indexPath: IndexPath(row: row, section: 0), onlyToLearned: true)
+                    self.notLearnedEntries.value.forEach { entry in
+                        self.mark(entry: entry, learned: true)
                     }
+                    self.dataRefreshed.value = true
+                    self.viewModel.studyEntries.value = self.viewModel.studyEntries.value
         }
     }
     
@@ -294,12 +296,16 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
         cell.learnedButton.setBackgroundImage(image, for: .normal)
         
-        Database.write(object: entry) {
-            entry.learned = toLearned
-            entry.synced = !toLearned
-        }
+        mark(entry: entry, learned: toLearned)
         
         viewModel.studyEntries.value = viewModel.studyEntries.value
+    }
+    
+    private func mark(entry: StudyEntry, learned: Bool) {
+        Database.write(object: entry) {
+            entry.learned = learned
+            entry.synced = !learned
+        }
     }
     
     // MARK: - 
