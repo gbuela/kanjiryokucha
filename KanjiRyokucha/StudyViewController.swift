@@ -154,8 +154,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 message: "Are you sure?",
                 yesOption: "Yes",
                 noOption: "Cancel") { [unowned self] _ in
-                    for _ in 1...self.studyEntries.value.count {
-                        self.markLearned(indexPath: IndexPath(row: 1, section: 0))
+                    for row in 1...self.viewModel.studyEntries.value.count {
+                        self.markLearned(indexPath: IndexPath(row: row, section: 0), onlyToLearned: true)
                     }
         }
     }
@@ -225,7 +225,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let entry = viewModel.studyEntries.value[idx]
         let image = entry.learned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
        
-     //   cell.learnedButton.setTitle(entry.learned ? "✅" : "❓", for: .normal)
         cell.learnedButton.setBackgroundImage(image, for: .normal)
         
         cell.keywordLabel?.text = entry.keyword
@@ -282,16 +281,17 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    private func markLearned(indexPath: IndexPath) {
+    private func markLearned(indexPath: IndexPath, onlyToLearned: Bool = false) {
         guard indexPath.row > 0,
             let entry = self.entry(forIndexPath: indexPath) else { return }
         
         let toLearned = !entry.learned
-    //    let buttonTitle = toLearned ? "✅" : "❓"
+        
+        guard !onlyToLearned || toLearned else { return }
+        
         let image = toLearned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
         
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
-     //   cell.learnedButton.setTitle(buttonTitle, for: .normal)
         cell.learnedButton.setBackgroundImage(image, for: .normal)
         
         Database.write(object: entry) {
