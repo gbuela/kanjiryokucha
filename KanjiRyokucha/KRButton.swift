@@ -24,15 +24,19 @@ class KRButton : UIButton {
         backgroundColor = .ryokuchaFaint
     }
     
+    private func nonHighlightedColor() -> UIColor {
+        return isEnabled ? .ryokuchaFaint : .white
+    }
+    
     override var isEnabled: Bool {
         didSet {
-            backgroundColor = isEnabled ? .ryokuchaFaint : .white
+            backgroundColor = nonHighlightedColor()
         }
     }
     
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .ryokuchaDark : .ryokuchaFaint
+            backgroundColor = isHighlighted ? .ryokuchaDark : nonHighlightedColor()
         }
     }
 }
