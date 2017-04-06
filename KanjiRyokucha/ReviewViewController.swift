@@ -104,7 +104,6 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
     
     private var performanceData: [PieChartItem] = []
     private let score: MutableProperty<Int?> = MutableProperty(nil)
-    private var isSubmitting: MutableProperty<Bool> = MutableProperty(false)
     
     var global: Global!
 
@@ -168,6 +167,8 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                                       action: reviewEngine.submitAction,
                                       inputProperty: reviewEngine.reviewEntries)
         
+        cancelButton.reactive.isEnabled <~ reviewEngine.cancelAction.isEnabled
+        
         cancelButton.tapReact { [weak self] _ in
             self?.cancelOrConfirm()
         }
@@ -195,11 +196,9 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
         }
         cancelButton.reactive.title(for: .normal) <~ pendingCount.map(ReviewViewController.cancelButtonFromPending)
         
-        isSubmitting <~ reviewEngine.chunkSubmitProducers.map { $0.count > 1 }
+        performanceEmoji.reactive.isHidden <~ reviewEngine.isSubmitting
         
-        performanceEmoji.reactive.isHidden <~ isSubmitting
-        
-        isSubmitting.uiReact { [weak self] submitting in
+        reviewEngine.isSubmitting.uiReact { [weak self] submitting in
             if submitting {
                 self?.activityIndicator.startAnimating()
             } else {

@@ -41,6 +41,7 @@ class FreeViewModel: ReviewEngineProtocol {
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
+    var isSubmitting: MutableProperty<Bool> = MutableProperty(false)
 
     var startAction: FreeStartActionType!
     var startedSession: MutableProperty<[Int]?> = MutableProperty(nil)

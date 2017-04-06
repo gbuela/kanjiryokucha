@@ -89,6 +89,7 @@ protocol ReviewEngineProtocol: class {
     var cancelAction: ButtonActionType! { get }
     var emptySessionAttempt: MutableProperty<Bool> { get }
     var chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> { get }
+    var isSubmitting: MutableProperty<Bool> { get }
    
     func fetchMissingCards(cardModels: [CardModel], completion:((CardDataModel) -> ())?)
     func saveFetchedCards(response: Response)
@@ -180,9 +181,13 @@ class SRSViewModel: ReviewEngineProtocol {
     var submitAction: SubmitActionType!
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
+    let shouldEnableCancel: MutableProperty<Bool> = MutableProperty(false)
     let emptySessionAttempt: MutableProperty<Bool> = MutableProperty(false)
     let toStudyCount: MutableProperty<Int> = MutableProperty(0)
     let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
+    var isSubmitting: MutableProperty<Bool> = MutableProperty(false)
+    let shouldEnableStatus: MutableProperty<Bool> = MutableProperty(false)
+
     private var chunkIndex = 0
 
     var global: Global!
@@ -228,9 +233,9 @@ class SRSViewModel: ReviewEngineProtocol {
                                                 return max(ts, 0)
         }
         
-        statusAction = Action<Void, Response, FetchError> { _ in
+        statusAction = Action<Void, Response, FetchError>(enabledIf: shouldEnableStatus, { _ in
             return GetStatusRequest().requestProducer()!
-        }
+        })
         statusAction.react { [weak self] response in
             self?.updateCardCount(response: response)
             UserDefaults().set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
@@ -249,8 +254,13 @@ class SRSViewModel: ReviewEngineProtocol {
         toSubmitCount <~ reviewEntries.map { $0.countUnsubmitted }
         toReviewCount <~ reviewEntries.map { $0.count(answer: .unanswered) }
         
-        shouldEnableReview <~ toReviewCount.map { $0 > 0 }
-        shouldEnableSubmit <~ toSubmitCount.map { $0 > 0 }
+        shouldEnableStatus <~ isSubmitting.map { !$0 }
+        shouldEnableCancel <~ isSubmitting.map { !$0 }
+        
+        shouldEnableReview <~ Property.combineLatest(toReviewCount, isSubmitting).map { count, submitting in count > 0 && !submitting }
+        
+        shouldEnableSubmit <~ Property.combineLatest(toSubmitCount, isSubmitting).map { count, submitting in count > 0 && !submitting }
+        
         startedSession.react { [weak self] startedSession in
             self?.saveSession(startSession: startedSession)
         }
@@ -259,7 +269,7 @@ class SRSViewModel: ReviewEngineProtocol {
             self.reviewStateMapper(entries: reviewEntries)
         }
         
-        cancelAction = Action { [weak self] _ in
+        cancelAction = Action(enabler: shouldEnableCancel) { [weak self] _ in
             self?.cancelSession()
         }
         
@@ -271,7 +281,6 @@ class SRSViewModel: ReviewEngineProtocol {
         
         submitAction = SubmitActionType(enabledIf: shouldEnableSubmit, SRSViewModel.submitActionProducer)
         
-
         chunkSubmitProducers <~ submitAction.values
         chunkSubmitProducers.react { [weak self] in
             guard $0.count > 0 else { return }
@@ -280,6 +289,8 @@ class SRSViewModel: ReviewEngineProtocol {
             self?.chunkIndex = 0
             self?.submitChunk()
         }
+
+        isSubmitting <~ chunkSubmitProducers.map { $0.count > 1 }
 
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         

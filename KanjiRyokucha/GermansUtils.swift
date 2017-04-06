@@ -90,7 +90,16 @@ extension Action {
             }
         }
     }
-
+    
+    convenience init<P: PropertyProtocol>(enabler property: P, handler: @escaping ((Void) -> Void)) where P.Value == Bool {
+        self.init(enabledIf: property) { _ in
+            return SignalProducer { (sink,disposable) in
+                handler()
+                sink.sendCompleted()
+            }
+        }
+    }
+    
     func react(_ task:@escaping ((Output) -> Void)) {
         self.values.observeValues(task)
     }
