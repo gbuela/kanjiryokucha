@@ -10,7 +10,7 @@ import UIKit
 import ReactiveSwift
 
 fileprivate typealias ReviewStarter = ActionStarter<[ReviewEntry], Response, FetchError>
-fileprivate typealias SubmitStarter = ActionStarter<[ReviewEntry], Response, FetchError>
+fileprivate typealias SubmitStarter = ActionStarter<[ReviewEntry], [SignalProducer<Response, FetchError>], FetchError>
 
 
 struct PieChartItem {
@@ -94,6 +94,7 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var performanceEmoji: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     public weak var reviewDelegate: ReviewDelegate!
     public weak var reviewEngine: ReviewEngineProtocol!
@@ -103,6 +104,7 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
     
     private var performanceData: [PieChartItem] = []
     private let score: MutableProperty<Int?> = MutableProperty(nil)
+    private var isSubmitting: MutableProperty<Bool> = MutableProperty(false)
     
     var global: Global!
 
@@ -171,7 +173,6 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
         }
         
         reviewStarter?.useHUD()
-        submitStarter?.useHUD()
         
         reviewStarter?.action.uiReact { [weak self] (response: Response) in
             guard let model = response.model as? CardDataModel else { return }
@@ -193,6 +194,19 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
             return a + b
         }
         cancelButton.reactive.title(for: .normal) <~ pendingCount.map(ReviewViewController.cancelButtonFromPending)
+        
+        isSubmitting <~ reviewEngine.chunkSubmitProducers.map { $0.count > 1 }
+        
+        performanceEmoji.reactive.isHidden <~ isSubmitting
+        
+        isSubmitting.uiReact { [weak self] submitting in
+            if submitting {
+                self?.activityIndicator.startAnimating()
+            } else {
+                self?.activityIndicator.stopAnimating()
+            }
+        }
+
     }
     
     private func presentPagedReview(model: CardDataModel) {

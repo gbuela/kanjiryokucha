@@ -48,7 +48,7 @@ typealias StartActionType = Action<ReviewType, Response, FetchError>
 typealias StartStarter = ActionStarter<ReviewType, Response, FetchError>
 typealias ButtonActionType = Action<Bool, Bool, NoError>
 typealias ReviewActionType = Action<[ReviewEntry], Response, FetchError>
-typealias SubmitActionType = Action<[ReviewEntry], Response, FetchError>
+typealias SubmitActionType = Action<[ReviewEntry], [SignalProducer<Response,FetchError>], FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
 struct ReviewTypeSetup {
@@ -88,7 +88,8 @@ protocol ReviewEngineProtocol: class {
     var submitAction: SubmitActionType! { get }
     var cancelAction: ButtonActionType! { get }
     var emptySessionAttempt: MutableProperty<Bool> { get }
-    
+    var chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> { get }
+   
     func fetchMissingCards(cardModels: [CardModel], completion:((CardDataModel) -> ())?)
     func saveFetchedCards(response: Response)
 }
@@ -148,6 +149,15 @@ extension ReviewEngineProtocol {
     }
 }
 
+extension Array {
+    func chunks(ofSize chunkSize: Int) -> [[Element]] {
+        let chunks = stride(from: 0, to: count, by: chunkSize).map {
+            Array(self[$0..<Swift.min($0 + chunkSize, count)])
+        }
+        return chunks
+    }
+}
+
 class SRSViewModel: ReviewEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
     var refreshedSinceStartup = false
@@ -172,28 +182,31 @@ class SRSViewModel: ReviewEngineProtocol {
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let emptySessionAttempt: MutableProperty<Bool> = MutableProperty(false)
     let toStudyCount: MutableProperty<Int> = MutableProperty(0)
-    
+    let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
+    private var chunkIndex = 0
+
     var global: Global!
     
     init() {
         global = Database.getGlobal()
     }
     
-    private class func submitActionProducer(entries:[ReviewEntry]) -> SignalProducer<Response,FetchError> {
-        let submitBatchSize = 10
-        
+    private class func submitActionProducer(entries:[ReviewEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
+        let submitBatchSize = 3
+ 
         let unsubmittedEntries = entries.filter {$0.rawAnswer != CardAnswer.unanswered.rawValue
             && !$0.submitted
         }
         guard unsubmittedEntries.count > 0 else { return SignalProducer.empty }
         
-        let limit = unsubmittedEntries.count < submitBatchSize ? unsubmittedEntries.count : submitBatchSize
-        let toSubmitEntries = unsubmittedEntries[0..<limit]
-        
-        let answers = toSubmitEntries.map { CardSyncModel(cardId:$0.cardId, answer:$0.cardAnswer) }
-        
-        let syncRq = SyncAnswersRequest(answers: answers)
-        return syncRq.requestProducer()!
+        let entriesChunks = unsubmittedEntries.chunks(ofSize: submitBatchSize)
+        let syncRqs = entriesChunks.map { (entries:[ReviewEntry]) -> SignalProducer<Response,FetchError> in
+            let answers = entries.map { CardSyncModel(cardId:$0.cardId, answer:$0.cardAnswer) }
+            let syncRq = SyncAnswersRequest(answers: answers)
+            return syncRq.requestProducer()!
+        }
+        print("total chunks \(syncRqs.count)")
+        return SignalProducer(value: syncRqs)
     }
     
     private class func titleFromReviewType(_ reviewType: ReviewType?) -> String {
@@ -258,14 +271,44 @@ class SRSViewModel: ReviewEngineProtocol {
         
         submitAction = SubmitActionType(enabledIf: shouldEnableSubmit, SRSViewModel.submitActionProducer)
         
-        submitAction.react { [weak self] response in
-            self?.completedSubmission(response: response)
+
+        chunkSubmitProducers <~ submitAction.values
+        chunkSubmitProducers.react { [weak self] in
+            guard $0.count > 0 else { return }
+            // start submitting chunks
+            print("-> got chunk producers")
+            self?.chunkIndex = 0
+            self?.submitChunk()
         }
-        
+
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         
         reviewTitle <~ currentReviewType.map(SRSViewModel.titleFromReviewType)
         reviewColor <~ currentReviewType.map { $0?.colors.enabledColor ?? .ryokuchaDark}
+    }
+    
+    private func submitChunk() {
+        guard chunkIndex < chunkSubmitProducers.value.count else {
+            // finished submitting chunks
+            chunkSubmitProducers.value = []
+            return
+        }
+        print("chunk #\(chunkIndex)")
+        let producer = chunkSubmitProducers.value[chunkIndex]
+       
+        producer.start(Observer(value: { [weak self] response in
+                print("-> completed \(response.model)")
+                self?.completedSubmission(response: response)
+            }, failed: { [weak self] _ in
+                // finished submitting chunks
+                self?.chunkSubmitProducers.value = []
+            }, completed: { [weak self] in
+                guard let sself = self else { return }
+                sself.chunkIndex = sself.chunkIndex + 1
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                    sself.submitChunk()
+                }
+        }))
     }
 
     public func start() {
@@ -307,10 +350,18 @@ class SRSViewModel: ReviewEngineProtocol {
     }
     
     private func completedSubmission(response: Response) {
-        guard let model = response.model as? SyncResultModel else { return }
+        guard let model = response.model as? SyncResultModel else {
+            print("service temporarily unavailable!")
+            return
+        }
         let syncedIds = model.putIds
         let entries = reviewEntries.value
+        print("reviewEntries.value \(entries.count) ids")
+        
         guard entries.count > 0 else { return }
+        
+        print("put \(syncedIds.count) ids")
+
         
         let syncedEntries = entries.filter { syncedIds.contains($0.cardId) }
         Database.write(objects: syncedEntries) { realm in
@@ -343,6 +394,7 @@ class SRSViewModel: ReviewEngineProtocol {
         }
         
         reviewEntries.value = reviewEntries.value
+        print("-> completed")
     }
     
     private func startSignalCreator(from reviewType:ReviewType) -> Signal<StartedSession,NoError> {

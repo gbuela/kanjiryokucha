@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewViewController" customModule="KanjiRyokucha" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="XSn-Nz-qi8" id="bjF-Lr-iT0"/>
                 <outlet property="cancelButton" destination="hfT-8E-Vql" id="az7-nY-R8d"/>
                 <outlet property="performanceChart" destination="8oO-ee-ZI0" id="bus-DN-RL8"/>
                 <outlet property="performanceEmoji" destination="6md-8e-sMA" id="dHs-Ni-jT2"/>
@@ -135,6 +136,9 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XSn-Nz-qi8">
+                            <rect key="frame" x="121" y="130" width="138" height="138"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -157,6 +161,7 @@
                         <constraint firstItem="hfT-8E-Vql" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="MAm-GG-n2i"/>
                         <constraint firstItem="kNu-ZC-ivU" firstAttribute="bottom" secondItem="LK2-LB-CYB" secondAttribute="bottom" constant="-4" id="NpQ-fi-8DO"/>
                         <constraint firstItem="8oO-ee-ZI0" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="SiN-Az-27w"/>
+                        <constraint firstItem="XSn-Nz-qi8" firstAttribute="leading" secondItem="6md-8e-sMA" secondAttribute="leading" id="Skw-mQ-U38"/>
                         <constraint firstItem="kNu-ZC-ivU" firstAttribute="leading" secondItem="LK2-LB-CYB" secondAttribute="leading" id="W6e-Kz-OIg"/>
                         <constraint firstItem="6md-8e-sMA" firstAttribute="width" secondItem="F8Q-8l-XcK" secondAttribute="width" id="WWa-di-2z6"/>
                         <constraint firstItem="hfT-8E-Vql" firstAttribute="top" secondItem="F8Q-8l-XcK" secondAttribute="bottom" constant="20" id="XIq-Gi-c8F" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -177,8 +182,11 @@
                         <constraint firstItem="ZcW-x1-wWF" firstAttribute="top" secondItem="ch3-ym-lxx" secondAttribute="bottom" constant="10" id="gvp-tm-0NF"/>
                         <constraint firstItem="ZcW-x1-wWF" firstAttribute="leading" secondItem="Idl-cm-zI8" secondAttribute="leading" constant="20" symbolic="YES" id="h1R-wv-laR"/>
                         <constraint firstItem="osC-Ij-uPI" firstAttribute="top" secondItem="ZcW-x1-wWF" secondAttribute="top" constant="4" id="lai-IH-hR0"/>
+                        <constraint firstItem="XSn-Nz-qi8" firstAttribute="height" secondItem="6md-8e-sMA" secondAttribute="height" id="mTC-LS-ED2"/>
                         <constraint firstItem="6md-8e-sMA" firstAttribute="height" secondItem="F8Q-8l-XcK" secondAttribute="height" id="oUM-Sd-VTV"/>
+                        <constraint firstItem="XSn-Nz-qi8" firstAttribute="width" secondItem="6md-8e-sMA" secondAttribute="width" id="ou8-jn-cLQ"/>
                         <constraint firstAttribute="trailing" secondItem="LK2-LB-CYB" secondAttribute="trailing" constant="20" symbolic="YES" id="pXs-JP-Tmq"/>
+                        <constraint firstItem="XSn-Nz-qi8" firstAttribute="top" secondItem="6md-8e-sMA" secondAttribute="top" id="q68-qV-h92"/>
                         <constraint firstItem="838-t2-OSa" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="qgz-mI-73Y"/>
                         <constraint firstItem="osC-Ij-uPI" firstAttribute="centerX" secondItem="Idl-cm-zI8" secondAttribute="centerX" id="sJS-r0-1gt"/>
                         <constraint firstItem="8oO-ee-ZI0" firstAttribute="top" secondItem="ZcW-x1-wWF" secondAttribute="bottom" constant="6" id="tQy-WP-TBT"/>

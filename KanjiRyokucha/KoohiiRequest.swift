@@ -70,6 +70,7 @@ extension KoohiiRequest {
                 
                 switch (data, error) {
                 case (_, let error?):
+                    print("task failed! \(error)")
                     sink.send(error: .connectionError(error: error))
                 case (let data?, _):
                     print("task completed")
