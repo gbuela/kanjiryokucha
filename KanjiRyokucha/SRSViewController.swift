@@ -197,7 +197,7 @@ class SRSViewModel: ReviewEngineProtocol {
     }
     
     private class func submitActionProducer(entries:[ReviewEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
-        let submitBatchSize = 3
+        let submitBatchSize = 10
  
         let unsubmittedEntries = entries.filter {$0.rawAnswer != CardAnswer.unanswered.rawValue
             && !$0.submitted
