@@ -23,26 +23,7 @@ extension Array {
     }
 }
 
-class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var submitButton: UIButton!
-    @IBOutlet weak var submitLabel: UILabel!
-
-    let studyCellId = "studyCellId"
-    
-    var viewModel: SRSViewModel!
-    let notLearnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
-    var emptyStudyCell: EmptyStudyCell!
-    private var submitAction: SubmitAction!
-    private var submitStarter: SubmitStarter!
-    let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
-    let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
-    private var refreshAction: RefreshAction!
-    private var refreshStarter: RefreshStarter!
-    let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
-
+class StudyEngine {
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
         let submitBatchSize = 10
         
@@ -56,6 +37,134 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let syncRq = SyncStudyRequest(learned: learned, notLearned: notLearned)
         return syncRq.requestProducer()!
     }
+    
+    var reviewEngine: SRSReviewEngine!
+    let notLearnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
+    fileprivate var submitAction: SubmitAction!
+    let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
+    let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
+    fileprivate var refreshAction: RefreshAction!
+    let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
+
+    func wireUp() {
+        notLearnedEntries <~ reviewEngine.studyEntries.signal.map { entries in
+            return entries.filter { entry in !entry.learned }
+        }
+        
+        unsyncedEntries <~ reviewEngine.studyEntries.map { entries in
+            return entries.filter { !$0.synced }
+        }
+        
+        shouldEnableSubmit <~ unsyncedEntries.map { $0.count > 0 }
+        
+        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
+        
+        submitAction.react { [weak self] response in
+            if let result = response.model as? SyncStudyResultModel {
+                self?.updateSyncedData(result: result)
+            }
+        }
+        
+        refreshAction = RefreshAction { _ in
+            return StudyRefreshRequest().requestProducer()!
+        }
+        
+        refreshAction.react { [weak self] response in
+            if let ids = response.model as? StudyIdsModel {
+                self?.updateStudyData(studyIds: ids)
+            }
+        }
+    }
+    
+    func studyEntries() -> MutableProperty<[StudyEntry]> {
+        return reviewEngine.studyEntries
+    }
+    
+    func triggerStudyEntries() {
+        reviewEngine.studyEntries.value = reviewEngine.studyEntries.value
+    }
+    
+    private func updateSyncedData(result: SyncStudyResultModel) {
+        print("finished sync \(result)")
+        let entriesToRemove = reviewEngine.studyEntries.value.filter {
+            result.putLearned.contains($0.cardId)
+        }
+        
+        reviewEngine.studyEntries.value = reviewEngine.studyEntries.value.filter {
+            !result.putLearned.contains($0.cardId)
+        }
+        
+        Database.write { realm in
+            entriesToRemove.forEach { entry in
+                realm.delete(entry)
+            }
+            result.putNotLearned.forEach { studyId in
+                confirmSync(cardId: studyId, learned: false, realm: realm)
+            }
+        }
+        dataRefreshed.value = true
+        reviewEngine.global.refreshNeeded = true
+    }
+    
+    private func updateStudyData(studyIds: StudyIdsModel) {
+        let oldStudyEntries = reviewEngine.studyEntries.value.map { ($0.cardId, $0.keyword) }
+        
+        let newStudyIds = studyIds.ids.filter { !studyIds.learnedIds.contains($0) }
+        
+        Database.delete(objects: reviewEngine.studyEntries.value)
+        reviewEngine.studyEntries.value = []
+        
+        Database.write { realm in
+            newStudyIds.forEach { studyId in
+                var keyword = "#\(studyId)" // TODO: need to get the keyword
+                
+                if let oldEntry = oldStudyEntries.first(where:{ $0.0 == studyId }) {
+                    keyword = oldEntry.1
+                }
+                
+                let studyEntry = StudyEntry()
+                studyEntry.cardId = studyId
+                studyEntry.keyword = keyword
+                studyEntry.learned = false
+                studyEntry.synced = true
+                realm.add(studyEntry, update: false)
+                reviewEngine.studyEntries.value.append(studyEntry)
+            }
+        }
+        reviewEngine.studyEntries.value = reviewEngine.studyEntries.value
+        
+        dataRefreshed.value = true
+        reviewEngine.global.refreshNeeded = true
+    }
+    
+    private func confirmSync(cardId: Int, learned: Bool, realm: Realm) {
+        if let studyEntry = reviewEngine.studyEntries.value.first(where: { cardId == $0.cardId }) {
+            confirmSync(entry: studyEntry, learned: learned, realm: realm)
+        }
+    }
+    
+    private func confirmSync(entry: StudyEntry, learned: Bool, realm: Realm) {
+        entry.learned = learned
+        entry.synced = true
+        realm.add(entry, update: true)
+        print("confirmed sync \(entry.cardId)")
+    }
+    
+}
+
+class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var submitLabel: UILabel!
+
+    let studyCellId = "studyCellId"
+
+    var engine: StudyEngine!
+    var emptyStudyCell: EmptyStudyCell!
+    private var submitStarter: SubmitStarter!
+    private var refreshStarter: RefreshStarter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +191,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         wireUp()
-        viewModel.studyEntries.value = viewModel.studyEntries.value
+        engine.triggerStudyEntries()
     }
 
     private func createEmptyCell(text: String) -> EmptyStudyCell {
@@ -93,54 +202,30 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     private func wireUp() {
-        notLearnedEntries <~ viewModel.studyEntries.signal.map { entries in
-            return entries.filter { entry in !entry.learned }
-        }
-
+        engine.wireUp()
+        
         if let rightButton = navigationItem.rightBarButtonItem {
-            rightButton.reactive.isEnabled <~ notLearnedEntries.signal.map { entries in
+            rightButton.reactive.isEnabled <~ engine.notLearnedEntries.signal.map { entries in
                 return entries.count > 0
             }
         }
         
-        unsyncedEntries <~ viewModel.studyEntries.map { entries in
-            return entries.filter { !$0.synced }
-        }
-        
-        submitLabel.reactive.text <~ unsyncedEntries.map { "\($0.count)" }
-        
-        shouldEnableSubmit <~ unsyncedEntries.map { $0.count > 0 }
-        
-        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, StudyViewController.submitActionProducer)
+        submitLabel.reactive.text <~ engine.unsyncedEntries.map { "\($0.count)" }
         
         submitStarter = SubmitStarter(control: submitButton,
-                                      action: submitAction,
-                                      inputProperty: unsyncedEntries)
+                                      action: engine.submitAction,
+                                      inputProperty: engine.unsyncedEntries)
         submitStarter.useHUD()
         
-        submitAction.react { [weak self] response in
-            if let result = response.model as? SyncStudyResultModel {
-                self?.updateSyncedData(result: result)
-            }
-        }
-        
-        refreshAction = RefreshAction { _ in
-            return StudyRefreshRequest().requestProducer()!
-        }
-        refreshAction.react { [weak self] response in
-            if let ids = response.model as? StudyIdsModel {
-                self?.updateStudyData(studyIds: ids)
-            }
-        }
         let leftButton = navigationItem.leftBarButtonItem!
 
         refreshStarter = RefreshStarter(control: leftButton,
-                                        action: refreshAction,
+                                        action: engine.refreshAction,
                                         input: ())
         
         refreshStarter.useHUD()
         
-        dataRefreshed.uiReact { [weak self] _ in
+        engine.dataRefreshed.uiReact { [weak self] _ in
             self?.tableView.reloadData()
         }
     }
@@ -154,11 +239,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 message: "Are you sure?",
                 yesOption: "Yes",
                 noOption: "Cancel") { [unowned self] _ in
-                    self.notLearnedEntries.value.forEach { entry in
+                    self.engine.notLearnedEntries.value.forEach { entry in
                         self.mark(entry: entry, learned: true)
                     }
-                    self.dataRefreshed.value = true
-                    self.viewModel.studyEntries.value = self.viewModel.studyEntries.value
+                    self.engine.dataRefreshed.value = true
+                    self.engine.triggerStudyEntries()
         }
     }
     
@@ -201,7 +286,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            if viewModel.studyEntries.value.count > 0 {
+            if engine.studyEntries().value.count > 0 {
                 return 0
             }
         }
@@ -209,7 +294,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.studyEntries.value.count + 1
+        return engine.studyEntries().value.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -224,7 +309,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.delegate = self
         
-        let entry = viewModel.studyEntries.value[idx]
+        let entry = engine.studyEntries().value[idx]
         let image = entry.learned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
        
         cell.learnedButton.setBackgroundImage(image, for: .normal)
@@ -256,11 +341,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         guard indexPath.row > 0 else { return nil }
         
         if indexPath.row == 1 {
-            guard viewModel.studyEntries.value.count > 0 else { return nil }
+            guard engine.studyEntries().value.count > 0 else { return nil }
         }
         
         let idx = indexPath.row - 1
-        return viewModel.studyEntries.value[idx]
+        return engine.studyEntries().value[idx]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -278,7 +363,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func studyCellMarkLearnedTapped(entry: StudyEntry) {
-        if let index = viewModel.studyEntries.value.index(of: entry) {
+        if let index = engine.studyEntries().value.index(of: entry) {
             markLearned(indexPath: IndexPath(row: index + 1, section: 0))
         }
     }
@@ -298,7 +383,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         mark(entry: entry, learned: toLearned)
         
-        viewModel.studyEntries.value = viewModel.studyEntries.value
+        engine.triggerStudyEntries()
     }
     
     private func mark(entry: StudyEntry, learned: Bool) {
@@ -306,73 +391,5 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             entry.learned = learned
             entry.synced = !learned
         }
-    }
-    
-    // MARK: - 
-    
-    private func confirmSync(cardId: Int, learned: Bool, realm: Realm) {
-        if let studyEntry = viewModel.studyEntries.value.first(where: { cardId == $0.cardId }) {
-            confirmSync(entry: studyEntry, learned: learned, realm: realm)
-        }
-    }
-    
-    private func confirmSync(entry: StudyEntry, learned: Bool, realm: Realm) {
-        entry.learned = learned
-        entry.synced = true
-        realm.add(entry, update: true)
-        print("confirmed sync \(entry.cardId)")
-    }
-    
-    private func updateSyncedData(result: SyncStudyResultModel) {
-        print("finished sync \(result)")
-        let entriesToRemove = viewModel.studyEntries.value.filter {
-            result.putLearned.contains($0.cardId)
-        }
-        
-        viewModel.studyEntries.value = viewModel.studyEntries.value.filter {
-            !result.putLearned.contains($0.cardId)
-        }
-        
-        Database.write { realm in
-            entriesToRemove.forEach { entry in
-                realm.delete(entry)
-            }
-            result.putNotLearned.forEach { studyId in
-                confirmSync(cardId: studyId, learned: false, realm: realm)
-            }
-        }
-        dataRefreshed.value = true
-        viewModel.global.refreshNeeded = true
-    }
-    
-    private func updateStudyData(studyIds: StudyIdsModel) {
-        let oldStudyEntries = viewModel.studyEntries.value.map { ($0.cardId, $0.keyword) }
-        
-        let newStudyIds = studyIds.ids.filter { !studyIds.learnedIds.contains($0) }
-        
-        Database.delete(objects: viewModel.studyEntries.value)
-        viewModel.studyEntries.value = []
-        
-        Database.write { realm in
-            newStudyIds.forEach { studyId in
-                var keyword = "#\(studyId)" // TODO: need to get the keyword
-
-                if let oldEntry = oldStudyEntries.first(where:{ $0.0 == studyId }) {
-                    keyword = oldEntry.1
-                }
-
-                let studyEntry = StudyEntry()
-                studyEntry.cardId = studyId
-                studyEntry.keyword = keyword
-                studyEntry.learned = false
-                studyEntry.synced = true
-                realm.add(studyEntry, update: false)
-                viewModel.studyEntries.value.append(studyEntry)
-            }
-        }
-        viewModel.studyEntries.value = viewModel.studyEntries.value
-        
-        dataRefreshed.value = true
-        viewModel.global.refreshNeeded = true
     }
 }

@@ -21,7 +21,8 @@ struct AppController {
     
     let window = UIWindow(frame: UIScreen.main.bounds)
     
-    let viewModel = SRSViewModel()
+    let reviewEngine = SRSReviewEngine()
+    let studyEngine = StudyEngine()
     let srsViewController = SRSViewController()
     let studyViewController = StudyViewController()
     let settingsViewController = SettingsViewController()
@@ -29,15 +30,16 @@ struct AppController {
     let tabBarController = UITabBarController()
     
     func start(username: String) {
-        srsViewController.viewModel = viewModel
-        studyViewController.viewModel = viewModel
+        srsViewController.engine = reviewEngine
+        studyEngine.reviewEngine = reviewEngine
+        studyViewController.engine = studyEngine
         
         let studyNav = UINavigationController(rootViewController: studyViewController)
         
         settingsViewController.username = username
         let settingsNav = UINavigationController(rootViewController: settingsViewController)
         
-        viewModel.wireUp()
+        reviewEngine.wireUp()
 
         let tabs: [TabModel] = [
             TabModel(title: "Review", imageName: "tabreview", viewController: srsViewController),

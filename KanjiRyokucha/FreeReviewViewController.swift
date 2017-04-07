@@ -84,7 +84,7 @@ class FreeViewModel: ReviewEngineProtocol {
         toReviewCount <~ reviewEntries.map { $0.count(answer: .unanswered) }
         shouldEnableReview <~ toReviewCount.map { $0 > 0 }
 
-        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSViewModel.fetchActionProducer)
+        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
         
         submitAction = SubmitActionType(enabledIf: shouldEnableSubmit) { _ in
             return SignalProducer.empty

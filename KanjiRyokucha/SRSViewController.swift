@@ -159,7 +159,7 @@ extension Array {
     }
 }
 
-class SRSViewModel: ReviewEngineProtocol {
+class SRSReviewEngine: ReviewEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
     var refreshedSinceStartup = false
     
@@ -273,13 +273,13 @@ class SRSViewModel: ReviewEngineProtocol {
             self?.cancelSession()
         }
         
-        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSViewModel.fetchActionProducer)
+        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
         
         reviewAction.react { [weak self] response in
             self?.saveFetchedCards(response: response)
         }
         
-        submitAction = SubmitActionType(enabledIf: shouldEnableSubmit, SRSViewModel.submitActionProducer)
+        submitAction = SubmitActionType(enabledIf: shouldEnableSubmit, SRSReviewEngine.submitActionProducer)
         
         chunkSubmitProducers <~ submitAction.values
         chunkSubmitProducers.react { [weak self] in
@@ -294,7 +294,7 @@ class SRSViewModel: ReviewEngineProtocol {
 
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         
-        reviewTitle <~ currentReviewType.map(SRSViewModel.titleFromReviewType)
+        reviewTitle <~ currentReviewType.map(SRSReviewEngine.titleFromReviewType)
         reviewColor <~ currentReviewType.map { $0?.colors.enabledColor ?? .ryokuchaDark}
     }
     
@@ -533,7 +533,7 @@ class SRSViewModel: ReviewEngineProtocol {
 
 class SRSViewController: UIViewController, ReviewDelegate {
     
-    var viewModel: SRSViewModel!
+    var engine: SRSReviewEngine!
     private var reviewViewController: ReviewViewController?
     
     @IBOutlet weak var reviewContainer: UIView!
@@ -577,25 +577,25 @@ class SRSViewController: UIViewController, ReviewDelegate {
         setUp()
         wireUp()
         
-        viewModel.start()
+        engine.start()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if viewModel.global.refreshNeeded {
-            viewModel.refreshStatus()
-        } else if viewModel.refreshedSinceStartup,
+        if engine.global.refreshNeeded {
+            engine.refreshStatus()
+        } else if engine.refreshedSinceStartup,
             let lastRefresh = UserDefaults().value(forKey: lastSatusRefreshKey) as? Int {
             let then = Date(timeIntervalSince1970: TimeInterval(lastRefresh))
             let calendar = Calendar.current
             if let hours = calendar.dateComponents([.hour], from: then, to: Date()).hour,
                 hours >= 12 {
-                viewModel.refreshStatus()
+                engine.refreshStatus()
             }
         }
         
-        viewModel.studyEntries.value = viewModel.studyEntries.value
+        engine.studyEntries.value = engine.studyEntries.value
     }
     
     func setUp() {
@@ -609,7 +609,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     }
     
     func wireUp() {        
-        reviewContainer.reactive.isHidden <~ viewModel.currentReviewType.map { $0 == nil }
+        reviewContainer.reactive.isHidden <~ engine.currentReviewType.map { $0 == nil }
         
         reviewTypeStarters = Dictionary(elements: ReviewType.allTypes.map { [unowned self] reviewType in
             
@@ -617,7 +617,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
             let view = self.topButtonView(for: reviewType)
             let padding = self.paddingConstraint(for: reviewType)
             
-            let setup = self.viewModel.reviewTypeSetups[reviewType]!
+            let setup = self.engine.reviewTypeSetups[reviewType]!
             let starter = ActionStarter(control: button,
                                         action: setup.action,
                                         input: reviewType)
@@ -639,7 +639,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
             button.reactive.title(for: .normal) <~ setup.actualCount.map { "\($0)" }
             
-            view.reactive.backgroundColor <~ setup.shouldEnable.combineLatest(with: self.viewModel.currentReviewType).map { (shouldEnable, currentRevType) in
+            view.reactive.backgroundColor <~ setup.shouldEnable.combineLatest(with: self.engine.currentReviewType).map { (shouldEnable, currentRevType) in
                 let colors = SRSViewController.buttonColorsFromReviewType(reviewType)
                 if let current = currentRevType,
                     current != reviewType {
@@ -648,7 +648,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
                 return shouldEnable ? colors.enabledColor : colors.disabledColor
             }
             
-            self.viewModel.currentReviewType.uiReact { rtyp in
+            self.engine.currentReviewType.uiReact { rtyp in
                 UIView.animate(withDuration: 0.3) {
                     padding.constant = rtyp == reviewType ? 0 : 30
                     view.layoutIfNeeded()
@@ -658,7 +658,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
             return (reviewType, starter)
         })
         
-        viewModel.currentReviewType.uiReact { [weak self] reviewType in
+        engine.currentReviewType.uiReact { [weak self] reviewType in
             guard let _ = reviewType else {
                 if let vc = self?.reviewViewController {
                     vc.willMove(toParentViewController: nil)
@@ -671,7 +671,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
             
             if let sself = self {
-                let rvc = ReviewViewController(engine: sself.viewModel, delegate: sself)
+                let rvc = ReviewViewController(engine: sself.engine, delegate: sself)
                 sself.reviewViewController = rvc
                 sself.addChildViewController(rvc)
                 rvc.view.frame = sself.reviewContainer.bounds
@@ -681,29 +681,29 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
         }
         
-        viewModel.emptySessionAttempt.uiReact { [weak self] _ in
+        engine.emptySessionAttempt.uiReact { [weak self] _ in
             self?.showAlert("Nothing to review!\nUse the Study tab to mark kanji as learned")
         }
         
         refreshStarter = RefreshStarter(control: refreshButton,
-                                        action: viewModel.statusAction,
+                                        action: engine.statusAction,
                                         input: ())
 
-        activityIndicator.reactive.isAnimating <~ viewModel.statusAction.isExecuting
+        activityIndicator.reactive.isAnimating <~ engine.statusAction.isExecuting
         
-        viewModel.statusAction.uiReact { [weak self] response in
+        engine.statusAction.uiReact { [weak self] response in
             if let model = response.model as? GetStatusModel,
                 let tabBarItem = self?.tabBarItem {
                 tabBarItem.badgeValue = model.expiredCards > 0 ? "\(model.expiredCards)" : nil
             }
         }
         
-        viewModel.toStudyCount.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (count, studyPhase) in
+        engine.toStudyCount.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (count, studyPhase) in
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
         }
         
-        viewModel.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (studyEntries, studyPhase) in
+        engine.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (studyEntries, studyPhase) in
             let count = studyEntries.filter({ !$0.learned && $0.synced }).count
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
@@ -711,12 +711,12 @@ class SRSViewController: UIViewController, ReviewDelegate {
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
-        guard let reviewEntry = viewModel.reviewEntries.value.first(where: { $0.cardId == reviewAnswer.cardId }) else {
+        guard let reviewEntry = engine.reviewEntries.value.first(where: { $0.cardId == reviewAnswer.cardId }) else {
             print("card not in review!!")
             return
         }
         
-        viewModel.reviewEntries.value = viewModel.reviewEntries.value
+        engine.reviewEntries.value = engine.reviewEntries.value
         
         Database.write(object: reviewEntry) {
             reviewEntry.cardAnswer = reviewAnswer.answer
@@ -725,7 +725,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
     func userFinishedReview() {
         print("finished review")
-        viewModel.reviewEntries.value = viewModel.reviewEntries.value
+        engine.reviewEntries.value = engine.reviewEntries.value
     }
     
     func topButtonView(for reviewType: ReviewType) -> UIView {
