@@ -44,11 +44,11 @@ extension Dictionary {
     }
 }
 
-typealias StartActionType = Action<ReviewType, Response, FetchError>
+typealias StartAction = Action<ReviewType, Response, FetchError>
 typealias StartStarter = ActionStarter<ReviewType, Response, FetchError>
-typealias ButtonActionType = Action<Bool, Bool, NoError>
-typealias ReviewActionType = Action<[ReviewEntry], Response, FetchError>
-typealias SubmitActionType = Action<[ReviewEntry], [SignalProducer<Response,FetchError>], FetchError>
+typealias ButtonAction = Action<Bool, Bool, NoError>
+typealias ReviewAction = Action<[ReviewEntry], Response, FetchError>
+typealias SubmitAction = Action<[ReviewEntry], [SignalProducer<Response,FetchError>], FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
 struct ReviewTypeSetup {
@@ -56,7 +56,7 @@ struct ReviewTypeSetup {
     let cardCount: MutableProperty<Int>
     let learnedCount: MutableProperty<Int>
     let actualCount: MutableProperty<Int>
-    let action: StartActionType
+    let action: StartAction
 }
 
 extension Array where Element : ReviewEntry {
@@ -84,9 +84,9 @@ protocol ReviewEngineProtocol: class {
     var reviewEntries: MutableProperty<[ReviewEntry]> { get }
     var shouldEnableReview: MutableProperty<Bool> { get }
     var shouldEnableSubmit: MutableProperty<Bool> { get }
-    var reviewAction: ReviewActionType! { get }
-    var submitAction: SubmitActionType! { get }
-    var cancelAction: ButtonActionType! { get }
+    var reviewAction: ReviewAction! { get }
+    var submitAction: SubmitAction! { get }
+    var cancelAction: ButtonAction! { get }
     var emptySessionAttempt: MutableProperty<Bool> { get }
     var chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> { get }
     var isSubmitting: MutableProperty<Bool> { get }
@@ -176,9 +176,9 @@ class SRSReviewEngine: ReviewEngineProtocol {
     var toReviewCount: MutableProperty<Int> = MutableProperty(0)
     let toSubmitCount: MutableProperty<Int> = MutableProperty(0)
     let reviewState: MutableProperty<ReviewState?> = MutableProperty(nil)
-    var cancelAction: ButtonActionType!
-    var reviewAction: ReviewActionType!
-    var submitAction: SubmitActionType!
+    var cancelAction: ButtonAction!
+    var reviewAction: ReviewAction!
+    var submitAction: SubmitAction!
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableCancel: MutableProperty<Bool> = MutableProperty(false)
@@ -273,13 +273,13 @@ class SRSReviewEngine: ReviewEngineProtocol {
             self?.cancelSession()
         }
         
-        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
+        reviewAction = ReviewAction(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
         
         reviewAction.react { [weak self] response in
             self?.saveFetchedCards(response: response)
         }
         
-        submitAction = SubmitActionType(enabledIf: shouldEnableSubmit, SRSReviewEngine.submitActionProducer)
+        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, SRSReviewEngine.submitActionProducer)
         
         chunkSubmitProducers <~ submitAction.values
         chunkSubmitProducers.react { [weak self] in
@@ -437,7 +437,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
         shouldEnable <~ shouldEnableStartSignal(countProperty: actualCountProperty,
                                                 reviewType: reviewType)
         
-        let action = StartActionType(enabledIf: shouldEnable) { [weak self] _ in
+        let action = StartAction(enabledIf: shouldEnable) { [weak self] _ in
             var learnedOnly = false
             if case .failed = reviewType,
                 let sself = self,

@@ -34,9 +34,9 @@ class FreeViewModel: ReviewEngineProtocol {
     var toReviewCount: MutableProperty<Int> = MutableProperty(0)
     let toSubmitCount: MutableProperty<Int> = MutableProperty(0)
     let reviewState: MutableProperty<ReviewState?> = MutableProperty(nil)
-    var cancelAction: ButtonActionType!
-    var reviewAction: ReviewActionType!
-    var submitAction: SubmitActionType!
+    var cancelAction: ButtonAction!
+    var reviewAction: ReviewAction!
+    var submitAction: SubmitAction!
 
     let shouldEnableReview: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
@@ -84,9 +84,9 @@ class FreeViewModel: ReviewEngineProtocol {
         toReviewCount <~ reviewEntries.map { $0.count(answer: .unanswered) }
         shouldEnableReview <~ toReviewCount.map { $0 > 0 }
 
-        reviewAction = ReviewActionType(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
+        reviewAction = ReviewAction(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
         
-        submitAction = SubmitActionType(enabledIf: shouldEnableSubmit) { _ in
+        submitAction = SubmitAction(enabledIf: shouldEnableSubmit) { _ in
             return SignalProducer.empty
         }
         

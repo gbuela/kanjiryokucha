@@ -10,7 +10,7 @@ import UIKit
 import ReactiveSwift
 import RealmSwift
 
-fileprivate typealias SubmitAction = Action<[StudyEntry], Response, FetchError>
+fileprivate typealias StudySubmitAction = Action<[StudyEntry], Response, FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, FetchError>
 fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
@@ -40,7 +40,7 @@ class StudyEngine {
     
     var reviewEngine: SRSReviewEngine!
     let notLearnedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
-    fileprivate var submitAction: SubmitAction!
+    fileprivate var submitAction: StudySubmitAction!
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     fileprivate var refreshAction: RefreshAction!
@@ -57,7 +57,7 @@ class StudyEngine {
         
         shouldEnableSubmit <~ unsyncedEntries.map { $0.count > 0 }
         
-        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
+        submitAction = StudySubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
         
         submitAction.react { [weak self] response in
             if let result = response.model as? SyncStudyResultModel {
