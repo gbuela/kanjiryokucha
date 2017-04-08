@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,86 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dx-ai-Ub8">
-                                <rect key="frame" x="75" y="221" width="225" height="225"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="漢" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfw-vr-fs0">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="kSm-W1-T2B"/>
-                                            <constraint firstAttribute="width" constant="100" id="xvv-MJ-oHh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="86"/>
-                                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="-2" height="2"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4N-dZ-pz5">
-                                        <rect key="frame" x="124.5" y="-0.5" width="100" height="100"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="7Ae-YY-KXA"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="8PL-Hi-ZWs"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="IVI-dN-6lh"/>
-                                            <constraint firstAttribute="width" constant="100" id="Yha-HG-bZX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="86"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="-2" height="2"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="緑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9v-mh-DpN">
-                                        <rect key="frame" x="-0.5" y="124.5" width="100" height="100"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Dzv-2D-10n"/>
-                                            <constraint firstAttribute="height" constant="100" id="Wjs-VS-E9j"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="ee6-dx-LuP"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="kzK-4E-Hf1"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="86"/>
-                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="-2" height="2"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="茶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUf-i2-3gz">
-                                        <rect key="frame" x="125" y="125" width="100" height="100"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="1z4-Jf-EbI"/>
-                                            <constraint firstAttribute="height" constant="100" id="Hh2-oe-ovM"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="gIA-eh-IFt"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="sgw-wm-KJ5"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="uIG-bn-OZ8"/>
-                                            <constraint firstAttribute="width" constant="100" id="z3d-vT-OXz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="86"/>
-                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="-2" height="2"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="bUf-i2-3gz" secondAttribute="bottom" id="2Wl-y6-ewc"/>
-                                    <constraint firstAttribute="trailing" secondItem="bUf-i2-3gz" secondAttribute="trailing" id="QEB-YD-2vV"/>
-                                    <constraint firstItem="zfw-vr-fs0" firstAttribute="leading" secondItem="2dx-ai-Ub8" secondAttribute="leading" id="QpO-Hf-vJL"/>
-                                    <constraint firstItem="H4N-dZ-pz5" firstAttribute="top" secondItem="2dx-ai-Ub8" secondAttribute="top" id="UBJ-Bj-Mu5"/>
-                                    <constraint firstAttribute="height" constant="225" id="WJE-sO-hbD"/>
-                                    <constraint firstAttribute="width" constant="225" id="Wac-My-qc7"/>
-                                    <constraint firstItem="zfw-vr-fs0" firstAttribute="top" secondItem="2dx-ai-Ub8" secondAttribute="top" id="brJ-Ru-fGU"/>
-                                    <constraint firstItem="I9v-mh-DpN" firstAttribute="leading" secondItem="2dx-ai-Ub8" secondAttribute="leading" id="k1n-Nu-7d2"/>
-                                    <constraint firstAttribute="bottom" secondItem="I9v-mh-DpN" secondAttribute="bottom" id="rYp-1d-UJB"/>
-                                    <constraint firstAttribute="trailing" secondItem="H4N-dZ-pz5" secondAttribute="trailing" id="wle-Ue-eGA"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kanji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxR-Se-0mU">
-                                <rect key="frame" x="142" y="159" width="91.5" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ryokucha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDN-KW-0xJ">
-                                <rect key="frame" x="97" y="454" width="182.5" height="54"/>
+                                <rect key="frame" x="142" y="121.5" width="91.5" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -110,17 +33,29 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanji100.png" translatesAutoresizingMaskIntoConstraints="NO" id="vNu-Jh-rLi">
+                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="RXb-zs-fZ8"/>
+                                    <constraint firstAttribute="width" secondItem="vNu-Jh-rLi" secondAttribute="height" multiplier="1:1" id="fQ2-k9-Drg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ryokucha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDN-KW-0xJ">
+                                <rect key="frame" x="97" y="491" width="182.5" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.81960784313725488" green="0.92156862745098034" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2dx-ai-Ub8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6QC-NS-qND"/>
                             <constraint firstItem="bxR-Se-0mU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="73F-cx-5lt"/>
                             <constraint firstItem="xYE-Ce-UZr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8EN-0D-2RR"/>
-                            <constraint firstItem="HDN-KW-0xJ" firstAttribute="top" secondItem="2dx-ai-Ub8" secondAttribute="bottom" constant="8" symbolic="YES" id="B7b-0p-v1w"/>
-                            <constraint firstItem="2dx-ai-Ub8" firstAttribute="top" secondItem="bxR-Se-0mU" secondAttribute="bottom" constant="8" symbolic="YES" id="OOh-xt-1eD"/>
+                            <constraint firstItem="vNu-Jh-rLi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ARW-ty-lqn"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="xYE-Ce-UZr" secondAttribute="bottom" constant="8" symbolic="YES" id="TsX-B1-VUo"/>
-                            <constraint firstItem="2dx-ai-Ub8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dlg-ey-m3c"/>
+                            <constraint firstItem="vNu-Jh-rLi" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="eks-ed-7nI"/>
+                            <constraint firstItem="HDN-KW-0xJ" firstAttribute="top" secondItem="vNu-Jh-rLi" secondAttribute="bottom" constant="8" symbolic="YES" id="qMc-zM-YUV"/>
                             <constraint firstItem="HDN-KW-0xJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vR7-2F-ShA"/>
+                            <constraint firstItem="vNu-Jh-rLi" firstAttribute="top" secondItem="bxR-Se-0mU" secondAttribute="bottom" constant="8" symbolic="YES" id="ykN-ag-f9b"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -130,4 +65,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="kanji100.png" width="500" height="500"/>
+    </resources>
 </document>
