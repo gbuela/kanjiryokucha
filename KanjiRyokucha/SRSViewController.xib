@@ -186,14 +186,14 @@
                     </constraints>
                 </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanjibkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="BWI-X9-MOk">
-                    <rect key="frame" x="10" y="123" width="300" height="300"/>
+                    <rect key="frame" x="10" y="90" width="300" height="300"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="BWI-X9-MOk" secondAttribute="height" multiplier="1:1" id="EFD-6P-PCV"/>
                         <constraint firstAttribute="width" constant="300" id="evv-iW-ijk"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOr-1a-dGS">
-                    <rect key="frame" x="115" y="423" width="90" height="29"/>
+                    <rect key="frame" x="115" y="390" width="90" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="refresh status">
                         <color key="titleColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -203,7 +203,7 @@
                     </state>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Uij-v0-a4Q">
-                    <rect key="frame" x="10" y="123" width="300" height="300"/>
+                    <rect key="frame" x="10" y="90" width="300" height="300"/>
                     <color key="color" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSJ-QZ-DOD" userLabel="Review container">
@@ -223,13 +223,19 @@
             <constraints>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="top" id="6WS-DB-Geh"/>
                 <constraint firstAttribute="trailing" secondItem="jZU-qW-gn7" secondAttribute="trailing" id="8Iq-Rb-zDg"/>
-                <constraint firstItem="BWI-X9-MOk" firstAttribute="top" secondItem="aSJ-QZ-DOD" secondAttribute="top" id="8ir-Js-22Y"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="height" secondItem="BWI-X9-MOk" secondAttribute="height" id="AnR-bY-50A"/>
                 <constraint firstItem="jZU-qW-gn7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E7W-OY-W70"/>
-                <constraint firstItem="lOr-1a-dGS" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="bottom" id="Lpx-aI-OPY"/>
+                <constraint firstItem="lOr-1a-dGS" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="bottom" id="Lpx-aI-OPY" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                            <real key="value" value="-10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </constraint>
                 <constraint firstAttribute="trailing" secondItem="aSJ-QZ-DOD" secondAttribute="trailing" constant="9" id="MnN-Ie-x9N"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="top" secondItem="jZU-qW-gn7" secondAttribute="bottom" constant="8" id="QMH-wD-bqb"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
+                <constraint firstItem="BWI-X9-MOk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aOF-He-g4M"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iAa-PJ-FEz"/>
                 <constraint firstItem="jZU-qW-gn7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="oHO-rl-8Io"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="uZT-Vi-5ln"/>

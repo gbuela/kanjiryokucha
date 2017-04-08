@@ -42,7 +42,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1Q-O3-Bgi">
-                    <rect key="frame" x="125" y="544" width="124" height="30"/>
+                    <rect key="frame" x="125" y="535.5" width="124" height="30"/>
                     <state key="normal" title="or, log in manually">
                         <color key="titleColor" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -55,7 +55,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pK-kA-gVv" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                    <rect key="frame" x="152" y="492" width="70" height="44"/>
+                    <rect key="frame" x="152" y="483.5" width="70" height="44"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="LKG-vs-HaL"/>
@@ -71,7 +71,7 @@
                 <constraint firstItem="k24-Ii-jqA" firstAttribute="top" secondItem="M5u-x8-ZAz" secondAttribute="bottom" constant="8" symbolic="YES" id="8mK-ZZ-52K"/>
                 <constraint firstItem="k24-Ii-jqA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9qV-ED-0yu"/>
                 <constraint firstItem="s1Q-O3-Bgi" firstAttribute="top" secondItem="0pK-kA-gVv" secondAttribute="bottom" constant="8" symbolic="YES" id="GrO-gN-Cag"/>
-                <constraint firstItem="0pK-kA-gVv" firstAttribute="top" secondItem="k24-Ii-jqA" secondAttribute="bottom" constant="8" symbolic="YES" id="Jc7-0M-fbv"/>
+                <constraint firstItem="0pK-kA-gVv" firstAttribute="top" secondItem="k24-Ii-jqA" secondAttribute="bottom" id="Jc7-0M-fbv"/>
                 <constraint firstItem="Lqo-85-y95" firstAttribute="width" secondItem="M5u-x8-ZAz" secondAttribute="width" id="PpB-W5-z12"/>
                 <constraint firstItem="kK6-5r-G1k" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Qfs-mE-xfg"/>
                 <constraint firstItem="s1Q-O3-Bgi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UvV-xq-QxN"/>
