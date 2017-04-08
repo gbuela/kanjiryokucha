@@ -168,7 +168,13 @@
                         <constraint firstItem="R3e-L7-iyw" firstAttribute="top" secondItem="DJ2-uF-VGx" secondAttribute="top" constant="10" id="HNN-Ou-Su1"/>
                         <constraint firstItem="NLb-1T-Akn" firstAttribute="bottom" secondItem="DJ2-uF-VGx" secondAttribute="bottom" constant="-10" id="K14-aO-WmK"/>
                         <constraint firstAttribute="trailing" secondItem="SJc-5n-7rS" secondAttribute="trailing" constant="8" id="RGE-3f-9XP"/>
-                        <constraint firstItem="SJc-5n-7rS" firstAttribute="top" secondItem="DJ2-uF-VGx" secondAttribute="bottom" constant="20" id="S3T-cw-7SL"/>
+                        <constraint firstItem="SJc-5n-7rS" firstAttribute="top" secondItem="DJ2-uF-VGx" secondAttribute="bottom" constant="20" id="S3T-cw-7SL" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
                         <constraint firstItem="NLb-1T-Akn" firstAttribute="leading" secondItem="R3e-L7-iyw" secondAttribute="leading" id="VLg-7w-QBx"/>
                         <constraint firstItem="tkf-lp-AZA" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="top" id="WlP-Ql-icf"/>
                         <constraint firstAttribute="trailing" secondItem="R3e-L7-iyw" secondAttribute="trailing" constant="8" id="dPe-Rz-dkd"/>
