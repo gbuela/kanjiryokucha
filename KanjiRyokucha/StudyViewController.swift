@@ -9,6 +9,7 @@
 import UIKit
 import ReactiveSwift
 import RealmSwift
+import PKHUD
 
 fileprivate typealias StudySubmitAction = Action<[StudyEntry], [SignalProducer<Response,FetchError>], FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], [SignalProducer<Response, FetchError>], FetchError>
@@ -25,7 +26,7 @@ extension Array {
 
 class StudyEngine {
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
-        let submitBatchSize = 10
+        let submitBatchSize = 2
         
         let unsyncedEntries = entries.filter { !$0.synced }
         
@@ -65,7 +66,9 @@ class StudyEngine {
             return entries.filter { !$0.synced }
         }
         
-        shouldEnableSubmit <~ unsyncedEntries.map { $0.count > 0 }
+        shouldEnableSubmit <~ Property.combineLatest(unsyncedEntries, isSubmitting).map { (unsynced, submitting) in
+            return unsynced.count > 0 && !submitting
+        }
         
         submitAction = StudySubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
         
@@ -80,7 +83,7 @@ class StudyEngine {
         
         isSubmitting <~ chunkSubmitProducers.map { $0.count > 1 }
 
-        refreshAction = RefreshAction { _ in
+        refreshAction = RefreshAction(enabledIf: isSubmitting.map({!$0})) { _ in
             return StudyRefreshRequest().requestProducer()!
         }
         
@@ -260,7 +263,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         submitStarter = SubmitStarter(control: submitButton,
                                       action: engine.submitAction,
                                       inputProperty: engine.unsyncedEntries)
-        submitStarter.useHUD()
         
         let leftButton = navigationItem.leftBarButtonItem!
 
@@ -272,6 +274,16 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         engine.dataRefreshed.uiReact { [weak self] _ in
             self?.tableView.reloadData()
+        }
+        
+        tableView.reactive.isUserInteractionEnabled <~ engine.isSubmitting.map {!$0}
+        
+        engine.isSubmitting.uiReact { submitting in
+            if submitting {
+                HUD.show(.progress)
+            } else {
+                HUD.hide()
+            }
         }
     }
     
