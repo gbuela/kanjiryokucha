@@ -10,8 +10,8 @@ import UIKit
 import ReactiveSwift
 import RealmSwift
 
-fileprivate typealias StudySubmitAction = Action<[StudyEntry], Response, FetchError>
-fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], Response, FetchError>
+fileprivate typealias StudySubmitAction = Action<[StudyEntry], [SignalProducer<Response,FetchError>], FetchError>
+fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], [SignalProducer<Response, FetchError>], FetchError>
 fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 
@@ -24,18 +24,24 @@ extension Array {
 }
 
 class StudyEngine {
-    private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<Response,FetchError> {
+    private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
         let submitBatchSize = 10
         
-        let learned = entries.filter({ !$0.synced && $0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
-        let notLearned = entries.filter({ !$0.synced && !$0.learned }).map({ $0.cardId }).take(atMost: submitBatchSize)
+        let unsyncedEntries = entries.filter { !$0.synced }
         
-        print("submitting \(learned.count) learned, \(notLearned.count) not learned")
+        print("submitting \(unsyncedEntries.count) study changes")
         
-        guard learned.count > 0 || notLearned.count > 0 else { return SignalProducer.empty }
+        guard unsyncedEntries.count > 0 else { return SignalProducer.empty }
         
-        let syncRq = SyncStudyRequest(learned: learned, notLearned: notLearned)
-        return syncRq.requestProducer()!
+        let entriesChunks = unsyncedEntries.chunks(ofSize: submitBatchSize)
+        let syncRqs = entriesChunks.map { (entries:[StudyEntry]) -> SignalProducer<Response,FetchError> in
+            let learnedIds = entries.filter({$0.learned}).map { $0.cardId }
+            let notLearnedIds = entries.filter({!$0.learned}).map { $0.cardId }
+            let syncRq = SyncStudyRequest(learned: learnedIds, notLearned: notLearnedIds)
+            return syncRq.requestProducer()!
+        }
+        print("total chunks \(syncRqs.count)")
+        return SignalProducer(value: syncRqs)
     }
     
     var reviewEngine: SRSReviewEngine!
@@ -45,6 +51,10 @@ class StudyEngine {
     let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     fileprivate var refreshAction: RefreshAction!
     let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
+    let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
+    let isSubmitting: MutableProperty<Bool> = MutableProperty(false)
+
+    private var chunkIndex = 0
 
     func wireUp() {
         notLearnedEntries <~ reviewEngine.studyEntries.signal.map { entries in
@@ -59,12 +69,17 @@ class StudyEngine {
         
         submitAction = StudySubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
         
-        submitAction.react { [weak self] response in
-            if let result = response.model as? SyncStudyResultModel {
-                self?.updateSyncedData(result: result)
-            }
+        chunkSubmitProducers <~ submitAction.values
+        chunkSubmitProducers.react { [weak self] in
+            guard $0.count > 0 else { return }
+            // start submitting chunks
+            print("-> got chunk producers")
+            self?.chunkIndex = 0
+            self?.submitChunk()
         }
         
+        isSubmitting <~ chunkSubmitProducers.map { $0.count > 1 }
+
         refreshAction = RefreshAction { _ in
             return StudyRefreshRequest().requestProducer()!
         }
@@ -73,6 +88,36 @@ class StudyEngine {
             if let ids = response.model as? StudyIdsModel {
                 self?.updateStudyData(studyIds: ids)
             }
+        }
+    }
+    
+    private func submitChunk() {
+        guard chunkIndex < chunkSubmitProducers.value.count else {
+            // finished submitting chunks
+            chunkSubmitProducers.value = []
+            return
+        }
+        print("chunk #\(chunkIndex)")
+        let producer = chunkSubmitProducers.value[chunkIndex]
+        
+        producer.start(Observer(value: { [weak self] response in
+            print("-> completed \(response.model)")
+            self?.completedSubmission(response: response)
+            }, failed: { [weak self] _ in
+                // finished submitting chunks
+                self?.chunkSubmitProducers.value = []
+            }, completed: { [weak self] in
+                guard let sself = self else { return }
+                sself.chunkIndex = sself.chunkIndex + 1
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                    sself.submitChunk()
+                }
+        }))
+    }
+    
+    private func completedSubmission(response: Response) {
+        if let result = response.model as? SyncStudyResultModel {
+            self.updateSyncedData(result: result)
         }
     }
     

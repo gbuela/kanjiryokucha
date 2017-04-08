@@ -185,7 +185,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
     let emptySessionAttempt: MutableProperty<Bool> = MutableProperty(false)
     let toStudyCount: MutableProperty<Int> = MutableProperty(0)
     let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
-    var isSubmitting: MutableProperty<Bool> = MutableProperty(false)
+    let isSubmitting: MutableProperty<Bool> = MutableProperty(false)
     let shouldEnableStatus: MutableProperty<Bool> = MutableProperty(false)
 
     private var chunkIndex = 0
