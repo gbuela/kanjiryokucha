@@ -235,7 +235,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         emptyStudyCell = createEmptyCell(text: "no kanji to learn")
         
         if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: view)
+            registerForPreviewing(with: self, sourceView: tableView)
         }
         
         wireUp()
