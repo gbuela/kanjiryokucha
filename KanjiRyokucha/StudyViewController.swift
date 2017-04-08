@@ -26,7 +26,7 @@ extension Array {
 
 class StudyEngine {
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
-        let submitBatchSize = 2
+        let submitBatchSize = 10
         
         let unsyncedEntries = entries.filter { !$0.synced }
         
