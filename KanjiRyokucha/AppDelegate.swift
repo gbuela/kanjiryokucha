@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftRater
 
 struct TabModel {
     let title: String
@@ -68,6 +69,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appController: AppController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        SwiftRater.showLaterButton = true
+    #if DEBUG
+        SwiftRater.daysUntilPrompt = 1
+        SwiftRater.usesUntilPrompt = 12
+        SwiftRater.daysBeforeReminding = 1
+        SwiftRater.showLog = true
+        SwiftRater.debugMode = false
+    #else
+        SwiftRater.daysUntilPrompt = 7
+        SwiftRater.usesUntilPrompt = 12
+        SwiftRater.daysBeforeReminding = 2
+        SwiftRater.showLog = false
+        SwiftRater.debugMode = false
+    #endif
+        SwiftRater.appLaunched()
 
         UINavigationBar.appearance().barStyle = .default
         UINavigationBar.appearance().backgroundColor = .ryokuchaDark

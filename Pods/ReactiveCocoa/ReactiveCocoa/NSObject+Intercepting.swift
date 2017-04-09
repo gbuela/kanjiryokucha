@@ -13,8 +13,8 @@ fileprivate let signatureCacheKey = AssociationKey<SignatureCache>()
 fileprivate let selectorCacheKey = AssociationKey<SelectorCache>()
 
 extension Reactive where Base: NSObject {
-	/// Create a signal which sends a `next` event at the end of every invocation
-	/// of `selector` on the object.
+	/// Create a signal which sends a `next` event at the end of every 
+	/// invocation of `selector` on the object.
 	///
 	/// It completes when the object deinitializes.
 	///
@@ -24,14 +24,14 @@ extension Reactive where Base: NSObject {
 	/// - parameters:
 	///   - selector: The selector to observe.
 	///
-	/// - returns:
-	///   A trigger signal.
+	/// - returns: A trigger signal.
 	public func trigger(for selector: Selector) -> Signal<(), NoError> {
 		return base.intercept(selector).map { _ in }
 	}
 
-	/// Create a signal which sends a `next` event, containing an array of bridged
-	/// arguments, at the end of every invocation of `selector` on the object.
+	/// Create a signal which sends a `next` event, containing an array of 
+	/// bridged arguments, at the end of every invocation of `selector` on the 
+	/// object.
 	///
 	/// It completes when the object deinitializes.
 	///
@@ -41,8 +41,7 @@ extension Reactive where Base: NSObject {
 	/// - parameters:
 	///   - selector: The selector to observe.
 	///
-	/// - returns:
-	///   A signal that sends an array of bridged arguments.
+	/// - returns: A signal that sends an array of bridged arguments.
 	public func signal(for selector: Selector) -> Signal<[Any?], NoError> {
 		return base.intercept(selector).map(unpackInvocation)
 	}
@@ -55,9 +54,8 @@ extension NSObject {
 	///   - object: The object to be intercepted.
 	///   - selector: The selector of the method to be intercepted.
 	///
-	/// - returns:
-	///   A signal that sends the corresponding `NSInvocation` after every
-	///   invocation of the method.
+	/// - returns: A signal that sends the corresponding `NSInvocation` after 
+	///            every invocation of the method.
 	@nonobjc fileprivate func intercept(_ selector: Selector) -> Signal<AnyObject, NoError> {
 		guard let method = class_getInstanceMethod(objcClass, selector) else {
 			fatalError("Selector `\(selector)` does not exist in class `\(String(describing: objcClass))`.")
@@ -119,7 +117,8 @@ extension NSObject {
 						.flatMap { $0 != _rac_objc_msgForward ? $0 : nil }
 
 					if let impl = immediateImpl {
-						class_addMethod(subclass, interopAlias, impl, typeEncoding)
+						let succeeds = class_addMethod(subclass, interopAlias, impl, typeEncoding)
+						precondition(succeeds, "RAC attempts to swizzle a selector that has message forwarding enabled with a runtime injected implementation. This is unsupported in the current version.")
 					}
 				}
 			}
@@ -129,7 +128,7 @@ extension NSObject {
 
 			// Start forwarding the messages of the selector.
 			_ = class_replaceMethod(subclass, selector, _rac_objc_msgForward, typeEncoding)
-			
+
 			return state.signal
 		}
 	}
@@ -168,10 +167,39 @@ private func enableMessageForwarding(_ realClass: AnyClass, _ selectorCache: Sel
 			//
 			// However, the IMP cache would be thrashed due to the swapping.
 
-			let interopImpl = class_getMethodImplementation(realClass, interopAlias)
-			let previousImpl = class_replaceMethod(realClass, selector, interopImpl, typeEncoding)
-			invocation.invoke()
-			_ = class_replaceMethod(realClass, selector, previousImpl, typeEncoding)
+			let topLevelClass: AnyClass = object_getClass(objectRef.takeUnretainedValue())
+
+			// The locking below prevents RAC swizzling attempts from intervening the
+			// invocation.
+			//
+			// Given the implementation of `swizzleClass`, `topLevelClass` can only be:
+			// (1) the same as `realClass`; or (2) a subclass of `realClass`. In other
+			// words, this would deadlock only if the locking order is not followed in
+			// other nested locking scenarios of these metaclasses at compile time.
+
+			synchronized(topLevelClass) {
+				func swizzle() {
+					let interopImpl = class_getMethodImplementation(topLevelClass, interopAlias)
+
+					let previousImpl = class_replaceMethod(topLevelClass, selector, interopImpl, typeEncoding)
+					invocation.invoke()
+
+					_ = class_replaceMethod(topLevelClass, selector, previousImpl, typeEncoding)
+				}
+
+				if topLevelClass != realClass {
+					synchronized(realClass) {
+						// In addition to swapping in the implementation, the message
+						// forwarding needs to be temporarily disabled to prevent circular
+						// invocation.
+						_ = class_replaceMethod(realClass, selector, nil, typeEncoding)
+						swizzle()
+						_ = class_replaceMethod(realClass, selector, _rac_objc_msgForward, typeEncoding)
+					}
+				} else {
+					swizzle()
+				}
+			}
 
 			return
 		}
@@ -331,8 +359,7 @@ private final class SignatureCache {
 /// - parameters:
 ///   - types: The type encoding C string of the method.
 ///
-/// - returns:
-///   `true`.
+/// - returns: `true`.
 private func checkTypeEncoding(_ types: UnsafePointer<CChar>) -> Bool {
 	// Some types, including vector types, are not encoded. In these cases the
 	// signature starts with the size of the argument frame.
@@ -353,8 +380,7 @@ private func checkTypeEncoding(_ types: UnsafePointer<CChar>) -> Bool {
 /// - parameters:
 ///   - invocation: The `NSInvocation` to unpack.
 ///
-/// - returns:
-///   An array of objects.
+/// - returns: An array of objects.
 private func unpackInvocation(_ invocation: AnyObject) -> [Any?] {
 	let invocation = invocation as AnyObject
 	let methodSignature = invocation.objcMethodSignature!

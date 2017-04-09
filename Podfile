@@ -7,6 +7,7 @@ def shared_pods
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'PKHUD', '~> 4.0'
     pod 'RealmSwift'
+    pod 'SwiftRater'
 end
 
 target 'KanjiRyokucha' do

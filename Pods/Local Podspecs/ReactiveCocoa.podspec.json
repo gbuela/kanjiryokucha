@@ -1,6 +1,6 @@
 {
   "name": "ReactiveCocoa",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "summary": "Streams of values over time",
   "description": "ReactiveCocoa (RAC) is a Cocoa framework built on top of ReactiveSwift. It provides APIs for using ReactiveSwift with Apple's Cocoa frameworks.",
   "homepage": "https://github.com/ReactiveCocoa/ReactiveCocoa",
@@ -17,7 +17,7 @@
   },
   "source": {
     "git": "https://github.com/ReactiveCocoa/ReactiveCocoa.git",
-    "tag": "5.0.2"
+    "tag": "5.0.3"
   },
   "source_files": [
     "ReactiveCocoa/*.{swift,h,m}",
@@ -44,5 +44,8 @@
     "ReactiveSwift": [
       "~> 1.1"
     ]
+  },
+  "pod_target_xcconfig": {
+    "OTHER_SWIFT_FLAGS[config=Release]": "-suppress-warnings"
   }
 }
