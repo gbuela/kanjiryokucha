@@ -10,8 +10,7 @@ import UIKit
 import ReactiveSwift
 import PKHUD
 
-class FreeViewModel: ReviewEngineProtocol {
-    
+class FreeViewModel: ReviewEngineProtocol {    
     private static func validateRange(range:(Int?,Int?)) -> ((Int,Int)?, String?) {
         guard let fromInt = range.0,
             let toInt = range.1 else { return (nil, nil) }

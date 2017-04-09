@@ -194,10 +194,13 @@ class SRSReviewEngine: ReviewEngineProtocol {
     
     init() {
         global = Database.getGlobal()
+        SRSReviewEngine.syncLimit = global.syncLimit
     }
     
+    static var syncLimit = defaultSyncLimit
+    
     private class func submitActionProducer(entries:[ReviewEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
-        let submitBatchSize = 10
+        let submitBatchSize = syncLimit
  
         let unsubmittedEntries = entries.filter {$0.rawAnswer != CardAnswer.unanswered.rawValue
             && !$0.submitted
@@ -413,9 +416,17 @@ class SRSReviewEngine: ReviewEngineProtocol {
         let validValues = setup.action.values.filter { response in
             return response.model is CardIdsModel
         }
-        return validValues.map { response in
+        return validValues.map { [weak self] response in
             let model = response.model as! CardIdsModel
             print("Binding \(reviewType) cards with ids: \(model.ids)")
+            
+            if let sself = self,
+                sself.global.syncLimit != model.syncLimit {
+                Database.write(object: sself.global) {
+                    sself.global.syncLimit = model.syncLimit
+                }
+            }
+            
             return StartedSession(reviewType: reviewType,
                                   ids: model.ids)
         }

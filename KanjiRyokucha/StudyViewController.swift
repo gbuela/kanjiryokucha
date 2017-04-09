@@ -26,8 +26,9 @@ extension Array {
 }
 
 class StudyEngine {
+
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {
-        let submitBatchSize = 10
+        let submitBatchSize = SRSReviewEngine.syncLimit
         
         let unsyncedEntries = entries.filter { !$0.synced }
         

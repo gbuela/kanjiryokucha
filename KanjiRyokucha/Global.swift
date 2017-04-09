@@ -39,6 +39,8 @@ enum ReviewType: Int {
     static let allTypes: [ReviewType] = [.expired, .new, .failed]
 }
 
+let defaultSyncLimit = 25
+
 class Global : Object {
     
     static let studyPhaseFlag = MutableProperty(true)
@@ -50,6 +52,7 @@ class Global : Object {
     let reviewType = RealmOptional<Int>()
     dynamic var useAnimations = true
     dynamic var useStudyPhase = true
+    dynamic var syncLimit = defaultSyncLimit
 
     override static func primaryKey() -> String? {
         return "id"

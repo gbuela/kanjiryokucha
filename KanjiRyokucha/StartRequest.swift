@@ -22,24 +22,29 @@ extension ReviewType {
     }
 }
 
-internal let itemsKey = "items"
+fileprivate let itemsKey = "items"
+fileprivate let syncLimitKey = "limit_sync"
 
 struct CardIdsModel: Decodable {
     let ids: [Int]
+    let syncLimit: Int
     
     init?(json: JSON) {
-        guard let items:[Int] = itemsKey <~~ json else {
+        guard let items:[Int] = itemsKey <~~ json,
+            let limit: Int = syncLimitKey <~~ json  else {
             return nil
         }
         ids = items
+        syncLimit = limit
     }
     
     init(ids: [Int]) {
         self.ids = ids
+        self.syncLimit = defaultSyncLimit
     }
     
     static func nullObject() -> CardIdsModel {
-        return CardIdsModel(json: [itemsKey:[]])!
+        return CardIdsModel(json: [itemsKey:[], syncLimitKey:defaultSyncLimit])!
     }
 }
 
