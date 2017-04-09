@@ -316,7 +316,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
             }, completed: { [weak self] in
                 guard let sself = self else { return }
                 sself.chunkIndex = sself.chunkIndex + 1
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Global.requestDelaySeconds) {
                     sself.submitChunk()
                 }
         }))

@@ -15,6 +15,7 @@ fileprivate typealias StudySubmitAction = Action<[StudyEntry], [SignalProducer<R
 fileprivate typealias SubmitStarter = ActionStarter<[StudyEntry], [SignalProducer<Response, FetchError>], FetchError>
 fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
+fileprivate typealias FetchAction = Action<Void, Response, FetchError>
 
 extension Array {
     func take(atMost maximum: Int) -> Array {
@@ -51,7 +52,10 @@ class StudyEngine {
     let shouldEnableSubmit: MutableProperty<Bool> = MutableProperty(false)
     let unsyncedEntries: MutableProperty<[StudyEntry]> = MutableProperty([])
     fileprivate var refreshAction: RefreshAction!
+    fileprivate var fetchAction: FetchAction?
     let dataRefreshed: MutableProperty<Bool> = MutableProperty(false)
+    let keywordsFetched: MutableProperty<Bool> = MutableProperty(false)
+    let isFetchingKeywords: MutableProperty<Bool> = MutableProperty(false)
     let chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> = MutableProperty([])
     let isSubmitting: MutableProperty<Bool> = MutableProperty(false)
 
@@ -92,6 +96,54 @@ class StudyEngine {
                 self?.updateStudyData(studyIds: ids)
             }
         }
+        
+        dataRefreshed.react { [weak self] _ in
+            if let sself = self,
+                let producer = sself.fetchActionProducer() {
+                sself.isFetchingKeywords.value = true
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Global.requestDelaySeconds) {
+                    sself.fetchKeywords(producer: producer)
+                }
+            }
+        }
+    }
+    
+    private func fetchKeywords(producer: SignalProducer<Response, FetchError>?) {
+        guard let producer = producer else {
+            isFetchingKeywords.value = false
+            keywordsFetched.value = true
+            return
+        }
+        print("fetching keywords!")
+        fetchAction = FetchAction {
+            return producer
+        }
+        if let action = fetchAction {
+            action.react { [weak self] response in
+                self?.updateKeywords(response: response)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Global.requestDelaySeconds) {
+                    self?.fetchKeywords(producer: self?.fetchActionProducer())
+                }
+            }
+            action.errors.react { [weak self] error in
+                self?.isFetchingKeywords.value = false
+                self?.keywordsFetched.value = true
+            }
+            action.apply(()).start()
+        }
+    }
+    
+    private func updateKeywords(response: Response) {
+        guard let model = response.model as? CardDataModel else { return }
+        let studyCards = studyEntries().value
+        Database.write { realm in
+            model.cards.forEach { fetchedCard in
+                if let card = studyCards.first(where: {$0.cardId == fetchedCard.cardId}) {
+                    card.keyword = fetchedCard.keyword
+                    realm.add(card, update: true)
+                }
+            }
+        }
     }
     
     private func submitChunk() {
@@ -112,7 +164,7 @@ class StudyEngine {
             }, completed: { [weak self] in
                 guard let sself = self else { return }
                 sself.chunkIndex = sself.chunkIndex + 1
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Global.requestDelaySeconds) {
                     sself.submitChunk()
                 }
         }))
@@ -164,7 +216,7 @@ class StudyEngine {
         
         Database.write { realm in
             newStudyIds.forEach { studyId in
-                var keyword = "#\(studyId)" // TODO: need to get the keyword
+                var keyword = ""
                 
                 if let oldEntry = oldStudyEntries.first(where:{ $0.0 == studyId }) {
                     keyword = oldEntry.1
@@ -198,6 +250,16 @@ class StudyEngine {
         print("confirmed sync \(entry.cardId)")
     }
     
+    private func fetchActionProducer() -> SignalProducer<Response,FetchError>? {
+        let incompleteEntries = studyEntries().value.filter {$0.keyword == ""}
+        guard incompleteEntries.count > 0 else { return nil }
+        
+        let ids = incompleteEntries.map {$0.cardId}
+        
+        print("fetching ids: \(ids)")
+        let fetchRq = CardFetchRequest(cardIds: ids)
+        return fetchRq.requestProducer()!
+    }
 }
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
@@ -213,6 +275,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var emptyStudyCell: EmptyStudyCell!
     private var submitStarter: SubmitStarter!
     private var refreshStarter: RefreshStarter!
+    private let isProcessing: MutableProperty<Bool> = MutableProperty(false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -270,16 +333,19 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                         action: engine.refreshAction,
                                         input: ())
         
-        refreshStarter.useHUD()
-        
-        engine.dataRefreshed.uiReact { [weak self] _ in
+        Property.combineLatest(engine.dataRefreshed,
+                               engine.keywordsFetched).uiReact { [weak self] _ in
             self?.tableView.reloadData()
         }
         
-        tableView.reactive.isUserInteractionEnabled <~ engine.isSubmitting.map {!$0}
+        isProcessing <~ Property.combineLatest(engine.refreshAction.isExecuting,
+                                               engine.isSubmitting,
+                                               engine.isFetchingKeywords).map { $0 || $1 || $2 }
         
-        engine.isSubmitting.uiReact { submitting in
-            if submitting {
+        tableView.reactive.isUserInteractionEnabled <~ isProcessing.map {!$0}
+        
+        isProcessing.uiReact { processing in
+            if processing {
                 HUD.show(.progress)
             } else {
                 HUD.hide()
@@ -371,7 +437,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
        
         cell.learnedButton.setBackgroundImage(image, for: .normal)
         
-        cell.keywordLabel?.text = entry.keyword
+        let keyword = entry.keyword == "" ? "#\(entry.cardId)" : entry.keyword
+        cell.keywordLabel?.text = keyword
         cell.entry = entry
         
         return cell

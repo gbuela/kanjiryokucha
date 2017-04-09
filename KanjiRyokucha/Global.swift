@@ -42,6 +42,7 @@ enum ReviewType: Int {
 class Global : Object {
     
     static let studyPhaseFlag = MutableProperty(true)
+    static let requestDelaySeconds = 1.0
     
     dynamic var refreshNeeded = false
     
