@@ -39,7 +39,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KQ8-gX-IPM">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="562"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.87450980389999999" green="1" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTU-Dw-9ta" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
                             <rect key="frame" x="137" y="14" width="60" height="34"/>
@@ -52,13 +52,21 @@
                                 <action selector="doneWithVideo" destination="-1" eventType="touchUpInside" id="ysx-5T-RaT"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="animation from Kanji Alive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyu-Ex-ZPZ">
+                            <rect key="frame" x="89.5" y="501" width="156.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="pyu-Ex-ZPZ" firstAttribute="centerX" secondItem="TGK-Pn-veR" secondAttribute="centerX" id="1RK-oI-qyj"/>
                         <constraint firstItem="KQ8-gX-IPM" firstAttribute="leading" secondItem="TGK-Pn-veR" secondAttribute="leading" id="Ggl-bb-mOB"/>
                         <constraint firstItem="KQ8-gX-IPM" firstAttribute="top" secondItem="TGK-Pn-veR" secondAttribute="top" id="Iph-gj-UcX"/>
                         <constraint firstAttribute="bottom" secondItem="KQ8-gX-IPM" secondAttribute="bottom" id="bLu-nC-ATM"/>
                         <constraint firstItem="GTU-Dw-9ta" firstAttribute="centerX" secondItem="TGK-Pn-veR" secondAttribute="centerX" id="fV8-qH-qni"/>
+                        <constraint firstAttribute="bottom" secondItem="pyu-Ex-ZPZ" secondAttribute="bottom" constant="45" id="gim-gX-7i2"/>
                         <constraint firstItem="GTU-Dw-9ta" firstAttribute="top" secondItem="TGK-Pn-veR" secondAttribute="top" constant="14" id="m7R-pS-N0w"/>
                         <constraint firstAttribute="trailing" secondItem="KQ8-gX-IPM" secondAttribute="trailing" id="mUS-ev-xYC"/>
                     </constraints>

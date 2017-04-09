@@ -55,7 +55,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
 
         global = Database.getGlobal()
         
-        view.backgroundColor = UIColor.ryokuchaTranslucent
+        view.backgroundColor = .ryokuchaTranslucent
         
         setupGradient()
         
@@ -365,7 +365,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         addChildViewController(playerController)
         videoContainer.addSubview(playerController.view)
         playerController.view.frame = videoContainer.bounds
-        playerController.view.backgroundColor = .white
+        playerController.view.backgroundColor = .ryokuchaFaint
         videoPanel.isHidden = false
 
         player?.play()
