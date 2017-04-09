@@ -94,6 +94,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance()
             .setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)], for: UIControlState.normal)
         
+        UIToolbar.appearance().barTintColor = .ryokuchaDark
+        UIToolbar.appearance().backgroundColor = .ryokuchaDark
+        
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().barTintColor = .ryokuchaDark
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .normal)

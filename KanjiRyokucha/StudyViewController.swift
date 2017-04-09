@@ -398,11 +398,16 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let vc = detailViewController(for: entry, indexPath: indexPath) else { return nil }
         
         vc.preferredContentSize = CGSize(width: 0.0, height: 400.0)
+        vc.isPreviewing.value = true
         previewingContext.sourceRect = cell.frame
         return vc
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        if let vc = viewControllerToCommit as? StudyPageViewController {
+            vc.isPreviewing.value
+                = false
+        }
         navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
     
