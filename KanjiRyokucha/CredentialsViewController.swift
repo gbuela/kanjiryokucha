@@ -29,6 +29,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var storeSwitch: UISwitch!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var guestButton: UIButton!
     
     var enteredCredentialsCallback: ((String, String) -> ())?
     
@@ -110,5 +111,9 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
             safariVC.view.tintColor = .ryokuchaDark
         }
         present(safariVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func guestPressed() {
+        
     }
 }
