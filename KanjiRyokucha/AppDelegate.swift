@@ -88,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().barStyle = .default
         UINavigationBar.appearance().backgroundColor = .ryokuchaDark
+        UINavigationBar.appearance().barTintColor = .ryokuchaDark
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().isTranslucent = true
         
