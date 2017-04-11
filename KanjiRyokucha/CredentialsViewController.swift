@@ -12,11 +12,13 @@ import Result
 import ReactiveSwift
 import SafariServices
 
+let guestUsername = "{GUEST}"
+
 let usernameKey = "username"
 let passwordKey = "passwordKey"
 let httpStatusMovedTemp = 302
 
-class CredentialsViewController: UIViewController, UITextFieldDelegate {
+class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeGuestDelegate {
     
     private class func notEmpty(string: String?) -> Bool {
         return string != nil && string != ""
@@ -114,6 +116,14 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func guestPressed() {
-        
+        let welcomeVC = WelcomeGuestViewController()
+        welcomeVC.delegate = self
+        present(welcomeVC, animated: true, completion: nil)
+    }
+    
+    func enteringAsGuest() {
+        dismiss(animated: true) { [weak self] in
+            self?.enteredCredentialsCallback?(guestUsername, "")
+        }
     }
 }

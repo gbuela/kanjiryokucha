@@ -50,6 +50,12 @@ struct LoginViewModel {
     
     func attemptLogin(withUsername username: String, password: String) {
         state.value = .loggingIn
+        
+        guard username != guestUsername else {
+            loginHandler(success: true, username: username)
+            return
+        }
+        
         callLogin(username: username, password: password, handler: loginHandler)
     }
     
