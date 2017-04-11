@@ -27,8 +27,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         global = Database.getGlobal()
         
-        navigationController?.navigationBar.barTintColor = .ryokuchaDark
-        
         edgesForExtendedLayout = []
         title = "Settings"
         
