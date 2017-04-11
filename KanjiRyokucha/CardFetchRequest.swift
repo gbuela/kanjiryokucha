@@ -66,5 +66,5 @@ struct CardFetchRequest: KoohiiRequest {
         qsParams = [ "items": items ]
     }
     
-    let guestResult: String? = ""
+    let guestResult: String? = "{\"stat\":\"ok\",\"card_data\":[{\"keyword\":\"six\",\"strokecount\":4,\"framenum\":6,\"id\":20845},{\"keyword\":\"span\",\"strokecount\":6,\"framenum\":32,\"id\":20120},{\"keyword\":\"risk\",\"strokecount\":9,\"framenum\":18,\"id\":20882},{\"keyword\":\"rise up\",\"strokecount\":8,\"framenum\":43,\"id\":26119},{\"keyword\":\"bright\",\"strokecount\":8,\"framenum\":20,\"id\":26126},{\"keyword\":\"measuring box\",\"strokecount\":4,\"framenum\":42,\"id\":21319},{\"keyword\":\"month\",\"strokecount\":4,\"framenum\":13,\"id\":26376},{\"keyword\":\"three\",\"strokecount\":3,\"framenum\":3,\"id\":19977},{\"keyword\":\"round\",\"strokecount\":3,\"framenum\":44,\"id\":20024},{\"keyword\":\"nightbreak\",\"strokecount\":5,\"framenum\":30,\"id\":26086}],\"dbg_generation_time\":\"562\"}"
 }

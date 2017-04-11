@@ -94,7 +94,7 @@ struct SRSStartRequest: StartRequest {
                      "type": type ]
     }
     
-    let guestResult: String? = ""
+    let guestResult: String? = "{\"stat\":\"ok\",\"card_count\":10,\"items\":[20845,26119,20120,26126,20882,19977,26376,20024,21319,20108],\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
 }
 
 struct FreeReviewStartRequest: StartRequest {
