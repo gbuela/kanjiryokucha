@@ -93,6 +93,8 @@ struct SRSStartRequest: StartRequest {
         qsParams = [ "mode": "srs",
                      "type": type ]
     }
+    
+    let guestResult: String? = ""
 }
 
 struct FreeReviewStartRequest: StartRequest {
@@ -110,4 +112,6 @@ struct FreeReviewStartRequest: StartRequest {
                      "to": String(toIndex),
                      "shuffle": (shuffle ? "1" : "0") ]
     }
+    
+    let guestResult: String? = ""
 }

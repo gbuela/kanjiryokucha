@@ -48,4 +48,6 @@ struct SyncStudyRequest: KoohiiRequest {
     var jsonObject: Encodable? {
         return SyncRoot(learned: learned, notLearned: notLearned)
     }
+    
+    let guestResult: String? = ""
 }

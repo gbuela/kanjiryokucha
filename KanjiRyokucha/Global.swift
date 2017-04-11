@@ -43,8 +43,13 @@ let defaultSyncLimit = 25
 
 class Global : Object {
     
+    static var username = ""
     static let studyPhaseFlag = MutableProperty(true)
     static let requestDelaySeconds = 1.0
+    
+    static func isGuest() -> Bool {
+        return username == guestUsername
+    }
     
     dynamic var refreshNeeded = false
     

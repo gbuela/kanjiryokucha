@@ -74,6 +74,7 @@ struct LoginViewModel {
             .appendingPathComponent("\(username).realm")
         
         Realm.Configuration.defaultConfiguration = config
+        Global.username = username
     }
     
     private func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {

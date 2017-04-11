@@ -65,4 +65,6 @@ struct CardFetchRequest: KoohiiRequest {
         let items = ids.joined(separator: ",")
         qsParams = [ "items": items ]
     }
+    
+    let guestResult: String? = ""
 }

@@ -81,4 +81,6 @@ struct SyncAnswersRequest: KoohiiRequest {
     var jsonObject: Encodable? {
         return SyncRoot(answers: answers)
     }
+    
+    let guestResult: String? = ""
 }

@@ -38,4 +38,6 @@ struct LoginRequest: KoohiiRequest {
                  "Origin" : koohiiHost,
                  "Referer" : koohiiHost + apiMethod ]
     }
+    
+    let guestResult: String? = nil
 }

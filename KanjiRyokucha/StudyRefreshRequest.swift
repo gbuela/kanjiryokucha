@@ -30,4 +30,6 @@ struct StudyRefreshRequest: KoohiiRequest {
     let sendApiKey = true
     let method = RequestMethod.get
     let contentType = ContentType.form
+    
+    let guestResult: String? = ""
 }

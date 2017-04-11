@@ -36,4 +36,6 @@ struct GetStatusRequest: KoohiiRequest {
     let sendApiKey = true
     let method = RequestMethod.get
     let contentType = ContentType.form
+    
+    let guestResult: String? = "{\"stat\":\"ok\",\"new_cards\":0,\"due_cards\":10,\"relearn_cards\":13,\"learned_cards\":0,\"dbg_generation_time\":\"2161\"}"
 }
