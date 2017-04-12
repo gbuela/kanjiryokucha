@@ -92,9 +92,20 @@ struct SRSStartRequest: StartRequest {
         }
         qsParams = [ "mode": "srs",
                      "type": type ]
+        
+        var ids = ""
+        switch reviewType {
+        case .expired:
+            ids = GuestData.dueIds.description
+        case .failed:
+            ids = GuestData.failedIds.description
+        default:
+            ids = "[]"
+        }
+        self.guestResult = "{\"stat\":\"ok\",\"card_count\":10,\"items\":\(ids),\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
     }
     
-    let guestResult: String? = "{\"stat\":\"ok\",\"card_count\":10,\"items\":[20845,26119,20120,26126,20882,19977,26376,20024,21319,20108],\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
+    let guestResult: String?
 }
 
 struct FreeReviewStartRequest: StartRequest {
