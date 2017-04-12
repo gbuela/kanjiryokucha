@@ -26,7 +26,7 @@ extension FetchError {
         case .connectionError(error: let error): return error.localizedDescription
         case .parseError: return "Error parsing result"
         case .notAuthenticated: return "No active session! You need to login"
-        case .backendMessage(message: let message): return "Server says: " + message
+        case .backendMessage: return "Stroke order not available for this kanji"
         }
     }
 }
