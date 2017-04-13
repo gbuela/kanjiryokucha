@@ -93,16 +93,20 @@ struct SRSStartRequest: StartRequest {
         qsParams = [ "mode": "srs",
                      "type": type ]
         
-        var ids = ""
-        switch reviewType {
-        case .expired:
-            ids = GuestData.dueIds.description
-        case .failed:
-            ids = GuestData.failedIds.description
-        default:
-            ids = "[]"
+        if Global.isGuest() {
+            var ids = ""
+            switch reviewType {
+            case .expired:
+                ids = GuestData.dueIds.description
+            case .failed:
+                ids = GuestData.failedIds.description
+            default:
+                ids = "[]"
+            }
+            self.guestResult = "{\"stat\":\"ok\",\"card_count\":10,\"items\":\(ids),\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
+        } else {
+            self.guestResult = nil
         }
-        self.guestResult = "{\"stat\":\"ok\",\"card_count\":10,\"items\":\(ids),\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
     }
     
     let guestResult: String?

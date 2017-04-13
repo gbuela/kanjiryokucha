@@ -12,7 +12,7 @@ import Result
 import ReactiveSwift
 import SafariServices
 
-let guestUsername = "{GUEST}"
+let guestUsername = "@"
 
 let usernameKey = "username"
 let passwordKey = "passwordKey"

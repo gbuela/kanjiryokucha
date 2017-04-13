@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         edgesForExtendedLayout = []
         title = "Settings"
         
-        usernameLabel.text = username
+        usernameLabel.text = username == guestUsername ? "guest user" : username
         
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 

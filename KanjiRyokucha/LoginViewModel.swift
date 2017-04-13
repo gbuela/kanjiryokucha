@@ -75,6 +75,13 @@ struct LoginViewModel {
         
         Realm.Configuration.defaultConfiguration = config
         Global.username = username
+        
+        if Global.isGuest() {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.deleteAll()
+            }
+        }
     }
     
     private func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {

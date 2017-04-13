@@ -76,6 +76,10 @@ struct SyncAnswersRequest: KoohiiRequest {
     
     init(answers: [CardSyncModel]) {
         self.answers = answers
+        
+        if Global.isGuest() {
+            guestSync()
+        }
     }
     
     var jsonObject: Encodable? {
@@ -83,4 +87,16 @@ struct SyncAnswersRequest: KoohiiRequest {
     }
     
     let guestResult: String? = ""
+    
+    func guestSync() {
+        let nos = answers.filter({ $0.answer == .no }).map{$0.cardId}
+        
+        let newDues = GuestData.dueIds.filter { dueId in
+            guard let cardSync = answers.first(where:{ cs in cs.cardId == dueId }) else { return true }
+            return cardSync.answer == .skip
+        }
+        
+        GuestData.dueIds = newDues
+        GuestData.studyIds = nos
+    }
 }
