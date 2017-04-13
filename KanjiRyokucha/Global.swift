@@ -44,7 +44,6 @@ let defaultSyncLimit = 25
 class Global : Object {
     
     static var username = ""
-    static let studyPhaseFlag = MutableProperty(true)
     static let requestDelaySeconds = 1.0
     
     static func isGuest() -> Bool {
@@ -52,6 +51,7 @@ class Global : Object {
     }
     
     dynamic var refreshNeeded = false
+    let studyPhaseProperty = MutableProperty(true)
     
     dynamic var id = 0
     let reviewType = RealmOptional<Int>()
@@ -64,6 +64,6 @@ class Global : Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["refreshNeeded"]
+        return ["refreshNeeded", "studyPhaseProperty"]
     }
 }

@@ -38,6 +38,7 @@ struct AppController {
         let studyNav = UINavigationController(rootViewController: studyViewController)
         
         settingsViewController.username = username
+        settingsViewController.global = reviewEngine.global
         let settingsNav = UINavigationController(rootViewController: settingsViewController)
         
         reviewEngine.wireUp()

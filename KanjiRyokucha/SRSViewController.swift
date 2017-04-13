@@ -329,7 +329,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
     public func start() {
         restoreState()
         refreshStatus()
-        Global.studyPhaseFlag.value = global.useStudyPhase
+        global.studyPhaseProperty.value = global.useStudyPhase
     }
     
     func refreshStatus() {
@@ -440,7 +440,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
         var actualCountProperty: MutableProperty<Int> = MutableProperty(0)
         
         if case .failed = reviewType {
-            actualCountProperty <~ Property.combineLatest(countProperty, learnedCountProperty, Global.studyPhaseFlag).map { c, lc, s in
+            actualCountProperty <~ Property.combineLatest(countProperty, learnedCountProperty, global.studyPhaseProperty).map { c, lc, s in
                 return s ? min(c,lc) : c
             }
         } else {
@@ -712,12 +712,12 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
         }
         
-        engine.toStudyCount.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (count, studyPhase) in
+        engine.toStudyCount.combineLatest(with: engine.global.studyPhaseProperty).uiReact { [weak self] (count, studyPhase) in
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
         }
         
-        engine.studyEntries.combineLatest(with: Global.studyPhaseFlag).uiReact { [weak self] (studyEntries, studyPhase) in
+        engine.studyEntries.combineLatest(with: engine.global.studyPhaseProperty).uiReact { [weak self] (studyEntries, studyPhase) in
             let count = studyEntries.filter({ !$0.learned && $0.synced }).count
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge

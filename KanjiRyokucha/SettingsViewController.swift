@@ -25,8 +25,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        global = Database.getGlobal()
-        
         edgesForExtendedLayout = []
         title = "Settings"
         
@@ -59,7 +57,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func switchedStudy(isOn: Bool) {
         Database.write(object: global) {
             global.useStudyPhase = isOn
-            Global.studyPhaseFlag.value = isOn
+            global.studyPhaseProperty.value = isOn
         }
     }
     
