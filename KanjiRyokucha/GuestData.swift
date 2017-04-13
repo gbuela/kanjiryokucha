@@ -21,7 +21,7 @@ let k8: JSON = ["keyword": "nightbreak", "strokecount":5,"framenum":30,"id":2608
 let k9: JSON = ["keyword": "six","strokecount":4,"framenum":6,"id":20845]
 
 struct GuestData {
-    static var dueIds: [Int] = [20845,26119,20120,26126,20882,19977,26376,20024,21319]
+    static var dueIds: [Int] = []
     static var failedIds: [Int] = []
     static var studyIds: [Int] = []
     
@@ -43,4 +43,9 @@ struct GuestData {
         return card!
     }
     
+    static func reset() {
+        dueIds = [20845,26119,20120,26126,20882,19977,26376,20024,21319]
+        failedIds = []
+        studyIds = []
+    }
 }

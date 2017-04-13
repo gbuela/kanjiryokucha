@@ -122,6 +122,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
     }
     
     func enteringAsGuest() {
+        GuestData.reset()
         dismiss(animated: true) { [weak self] in
             self?.enteredCredentialsCallback?(guestUsername, "")
         }
