@@ -86,7 +86,10 @@ struct SyncAnswersRequest: KoohiiRequest {
         return SyncRoot(answers: answers)
     }
     
-    let guestResult: String? = ""
+    var guestResult: String? {
+        let allIds = answers.map {$0.cardId}
+        return "{ \"put\": \(allIds) }"
+    }
     
     func guestSync() {
         let nos = answers.filter({ $0.answer == .no }).map{$0.cardId}
