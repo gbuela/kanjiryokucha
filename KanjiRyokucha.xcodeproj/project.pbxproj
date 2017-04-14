@@ -50,7 +50,7 @@
 		C409A1C11E86011E006EEE77 /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
 		C409A1C21E86011E006EEE77 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE701E7F288A00A34FD9 /* AboutViewController.swift */; };
 		C409A1C31E86011E006EEE77 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
-		C409A1C41E86011E006EEE77 /* GermansUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* GermansUtils.swift */; };
+		C409A1C41E86011E006EEE77 /* RACExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* RACExtensions.swift */; };
 		C409A1C51E86011E006EEE77 /* KanjialiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */; };
 		C409A1C61E86011E006EEE77 /* FreeReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC241E4AA430006F2C0C /* FreeReviewViewController.swift */; };
 		C409A1C71E86011E006EEE77 /* KRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC201E47D07B006F2C0C /* KRButton.swift */; };
@@ -92,7 +92,7 @@
 		C43668D71DFB3A650080D768 /* CardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668D61DFB3A650080D768 /* CardFrontView.swift */; };
 		C43668D91DFB3A810080D768 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
 		C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668DE1DFB4AFD0080D768 /* UIViewExtensions.swift */; };
-		C43668E11E00C0520080D768 /* GermansUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* GermansUtils.swift */; };
+		C43668E11E00C0520080D768 /* RACExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* RACExtensions.swift */; };
 		C43668E31E0372830080D768 /* ColorStateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E21E0372830080D768 /* ColorStateButton.swift */; };
 		C43DCC211E47D07B006F2C0C /* KRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC201E47D07B006F2C0C /* KRButton.swift */; };
 		C43DCC231E481030006F2C0C /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC221E481030006F2C0C /* LayoutConstraint.swift */; };
@@ -158,7 +158,7 @@
 		C44F755A1E8F213300E00AD9 /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
 		C44F755B1E8F213300E00AD9 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE701E7F288A00A34FD9 /* AboutViewController.swift */; };
 		C44F755C1E8F213300E00AD9 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
-		C44F755D1E8F213300E00AD9 /* GermansUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* GermansUtils.swift */; };
+		C44F755D1E8F213300E00AD9 /* RACExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668E01E00C0520080D768 /* RACExtensions.swift */; };
 		C44F755E1E8F213300E00AD9 /* KanjialiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */; };
 		C44F755F1E8F213300E00AD9 /* FreeReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC241E4AA430006F2C0C /* FreeReviewViewController.swift */; };
 		C44F75601E8F213300E00AD9 /* KRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC201E47D07B006F2C0C /* KRButton.swift */; };
@@ -275,7 +275,7 @@
 		C43668D61DFB3A650080D768 /* CardFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFrontView.swift; sourceTree = "<group>"; };
 		C43668D81DFB3A810080D768 /* CardFrontView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardFrontView.xib; sourceTree = "<group>"; };
 		C43668DE1DFB4AFD0080D768 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
-		C43668E01E00C0520080D768 /* GermansUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GermansUtils.swift; sourceTree = "<group>"; };
+		C43668E01E00C0520080D768 /* RACExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACExtensions.swift; sourceTree = "<group>"; };
 		C43668E21E0372830080D768 /* ColorStateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorStateButton.swift; sourceTree = "<group>"; };
 		C43DCC201E47D07B006F2C0C /* KRButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRButton.swift; sourceTree = "<group>"; };
 		C43DCC221E481030006F2C0C /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
@@ -461,6 +461,21 @@
 			name = Database;
 			sourceTree = "<group>";
 		};
+		C4C0AE361EA1739B006CF493 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C4758A031DF395F00019AF57 /* Colors.swift */,
+				C43668E01E00C0520080D768 /* RACExtensions.swift */,
+				C4F213D71DEA54D500EF5214 /* Extensions.swift */,
+				C43DCC221E481030006F2C0C /* LayoutConstraint.swift */,
+				C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */,
+				C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */,
+				C4C0AE2E1EA079D2006CF493 /* TipView.swift */,
+				C4C0AE321EA17128006CF493 /* Log.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		C4F213AB1DEA532800EF5214 = {
 			isa = PBXGroup;
 			children = (
@@ -486,16 +501,15 @@
 		C4F213B61DEA532900EF5214 /* KanjiRyokucha */ = {
 			isa = PBXGroup;
 			children = (
+				C4C0AE361EA1739B006CF493 /* Utils */,
 				C43DCC321E501515006F2C0C /* ApiKeys.swift */,
 				C4FFBEED1E060E670061CB18 /* Resources */,
 				C4FFBEE61E05C1700061CB18 /* ViewControllers */,
-				C43668E01E00C0520080D768 /* GermansUtils.swift */,
-				C43668C81DFA215D0080D768 /* ARPieChart.swift */,
 				C43668C31DFA17410080D768 /* Views */,
 				C4758A051DF63F6B0019AF57 /* Database */,
 				C44D2ACB1DF33BEC00EB935F /* Network */,
-				C4F213D71DEA54D500EF5214 /* Extensions.swift */,
 				C4F213B71DEA532900EF5214 /* AppDelegate.swift */,
+				C43668C81DFA215D0080D768 /* ARPieChart.swift */,
 				C4F213BE1DEA532900EF5214 /* Assets.xcassets */,
 				C4F213C01DEA532900EF5214 /* LaunchScreen.storyboard */,
 				C489263E1E9978F600E79945 /* kanji100.png */,
@@ -503,13 +517,6 @@
 				C4F213C31DEA532900EF5214 /* Info.plist */,
 				C409A1E61E860320006EEE77 /* DEV-Info.plist */,
 				C44F75811E8F218D00E00AD9 /* Staging-Info.plist */,
-				C4758A031DF395F00019AF57 /* Colors.swift */,
-				C43DCC221E481030006F2C0C /* LayoutConstraint.swift */,
-				C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */,
-				C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */,
-				C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */,
-				C4C0AE2E1EA079D2006CF493 /* TipView.swift */,
-				C4C0AE321EA17128006CF493 /* Log.swift */,
 			);
 			path = KanjiRyokucha;
 			sourceTree = "<group>";
@@ -526,6 +533,7 @@
 		C4FFBEE61E05C1700061CB18 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */,
 				C47589FB1DF3659C0019AF57 /* SRSViewController.swift */,
 				C47589FC1DF3659C0019AF57 /* SRSViewController.xib */,
 				C4FFBEE91E05CC4A0061CB18 /* CredentialsViewController.swift */,
@@ -1034,7 +1042,7 @@
 				C409A1C11E86011E006EEE77 /* StudyPageViewController.swift in Sources */,
 				C409A1C21E86011E006EEE77 /* AboutViewController.swift in Sources */,
 				C409A1C31E86011E006EEE77 /* EmptyStudyCell.swift in Sources */,
-				C409A1C41E86011E006EEE77 /* GermansUtils.swift in Sources */,
+				C409A1C41E86011E006EEE77 /* RACExtensions.swift in Sources */,
 				C409A1C51E86011E006EEE77 /* KanjialiveRequest.swift in Sources */,
 				C409A1C61E86011E006EEE77 /* FreeReviewViewController.swift in Sources */,
 				C409A1C71E86011E006EEE77 /* KRButton.swift in Sources */,
@@ -1091,7 +1099,7 @@
 				C44F755A1E8F213300E00AD9 /* StudyPageViewController.swift in Sources */,
 				C44F755B1E8F213300E00AD9 /* AboutViewController.swift in Sources */,
 				C44F755C1E8F213300E00AD9 /* EmptyStudyCell.swift in Sources */,
-				C44F755D1E8F213300E00AD9 /* GermansUtils.swift in Sources */,
+				C44F755D1E8F213300E00AD9 /* RACExtensions.swift in Sources */,
 				C44F755E1E8F213300E00AD9 /* KanjialiveRequest.swift in Sources */,
 				C44F755F1E8F213300E00AD9 /* FreeReviewViewController.swift in Sources */,
 				C44F75601E8F213300E00AD9 /* KRButton.swift in Sources */,
@@ -1148,7 +1156,7 @@
 				C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */,
 				C458FE721E7F288B00A34FD9 /* AboutViewController.swift in Sources */,
 				C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */,
-				C43668E11E00C0520080D768 /* GermansUtils.swift in Sources */,
+				C43668E11E00C0520080D768 /* RACExtensions.swift in Sources */,
 				C43DCC351E501769006F2C0C /* KanjialiveRequest.swift in Sources */,
 				C43DCC261E4AA431006F2C0C /* FreeReviewViewController.swift in Sources */,
 				C43DCC211E47D07B006F2C0C /* KRButton.swift in Sources */,

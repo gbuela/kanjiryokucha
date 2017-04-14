@@ -1,5 +1,5 @@
 //
-//  GermansUtils.swift
+//  RACExtensions.swift
 //  github-users
 //
 //  Created by German Buela on 5/20/16.
