@@ -158,14 +158,21 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
                                         action: viewModel.startAction!,
                                         input: false)
         
-        startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
-            self?.view.endEditing(true)
+        
+        if Global.isGuest() {
+            startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
+                self?.showAlert("Sorry!\nFree reviews not avilable in Guest mode")
+            }
+        } else {
+            startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
+                self?.view.endEditing(true)
+            }
         }
         
         viewModel.startAction.errors.uiReact { [weak self] error in
             self?.showAlert(error.uiMessage)
         }
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(userTappedBackground))
         view.addGestureRecognizer(tap)
         
@@ -202,7 +209,6 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
     private func notifyStartError() {
         showAlert("Could not start review! Are these indexes valid?")
     }
-    
     
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
         guard let reviewEntry = viewModel.reviewEntries.value.first(where: { $0.cardId == reviewAnswer.cardId }) else {

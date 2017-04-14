@@ -92,28 +92,25 @@ struct SRSStartRequest: StartRequest {
         }
         qsParams = [ "mode": "srs",
                      "type": type ]
-        
-        if Global.isGuest() {
-            var ids = ""
-            switch reviewType {
-            case .expired:
-                ids = GuestData.dueIds.description
-            case .failed:
-                if GuestData.useStudyPhase {
-                    ids = GuestData.failedIds.description
-                } else {
-                    ids = GuestData.studyIds.description
-                }
-            default:
-                ids = "[]"
-            }
-            self.guestResult = "{\"stat\":\"ok\",\"card_count\":10,\"items\":\(ids),\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
-        } else {
-            self.guestResult = nil
-        }
     }
     
-    let guestResult: String?
+    var guestResult: String? {
+        var ids = ""
+        switch reviewType {
+        case .expired:
+            ids = GuestData.dueIds.description
+        case .failed:
+            if GuestData.useStudyPhase {
+                ids = GuestData.failedIds.description
+            } else {
+                ids = GuestData.studyIds.description
+            }
+        default:
+            ids = "[]"
+        }
+        
+        return "{\"stat\":\"ok\",\"card_count\":10,\"items\":\(ids),\"limit_fetch\":10,\"limit_sync\":50,\"dbg_generation_time\":\"515\"}"
+    }
 }
 
 struct FreeReviewStartRequest: StartRequest {
