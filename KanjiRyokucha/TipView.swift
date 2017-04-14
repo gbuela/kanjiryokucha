@@ -15,6 +15,7 @@ enum TipType: Int {
     case strokeOrder
     case submitAnswers
     case studyTab
+    case studyPhase
 }
 
 extension TipType {
@@ -35,6 +36,8 @@ extension TipType {
             return "Submit your answers to the SRS at Kanji Koohii."
         case .studyTab:
             return "Your failed cards are sent here, where you can mark them as learned for a future red pile review. If you switch off \"study phase\" in Settings, your failed cards get to the red pile immediately"
+        case .studyPhase:
+            return "From here check out the study page for your failed cards. Mark the ones you relearn, and then Submit so they enter the red pile for a future review."
         }
     }
 }
@@ -56,7 +59,13 @@ class TipView : EasyTipViewDelegate {
     
     private func show(showingClosure: (() -> ())) {
         guard let tipType = type else { return }
-        tip = EasyTipView(text: tipType.text(), delegate: self)
+        
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.foregroundColor = .white
+        preferences.drawing.backgroundColor = .darkGray
+
+        tip = EasyTipView(text: tipType.text(), preferences: preferences, delegate: self)
+        
         showingClosure()
         UserDefaults.standard.set(true, forKey: tipType.key())
     }
@@ -77,6 +86,7 @@ class TipView : EasyTipViewDelegate {
     
     func show(control: UIControl, parent: UIView) {
         guard showable else { return }
+        self.control = control
         show() {
             tip?.show(forView: control, withinSuperview: parent)
         }

@@ -542,6 +542,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     private var refreshStarter: RefreshStarter!
     
     private let srsTip = TipView(.srsButtons)
+    private let submitTip = TipView(.submitAnswers)
 
     private class func buttonColorsFromReviewType(_ reviewType: ReviewType?) -> ButtonColors {
         if let reviewType = reviewType {
@@ -720,8 +721,9 @@ class SRSViewController: UIViewController, ReviewDelegate {
     func userFinishedReview() {
         print("finished review")
         engine.reviewEntries.value = engine.reviewEntries.value
-//TODO:        TipView.show(.submitAnswers, view: submitButton, parent: view)
-
+        if let submitButton = reviewViewController?.submitButton {
+            submitTip.show(control: submitButton, parent: view)            
+        }
     }
     
     func topButtonView(for reviewType: ReviewType) -> UIView {

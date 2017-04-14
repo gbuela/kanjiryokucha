@@ -269,6 +269,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var submitStarter: SubmitStarter!
     private var refreshStarter: RefreshStarter!
     private let isProcessing: MutableProperty<Bool> = MutableProperty(false)
+    
+    private let studyPhaseTip = TipView(.studyPhase)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -296,6 +298,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         wireUp()
         engine.triggerStudyEntries()
+        
+        studyPhaseTip.show(control: submitButton, parent: view)
     }
 
     private func createEmptyCell(text: String) -> EmptyStudyCell {
