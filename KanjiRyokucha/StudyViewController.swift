@@ -149,7 +149,6 @@ class StudyEngine {
         let producer = chunkSubmitProducers.value[chunkIndex]
         
         producer.start(Observer(value: { [weak self] response in
-            print("-> completed \(response.model)")
             self?.completedSubmission(response: response)
             }, failed: { [weak self] _ in
                 // finished submitting chunks
