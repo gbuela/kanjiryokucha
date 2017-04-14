@@ -223,6 +223,9 @@
 		C4C0AE331EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
 		C4C0AE341EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
 		C4C0AE351EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
+		C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
+		C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
+		C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
 		C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */; };
 		C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
@@ -323,6 +326,8 @@
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C4C0AE2E1EA079D2006CF493 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		C4C0AE321EA17128006CF493 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C4C0AE381EA17A2A006CF493 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
+		C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		C4D5C1191E3AD2C600D4D7E3 /* graph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -501,8 +506,10 @@
 		C4F213B61DEA532900EF5214 /* KanjiRyokucha */ = {
 			isa = PBXGroup;
 			children = (
-				C4C0AE361EA1739B006CF493 /* Utils */,
+				C4C0AE381EA17A2A006CF493 /* fabric.apikey */,
+				C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */,
 				C43DCC321E501515006F2C0C /* ApiKeys.swift */,
+				C4C0AE361EA1739B006CF493 /* Utils */,
 				C4FFBEED1E060E670061CB18 /* Resources */,
 				C4FFBEE61E05C1700061CB18 /* ViewControllers */,
 				C43668C31DFA17410080D768 /* Views */,
@@ -624,6 +631,7 @@
 				C4F213B21DEA532900EF5214 /* Resources */,
 				E989E409BE3D8FA7C34B1AE9 /* [CP] Embed Pods Frameworks */,
 				AA274C12536CE691F60F8AA7 /* [CP] Copy Pods Resources */,
+				C4C0AE371EA17567006CF493 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -717,6 +725,7 @@
 				C409A1CE1E86011E006EEE77 /* ReviewViewController.xib in Resources */,
 				C409A1CF1E86011E006EEE77 /* EmptyStudyCell.xib in Resources */,
 				C409A1D01E86011E006EEE77 /* SettingsViewController.xib in Resources */,
+				C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C409A1D11E86011E006EEE77 /* StudyPageViewController.xib in Resources */,
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
 				C409A1D31E86011E006EEE77 /* graph in Resources */,
@@ -748,6 +757,7 @@
 				C44F75671E8F213300E00AD9 /* ReviewViewController.xib in Resources */,
 				C44F75681E8F213300E00AD9 /* EmptyStudyCell.xib in Resources */,
 				C44F75691E8F213300E00AD9 /* SettingsViewController.xib in Resources */,
+				C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C44F756A1E8F213300E00AD9 /* StudyPageViewController.xib in Resources */,
 				C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */,
 				C44F756C1E8F213300E00AD9 /* graph in Resources */,
@@ -779,6 +789,7 @@
 				C43DCC2B1E4D4828006F2C0C /* ReviewViewController.xib in Resources */,
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
 				C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */,
+				C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */,
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
 				C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */,
@@ -943,6 +954,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C4C0AE371EA17567006CF493 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FABRIC_APIKEY_FILE=\"${SRCROOT}/fabric.apikey\"\nFABRIC_BUILDSECRET_FILE=\"${SRCROOT}/fabric.buildsecret\"\n\nif test ! -f \"$FABRIC_APIKEY_FILE\" -o ! -f \"$FABRIC_BUILDSECRET_FILE\"; then\necho \"This build wants to upload dSYM files to Crashlytics.\"\necho \"Uploading is possible only if a Fabric API key and a Fabric build secret are\"\necho \"available. This build is failing because at least one of these pieces of\"\necho \"information is missing.\"\necho \"\"\necho \"To fix the problem, create the following files and store the API key and\"\necho \"build secret, respectively, within those files:\"\necho \"\"\necho \"  $FABRIC_APIKEY_FILE\"\necho \"  $FABRIC_BUILDSECRET_FILE\"\necho \"\"\necho \"If you forked the project then you must register with Crashlytics and\"\necho \"get your own API key and build secret.\"\n\n# Let the build fail\nexit 1\nfi\n\nFABRIC_APIKEY=$(cat \"$FABRIC_APIKEY_FILE\")\nif test $? -ne 0; then\necho \"Cannot read $FABRIC_APIKEY_FILE\"\nexit 1\nfi\n\nFABRIC_BUILDSECRET=$(cat \"$FABRIC_BUILDSECRET_FILE\")\nif test $? -ne 0; then\necho \"Cannot read $FABRIC_BUILDSECRET_FILE\"\nexit 1\nfi\n\necho \"Uploading dSYM files to Crashlytics\"\n\"${PODS_ROOT}/Fabric/run\" \"$FABRIC_APIKEY\" \"$FABRIC_BUILDSECRET\"\n";
 		};
 		E989E409BE3D8FA7C34B1AE9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1360,6 +1384,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

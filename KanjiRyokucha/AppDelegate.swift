@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftRater
+import Fabric
+import Crashlytics
 
 struct TabModel {
     let title: String
@@ -71,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        initFabric()
+        
         SwiftRater.showLaterButton = true
     #if DEBUG
         SwiftRater.daysUntilPrompt = 1
@@ -115,6 +119,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startAutologin()
         
         return true
+    }
+    
+    private func initFabric() {
+        guard let resourceUrl = Bundle.main.url(forResource: "fabric", withExtension: "apikey") else { return }
+        let fabricApiKey = try! String(contentsOf: resourceUrl)
+        let whiteSpace = CharacterSet.whitespacesAndNewlines
+        let trimmedApiKey = fabricApiKey.trimmingCharacters(in: whiteSpace)
+        Crashlytics.start(withAPIKey: trimmedApiKey)
     }
     
     func startAutologin() {

@@ -9,6 +9,8 @@ def shared_pods
     pod 'RealmSwift'
     pod 'SwiftRater'
     pod 'EasyTipView', '~> 1.0.2'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target 'KanjiRyokucha' do

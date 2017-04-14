@@ -1,5 +1,8 @@
 PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
   - EasyTipView (1.0.2)
+  - Fabric (1.6.11)
   - Gloss (1.2.4)
   - PKHUD (4.2.1)
   - ReactiveCocoa (5.0.3):
@@ -16,7 +19,9 @@ PODS:
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
+  - Crashlytics
   - EasyTipView (~> 1.0.2)
+  - Fabric
   - Gloss (~> 1.1)
   - PKHUD (~> 4.0)
   - ReactiveCocoa (from `https://github.com/ReactiveCocoa/ReactiveCocoa.git`, branch `master`)
@@ -35,7 +40,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
 
 SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
   ReactiveCocoa: b7830510dff15952f65a648a544fb89f0c0c0f63
@@ -46,6 +53,6 @@ SPEC CHECKSUMS:
   SwiftRater: a9b8b10f35edb3945402645430e370220025b68b
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 0e00e1555856068e11c9c175d46bf762f2114751
+PODFILE CHECKSUM: db95c9ccd7bf97ad91c144f6dd8e0bc83576333f
 
 COCOAPODS: 1.1.1
