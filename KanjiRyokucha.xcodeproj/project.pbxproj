@@ -34,7 +34,6 @@
 		C409A1B01E86011E006EEE77 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C409A1B11E86011E006EEE77 /* CardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668D61DFB3A650080D768 /* CardFrontView.swift */; };
 		C409A1B21E86011E006EEE77 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAAC1E10485700361C89 /* CardBackView.swift */; };
-		C409A1B31E86011E006EEE77 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC321E501515006F2C0C /* ApiKeys.swift */; };
 		C409A1B41E86011E006EEE77 /* SRSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47589FB1DF3659C0019AF57 /* SRSViewController.swift */; };
 		C409A1B51E86011E006EEE77 /* SyncAnswersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAB61E19E02100361C89 /* SyncAnswersRequest.swift */; };
 		C409A1B61E86011E006EEE77 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAB41E1728E800361C89 /* ButtonHandler.swift */; };
@@ -101,7 +100,6 @@
 		C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC281E4D4828006F2C0C /* ReviewViewController.swift */; };
 		C43DCC2B1E4D4828006F2C0C /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */; };
 		C43DCC311E5013D7006F2C0C /* KoohiiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC301E5013D7006F2C0C /* KoohiiRequest.swift */; };
-		C43DCC331E501515006F2C0C /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC321E501515006F2C0C /* ApiKeys.swift */; };
 		C43DCC351E501769006F2C0C /* KanjialiveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */; };
 		C43DCC371E501BF3006F2C0C /* KanjiDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC361E501BF3006F2C0C /* KanjiDetailsRequest.swift */; };
 		C43DCC391E51198B006F2C0C /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
@@ -141,7 +139,6 @@
 		C44F75471E8F213300E00AD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C44F75481E8F213300E00AD9 /* CardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43668D61DFB3A650080D768 /* CardFrontView.swift */; };
 		C44F75491E8F213300E00AD9 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAAC1E10485700361C89 /* CardBackView.swift */; };
-		C44F754A1E8F213300E00AD9 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC321E501515006F2C0C /* ApiKeys.swift */; };
 		C44F754B1E8F213300E00AD9 /* SRSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47589FB1DF3659C0019AF57 /* SRSViewController.swift */; };
 		C44F754C1E8F213300E00AD9 /* SyncAnswersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAB61E19E02100361C89 /* SyncAnswersRequest.swift */; };
 		C44F754D1E8F213300E00AD9 /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAB41E1728E800361C89 /* ButtonHandler.swift */; };
@@ -226,6 +223,9 @@
 		C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
 		C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
 		C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE381EA17A2A006CF493 /* fabric.apikey */; };
+		C4C0AE3E1EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
+		C4C0AE3F1EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
+		C4C0AE401EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
 		C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */; };
 		C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
@@ -287,7 +287,6 @@
 		C43DCC281E4D4828006F2C0C /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewViewController.xib; sourceTree = "<group>"; };
 		C43DCC301E5013D7006F2C0C /* KoohiiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KoohiiRequest.swift; sourceTree = "<group>"; };
-		C43DCC321E501515006F2C0C /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiKeys.swift; path = ../../ApiKeys.swift; sourceTree = "<group>"; };
 		C43DCC341E501769006F2C0C /* KanjialiveRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanjialiveRequest.swift; sourceTree = "<group>"; };
 		C43DCC361E501BF3006F2C0C /* KanjiDetailsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanjiDetailsRequest.swift; sourceTree = "<group>"; };
 		C43DCC381E51198B006F2C0C /* readings.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readings.csv; sourceTree = "<group>"; };
@@ -328,6 +327,7 @@
 		C4C0AE321EA17128006CF493 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4C0AE381EA17A2A006CF493 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
+		C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = SOURCE_ROOT; };
 		C4D5C1191E3AD2C600D4D7E3 /* graph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -508,7 +508,7 @@
 			children = (
 				C4C0AE381EA17A2A006CF493 /* fabric.apikey */,
 				C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */,
-				C43DCC321E501515006F2C0C /* ApiKeys.swift */,
+				C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */,
 				C4C0AE361EA1739B006CF493 /* Utils */,
 				C4FFBEED1E060E670061CB18 /* Resources */,
 				C4FFBEE61E05C1700061CB18 /* ViewControllers */,
@@ -1044,9 +1044,9 @@
 				C409A1AE1E86011E006EEE77 /* KoohiiRequest.swift in Sources */,
 				C409A1AF1E86011E006EEE77 /* StreamReader.swift in Sources */,
 				C409A1B01E86011E006EEE77 /* LoginViewController.swift in Sources */,
+				C4C0AE3F1EA184F7006CF493 /* ApiKeys.swift in Sources */,
 				C409A1B11E86011E006EEE77 /* CardFrontView.swift in Sources */,
 				C409A1B21E86011E006EEE77 /* CardBackView.swift in Sources */,
-				C409A1B31E86011E006EEE77 /* ApiKeys.swift in Sources */,
 				C409A1B41E86011E006EEE77 /* SRSViewController.swift in Sources */,
 				C409A1B51E86011E006EEE77 /* SyncAnswersRequest.swift in Sources */,
 				C409A1B61E86011E006EEE77 /* ButtonHandler.swift in Sources */,
@@ -1101,9 +1101,9 @@
 				C44F75451E8F213300E00AD9 /* KoohiiRequest.swift in Sources */,
 				C44F75461E8F213300E00AD9 /* StreamReader.swift in Sources */,
 				C44F75471E8F213300E00AD9 /* LoginViewController.swift in Sources */,
+				C4C0AE401EA184F7006CF493 /* ApiKeys.swift in Sources */,
 				C44F75481E8F213300E00AD9 /* CardFrontView.swift in Sources */,
 				C44F75491E8F213300E00AD9 /* CardBackView.swift in Sources */,
-				C44F754A1E8F213300E00AD9 /* ApiKeys.swift in Sources */,
 				C44F754B1E8F213300E00AD9 /* SRSViewController.swift in Sources */,
 				C44F754C1E8F213300E00AD9 /* SyncAnswersRequest.swift in Sources */,
 				C44F754D1E8F213300E00AD9 /* ButtonHandler.swift in Sources */,
@@ -1158,9 +1158,9 @@
 				C43DCC311E5013D7006F2C0C /* KoohiiRequest.swift in Sources */,
 				C43DCC3B1E511CCA006F2C0C /* StreamReader.swift in Sources */,
 				C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */,
+				C4C0AE3E1EA184F7006CF493 /* ApiKeys.swift in Sources */,
 				C43668D71DFB3A650080D768 /* CardFrontView.swift in Sources */,
 				C42BBAAD1E10485700361C89 /* CardBackView.swift in Sources */,
-				C43DCC331E501515006F2C0C /* ApiKeys.swift in Sources */,
 				C47589FD1DF3659C0019AF57 /* SRSViewController.swift in Sources */,
 				C42BBAB71E19E02100361C89 /* SyncAnswersRequest.swift in Sources */,
 				C42BBAB51E1728E800361C89 /* ButtonHandler.swift in Sources */,

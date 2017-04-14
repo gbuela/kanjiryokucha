@@ -6,6 +6,9 @@
 fabric.apikey
 fabric.buildsecret
 
+## api keys
+ApiKeys.swift
+
 ## Build generated
 build/
 DerivedData/
