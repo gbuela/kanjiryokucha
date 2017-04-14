@@ -100,12 +100,7 @@ struct SRSStartRequest: StartRequest {
         case .expired:
             ids = GuestData.dueIds.description
         case .failed:
-            if GuestData.useStudyPhase {
-                ids = GuestData.failedIds.description
-            } else {
-                let allFailed = GuestData.failedIds + GuestData.studyIds
-                ids = allFailed.description
-            }
+            ids = GuestData.reviewableFailedIds.description
         default:
             ids = "[]"
         }

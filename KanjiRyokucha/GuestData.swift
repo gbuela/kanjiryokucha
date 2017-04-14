@@ -39,6 +39,14 @@ struct GuestData {
         CardModel(json: k9)!
     ]
     
+    static var reviewableFailedIds: [Int] {
+        if useStudyPhase {
+            return failedIds
+        } else {
+            return failedIds + studyIds
+        }
+    }
+    
     static func cardModel(forId id: Int) -> CardModel {
         let card = cardData.first(where: {$0.cardId == id})
         return card!
