@@ -217,6 +217,9 @@
 		C4AC9B531EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4AC9B541EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDE92F1DEA5E2F00D25325 /* Network.swift */; };
+		C4C0AE2F1EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
+		C4C0AE301EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
+		C4C0AE311EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
 		C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */; };
 		C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
@@ -315,6 +318,7 @@
 		C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
 		C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C4C0AE2E1EA079D2006CF493 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		C4D5C1191E3AD2C600D4D7E3 /* graph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -500,6 +504,7 @@
 				C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */,
 				C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */,
 				C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */,
+				C4C0AE2E1EA079D2006CF493 /* TipView.swift */,
 			);
 			path = KanjiRyokucha;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 				C409A1B81E86011E006EEE77 /* Global.swift in Sources */,
 				C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
+				C4C0AE301EA079D2006CF493 /* TipView.swift in Sources */,
 				C409A1BC1E86011E006EEE77 /* LoginViewModel.swift in Sources */,
 				C409A1BD1E86011E006EEE77 /* PagedReviewViewController.swift in Sources */,
 				C409A1BE1E86011E006EEE77 /* Extensions.swift in Sources */,
@@ -1068,6 +1074,7 @@
 				C44F754F1E8F213300E00AD9 /* Global.swift in Sources */,
 				C44F75521E8F213300E00AD9 /* StudyEntry.swift in Sources */,
 				C44F75531E8F213300E00AD9 /* UIViewExtensions.swift in Sources */,
+				C4C0AE311EA079D2006CF493 /* TipView.swift in Sources */,
 				C44F75541E8F213300E00AD9 /* LoginViewModel.swift in Sources */,
 				C44F75551E8F213300E00AD9 /* PagedReviewViewController.swift in Sources */,
 				C44F75561E8F213300E00AD9 /* Extensions.swift in Sources */,
@@ -1123,6 +1130,7 @@
 				C4758A071DF63F8D0019AF57 /* Global.swift in Sources */,
 				C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,
+				C4C0AE2F1EA079D2006CF493 /* TipView.swift in Sources */,
 				C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */,
 				C42BBAB21E13220700361C89 /* PagedReviewViewController.swift in Sources */,
 				C4F213DA1DEA54D500EF5214 /* Extensions.swift in Sources */,

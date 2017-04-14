@@ -46,6 +46,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     var opacity: CGFloat = 1.0
     var swiped = false
     
+    let strokeTip = TipView(.strokeOrder)
+    
     var player: AVPlayer?
     
     var global: Global!
@@ -232,6 +234,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                     }
                 })
                 showingFront = false
+                
+                strokeTip.show(control: backView.optionsButton, parent: backView)
             }
         } else if button == frontView.quitButton ||
             button == backView.quitButton {

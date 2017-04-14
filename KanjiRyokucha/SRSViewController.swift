@@ -13,6 +13,7 @@ import Result
 import RealmSwift
 import Gloss
 import SwiftRater
+import EasyTipView
 
 let lastSatusRefreshKey = "lastSatusRefresh"
 
@@ -288,7 +289,6 @@ class SRSReviewEngine: ReviewEngineProtocol {
         let producer = chunkSubmitProducers.value[chunkIndex]
        
         producer.start(Observer(value: { [weak self] response in
-                print("-> completed \(response.model)")
                 self?.completedSubmission(response: response)
             }, failed: { [weak self] _ in
                 // finished submitting chunks
@@ -540,6 +540,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
    
     private var reviewTypeStarters: [ReviewType: StartStarter]!
     private var refreshStarter: RefreshStarter!
+    
+    private let srsTip = TipView(.srsButtons)
 
     private class func buttonColorsFromReviewType(_ reviewType: ReviewType?) -> ButtonColors {
         if let reviewType = reviewType {
@@ -566,6 +568,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
         wireUp()
         
         engine.start()
+        
+        srsTip.show(control: dueButton, parent: view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -716,6 +720,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
     func userFinishedReview() {
         print("finished review")
         engine.reviewEntries.value = engine.reviewEntries.value
+//TODO:        TipView.show(.submitAnswers, view: submitButton, parent: view)
+
     }
     
     func topButtonView(for reviewType: ReviewType) -> UIView {

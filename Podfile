@@ -8,6 +8,7 @@ def shared_pods
     pod 'PKHUD', '~> 4.0'
     pod 'RealmSwift'
     pod 'SwiftRater'
+    pod 'EasyTipView', '~> 1.0.2'
 end
 
 target 'KanjiRyokucha' do

@@ -105,6 +105,9 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
     private var performanceData: [PieChartItem] = []
     private let score: MutableProperty<Int?> = MutableProperty(nil)
     
+    private let reviewTip = TipView(.startReview)
+    private let studyTip = TipView(.studyTab)
+    
     var global: Global!
 
     init(engine: ReviewEngineProtocol, delegate: ReviewDelegate) {
@@ -125,6 +128,8 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
         setUp()
         wireUp()
         refreshCharts(state: reviewEngine.reviewState.value)
+        
+        reviewTip.show(control: reviewButton, parent: view)
     }
 
     func setUp() {
@@ -203,9 +208,11 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                 self?.activityIndicator.startAnimating()
             } else {
                 self?.activityIndicator.stopAnimating()
+                if let tab = self?.tabBarController?.tabBar.items?[1] {
+                    self?.studyTip.show(barItem: tab)
+                }
             }
         }
-
     }
     
     private func presentPagedReview(model: CardDataModel) {
@@ -225,9 +232,9 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                 message: "You have \(pending) unsubmitted answers!",
                 yesOption: "Cancel anyway",
                 noOption: "OMG stay!") {
-                    [weak self] _ in
-                    self?.reviewContainer.isHidden = true
-                    self?.reviewEngine.cancelAction.apply(true).start()
+                    [unowned self] _ in
+                    self.reviewContainer.isHidden = true
+                    self.reviewEngine.cancelAction.apply(true).start()
             }
         } else {
             reviewContainer.isHidden = true
