@@ -79,8 +79,7 @@ struct LoginViewModel {
         if Global.isGuest() {
             let realm = try! Realm()
             try! realm.write {
-                realm.delete(realm.objects(ReviewEntry.self))
-                realm.delete(realm.objects(StudyEntry.self))
+                realm.deleteAll()
             }
         }
     }
