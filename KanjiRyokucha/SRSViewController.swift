@@ -89,7 +89,7 @@ extension ReviewEngineProtocol {
         
         let ids = unansweredEntries.map {$0.cardId}
         
-        print("fetching ids: \(ids)")
+        log("fetching ids: \(ids)")
         let fetchRq = CardFetchRequest(cardIds: ids)
         return fetchRq.requestProducer()!
     }
@@ -191,7 +191,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
             let syncRq = SyncAnswersRequest(answers: answers)
             return syncRq.requestProducer()!
         }
-        print("total chunks \(syncRqs.count)")
+        log("total chunks \(syncRqs.count)")
         return SignalProducer(value: syncRqs)
     }
     
@@ -266,7 +266,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
         chunkSubmitProducers.react { [weak self] in
             guard $0.count > 0 else { return }
             // start submitting chunks
-            print("-> got chunk producers")
+            log("-> got chunk producers")
             self?.chunkIndex = 0
             self?.submitChunk()
         }
@@ -285,7 +285,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
             chunkSubmitProducers.value = []
             return
         }
-        print("chunk #\(chunkIndex)")
+        log("chunk #\(chunkIndex)")
         let producer = chunkSubmitProducers.value[chunkIndex]
        
         producer.start(Observer(value: { [weak self] response in
@@ -342,16 +342,16 @@ class SRSReviewEngine: ReviewEngineProtocol {
     
     private func completedSubmission(response: Response) {
         guard let model = response.model as? SyncResultModel else {
-            print("service temporarily unavailable!")
+            log("service temporarily unavailable!")
             return
         }
         let syncedIds = model.putIds
         let entries = reviewEntries.value
-        print("reviewEntries.value \(entries.count) ids")
+        log("reviewEntries.value \(entries.count) ids")
         
         guard entries.count > 0 else { return }
         
-        print("put \(syncedIds.count) ids")
+        log("put \(syncedIds.count) ids")
 
         
         let syncedEntries = entries.filter { syncedIds.contains($0.cardId) }
@@ -385,7 +385,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
         }
         
         reviewEntries.value = reviewEntries.value
-        print("-> completed")
+        log("-> completed")
     }
     
     private func startSignalCreator(from reviewType:ReviewType) -> Signal<StartedSession,NoError> {
@@ -395,7 +395,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
         }
         return validValues.map { [weak self] response in
             let model = response.model as! CardIdsModel
-            print("Binding \(reviewType) cards with ids: \(model.ids)")
+            log("Binding \(reviewType) cards with ids: \(model.ids)")
             
             if let sself = self,
                 sself.global.syncLimit != model.syncLimit {
@@ -507,7 +507,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
     }
     
     func cancelSession() {
-        print("Wiping session")
+        log("Wiping session")
         Database.write(object: global) {
             global.reviewType.value = nil
         }
@@ -707,7 +707,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
         guard let reviewEntry = engine.reviewEntries.value.first(where: { $0.cardId == reviewAnswer.cardId }) else {
-            print("card not in review!!")
+            log("card not in review!!")
             return
         }
         
@@ -719,7 +719,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     }
 
     func userFinishedReview() {
-        print("finished review")
+        log("finished review")
         engine.reviewEntries.value = engine.reviewEntries.value
         if let submitButton = reviewViewController?.submitButton {
             submitTip.show(control: submitButton, parent: view)            

@@ -212,7 +212,7 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
     
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
         guard let reviewEntry = viewModel.reviewEntries.value.first(where: { $0.cardId == reviewAnswer.cardId }) else {
-            print("card not in review!!")
+            log("card not in review!!")
             return
         }
         reviewEntry.cardAnswer = reviewAnswer.answer
@@ -221,7 +221,7 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
     }
     
     func userFinishedReview() {
-        print("finished review")
+        log("finished review")
         viewModel.reviewEntries.value = viewModel.reviewEntries.value
     }
 

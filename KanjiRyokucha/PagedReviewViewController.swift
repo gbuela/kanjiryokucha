@@ -91,7 +91,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         if let engine = reviewEngine,
             let cardModels = cards {
             engine.fetchMissingCards(cardModels: cardModels) { [weak self] cardDataModel in
-                print("fetched \(cardDataModel.cards.count) additional cards")
+                log("fetched \(cardDataModel.cards.count) additional cards")
                 self?.cards?.append(contentsOf: cardDataModel.cards)
             }
         }
@@ -302,7 +302,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     
     private func optionButtonPreviousCard() -> UIAlertAction {
         return UIAlertAction(title: "Previous card", style: .default, handler: { [weak self] (action) -> Void in
-            print("Previous card tapped")
+            log("Previous card tapped")
             if let sself = self,
                 sself.showingFront {
                 sself.pageBack()
@@ -312,14 +312,14 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     
     private func optionButtonFlipBack() -> UIAlertAction {
         return UIAlertAction(title: "Flip back", style: .default, handler: { [weak self] (action) -> Void in
-            print("Flip back tapped")
+            log("Flip back tapped")
             self?.flipBack()
         })
     }
     
     private func optionButtonSkip() -> UIAlertAction {
         return UIAlertAction(title: "Skip", style: .default, handler: { [weak self] (action) -> Void in
-            print("Skip tapped")
+            log("Skip tapped")
             self?.userAnswered(answer: .skip)
             self?.pageForward()
         })
@@ -327,7 +327,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     
     private func optionButtonDelete() -> UIAlertAction {
         return UIAlertAction(title: "Delete", style: .default, handler: { [weak self] (action) -> Void in
-            print("Delete tapped")
+            log("Delete tapped")
             self?.userAnswered(answer: .delete)
             self?.pageForward()
        })
@@ -335,7 +335,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     
     private func optionButtonStroke() -> UIAlertAction {
         return UIAlertAction(title: "Stroke order", style: .default, handler: { [weak self] (action) -> Void in
-            print("Stroke order tapped")
+            log("Stroke order tapped")
 
             guard let sself = self,
                 let card = sself.cards?[sself.currentPage],
@@ -386,7 +386,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
 
     private func optionButtonStudyPage() -> UIAlertAction {
         return UIAlertAction(title: "Study page", style: .default, handler: { [weak self] (action) -> Void in
-            print("Study page tapped")
+            log("Study page tapped")
             
             guard let sself = self,
                 let card = sself.cards?[sself.currentPage],
@@ -408,18 +408,18 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 UIApplication.shared.open(url, options: [:],
                                           completionHandler: {
                                             (success) in
-                                            print("Open \(scheme): \(success)")
+                                            log("Open \(scheme): \(success)")
                 })
             } else {
                 let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
+                log("Open \(scheme): \(success)")
             }
         }
     }
     
     private func optionButtonCancel() -> UIAlertAction {
         return UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
-            print("Cancel button tapped")
+            log("Cancel button tapped")
         })
     }
 

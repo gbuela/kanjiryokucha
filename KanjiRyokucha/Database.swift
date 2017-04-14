@@ -18,7 +18,7 @@ struct Database {
             return global
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
             return Global()
         }
     }
@@ -31,7 +31,7 @@ struct Database {
             }
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
         }
     }
     
@@ -47,7 +47,7 @@ struct Database {
             }
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
         }
     }
     
@@ -60,7 +60,7 @@ struct Database {
             }
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
         }
     }
     
@@ -72,7 +72,7 @@ struct Database {
             }
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
         }
     }
     
@@ -82,7 +82,7 @@ struct Database {
             return Array(realm.objects(T.self))
         } catch {
             // TODO: db fail
-            print("Realm failed: \(error.localizedDescription)")
+            log("Realm failed: \(error.localizedDescription)")
             return []
         }
     }

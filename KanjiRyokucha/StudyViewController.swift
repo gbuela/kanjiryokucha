@@ -24,7 +24,7 @@ class StudyEngine {
         
         let unsyncedEntries = entries.filter { !$0.synced }
         
-        print("submitting \(unsyncedEntries.count) study changes")
+        log("submitting \(unsyncedEntries.count) study changes")
         
         guard unsyncedEntries.count > 0 else { return SignalProducer.empty }
         
@@ -35,7 +35,7 @@ class StudyEngine {
             let syncRq = SyncStudyRequest(learned: learnedIds, notLearned: notLearnedIds)
             return syncRq.requestProducer()!
         }
-        print("total chunks \(syncRqs.count)")
+        log("total chunks \(syncRqs.count)")
         return SignalProducer(value: syncRqs)
     }
     
@@ -73,7 +73,7 @@ class StudyEngine {
         chunkSubmitProducers.react { [weak self] in
             guard $0.count > 0 else { return }
             // start submitting chunks
-            print("-> got chunk producers")
+            log("-> got chunk producers")
             self?.chunkIndex = 0
             self?.submitChunk()
         }
@@ -107,7 +107,7 @@ class StudyEngine {
             keywordsFetched.value = true
             return
         }
-        print("fetching keywords!")
+        log("fetching keywords!")
         fetchAction = FetchAction {
             return producer
         }
@@ -145,7 +145,7 @@ class StudyEngine {
             chunkSubmitProducers.value = []
             return
         }
-        print("chunk #\(chunkIndex)")
+        log("chunk #\(chunkIndex)")
         let producer = chunkSubmitProducers.value[chunkIndex]
         
         producer.start(Observer(value: { [weak self] response in
@@ -177,7 +177,7 @@ class StudyEngine {
     }
     
     private func updateSyncedData(result: SyncStudyResultModel) {
-        print("finished sync \(result)")
+        log("finished sync \(result)")
         let entriesToRemove = reviewEngine.studyEntries.value.filter {
             result.putLearned.contains($0.cardId)
         }
@@ -239,7 +239,7 @@ class StudyEngine {
         entry.learned = learned
         entry.synced = true
         realm.add(entry, update: true)
-        print("confirmed sync \(entry.cardId)")
+        log("confirmed sync \(entry.cardId)")
     }
     
     private func fetchActionProducer() -> SignalProducer<Response,FetchError>? {
@@ -248,7 +248,7 @@ class StudyEngine {
         
         let ids = incompleteEntries.map {$0.cardId}
         
-        print("fetching ids: \(ids)")
+        log("fetching ids: \(ids)")
         let fetchRq = CardFetchRequest(cardIds: ids)
         return fetchRq.requestProducer()!
     }

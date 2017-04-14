@@ -36,7 +36,7 @@ extension KanjialiveRequest {
                 case (_, let error?):
                     sink.send(error: .connectionError(error: error))
                 case (let data?, _):
-                    print("task completed")
+                    log("task completed")
                     let model = self.modelFrom(data: data)
                     
                     if model == nil,
@@ -56,7 +56,7 @@ extension KanjialiveRequest {
                     sink.sendCompleted()
                 }
             }
-            print("launching task " + (rq.url?.absoluteString ?? ""))
+            log("launching task " + (rq.url?.absoluteString ?? ""))
             
             task.resume()
             session.finishTasksAndInvalidate()

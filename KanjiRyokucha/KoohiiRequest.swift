@@ -95,10 +95,10 @@ extension KoohiiRequest {
                 
                 switch (data, error) {
                 case (_, let error?):
-                    print("task failed! \(error)")
+                    log("task failed! \(error)")
                     sink.send(error: .connectionError(error: error))
                 case (let data?, _):
-                    print("task completed")
+                    log("task completed")
                     if let json = data.toJSON(),
                         let statResult = StatResult(json: json),
                         statResult.status == "fail",
@@ -121,7 +121,7 @@ extension KoohiiRequest {
                     sink.sendCompleted()
                 }
             }
-            print("launching task " + (rq.url?.absoluteString ?? ""))
+            log("launching task " + (rq.url?.absoluteString ?? ""))
             
             task.resume()
             session.finishTasksAndInvalidate()
