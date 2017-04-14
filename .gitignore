@@ -2,6 +2,10 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## Fabric
+fabric.apikey
+fabric.buildsecret
+
 ## Build generated
 build/
 DerivedData/
