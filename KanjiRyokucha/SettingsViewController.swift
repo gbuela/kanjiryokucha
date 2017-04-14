@@ -38,8 +38,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         cells = [
             createSeparatorCell(),
-            createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: switchedAnimations),
-            createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: switchedStudy),
+            createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: { [weak self] in self?.switchedAnimations(isOn: $0) }),
+            createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: { [weak self] in self?.switchedStudy(isOn: $0) }),
             createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
             aboutCell
