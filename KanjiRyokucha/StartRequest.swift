@@ -103,7 +103,8 @@ struct SRSStartRequest: StartRequest {
             if GuestData.useStudyPhase {
                 ids = GuestData.failedIds.description
             } else {
-                ids = GuestData.studyIds.description
+                let allFailed = GuestData.failedIds + GuestData.studyIds
+                ids = allFailed.description
             }
         default:
             ids = "[]"
