@@ -61,7 +61,7 @@ class TipView : EasyTipViewDelegate {
         UserDefaults.standard.set(true, forKey: tipType.key())
     }
     
-    func show(barItem: UIBarItem) {
+    func show(barItem: UITabBarItem) {
         guard showable else { return }
         show() {
             tip?.show(forItem: barItem)
@@ -81,6 +81,12 @@ class TipView : EasyTipViewDelegate {
             tip?.show(forView: control, withinSuperview: parent)
         }
         control.addTarget(self, action: #selector(controlTapped), for: .touchUpInside)
+    }
+    
+    func dismiss() {
+        tip?.dismiss()
+        tip = nil
+        control = nil
     }
     
     @objc private func controlTapped() {

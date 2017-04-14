@@ -29,7 +29,7 @@ struct Rating {
     let emoji: String
 }
 
-class ReviewViewController: UIViewController, ARPieChartDataSource {
+class ReviewViewController: UIViewController, ARPieChartDataSource, UITabBarControllerDelegate {
 
     private class func scoreFromState(_ state: ReviewState?) -> Int? {
         guard let state = state,
@@ -208,11 +208,17 @@ class ReviewViewController: UIViewController, ARPieChartDataSource {
                 self?.activityIndicator.startAnimating()
             } else {
                 self?.activityIndicator.stopAnimating()
-                if let tab = self?.tabBarController?.tabBar.items?[1] {
+                if let tabController = self?.tabBarController,
+                    let tab = tabController.tabBar.items?[1] {
+                    tabController.delegate = self
                     self?.studyTip.show(barItem: tab)
                 }
             }
         }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        studyTip.dismiss()
     }
     
     private func presentPagedReview(model: CardDataModel) {
