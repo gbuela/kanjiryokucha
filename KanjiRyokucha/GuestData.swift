@@ -9,16 +9,16 @@
 import Foundation
 import Gloss
 
-let k0: JSON = ["keyword": "span", "strokecount":6,"framenum":32,"id":20120]
-let k1: JSON = ["keyword": "risk", "strokecount":9,"framenum":18,"id":20882]
-let k2: JSON = ["keyword": "rise up", "strokecount":8,"framenum":43,"id":26119]
-let k3: JSON = ["keyword": "bright", "strokecount":8,"framenum":20,"id":26126]
-let k4: JSON = ["keyword": "measuring box", "strokecount":4,"framenum":42,"id":21319]
-let k5: JSON = ["keyword": "month", "strokecount":4,"framenum":13,"id":26376]
-let k6: JSON = ["keyword": "three", "strokecount":3,"framenum":3,"id":19977]
-let k7: JSON = ["keyword": "round", "strokecount":3,"framenum":44,"id":20024]
-let k8: JSON = ["keyword": "nightbreak", "strokecount":5,"framenum":30,"id":26086]
-let k9: JSON = ["keyword": "six","strokecount":4,"framenum":6,"id":20845]
+let k0: JSON = ["keyword": "one", "strokecount": 1, "framenum": 1, "id": 19968]
+let k1: JSON = ["keyword": "two", "strokecount": 2, "framenum": 2, "id": 20108]
+let k2: JSON = ["keyword": "three", "strokecount": 3, "framenum": 3, "id": 19977]
+let k3: JSON = ["keyword": "four", "strokecount": 5, "framenum": 4, "id": 22235]
+let k4: JSON = ["keyword": "five", "strokecount": 4, "framenum": 5, "id": 20116]
+let k5: JSON = ["keyword": "six", "strokecount": 4, "framenum": 6, "id": 20845]
+let k6: JSON = ["keyword": "seven", "strokecount": 2, "framenum": 7, "id": 19971]
+let k7: JSON = ["keyword": "eight", "strokecount": 2, "framenum": 8, "id": 20843]
+let k8: JSON = ["keyword": "nine", "strokecount": 2, "framenum": 9, "id": 20061]
+let k9: JSON = ["keyword": "ten", "strokecount": 2, "framenum": 10, "id": 21313]
 
 struct GuestData {
     static var dueIds: [Int] = []
@@ -45,7 +45,7 @@ struct GuestData {
     }
     
     static func reset() {
-        dueIds = [20845,26119,20120,26126,20882,19977,26376,20024,21319]
+        dueIds = cardData.map {$0.cardId}
         failedIds = []
         studyIds = []
     }
