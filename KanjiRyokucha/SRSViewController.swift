@@ -60,21 +60,6 @@ struct ReviewTypeSetup {
     let action: StartAction
 }
 
-extension Array where Element : ReviewEntry {
-    
-    func count(answer: CardAnswer) -> Int {
-        return self.filter { $0.rawAnswer == answer.rawValue }.count
-    }
-    
-    var countSubmitted: Int {
-        return self.filter { $0.submitted }.count
-    }
-    
-    var countUnsubmitted: Int {
-        return self.filter { !$0.submitted && $0.rawAnswer != CardAnswer.unanswered.rawValue }.count
-    }
-}
-
 protocol ReviewEngineProtocol: class {
     var reviewTitle: MutableProperty<String?> { get }
     var reviewColor: MutableProperty<UIColor> { get }
@@ -148,15 +133,6 @@ extension ReviewEngineProtocol {
         else {
             return nil
         }
-    }
-}
-
-extension Array {
-    func chunks(ofSize chunkSize: Int) -> [[Element]] {
-        let chunks = stride(from: 0, to: count, by: chunkSize).map {
-            Array(self[$0..<Swift.min($0 + chunkSize, count)])
-        }
-        return chunks
     }
 }
 

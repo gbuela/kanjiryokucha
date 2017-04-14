@@ -31,5 +31,8 @@ struct StudyRefreshRequest: KoohiiRequest {
     let method = RequestMethod.get
     let contentType = ContentType.form
     
-    let guestResult: String? = ""
+    var guestResult: String? {
+        let allFailed = GuestData.failedIds + GuestData.studyIds
+        return "{\"items\": \(allFailed.description), \"learnedItems\": \(GuestData.failedIds)}"
+    }
 }

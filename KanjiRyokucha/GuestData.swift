@@ -24,6 +24,7 @@ struct GuestData {
     static var dueIds: [Int] = []
     static var failedIds: [Int] = []
     static var studyIds: [Int] = []
+    static var useStudyPhase = true
     
     static var cardData: [CardModel] = [
         CardModel(json: k0)!,

@@ -17,14 +17,6 @@ fileprivate typealias RefreshAction = Action<Void, Response, FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
 fileprivate typealias FetchAction = Action<Void, Response, FetchError>
 
-extension Array {
-    func take(atMost maximum: Int) -> Array {
-        let limit:Int = Swift.min(count, maximum)
-        let result = self[0..<limit]
-        return Array(result)
-    }
-}
-
 class StudyEngine {
 
     private class func submitActionProducer(entries: [StudyEntry]) -> SignalProducer<[SignalProducer<Response,FetchError>],FetchError> {

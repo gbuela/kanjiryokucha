@@ -93,13 +93,13 @@ struct SyncAnswersRequest: KoohiiRequest {
     
     func guestSync() {
         let nos = answers.filter({ $0.answer == .no }).map{$0.cardId}
+        let yeses = answers.filter({ $0.answer == .yes || $0.answer == .easy ||  $0.answer == .hard }).map{$0.cardId}
+        let dels = answers.filter({ $0.answer == .delete }).map{$0.cardId}
         
-        let newDues = GuestData.dueIds.filter { dueId in
-            guard let cardSync = answers.first(where:{ cs in cs.cardId == dueId }) else { return true }
-            return cardSync.answer == .skip
-        }
+        let answered = nos + yeses + dels
         
-        GuestData.dueIds = newDues
+        GuestData.dueIds = GuestData.dueIds.removing(answered)
+        GuestData.failedIds = GuestData.failedIds.removing(answered)
         GuestData.studyIds = nos
     }
 }

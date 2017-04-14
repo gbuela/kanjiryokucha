@@ -58,6 +58,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         Database.write(object: global) {
             global.useStudyPhase = isOn
             global.studyPhaseProperty.value = isOn
+            GuestData.useStudyPhase = isOn
         }
     }
     

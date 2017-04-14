@@ -213,6 +213,9 @@
 		C4AC9B4E1E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
 		C4AC9B4F1E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
 		C4AC9B501E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
+		C4AC9B521EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
+		C4AC9B531EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
+		C4AC9B541EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDE92F1DEA5E2F00D25325 /* Network.swift */; };
 		C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */; };
@@ -310,6 +313,7 @@
 		C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeGuestViewController.swift; sourceTree = "<group>"; };
 		C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeGuestViewController.xib; sourceTree = "<group>"; };
 		C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
+		C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C4D5C1191E3AD2C600D4D7E3 /* graph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 				C43DCC221E481030006F2C0C /* LayoutConstraint.swift */,
 				C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */,
 				C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */,
+				C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */,
 			);
 			path = KanjiRyokucha;
 			sourceTree = "<group>";
@@ -1004,6 +1009,7 @@
 				C409A1B51E86011E006EEE77 /* SyncAnswersRequest.swift in Sources */,
 				C409A1B61E86011E006EEE77 /* ButtonHandler.swift in Sources */,
 				C409A1B71E86011E006EEE77 /* CredentialsViewController.swift in Sources */,
+				C4AC9B531EA0470B00A87088 /* ArrayExtensions.swift in Sources */,
 				C409A1B81E86011E006EEE77 /* Global.swift in Sources */,
 				C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
@@ -1058,6 +1064,7 @@
 				C44F754C1E8F213300E00AD9 /* SyncAnswersRequest.swift in Sources */,
 				C44F754D1E8F213300E00AD9 /* ButtonHandler.swift in Sources */,
 				C44F754E1E8F213300E00AD9 /* CredentialsViewController.swift in Sources */,
+				C4AC9B541EA0470B00A87088 /* ArrayExtensions.swift in Sources */,
 				C44F754F1E8F213300E00AD9 /* Global.swift in Sources */,
 				C44F75521E8F213300E00AD9 /* StudyEntry.swift in Sources */,
 				C44F75531E8F213300E00AD9 /* UIViewExtensions.swift in Sources */,
@@ -1112,6 +1119,7 @@
 				C42BBAB71E19E02100361C89 /* SyncAnswersRequest.swift in Sources */,
 				C42BBAB51E1728E800361C89 /* ButtonHandler.swift in Sources */,
 				C4FFBEEB1E05CC4A0061CB18 /* CredentialsViewController.swift in Sources */,
+				C4AC9B521EA0470B00A87088 /* ArrayExtensions.swift in Sources */,
 				C4758A071DF63F8D0019AF57 /* Global.swift in Sources */,
 				C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,

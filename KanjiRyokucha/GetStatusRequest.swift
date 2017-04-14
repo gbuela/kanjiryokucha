@@ -39,7 +39,8 @@ struct GetStatusRequest: KoohiiRequest {
     
     let guestResult: String? = {
         if Global.isGuest() {
-            return "{\"stat\":\"ok\",\"new_cards\":0,\"due_cards\":\(GuestData.dueIds.count),\"relearn_cards\":\(GuestData.studyIds.count),\"learned_cards\":\(GuestData.failedIds.count),\"dbg_generation_time\":\"2161\"}"
+            let relearnCount = GuestData.failedIds.count + GuestData.studyIds.count
+            return "{\"stat\":\"ok\",\"new_cards\":0,\"due_cards\":\(GuestData.dueIds.count),\"relearn_cards\":\(relearnCount),\"learned_cards\":\(GuestData.failedIds.count),\"dbg_generation_time\":\"2161\"}"
         } else {
             return nil
         }

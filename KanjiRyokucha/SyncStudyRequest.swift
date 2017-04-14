@@ -49,5 +49,16 @@ struct SyncStudyRequest: KoohiiRequest {
         return SyncRoot(learned: learned, notLearned: notLearned)
     }
     
-    let guestResult: String? = ""
+    var guestResult: String? {
+        if Global.isGuest() { updateGuestData() }
+        return "{ \"putLearned\": \(learned.description), \"putNotLearned\": \(notLearned.description)}"
+    }
+    
+    private func updateGuestData() {
+        GuestData.failedIds.append(contentsOf: learned)
+        GuestData.studyIds = GuestData.studyIds.removing(learned)
+        
+        GuestData.studyIds.append(contentsOf: notLearned)
+        GuestData.failedIds = GuestData.failedIds.removing(notLearned)
+    }
 }
