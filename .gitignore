@@ -6,8 +6,12 @@
 fabric.apikey
 fabric.buildsecret
 
-## api keys
+## other
 ApiKeys.swift
+*.cer
+*.p12
+*.certSigningRequest
+*.mobileprovision
 
 ## Build generated
 build/
