@@ -43,7 +43,8 @@ class StudyPageViewController: UIViewController {
         }
         
         if let urlToOpen = urlToOpen,
-            let url = URL(string: urlToOpen) {
+            let url = URL(string: urlToOpen),
+            !Global.isGuest() {
             var request = URLRequest(url: url)
 
             if let latestCookies = Response.latestCookies {
@@ -65,6 +66,10 @@ class StudyPageViewController: UIViewController {
         }
         
         toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+
+        if Global.isGuest() {
+            showAlert("Sorry!\nStudy page is not avilable in Guest mode")
+        }
     }
     
     override var hidesBottomBarWhenPushed: Bool {
