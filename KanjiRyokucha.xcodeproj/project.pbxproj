@@ -61,7 +61,6 @@
 		C409A1D01E86011E006EEE77 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
 		C409A1D11E86011E006EEE77 /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
-		C409A1D31E86011E006EEE77 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */; };
 		C409A1D51E86011E006EEE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F213BE1DEA532900EF5214 /* Assets.xcassets */; };
 		C409A1D61E86011E006EEE77 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
@@ -167,7 +166,6 @@
 		C44F75691E8F213300E00AD9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
 		C44F756A1E8F213300E00AD9 /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
-		C44F756C1E8F213300E00AD9 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */; };
 		C44F756E1E8F213300E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
 		C44F756F1E8F213300E00AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F213BE1DEA532900EF5214 /* Assets.xcassets */; };
@@ -226,7 +224,6 @@
 		C4C0AE3E1EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
 		C4C0AE3F1EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
 		C4C0AE401EA184F7006CF493 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */; };
-		C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */ = {isa = PBXBuildFile; fileRef = C4D5C1191E3AD2C600D4D7E3 /* graph */; };
 		C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */; };
 		C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
 		C4EF331F1E64EF34004F67C4 /* SettingsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF331D1E64EF34004F67C4 /* SettingsSwitchCell.swift */; };
@@ -328,7 +325,6 @@
 		C4C0AE381EA17A2A006CF493 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = SOURCE_ROOT; };
-		C4D5C1191E3AD2C600D4D7E3 /* graph */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		C4EF331D1E64EF34004F67C4 /* SettingsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchCell.swift; sourceTree = "<group>"; };
@@ -547,7 +543,6 @@
 				C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */,
 				C42BBAB01E13220700361C89 /* PagedReviewViewController.swift */,
 				C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */,
-				C4D5C1191E3AD2C600D4D7E3 /* graph */,
 				C43DCC241E4AA430006F2C0C /* FreeReviewViewController.swift */,
 				C43DCC251E4AA430006F2C0C /* FreeReviewViewController.xib */,
 				C43DCC281E4D4828006F2C0C /* ReviewViewController.swift */,
@@ -728,7 +723,6 @@
 				C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C409A1D11E86011E006EEE77 /* StudyPageViewController.xib in Resources */,
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
-				C409A1D31E86011E006EEE77 /* graph in Resources */,
 				C48926401E9978F600E79945 /* kanji100.png in Resources */,
 				C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */,
 				C44F752E1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,
@@ -760,7 +754,6 @@
 				C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C44F756A1E8F213300E00AD9 /* StudyPageViewController.xib in Resources */,
 				C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */,
-				C44F756C1E8F213300E00AD9 /* graph in Resources */,
 				C48926411E9978F600E79945 /* kanji100.png in Resources */,
 				C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */,
 				C44F756E1E8F213300E00AD9 /* StudyViewController.xib in Resources */,
@@ -792,7 +785,6 @@
 				C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */,
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
-				C4D5C11A1E3AD2C600D4D7E3 /* graph in Resources */,
 				C489263F1E9978F600E79945 /* kanji100.png in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
 				C44F752D1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,

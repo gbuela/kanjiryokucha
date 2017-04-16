@@ -65,13 +65,13 @@ open class ARPieChart: UIView {
     open weak var dataSource: ARPieChartDataSource?
     
     /// Pie chart start angle, should be in [-PI, PI)
-    open var startAngle: CGFloat = CGFloat(-M_PI_2) {
+    open var startAngle: CGFloat = -(.pi / 2) {
         didSet {
-            while startAngle >= CGFloat(M_PI) {
-                startAngle -= CGFloat(M_PI * 2)
+            while startAngle >= CGFloat(Float.pi) {
+                startAngle -= CGFloat(Float.pi * 2)
             }
-            while startAngle < CGFloat(-M_PI) {
-                startAngle += CGFloat(M_PI * 2)
+            while startAngle < -CGFloat(Float.pi) {
+                startAngle += CGFloat(Float.pi * 2)
             }
         }
     }
@@ -99,7 +99,7 @@ open class ARPieChart: UIView {
     }
     
     var endAngle: CGFloat {
-        return CGFloat(M_PI * 2) + startAngle
+        return CGFloat(Float.pi * 2) + startAngle
     }
     
     var strokeWidth: CGFloat {
@@ -311,11 +311,11 @@ open class ARPieChart: UIView {
         let size: CGSize = (textLayer.string! as AnyObject).size(attributes: [NSFontAttributeName: labelFont])
         textLayer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
-        if (strokeEnd - strokeStart) * CGFloat(M_PI) * 2 * strokeRadius < max(size.width, size.height) {
+        if (strokeEnd - strokeStart) * CGFloat(Float.pi) * 2 * strokeRadius < max(size.width, size.height) {
             textLayer.string = ""
         }
         
-        let midAngle: CGFloat = (strokeStart + strokeEnd) * CGFloat(M_PI) + startAngle
+        let midAngle: CGFloat = (strokeStart + strokeEnd) * CGFloat(Float.pi) + startAngle
         
         textLayer.position = CGPoint(x: pieCenter.x + strokeRadius * cos(midAngle), y: pieCenter.y + strokeRadius * sin(midAngle))
     }
@@ -327,7 +327,7 @@ open class ARPieChart: UIView {
         if currentPieLayers != nil && index < currentPieLayers!.count {
             let layerToSelect = currentPieLayers![index] as! CAShapeLayer
             let currentPosition = layerToSelect.position
-            let midAngle = (layerToSelect.strokeEnd + layerToSelect.strokeStart) * CGFloat(M_PI) + startAngle
+            let midAngle = (layerToSelect.strokeEnd + layerToSelect.strokeStart) * CGFloat(Float.pi) + startAngle
             let newPosition = CGPoint(x: currentPosition.x + selectedPieOffset * cos(midAngle), y: currentPosition.y + selectedPieOffset * sin(midAngle))
             layerToSelect.position = newPosition
             selectedLayerIndex = index
@@ -360,12 +360,12 @@ open class ARPieChart: UIView {
                 
                 let pieLayer = currentPieLayers![i] as! CAShapeLayer
                 
-                let pieStartAngle = pieLayer.strokeStart * CGFloat(M_PI * 2)
-                let pieEndAngle = pieLayer.strokeEnd * CGFloat(M_PI * 2)
+                let pieStartAngle = pieLayer.strokeStart * CGFloat(Float.pi * 2)
+                let pieEndAngle = pieLayer.strokeEnd * CGFloat(Float.pi * 2)
                 
                 var angle = atan2(point.y - pieCenter.y, point.x - pieCenter.x) - startAngle
                 if angle < 0 {
-                    angle += CGFloat(M_PI * 2)
+                    angle += CGFloat(Float.pi * 2)
                 }
                 
                 let distance = sqrt(pow(point.x - pieCenter.x, 2) + pow(point.y - pieCenter.y, 2))
