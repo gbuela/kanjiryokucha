@@ -569,8 +569,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
         wireUp()
         
         engine.start()
-        
-        srsTip.show(control: dueButton, parent: view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -591,6 +589,13 @@ class SRSViewController: UIViewController, ReviewDelegate {
         }
         
         engine.studyEntries.value = engine.studyEntries.value
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // TODO: reposition when EasyTipView adds ability to call arrange()
+        // The first time this is invoked, the button's position is usually not reported correctly
+        srsTip.show(control: dueButton, parent: view)
     }
     
     func setUp() {
