@@ -131,8 +131,12 @@ extension KoohiiRequest {
 
 private extension KoohiiRequest {
     
+    var isApiPublic: Bool {
+        return false
+    }
+    
     var urlRequest: URLRequest? {
-        let qsParams = sendApiKey ? querystringParams.merged(with: ["api_key":ApiKeys.koohii]) : querystringParams
+        let qsParams = sendApiKey && !isApiPublic ? querystringParams.merged(with: ["api_key":ApiKeys.koohii]) : querystringParams
         
         let uriQs = (useEndpoint ? endpoint : koohiiHost) + apiMethod + "?" + joinParams(qsParams)
         
