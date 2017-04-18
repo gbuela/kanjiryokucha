@@ -226,7 +226,8 @@ class ReviewViewController: UIViewController, ARPieChartDataSource, UITabBarCont
         pagedReviewVC.cards = model.cards
         pagedReviewVC.delegate = reviewDelegate
         pagedReviewVC.reviewEngine = reviewEngine
-        pagedReviewVC.modalPresentationStyle = .overCurrentContext
+        pagedReviewVC.modalPresentationStyle = .custom
+        pagedReviewVC.modalTransitionStyle = .crossDissolve
         self.present(pagedReviewVC, animated: global.useAnimations, completion: nil)
     }
     

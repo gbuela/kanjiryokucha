@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,28 +22,46 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7K-rh-8f3">
-                    <rect key="frame" x="0.0" y="564" width="375" height="103"/>
+                    <rect key="frame" x="0.0" y="921" width="768" height="103"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="103" id="K1p-5i-D41"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRY-GO-HNd">
-                    <rect key="frame" x="20" y="40" width="335" height="562"/>
+                    <rect key="frame" x="314.5" y="187" width="433.5" height="650"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="CRY-GO-HNd" secondAttribute="height" multiplier="2:3" id="0F3-U4-c0i"/>
+                        <constraint firstAttribute="height" constant="600" id="u0T-RT-DQS">
+                            <variation key="widthClass=regular" constant="650"/>
+                        </constraint>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="0F3-U4-c0i"/>
+                            <exclude reference="u0T-RT-DQS"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="0F3-U4-c0i"/>
+                            <include reference="u0T-RT-DQS"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGK-Pn-veR">
-                    <rect key="frame" x="20" y="40" width="335" height="562"/>
+                    <rect key="frame" x="314.5" y="187" width="433.5" height="650"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KQ8-gX-IPM">
-                            <rect key="frame" x="0.0" y="0.0" width="335" height="562"/>
+                            <rect key="frame" x="0.0" y="0.0" width="433.5" height="650"/>
                             <color key="backgroundColor" red="0.87450980389999999" green="1" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTU-Dw-9ta" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="137" y="14" width="60" height="34"/>
+                            <rect key="frame" x="187" y="14" width="60" height="34"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="wci-FZ-jx4"/>
@@ -53,7 +72,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="animation from Kanji Alive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyu-Ex-ZPZ">
-                            <rect key="frame" x="89.5" y="501" width="156.5" height="16"/>
+                            <rect key="frame" x="139" y="589" width="157" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -72,7 +91,7 @@
                     </constraints>
                 </view>
                 <progressView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8QP-Ir-Jng">
-                    <rect key="frame" x="20" y="604" width="335" height="2.5"/>
+                    <rect key="frame" x="314.5" y="841" width="433.5" height="2.5"/>
                     <color key="progressTintColor" red="0.33732746858373264" green="0.41723941851265822" blue="0.071478846113085553" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="trackTintColor" red="0.87450980389999999" green="1" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                 </progressView>
@@ -87,12 +106,32 @@
                 <constraint firstAttribute="bottom" secondItem="8QP-Ir-Jng" secondAttribute="bottom" constant="61.5" id="CSv-Ol-4iw"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="top" secondItem="CRY-GO-HNd" secondAttribute="top" id="Gew-rC-yUJ"/>
                 <constraint firstAttribute="trailing" secondItem="c7K-rh-8f3" secondAttribute="trailing" id="GzU-75-4se"/>
+                <constraint firstItem="8QP-Ir-Jng" firstAttribute="top" secondItem="CRY-GO-HNd" secondAttribute="bottom" constant="173" id="KGv-Jh-acX">
+                    <variation key="widthClass=regular" constant="4"/>
+                </constraint>
                 <constraint firstItem="c7K-rh-8f3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UdE-HR-PQL"/>
+                <constraint firstItem="CRY-GO-HNd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dfQ-Nq-w1Q"/>
                 <constraint firstItem="8QP-Ir-Jng" firstAttribute="top" secondItem="CRY-GO-HNd" secondAttribute="bottom" constant="2" id="g1w-2D-to0"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="leading" secondItem="CRY-GO-HNd" secondAttribute="leading" id="ll7-iv-jGW"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="height" secondItem="CRY-GO-HNd" secondAttribute="height" id="rTc-oK-non"/>
                 <constraint firstItem="TGK-Pn-veR" firstAttribute="width" secondItem="CRY-GO-HNd" secondAttribute="width" id="yad-ui-kTa"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="dfQ-Nq-w1Q"/>
+                    <exclude reference="KGv-Jh-acX"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=regular">
+                <mask key="constraints">
+                    <exclude reference="2LE-Kq-Daj"/>
+                    <exclude reference="881-Ej-liC"/>
+                    <include reference="dfQ-Nq-w1Q"/>
+                    <exclude reference="CSv-Ol-4iw"/>
+                    <include reference="KGv-Jh-acX"/>
+                    <exclude reference="g1w-2D-to0"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
