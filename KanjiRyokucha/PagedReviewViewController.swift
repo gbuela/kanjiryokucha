@@ -270,6 +270,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         alertController.addAction(optionButtonDelete())
         alertController.addAction(optionButtonCancel())
         
+        alertController.popoverPresentationController?.sourceView = currentFront?.optionsButton
+
         present(alertController, animated: true, completion: nil)
     }
     
@@ -282,6 +284,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         alertController.addAction(optionButtonSkip())
         alertController.addAction(optionButtonDelete())
         alertController.addAction(optionButtonCancel())
+        
+        alertController.popoverPresentationController?.sourceView = currentBack?.optionsButton
         
         present(alertController, animated: true, completion: nil)
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -33,7 +33,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJ2-uF-VGx">
-                            <rect key="frame" x="8" y="251.5" width="225.5" height="225.5"/>
+                            <rect key="frame" x="8" y="251.5" width="150" height="150"/>
                             <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="DJ2-uF-VGx" secondAttribute="height" multiplier="1:1" id="pAY-7t-4jY"/>
@@ -52,7 +52,7 @@
                             </variation>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-1T-Akn" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="241.5" y="392" width="201.5" height="75"/>
+                            <rect key="frame" x="166" y="336.5" width="277" height="55"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" label="no"/>
                             <constraints>
@@ -74,7 +74,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3e-L7-iyw" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="241.5" y="261.5" width="201.5" height="75"/>
+                            <rect key="frame" x="166" y="261.5" width="277" height="55"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" label="yes"/>
                             <constraints>
@@ -96,10 +96,10 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SJc-5n-7rS">
-                            <rect key="frame" x="8" y="497" width="435" height="50"/>
+                            <rect key="frame" x="8" y="421.5" width="435" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-Ve-UCv" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
                                     <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="Nzd-kr-Nkh">
@@ -118,7 +118,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovc-78-r7W" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                    <rect key="frame" x="117" y="0.0" width="60" height="50"/>
+                                    <rect key="frame" x="120.5" y="0.0" width="50" height="44"/>
                                     <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="1fe-NF-DAh">
@@ -134,7 +134,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNk-RQ-8Gc" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                    <rect key="frame" x="234" y="3" width="84" height="44"/>
+                                    <rect key="frame" x="240.5" y="4.5" width="74" height="35"/>
                                     <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="RFs-Wj-SjL">
@@ -151,7 +151,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9V-En-UcJ" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                    <rect key="frame" x="375" y="0.0" width="60" height="50"/>
+                                    <rect key="frame" x="385" y="0.0" width="50" height="44"/>
                                     <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="50p-su-Yya">
@@ -173,7 +173,7 @@
                             </constraints>
                         </stackView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tkf-lp-AZA">
-                            <rect key="frame" x="203" y="42" width="240" height="202"/>
+                            <rect key="frame" x="186" y="42" width="257" height="202"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
