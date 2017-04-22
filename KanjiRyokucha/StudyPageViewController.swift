@@ -71,7 +71,14 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
             containerView.addConstraints([height, width])
         }
         
-        toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+        if mode == .study || mode == .studyLearned,
+            splitViewController?.isCollapsed == false,
+            splitViewController?.displayMode == .allVisible {
+            toolbarHeightConstraint.constant = 0
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
+        } else {
+            toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+        }
 
         if Global.isGuest() {
             showAlert("Sorry!\nStudy page is not avilable in Guest mode")
