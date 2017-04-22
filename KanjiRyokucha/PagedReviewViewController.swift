@@ -386,7 +386,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
         player = nil
     }
-   
 
     private func optionButtonStudyPage() -> UIAlertAction {
         return UIAlertAction(title: "Study page", style: .default, handler: { [weak self] (action) -> Void in
@@ -397,11 +396,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 let scalar = UnicodeScalar(card.cardId),
                 let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
             
-            let studyStoryboard = UIStoryboard(name: "Study", bundle: nil)
-            let studyPageVC = studyStoryboard.instantiateViewController(withIdentifier: "studyDetail") as! StudyPageViewController
-
             let urlString = "http://kanji.koohii.com/study/kanji/" + encoded
-            studyPageVC.setupInReview(urlString: urlString, delegate: nil)
+            let studyPageVC = StudyPageViewController.instanceForReview(urlString: urlString)
             studyPageVC.title = card.keyword
             let navController = UINavigationController(rootViewController: studyPageVC)
             sself.present(navController, animated: true, completion: nil)

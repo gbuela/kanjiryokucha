@@ -32,10 +32,26 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
     var mode: StudyPageMode = .study
     var isPreviewing: MutableProperty<Bool> = MutableProperty(false)
     
-    public func setupInReview(urlString: String, delegate: StudyPageDelegate?) {
-        self.urlToOpen = urlString
-        self.mode = .review
-        self.delegate = delegate
+    private class func loadFromStoryboard() -> StudyPageViewController {
+        let studyStoryboard = UIStoryboard(name: "Study", bundle: nil)
+        let instance = studyStoryboard.instantiateViewController(withIdentifier: "studyDetail") as! StudyPageViewController
+        return instance
+    }
+    
+    public class func instanceForReview(urlString: String) -> StudyPageViewController {
+        let instance = loadFromStoryboard()
+        instance.urlToOpen = urlString
+        instance.mode = .review
+        return instance
+    }
+
+    public class func instanceForStudy(urlString: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) -> StudyPageViewController {
+        let instance = loadFromStoryboard()
+        instance.setupInStudy(urlString: urlString,
+                              isLearned: isLearned,
+                              indexPath: indexPath,
+                              delegate: delegate)
+        return instance
     }
     
     public func setupInStudy(urlString: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) {

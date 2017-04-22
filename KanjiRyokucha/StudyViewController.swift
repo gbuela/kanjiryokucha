@@ -372,11 +372,10 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             else { return nil }
         
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
-        let studyStoryboard = UIStoryboard(name: "Study", bundle: nil)
-        let studyPageVC = studyStoryboard.instantiateViewController(withIdentifier: "studyDetail") as! StudyPageViewController
-
-        studyPageVC.setupInStudy(urlString: url, isLearned: entry.learned, indexPath: indexPath, delegate: self)
-        return studyPageVC
+        return StudyPageViewController.instanceForStudy(urlString: url,
+                                                        isLearned: entry.learned,
+                                                        indexPath: indexPath,
+                                                        delegate: self)
     }
     
     // MARK: - Previewing
