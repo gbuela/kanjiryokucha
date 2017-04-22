@@ -20,11 +20,12 @@ protocol StudyPageDelegate: class {
     func studyPageMarkLearnedTapped(indexPath: IndexPath)
 }
 
-class StudyPageViewController: UIViewController {
+class StudyPageViewController: UIViewController, WKNavigationDelegate {
     
     var urlToOpen: String?
     weak var delegate: StudyPageDelegate?
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint!
     var indexPath: IndexPath?
@@ -42,6 +43,8 @@ class StudyPageViewController: UIViewController {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(okTapped))
         }
         
+        activityIndicator.isHidden = true
+        
         if let urlToOpen = urlToOpen,
             let url = URL(string: urlToOpen),
             !Global.isGuest() {
@@ -52,10 +55,13 @@ class StudyPageViewController: UIViewController {
                     request.addValue(cookie, forHTTPHeaderField: "Cookie")
                 }
             }
- 
+            
+            activityIndicator.isHidden = false
+
             let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
             webView.load(request)
-            
+            webView.navigationDelegate = self
+            webView.isHidden = true
             containerView.addSubview(webView)
             webView.scrollView.zoomScale = 2.0
 
@@ -92,5 +98,9 @@ class StudyPageViewController: UIViewController {
             let url = URL(string: urlToOpen) {
             UIApplication.shared.openURL(url)
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webView.isHidden = false
     }
 }

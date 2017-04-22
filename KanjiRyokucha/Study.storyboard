@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -158,7 +159,26 @@
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5E-vS-gUi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="621"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanjibkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Aeb-MW-daa">
+                                        <rect key="frame" x="37" y="161" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="MpR-gq-xDo"/>
+                                            <constraint firstAttribute="width" secondItem="Aeb-MW-daa" secondAttribute="height" multiplier="1:1" id="yxr-pb-f4u"/>
+                                        </constraints>
+                                    </imageView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zab-wo-9MK">
+                                        <rect key="frame" x="169" y="292" width="37" height="37"/>
+                                        <color key="color" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zab-wo-9MK" firstAttribute="centerX" secondItem="Z5E-vS-gUi" secondAttribute="centerX" id="04O-bv-wKN"/>
+                                    <constraint firstItem="zab-wo-9MK" firstAttribute="centerY" secondItem="Z5E-vS-gUi" secondAttribute="centerY" id="JID-Xk-sqp"/>
+                                    <constraint firstItem="Aeb-MW-daa" firstAttribute="centerX" secondItem="Z5E-vS-gUi" secondAttribute="centerX" id="RTP-AS-75y"/>
+                                    <constraint firstItem="Aeb-MW-daa" firstAttribute="centerY" secondItem="Z5E-vS-gUi" secondAttribute="centerY" id="cTr-Po-6O7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -175,6 +195,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2SW-wf-h8m"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="zab-wo-9MK" id="DQh-Az-VNV"/>
                         <outlet property="containerView" destination="Z5E-vS-gUi" id="naz-w0-ZVt"/>
                         <outlet property="toolbar" destination="CV7-EN-Pb1" id="rqp-wR-pPe"/>
                         <outlet property="toolbarHeightConstraint" destination="bMZ-ZY-8eF" id="LsU-Vo-lrR"/>
@@ -218,8 +239,9 @@
     </scenes>
     <resources>
         <image name="circle" width="36" height="36"/>
+        <image name="kanjibkg.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dSo-jb-Oew"/>
+        <segue reference="hje-NF-JIQ"/>
     </inferredMetricsTieBreakers>
 </document>
