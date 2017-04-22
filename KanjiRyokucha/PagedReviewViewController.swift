@@ -46,6 +46,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     var opacity: CGFloat = 1.0
     var swiped = false
     
+    var isGradientSetup = false
+    
     let strokeTip = TipView(.strokeOrder)
     
     var player: AVPlayer?
@@ -59,8 +61,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         
         view.backgroundColor = .ryokuchaTranslucent
         
-        setupGradient()
-        
         videoPanel.isHidden = true
         
         if let reviewCount = reviewEngine?.toReviewCount.value {
@@ -69,13 +69,20 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         showPage()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupGradient()
+    }
+    
     private func setupGradient() {
+        guard !isGradientSetup else { return }
         let gradient = CAGradientLayer()
         gradient.frame = gradientView.bounds
         gradient.colors = [UIColor.ryokuchaDark.withAlphaComponent(0.0).cgColor,
                            UIColor.ryokuchaDark.withAlphaComponent(1.0).cgColor]
         gradient.locations = [0.0, 1.0]
         gradientView.layer.insertSublayer(gradient, at: 0)
+        isGradientSetup = true
     }
 
     private func pageForward() {
