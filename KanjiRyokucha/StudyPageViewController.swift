@@ -32,6 +32,19 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
     var mode: StudyPageMode = .study
     var isPreviewing: MutableProperty<Bool> = MutableProperty(false)
     
+    public func setupInReview(urlString: String, delegate: StudyPageDelegate?) {
+        self.urlToOpen = urlString
+        self.mode = .review
+        self.delegate = delegate
+    }
+    
+    public func setupInStudy(urlString: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) {
+        self.urlToOpen = urlString
+        self.mode = isLearned ? .studyLearned : .study
+        self.indexPath = indexPath
+        self.delegate = delegate
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

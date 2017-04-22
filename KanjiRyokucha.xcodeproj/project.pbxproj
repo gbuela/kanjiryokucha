@@ -59,7 +59,6 @@
 		C409A1CE1E86011E006EEE77 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */; };
 		C409A1CF1E86011E006EEE77 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C409A1D01E86011E006EEE77 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
-		C409A1D11E86011E006EEE77 /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
 		C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */; };
 		C409A1D51E86011E006EEE77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F213BE1DEA532900EF5214 /* Assets.xcassets */; };
@@ -105,15 +104,12 @@
 		C43DCC3B1E511CCA006F2C0C /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */; };
 		C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */; };
 		C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
-		C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C43DCC461E57E4C1006F2C0C /* StudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC441E57E4C1006F2C0C /* StudyCell.swift */; };
 		C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */; };
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
 		C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
 		C44F752C1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
-		C44F752D1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
-		C44F752E1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
 		C44F75321E8F213300E00AD9 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C44F75331E8F213300E00AD9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C44F75341E8F213300E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
@@ -164,10 +160,8 @@
 		C44F75671E8F213300E00AD9 /* ReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */; };
 		C44F75681E8F213300E00AD9 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C44F75691E8F213300E00AD9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */; };
-		C44F756A1E8F213300E00AD9 /* StudyPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */; };
 		C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
 		C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4FFBEEA1E05CC4A0061CB18 /* CredentialsViewController.xib */; };
-		C44F756E1E8F213300E00AD9 /* StudyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */; };
 		C44F756F1E8F213300E00AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F213BE1DEA532900EF5214 /* Assets.xcassets */; };
 		C44F75701E8F213300E00AD9 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C44F75711E8F213300E00AD9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE711E7F288B00A34FD9 /* AboutViewController.xib */; };
@@ -293,13 +287,11 @@
 		C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyEntry.swift; sourceTree = "<group>"; };
 		C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyPageViewController.swift; sourceTree = "<group>"; };
-		C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyPageViewController.xib; sourceTree = "<group>"; };
 		C43DCC441E57E4C1006F2C0C /* StudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCell.swift; sourceTree = "<group>"; };
 		C43DCC451E57E4C1006F2C0C /* StudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCell.xib; sourceTree = "<group>"; };
 		C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatusRequest.swift; sourceTree = "<group>"; };
 		C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
-		C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyViewController.xib; sourceTree = "<group>"; };
 		C44F757F1E8F213300E00AD9 /* KanjiRyokucha-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44F75811E8F218D00E00AD9 /* Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Staging-Info.plist"; sourceTree = "<group>"; };
 		C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoCell.swift; sourceTree = "<group>"; };
@@ -552,7 +544,6 @@
 				C43DCC281E4D4828006F2C0C /* ReviewViewController.swift */,
 				C43DCC291E4D4828006F2C0C /* ReviewViewController.xib */,
 				C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */,
-				C43DCC411E57D6B4006F2C0C /* StudyPageViewController.xib */,
 				C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */,
 				C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */,
 				C4EF331A1E64EB37004F67C4 /* SettingsViewController.xib */,
@@ -561,7 +552,6 @@
 				C458FE701E7F288A00A34FD9 /* AboutViewController.swift */,
 				C458FE711E7F288B00A34FD9 /* AboutViewController.xib */,
 				C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */,
-				C44F752A1E8DDEDE00E00AD9 /* StudyViewController.xib */,
 				C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */,
 				C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */,
 				C4C0AE411EA98E6E006CF493 /* Study.storyboard */,
@@ -726,12 +716,10 @@
 				C409A1CF1E86011E006EEE77 /* EmptyStudyCell.xib in Resources */,
 				C409A1D01E86011E006EEE77 /* SettingsViewController.xib in Resources */,
 				C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */,
-				C409A1D11E86011E006EEE77 /* StudyPageViewController.xib in Resources */,
 				C4C0AE431EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
 				C48926401E9978F600E79945 /* kanji100.png in Resources */,
 				C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */,
-				C44F752E1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,
 				C409A1D51E86011E006EEE77 /* Assets.xcassets in Resources */,
 				C409A1D61E86011E006EEE77 /* SRSViewController.xib in Resources */,
 				C409A1D71E86011E006EEE77 /* AboutViewController.xib in Resources */,
@@ -758,12 +746,10 @@
 				C44F75681E8F213300E00AD9 /* EmptyStudyCell.xib in Resources */,
 				C44F75691E8F213300E00AD9 /* SettingsViewController.xib in Resources */,
 				C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */,
-				C44F756A1E8F213300E00AD9 /* StudyPageViewController.xib in Resources */,
 				C4C0AE441EA98E6F006CF493 /* Study.storyboard in Resources */,
 				C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */,
 				C48926411E9978F600E79945 /* kanji100.png in Resources */,
 				C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */,
-				C44F756E1E8F213300E00AD9 /* StudyViewController.xib in Resources */,
 				C44F756F1E8F213300E00AD9 /* Assets.xcassets in Resources */,
 				C44F75701E8F213300E00AD9 /* SRSViewController.xib in Resources */,
 				C44F75711E8F213300E00AD9 /* AboutViewController.xib in Resources */,
@@ -790,12 +776,10 @@
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
 				C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */,
 				C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */,
-				C43DCC431E57D6B4006F2C0C /* StudyPageViewController.xib in Resources */,
 				C4C0AE421EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
 				C489263F1E9978F600E79945 /* kanji100.png in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
-				C44F752D1E8DDEDE00E00AD9 /* StudyViewController.xib in Resources */,
 				C4F213BF1DEA532900EF5214 /* Assets.xcassets in Resources */,
 				C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */,
 				C458FE731E7F288B00A34FD9 /* AboutViewController.xib in Resources */,
