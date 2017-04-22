@@ -285,10 +285,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REFRESH", style: .plain, target: nil, action: nil)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "ALL LEARNED", style: .plain, target: self, action: #selector(learnedTapped))
-        
-        let nib = UINib(nibName: "StudyCell", bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: studyCellId)
-        
+
         emptyStudyCell = createEmptyCell(text: "no kanji to learn")
         
         if traitCollection.forceTouchCapability == .available {
@@ -366,6 +363,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    private func setup(detailController: StudyPageViewController, urlString: String, isLearned: Bool, indexPath: IndexPath) {
+        detailController.urlToOpen = urlString
+        detailController.mode = isLearned ? .studyLearned : .study
+        detailController.indexPath = indexPath
+        detailController.delegate = self
+    }
+    
     private func detailViewController(for entry: StudyEntry, indexPath: IndexPath) -> StudyPageViewController? {
         guard let scalar = UnicodeScalar(entry.cardId),
             let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
@@ -373,10 +377,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
         let vc = StudyPageViewController()
-        vc.urlToOpen = url
-        vc.mode = entry.learned ? .studyLearned : .study
-        vc.indexPath = indexPath
-        vc.delegate = self
+        setup(detailController: vc, urlString: url, isLearned: entry.learned, indexPath: indexPath)
         return vc
     }
     
@@ -472,14 +473,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let idx = indexPath.row - 1
         return engine.studyEntries().value[idx]
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let entry = self.entry(forIndexPath: indexPath),
-            let vc = detailViewController(for: entry, indexPath: indexPath) else { return }
-        
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+
     // MARK: - Events
     
     func studyPageMarkLearnedTapped(indexPath: IndexPath) {
@@ -516,5 +510,20 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             entry.learned = learned
             entry.synced = !learned
         }
+    }
+    
+    // MARK: - Storyboard
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let cell = sender as? StudyCell,
+            let indexPath = tableView.indexPath(for: cell),
+            let entry = self.entry(forIndexPath: indexPath),
+            let scalar = UnicodeScalar(entry.cardId),
+            let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+            let navigationVC = segue.destination as? UINavigationController,
+            let studyPageVC = navigationVC.viewControllers[0] as? StudyPageViewController else { return }
+        
+        let url = "http://kanji.koohii.com/study/kanji/" + encoded
+        setup(detailController: studyPageVC, urlString: url, isLearned: entry.learned, indexPath: indexPath)
     }
 }

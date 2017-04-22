@@ -24,20 +24,22 @@ struct AppController {
     
     let window = UIWindow(frame: UIScreen.main.bounds)
     
+    let studyStoryboard = UIStoryboard(name: "Study", bundle: nil)
     let reviewEngine = SRSReviewEngine()
     let studyEngine = StudyEngine()
     let srsViewController = SRSViewController()
-    let studyViewController = StudyViewController()
     let settingsViewController = SettingsViewController()
 
     let tabBarController = UITabBarController()
     
     func start(username: String) {
+        let studySplitVC = studyStoryboard.instantiateViewController(withIdentifier: "studySplit") as! UISplitViewController
+        let studyNav = studySplitVC.viewControllers[0] as! UINavigationController
+        let studyMaster = studyNav.viewControllers[0] as! StudyViewController
+        
         srsViewController.engine = reviewEngine
         studyEngine.reviewEngine = reviewEngine
-        studyViewController.engine = studyEngine
-        
-        let studyNav = UINavigationController(rootViewController: studyViewController)
+        studyMaster.engine = studyEngine
         
         settingsViewController.username = username
         settingsViewController.global = reviewEngine.global
@@ -47,7 +49,7 @@ struct AppController {
 
         let tabs: [TabModel] = [
             TabModel(title: "Review", imageName: "tabreview", viewController: srsViewController),
-            TabModel(title: "Study", imageName: "tabstudy", viewController: studyNav),
+            TabModel(title: "Study", imageName: "tabstudy", viewController: studySplitVC),
             TabModel(title: "Free review", imageName: "tabfree", viewController: FreeReviewViewController()),
             TabModel(title: "Settings", imageName: "tabsettings", viewController: settingsNav)
         ]
