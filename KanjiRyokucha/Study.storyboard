@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-re-820" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                <rect key="frame" x="107" y="4" width="160" height="55"/>
+                                <rect key="frame" x="107" y="8" width="160" height="55"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="v74-eD-eAg"/>
@@ -52,13 +52,13 @@
                                 <state key="normal" title="submit changes"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06I-Ib-T2Q">
-                                <rect key="frame" x="107" y="38" width="160" height="21"/>
+                                <rect key="frame" x="107" y="42" width="160" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="in5-4D-sgH">
-                                <rect key="frame" x="0.0" y="67" width="375" height="600"/>
+                                <rect key="frame" x="0.0" y="71" width="375" height="596"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="studyCellId" rowHeight="76" id="xVa-8w-Fjb" customClass="StudyCell" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -111,7 +111,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1ap-re-820" firstAttribute="top" secondItem="ach-qC-mSk" secondAttribute="topMargin" constant="4" id="0Yy-Ch-vKG"/>
+                            <constraint firstItem="1ap-re-820" firstAttribute="top" secondItem="ach-qC-mSk" secondAttribute="topMargin" constant="8" id="0Yy-Ch-vKG"/>
                             <constraint firstItem="1ap-re-820" firstAttribute="centerX" secondItem="ach-qC-mSk" secondAttribute="centerX" id="7bn-2G-dX3"/>
                             <constraint firstAttribute="trailing" secondItem="in5-4D-sgH" secondAttribute="trailing" id="EVQ-6c-7mU"/>
                             <constraint firstItem="Gu6-TV-TDs" firstAttribute="top" secondItem="in5-4D-sgH" secondAttribute="bottom" id="Lxy-nT-yUc"/>
@@ -154,6 +154,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ifa-xX-X3V"/>
                                     <barButtonItem title="OPEN IN SAFARI" id="9aj-cU-3rn">
                                         <color key="tintColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="openInSafari" destination="XSs-So-ChN" id="j4g-uQ-dd1"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -242,6 +245,6 @@
         <image name="kanjibkg.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hje-NF-JIQ"/>
+        <segue reference="dSo-jb-Oew"/>
     </inferredMetricsTieBreakers>
 </document>
