@@ -121,6 +121,7 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
     private let viewModel = FreeViewModel()
     private var reviewViewController: ReviewViewController?
 
+    @IBOutlet weak var formView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var fromField: UITextField!
     @IBOutlet weak var toField: UITextField!
@@ -158,7 +159,6 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
                                         action: viewModel.startAction!,
                                         input: false)
         
-        
         if Global.isGuest() {
             startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
                 self?.showAlert("Sorry!\nFree reviews not avilable in Guest mode")
@@ -184,6 +184,7 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
                     vc.removeFromParentViewController()
                     self?.reviewViewController = nil
                     self?.reviewContainer.isHidden = true
+                    self?.formView.isHidden = false
                 }
                 return
             }
@@ -196,6 +197,7 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
                 sself.reviewContainer.addSubview(rvc.view)
                 rvc.didMove(toParentViewController: sself)
                 self?.reviewContainer.isHidden = false
+                self?.formView.isHidden = true
             }
         }
         
