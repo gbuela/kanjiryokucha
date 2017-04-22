@@ -255,7 +255,7 @@ class StudyEngine {
 }
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate {
+    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate, UISplitViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
@@ -295,6 +295,9 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         wireUp()
         engine.triggerStudyEntries()
         
+        splitViewController?.preferredDisplayMode = .allVisible
+        splitViewController?.delegate = self
+ 
         studyPhaseTip.show(control: submitButton, parent: view)
     }
 
@@ -525,5 +528,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
         setup(detailController: studyPageVC, urlString: url, isLearned: entry.learned, indexPath: indexPath)
+    }
+    
+    // MARK: - Split controller delegate
+    
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }
