@@ -8,7 +8,7 @@ def shared_pods
     pod 'PKHUD', '~> 4.0'
     pod 'RealmSwift'
     pod 'SwiftRater'
-    pod 'EasyTipView', '~> 1.0.2'
+    pod 'EasyTipView', :path => '../../EasyTipView' # '~> 1.0.2'
     pod 'Fabric'
     pod 'Crashlytics'
 end

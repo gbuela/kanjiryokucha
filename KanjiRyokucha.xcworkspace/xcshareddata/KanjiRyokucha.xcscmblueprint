@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B90D33EEAB02FF9005830CC8A044352A847DE925",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "60BAB6C3E344D36632C6AFB61BD94A19E64E9717" : 9223372036854775807,
+    "B90D33EEAB02FF9005830CC8A044352A847DE925" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "923527CA-7889-4467-967D-11C8EA37EDCA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "60BAB6C3E344D36632C6AFB61BD94A19E64E9717" : "..\/EasyTipView",
+    "B90D33EEAB02FF9005830CC8A044352A847DE925" : "kanjiryokucha\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "KanjiRyokucha",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "KanjiRyokucha.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:gbuela\/EasyTipView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60BAB6C3E344D36632C6AFB61BD94A19E64E9717"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:gbuela\/kanjiryokucha.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B90D33EEAB02FF9005830CC8A044352A847DE925"
+    }
+  ]
+}

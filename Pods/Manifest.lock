@@ -9,18 +9,18 @@ PODS:
     - ReactiveSwift (~> 1.1)
   - ReactiveSwift (1.1.1):
     - Result (~> 3.2)
-  - Realm (2.5.1):
-    - Realm/Headers (= 2.5.1)
-  - Realm/Headers (2.5.1)
-  - RealmSwift (2.5.1):
-    - Realm (= 2.5.1)
+  - Realm (2.6.2):
+    - Realm/Headers (= 2.6.2)
+  - Realm/Headers (2.6.2)
+  - RealmSwift (2.6.2):
+    - Realm (= 2.6.2)
   - Result (3.2.1)
-  - SwiftRater (0.1.2)
+  - SwiftRater (0.1.4)
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
   - Crashlytics
-  - EasyTipView (~> 1.0.2)
+  - EasyTipView (from `../../EasyTipView`)
   - Fabric
   - Gloss (~> 1.1)
   - PKHUD (~> 4.0)
@@ -30,6 +30,8 @@ DEPENDENCIES:
   - UIColor_Hex_Swift (~> 3.0.2)
 
 EXTERNAL SOURCES:
+  EasyTipView:
+    :path: "../../EasyTipView"
   ReactiveCocoa:
     :branch: master
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
@@ -47,12 +49,12 @@ SPEC CHECKSUMS:
   PKHUD: 957ce2a68b3c97a51839b30216120c1dbc0c3a78
   ReactiveCocoa: b7830510dff15952f65a648a544fb89f0c0c0f63
   ReactiveSwift: 2489549e3231a6ff68ec99f3d320bb264f10ba0a
-  Realm: 32f86104d37c8521f864d4274050b38ba6190733
-  RealmSwift: f719e7511c902b8908593e8f143f59e47931bdb6
+  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
+  RealmSwift: d161a80f96cb91ae88391a7d5a9cf08024a7bc8e
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
-  SwiftRater: a9b8b10f35edb3945402645430e370220025b68b
+  SwiftRater: 45d01f4dcef9039d9fd47f63815a9901fd3d14ea
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: db95c9ccd7bf97ad91c144f6dd8e0bc83576333f
+PODFILE CHECKSUM: 4b45c793ad1a3c5e34df6f4916dee058958b98b3
 
 COCOAPODS: 1.1.1
