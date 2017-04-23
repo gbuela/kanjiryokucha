@@ -33,7 +33,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="u6p-5U-MRq" userLabel="New Stack View">
-                    <rect key="frame" x="115" y="0.0" width="90" height="125"/>
+                    <rect key="frame" x="115" y="-10" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61K-rn-FdX" userLabel="New view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="95"/>
@@ -79,7 +79,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-nf-C0G" userLabel="Due Stack View">
-                    <rect key="frame" x="-25" y="0.0" width="90" height="125"/>
+                    <rect key="frame" x="-15" y="-10" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKn-E9-G3C" userLabel="Due view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="95"/>
@@ -125,7 +125,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9OS-pm-Jhm" userLabel="Failed Stack View">
-                    <rect key="frame" x="255" y="0.0" width="90" height="125"/>
+                    <rect key="frame" x="245" y="-10" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dg-30-VUX" userLabel="Failed view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="125"/>
@@ -192,7 +192,7 @@
                     <color key="color" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSJ-QZ-DOD" userLabel="Review container">
-                    <rect key="frame" x="20" y="130" width="280" height="350"/>
+                    <rect key="frame" x="20" y="120" width="280" height="350"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="338" id="6xi-8r-KEt"/>
                         <constraint firstAttribute="height" constant="350" id="ypg-Ku-32Z" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -219,7 +219,7 @@
             <constraints>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="0NH-1P-cRT"/>
                 <constraint firstAttribute="trailing" secondItem="aSJ-QZ-DOD" secondAttribute="trailing" constant="20" symbolic="YES" id="2DN-J1-3iM"/>
-                <constraint firstItem="9OS-pm-Jhm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5KS-da-1aj"/>
+                <constraint firstItem="9OS-pm-Jhm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="5KS-da-1aj"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="top" id="6WS-DB-Geh"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="height" secondItem="BWI-X9-MOk" secondAttribute="height" id="AnR-bY-50A"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="top" secondItem="u6p-5U-MRq" secondAttribute="bottom" constant="5" id="F22-W7-SpJ"/>
@@ -233,7 +233,7 @@
                     </userDefinedRuntimeAttributes>
                 </constraint>
                 <constraint firstItem="u6p-5U-MRq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Opj-Ie-zix"/>
-                <constraint firstItem="u6p-5U-MRq" firstAttribute="leading" secondItem="kTh-nf-C0G" secondAttribute="trailing" constant="50" id="PSy-x7-8DR" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                <constraint firstItem="u6p-5U-MRq" firstAttribute="leading" secondItem="kTh-nf-C0G" secondAttribute="trailing" constant="40" id="PSy-x7-8DR" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
                             <real key="value" value="20"/>
@@ -243,15 +243,15 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </constraint>
-                <constraint firstItem="kTh-nf-C0G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YAZ-Wl-1hS"/>
+                <constraint firstItem="kTh-nf-C0G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="YAZ-Wl-1hS"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aOF-He-g4M"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iAa-PJ-FEz"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="leading" secondItem="BWI-X9-MOk" secondAttribute="leading" id="vlt-yW-txb"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w36-pw-nKg"/>
-                <constraint firstItem="u6p-5U-MRq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wS5-wG-7gw"/>
+                <constraint firstItem="u6p-5U-MRq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="wS5-wG-7gw"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="width" secondItem="BWI-X9-MOk" secondAttribute="width" id="yJY-TV-soW"/>
-                <constraint firstItem="9OS-pm-Jhm" firstAttribute="leading" secondItem="u6p-5U-MRq" secondAttribute="trailing" constant="50" id="zSK-lA-yOg" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
+                <constraint firstItem="9OS-pm-Jhm" firstAttribute="leading" secondItem="u6p-5U-MRq" secondAttribute="trailing" constant="40" id="zSK-lA-yOg" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
                             <real key="value" value="20"/>
