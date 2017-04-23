@@ -74,6 +74,11 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         
         activityIndicator.isHidden = true
         
+        if let _ = urlToOpen,
+            Global.isGuest() {
+            showAlert("Sorry!\nStudy page is not avilable in Guest mode")
+        }
+        
         if let urlToOpen = urlToOpen,
             let url = URL(string: urlToOpen),
             !Global.isGuest() {
@@ -107,10 +112,6 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
         } else {
             toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
-        }
-
-        if Global.isGuest() {
-            showAlert("Sorry!\nStudy page is not avilable in Guest mode")
         }
     }
     
