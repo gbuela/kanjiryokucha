@@ -43,12 +43,16 @@ extension TipType {
 }
 
 class TipView : EasyTipViewDelegate {
+    
+    static var alwaysShow = false
+    
     private var tip: EasyTipView?
     private var type: TipType?
     private var control: UIControl?
     
     private var showable: Bool {
         guard let tipType = type else { return false }
+        guard !TipView.alwaysShow else { return true }
         let shown = UserDefaults.standard.bool(forKey: tipType.key())
         return !shown
     }
@@ -97,6 +101,10 @@ class TipView : EasyTipViewDelegate {
         tip?.dismiss()
         tip = nil
         control = nil
+    }
+    
+    func rearrange() {
+        tip?.rearrange()
     }
     
     @objc private func controlTapped() {

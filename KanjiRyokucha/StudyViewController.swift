@@ -300,6 +300,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
  
         studyPhaseTip.show(control: submitButton, parent: view)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        studyPhaseTip.rearrange()
+    }
 
     private func createEmptyCell(text: String) -> EmptyStudyCell {
         let cell = Bundle.main.loadNibNamed("EmptyStudyCell", owner: self, options: nil)!.first as! EmptyStudyCell

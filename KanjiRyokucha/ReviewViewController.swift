@@ -131,6 +131,12 @@ class ReviewViewController: UIViewController, ARPieChartDataSource, UITabBarCont
         
         reviewTip.show(control: reviewButton, parent: view)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        reviewTip.rearrange()
+        studyTip.rearrange()
+    }
 
     func setUp() {
         performanceChart.showDescriptionText = true

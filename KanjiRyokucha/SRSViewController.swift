@@ -593,9 +593,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // TODO: reposition when EasyTipView adds ability to call arrange()
-        // The first time this is invoked, the button's position is usually not reported correctly
-        srsTip.show(control: dueButton, parent: view)
+        srsTip.rearrange()
+        submitTip.rearrange()
     }
     
     func setUp() {
@@ -603,9 +602,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
             let view = self.topButtonView(for: reviewType)
             view.roundedCorners()
         }
-        
         reviewContainer.roundedCorners()
         self.view.backgroundColor = .ryokuchaFaint
+    
+        srsTip.show(control: dueButton, parent: view)
     }
     
     func wireUp() {        
@@ -666,6 +666,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
                     vc.removeFromParentViewController()
                     self?.reviewViewController = nil
                     self?.reviewContainer.isHidden = true
+                    self?.submitTip.dismiss()
                 }
                 return
             }
