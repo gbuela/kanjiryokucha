@@ -45,17 +45,19 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         return instance
     }
 
-    public class func instanceForStudy(urlString: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) -> StudyPageViewController {
+    public class func instanceForStudy(urlString: String, keyword: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) -> StudyPageViewController {
         let instance = loadFromStoryboard()
         instance.setupInStudy(urlString: urlString,
+                              keyword: keyword,
                               isLearned: isLearned,
                               indexPath: indexPath,
                               delegate: delegate)
         return instance
     }
     
-    public func setupInStudy(urlString: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) {
+    public func setupInStudy(urlString: String, keyword: String, isLearned: Bool, indexPath: IndexPath, delegate: StudyPageDelegate?) {
         self.urlToOpen = urlString
+        self.title = keyword
         self.mode = isLearned ? .studyLearned : .study
         self.indexPath = indexPath
         self.delegate = delegate

@@ -378,6 +378,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
         return StudyPageViewController.instanceForStudy(urlString: url,
+                                                        keyword: entry.keyword,
                                                         isLearned: entry.learned,
                                                         indexPath: indexPath,
                                                         delegate: self)
@@ -526,7 +527,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let studyPageVC = navigationVC.viewControllers[0] as? StudyPageViewController else { return }
         
         let url = "http://kanji.koohii.com/study/kanji/" + encoded
-        studyPageVC.setupInStudy(urlString: url, isLearned: entry.learned, indexPath: indexPath, delegate: self)
+        studyPageVC.setupInStudy(urlString: url,
+                                 keyword: entry.keyword,
+                                 isLearned: entry.learned,
+                                 indexPath: indexPath,
+                                 delegate: self)
     }
     
     // MARK: - Split controller delegate
