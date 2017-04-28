@@ -12,13 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SRSViewController" customModule="KanjiRyokucha" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicator" destination="Uij-v0-a4Q" id="nTU-wa-pFT"/>
                 <outlet property="dueButton" destination="Us4-8R-olo" id="tHF-1x-JGq"/>
                 <outlet property="duePadding" destination="ftI-Kz-SFG" id="eiz-BA-PvJ"/>
                 <outlet property="dueView" destination="GKn-E9-G3C" id="xE1-ZR-Qa7"/>
                 <outlet property="failedButton" destination="qzQ-Em-Qkj" id="KcM-MW-UCv"/>
                 <outlet property="failedPadding" destination="gUN-le-5jg" id="0kt-9Z-BvR"/>
                 <outlet property="failedView" destination="2dg-30-VUX" id="O6t-F2-Ehs"/>
+                <outlet property="mainActivityIndicator" destination="Uij-v0-a4Q" id="2TA-UO-34t"/>
                 <outlet property="newButton" destination="BgW-lN-6Bb" id="o42-Q3-rZl"/>
                 <outlet property="newPadding" destination="qM6-Xh-pnm" id="Bjs-fW-1ti"/>
                 <outlet property="newView" destination="61K-rn-FdX" id="Lh7-ZJ-4kZ"/>

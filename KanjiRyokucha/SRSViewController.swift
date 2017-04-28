@@ -271,7 +271,7 @@ class SRSReviewEngine: ReviewEngineProtocol {
             self?.submitChunk()
         }
 
-        isSubmitting <~ chunkSubmitProducers.map { $0.count > 1 }
+        isSubmitting <~ chunkSubmitProducers.map { $0.count > 0 }
 
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         
@@ -526,7 +526,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     
     @IBOutlet weak var reviewContainer: UIView!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var mainActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var dueView: UIView!
     @IBOutlet weak var newView: UIView!
     @IBOutlet weak var failedView: UIView!
@@ -635,7 +635,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
                 })
             }
 
-            self.activityIndicator.reactive.isAnimating <~ setup.action.isExecuting
+            self.mainActivityIndicator.reactive.isAnimating <~ setup.action.isExecuting
 
             button.reactive.title(for: .normal) <~ setup.actualCount.map { "\($0)" }
             
@@ -690,7 +690,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
                                         action: engine.statusAction,
                                         input: ())
 
-        activityIndicator.reactive.isAnimating <~ engine.statusAction.isExecuting
+        mainActivityIndicator.reactive.isAnimating <~ engine.statusAction.isExecuting
         
         engine.statusAction.uiReact { [weak self] response in
             if let model = response.model as? GetStatusModel,
