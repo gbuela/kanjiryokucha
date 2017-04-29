@@ -45,6 +45,7 @@ class Global : Object {
     
     static var username = ""
     static let requestDelaySeconds = 1.0
+    static var latestRequestDate: Date?
     
     static func isGuest() -> Bool {
         return username == guestUsername

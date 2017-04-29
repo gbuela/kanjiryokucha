@@ -73,6 +73,7 @@ extension KoohiiRequest {
 }
 
 extension KoohiiRequest {
+    
     func requestProducer() -> SignalProducer<Response, FetchError>? {
         
         guard !Global.isGuest() else {
@@ -87,6 +88,8 @@ extension KoohiiRequest {
             let session = URLSession.init(configuration: .default,
                                           delegate: NoRedirectSessionDelegate(),
                                           delegateQueue: .main)
+            
+            Global.latestRequestDate = Date()
             
             let task = session.dataTask(with: rq) { (data, response, error) -> Void in
                 
@@ -103,8 +106,18 @@ extension KoohiiRequest {
                         let statResult = StatResult(json: json),
                         statResult.status == "fail",
                         statResult.code == 96 {
-                        sink.send(error: .notAuthenticated)
-                        NotificationCenter.default.post(name: NSNotification.Name(sessionExpiredNotification), object: nil)
+                        log("Session expired found in \(self.apiMethod)")
+                        
+                        if self is AccountInfoRequest {
+                            log("Delaying expiration result")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                                sink.send(error: .notAuthenticated)
+                                NotificationCenter.default.post(name: NSNotification.Name(sessionExpiredNotification), object: nil)
+                            })
+                        } else {
+                            sink.send(error: .notAuthenticated)
+                            NotificationCenter.default.post(name: NSNotification.Name(sessionExpiredNotification), object: nil)
+                        }
                     }
                     else {
                         let model = self.modelFrom(data: data)

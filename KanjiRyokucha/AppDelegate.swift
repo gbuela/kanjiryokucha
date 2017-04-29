@@ -10,6 +10,8 @@ import UIKit
 import SwiftRater
 import Fabric
 import Crashlytics
+import ReactiveSwift
+import PKHUD
 
 struct TabModel {
     let title: String
@@ -19,6 +21,7 @@ struct TabModel {
 
 let sessionExpiredNotification = "sessionExpiredNotification"
 let sessionStartedNotification = "sessionStartedNotification"
+let sessionCheckMinElapsedSeconds = 540
 
 struct AppController {
     
@@ -29,8 +32,16 @@ struct AppController {
     let studyEngine = StudyEngine()
     let srsViewController = SRSViewController()
     let settingsViewController = SettingsViewController()
+    
+    let sessionCheckAction: Action<Void, Response, FetchError>!
 
     let tabBarController = UITabBarController()
+    
+    init() {
+        sessionCheckAction = Action<Void, Response, FetchError> { _ in
+            return AccountInfoRequest().requestProducer()!
+        }
+    }
     
     func start(username: String) {
         let studySplitVC = studyStoryboard.instantiateViewController(withIdentifier: "studySplit") as! UISplitViewController
@@ -64,6 +75,14 @@ struct AppController {
         }
         
         window.makeKeyAndVisible()
+        
+        sessionCheckAction.isExecuting.uiReact { executing in
+            if executing {
+                HUD.show(.systemActivity)
+            } else {
+                HUD.hide()
+            }
+        }
     }
 }
 
@@ -72,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var appController: AppController?
+    var fromBackground: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -148,14 +168,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleSessionExpired(_: Notification) {
+        appController = nil
         startAutologin()
     }
     
     func handleSessionStarted(notification: Notification) {
-        let appController = AppController()
+        let controller = AppController()
+        appController = controller
         let username = notification.object as! String
-        window = appController.window
-        appController.start(username: username)
+        window = controller.window
+        controller.start(username: username)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -170,10 +192,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        fromBackground = true
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if fromBackground {
+            fromBackground = false
+            log("Coming from bkg")
+            
+            if !Global.isGuest(),
+                let latest = Global.latestRequestDate,
+                let controller = appController {
+                let elapsed = Int(Date().timeIntervalSince(latest))
+                log("Elapsed since last rq: \(elapsed)")
+                if elapsed > sessionCheckMinElapsedSeconds {
+                    log("Checking session")
+                    controller.sessionCheckAction.apply(()).start()
+                }
+            }
+            
+        } else {
+            log("Not coming from bkg")
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
