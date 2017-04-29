@@ -78,7 +78,7 @@ class StudyEngine {
             self?.submitChunk()
         }
         
-        isSubmitting <~ chunkSubmitProducers.map { $0.count > 1 }
+        isSubmitting <~ chunkSubmitProducers.map { $0.count > 0 }
 
         refreshAction = RefreshAction(enabledIf: isSubmitting.map({!$0})) { _ in
             return StudyRefreshRequest().requestProducer()!
