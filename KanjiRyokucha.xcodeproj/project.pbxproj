@@ -183,12 +183,6 @@
 		C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C4758A041DF395F00019AF57 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C4758A071DF63F8D0019AF57 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
-		C489263F1E9978F600E79945 /* kanji100.png in Resources */ = {isa = PBXBuildFile; fileRef = C489263E1E9978F600E79945 /* kanji100.png */; };
-		C48926401E9978F600E79945 /* kanji100.png in Resources */ = {isa = PBXBuildFile; fileRef = C489263E1E9978F600E79945 /* kanji100.png */; };
-		C48926411E9978F600E79945 /* kanji100.png in Resources */ = {isa = PBXBuildFile; fileRef = C489263E1E9978F600E79945 /* kanji100.png */; };
-		C48926431E997CD500E79945 /* kanjibkg.png in Resources */ = {isa = PBXBuildFile; fileRef = C48926421E997CD500E79945 /* kanjibkg.png */; };
-		C48926441E997CD500E79945 /* kanjibkg.png in Resources */ = {isa = PBXBuildFile; fileRef = C48926421E997CD500E79945 /* kanjibkg.png */; };
-		C48926451E997CD500E79945 /* kanjibkg.png in Resources */ = {isa = PBXBuildFile; fileRef = C48926421E997CD500E79945 /* kanjibkg.png */; };
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
@@ -308,8 +302,6 @@
 		C47589FC1DF3659C0019AF57 /* SRSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRSViewController.xib; sourceTree = "<group>"; };
 		C4758A031DF395F00019AF57 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C4758A061DF63F8D0019AF57 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		C489263E1E9978F600E79945 /* kanji100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kanji100.png; sourceTree = SOURCE_ROOT; };
-		C48926421E997CD500E79945 /* kanjibkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kanjibkg.png; sourceTree = SOURCE_ROOT; };
 		C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoRequest.swift; sourceTree = "<group>"; };
 		C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStudyRequest.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -516,8 +508,6 @@
 				C43668C81DFA215D0080D768 /* ARPieChart.swift */,
 				C4F213BE1DEA532900EF5214 /* Assets.xcassets */,
 				C4F213C01DEA532900EF5214 /* LaunchScreen.storyboard */,
-				C489263E1E9978F600E79945 /* kanji100.png */,
-				C48926421E997CD500E79945 /* kanjibkg.png */,
 				C4F213C31DEA532900EF5214 /* Info.plist */,
 				C409A1E61E860320006EEE77 /* DEV-Info.plist */,
 				C44F75811E8F218D00E00AD9 /* Staging-Info.plist */,
@@ -723,7 +713,6 @@
 				C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C4C0AE431EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
-				C48926401E9978F600E79945 /* kanji100.png in Resources */,
 				C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */,
 				C409A1D51E86011E006EEE77 /* Assets.xcassets in Resources */,
 				C409A1D61E86011E006EEE77 /* SRSViewController.xib in Resources */,
@@ -731,7 +720,6 @@
 				C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */,
 				C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */,
 				C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */,
-				C48926441E997CD500E79945 /* kanjibkg.png in Resources */,
 				C409A1DB1E86011E006EEE77 /* StudyCell.xib in Resources */,
 				C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */,
 				C409A1DD1E86011E006EEE77 /* readings.csv in Resources */,
@@ -753,7 +741,6 @@
 				C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C4C0AE441EA98E6F006CF493 /* Study.storyboard in Resources */,
 				C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */,
-				C48926411E9978F600E79945 /* kanji100.png in Resources */,
 				C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */,
 				C44F756F1E8F213300E00AD9 /* Assets.xcassets in Resources */,
 				C44F75701E8F213300E00AD9 /* SRSViewController.xib in Resources */,
@@ -761,7 +748,6 @@
 				C44F75721E8F213300E00AD9 /* SettingsSwitchCell.xib in Resources */,
 				C44F75741E8F213300E00AD9 /* FreeReviewViewController.xib in Resources */,
 				C44F75751E8F213300E00AD9 /* LoginViewController.xib in Resources */,
-				C48926451E997CD500E79945 /* kanjibkg.png in Resources */,
 				C44F75761E8F213300E00AD9 /* StudyCell.xib in Resources */,
 				C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */,
 				C44F75781E8F213300E00AD9 /* readings.csv in Resources */,
@@ -783,7 +769,6 @@
 				C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */,
 				C4C0AE421EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
-				C489263F1E9978F600E79945 /* kanji100.png in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
 				C4F213BF1DEA532900EF5214 /* Assets.xcassets in Resources */,
 				C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */,
@@ -791,7 +776,6 @@
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
-				C48926431E997CD500E79945 /* kanjibkg.png in Resources */,
 				C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */,
 				C42BBAB31E13220700361C89 /* PagedReviewViewController.xib in Resources */,
 				C43DCC391E51198B006F2C0C /* readings.csv in Resources */,
