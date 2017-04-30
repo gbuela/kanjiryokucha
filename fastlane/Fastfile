@@ -17,6 +17,7 @@ lane :beta do
   # build your iOS app
   cert
   sigh
+  increment_build_number
   gym(
     scheme: "KanjiRyokucha",
     export_method: "app-store",
