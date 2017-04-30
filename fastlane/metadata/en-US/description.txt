@@ -1,0 +1,21 @@
+Kanji Ryokucha is a flashcard-based spaced repetition review app backed by the Kanji Koohii site. 
+
+Important: a Kanji Koohii account is required! however you can try out entering as guest.
+
+Features:
+* Ability to draw each kanji as you remember it on the card's front, and then flip to compare with the actual kanji. 
+* Kanji readings on the card's back.
+* Stroke order video — when available from KanjiAlive
+* Access to check out Kanji Koohii study page for current kanji during reviews
+* Study Phase (see below)
+* Free study: choose an arbitrary range of kanji for a cram session
+* Don't have a Kanji Koohii account yet? A guest mode is available simulating an account with 10 due cards for review
+* Free, no ads, no strings attached :)
+
+The Study Phase feature gives you control over what goes into the "red pile". When you submit your answers to a review, all your No answers are set aside for restudy, so you can then open the study page for each and mark them as learned at your pace. Only those marked (and submitted) as learned are included in the "red pile" for a future review. You can turn off the feature in Settings if you'd rather skip this step.
+
+Once you log in with your account, the app will be in sync with your cloud data. You will be able to do your daily reviews with Kanji Ryokucha on your iPhone or iPad, as well as with the site itself: whatever is most convenient for you each day.
+
+Note that the app is not a replacement of the site! You will still have to go there for flashcard and story management. But, conveniently, when the app is showing you a study page, it will let you jump right to Safari.
+
+Happy reviewing!

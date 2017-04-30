@@ -1488,7 +1488,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
