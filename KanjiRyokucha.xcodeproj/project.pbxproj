@@ -186,6 +186,8 @@
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
+		C48A85E41EB5646D00778445 /* Kanji_Ryokucha_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */; };
+		C48A85EC1EB5687F00778445 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */; };
 		C48C9D5F1E88764000679F72 /* SyncStudyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */; };
 		C48C9D601E88764000679F72 /* SyncStudyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */; };
 		C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
@@ -232,6 +234,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C48A85E61EB5646D00778445 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4F213AC1DEA532900EF5214 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4F213B31DEA532900EF5214;
+			remoteInfo = KanjiRyokucha;
+		};
 		C4F213C91DEA532A00EF5214 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C4F213AC1DEA532900EF5214 /* Project object */;
@@ -303,6 +312,10 @@
 		C4758A031DF395F00019AF57 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C4758A061DF63F8D0019AF57 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoRequest.swift; sourceTree = "<group>"; };
+		C48A85E11EB5646D00778445 /* Kanji Ryokucha UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kanji Ryokucha UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji_Ryokucha_UITests.swift; sourceTree = "<group>"; };
+		C48A85E51EB5646D00778445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStudyRequest.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4A593641E79C99A0098CB99 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -352,6 +365,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FCFE07ADE7255AB5B99BBA9 /* Pods_KanjiRyokucha_Staging.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C48A85DE1EB5646C00778445 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +475,16 @@
 			name = Database;
 			sourceTree = "<group>";
 		};
+		C48A85E21EB5646D00778445 /* Kanji Ryokucha UITests */ = {
+			isa = PBXGroup;
+			children = (
+				C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */,
+				C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */,
+				C48A85E51EB5646D00778445 /* Info.plist */,
+			);
+			path = "Kanji Ryokucha UITests";
+			sourceTree = "<group>";
+		};
 		C4C0AE361EA1739B006CF493 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +505,7 @@
 			children = (
 				C4F213B61DEA532900EF5214 /* KanjiRyokucha */,
 				C4F213CB1DEA532A00EF5214 /* KanjiRyokuchaTests */,
+				C48A85E21EB5646D00778445 /* Kanji Ryokucha UITests */,
 				C4F213B51DEA532900EF5214 /* Products */,
 				8BE1283C35607D4026E0FE6B /* Pods */,
 				0E97712250490B715D366FB3 /* Frameworks */,
@@ -488,6 +519,7 @@
 				C4F213C81DEA532A00EF5214 /* KanjiRyokuchaTests.xctest */,
 				C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */,
 				C44F757F1E8F213300E00AD9 /* KanjiRyokucha-Staging.app */,
+				C48A85E11EB5646D00778445 /* Kanji Ryokucha UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,6 +638,24 @@
 			productReference = C44F757F1E8F213300E00AD9 /* KanjiRyokucha-Staging.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C48A85E01EB5646C00778445 /* Kanji Ryokucha UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C48A85E81EB5646D00778445 /* Build configuration list for PBXNativeTarget "Kanji Ryokucha UITests" */;
+			buildPhases = (
+				C48A85DD1EB5646C00778445 /* Sources */,
+				C48A85DE1EB5646C00778445 /* Frameworks */,
+				C48A85DF1EB5646C00778445 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C48A85E71EB5646D00778445 /* PBXTargetDependency */,
+			);
+			name = "Kanji Ryokucha UITests";
+			productName = "Kanji Ryokucha UITests";
+			productReference = C48A85E11EB5646D00778445 /* Kanji Ryokucha UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C4F213B31DEA532900EF5214 /* KanjiRyokucha */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4F213D11DEA532A00EF5214 /* Build configuration list for PBXNativeTarget "KanjiRyokucha" */;
@@ -654,7 +704,7 @@
 		C4F213AC1DEA532900EF5214 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "German Buela";
 				TargetAttributes = {
@@ -663,6 +713,11 @@
 					};
 					C44F752F1E8F213300E00AD9 = {
 						DevelopmentTeam = UHVS3L828Q;
+					};
+					C48A85E01EB5646C00778445 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C4F213B31DEA532900EF5214;
 					};
 					C4F213B31DEA532900EF5214 = {
 						CreatedOnToolsVersion = 8.1;
@@ -694,6 +749,7 @@
 				C409A19A1E86011D006EEE77 /* KanjiRyokucha-DEV */,
 				C44F752F1E8F213300E00AD9 /* KanjiRyokucha-Staging */,
 				C4F213C71DEA532A00EF5214 /* KanjiRyokuchaTests */,
+				C48A85E01EB5646C00778445 /* Kanji Ryokucha UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -752,6 +808,13 @@
 				C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */,
 				C44F75781E8F213300E00AD9 /* readings.csv in Resources */,
 				C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C48A85DF1EB5646C00778445 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,6 +1168,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C48A85DD1EB5646C00778445 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48A85E41EB5646D00778445 /* Kanji_Ryokucha_UITests.swift in Sources */,
+				C48A85EC1EB5687F00778445 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C4F213B01DEA532900EF5214 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1174,6 +1246,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C48A85E71EB5646D00778445 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4F213B31DEA532900EF5214 /* KanjiRyokucha */;
+			targetProxy = C48A85E61EB5646D00778445 /* PBXContainerItemProxy */;
+		};
 		C4F213CA1DEA532A00EF5214 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C4F213B31DEA532900EF5214 /* KanjiRyokucha */;
@@ -1256,6 +1333,36 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C48A85E91EB5646D00778445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = KanjiRyokucha;
+			};
+			name = Debug;
+		};
+		C48A85EA1EB5646D00778445 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = KanjiRyokucha;
 			};
 			name = Release;
 		};
@@ -1444,6 +1551,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C48A85E81EB5646D00778445 /* Build configuration list for PBXNativeTarget "Kanji Ryokucha UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C48A85E91EB5646D00778445 /* Debug */,
+				C48A85EA1EB5646D00778445 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C4F213AF1DEA532900EF5214 /* Build configuration list for PBXProject "KanjiRyokucha" */ = {
 			isa = XCConfigurationList;

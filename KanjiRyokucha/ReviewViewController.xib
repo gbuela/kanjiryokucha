@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,6 +54,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcW-x1-wWF" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
                             <rect key="frame" x="20" y="54" width="80" height="70"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <accessibility key="accessibilityConfiguration" identifier="startReview"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="iHa-Fz-jE2" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                                     <userDefinedRuntimeAttributes>
@@ -102,6 +103,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LK2-LB-CYB" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
                             <rect key="frame" x="275" y="54" width="80" height="70"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <accessibility key="accessibilityConfiguration" identifier="submitReview"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
                             <state key="normal" title="submit"/>
@@ -115,6 +117,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfT-8E-Vql" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
                             <rect key="frame" x="148" y="288" width="80" height="40"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <accessibility key="accessibilityConfiguration" identifier="cancelReview"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DON-mC-aJp"/>
                                 <constraint firstAttribute="width" constant="80" id="QYn-4v-mpE"/>
