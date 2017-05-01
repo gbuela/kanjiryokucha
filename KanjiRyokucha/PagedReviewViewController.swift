@@ -72,6 +72,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupGradient()
+        strokeTip.rearrange()
     }
     
     private func setupGradient() {
