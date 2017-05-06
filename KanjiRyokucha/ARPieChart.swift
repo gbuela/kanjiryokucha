@@ -43,6 +43,35 @@ public protocol ARPieChartDataSource: class {
     func pieChart(_ pieChart: ARPieChart, descriptionForSliceAtIndex index: Int) -> String
 }
 
+public struct PieChartItem {
+    let value: Float
+    let color: UIColor
+    let text: String?
+}
+
+public protocol ARPieChartItemDataSource: ARPieChartDataSource {
+    var pieChartItems: [PieChartItem] { get }
+}
+
+public extension ARPieChartItemDataSource {
+    
+    func numberOfSlicesInPieChart(_ pieChart: ARPieChart) -> Int {
+        return pieChartItems.count
+    }
+    
+    func pieChart(_ pieChart: ARPieChart, valueForSliceAtIndex index: Int) -> CGFloat {
+        return CGFloat(pieChartItems[index].value)
+    }
+
+    func pieChart(_ pieChart: ARPieChart, colorForSliceAtIndex index: Int) -> UIColor {
+        return pieChartItems[index].color
+    }
+    
+    func pieChart(_ pieChart: ARPieChart, descriptionForSliceAtIndex index: Int) -> String {
+        return pieChartItems[index].text ?? "\(pieChartItems[index].value)"
+    }
+}
+
 /**
 *  MARK: ARPieChart delegate
 */
@@ -255,11 +284,11 @@ open class ARPieChart: UIView {
         
         var fromValue: AnyObject!
         if key == "strokeStart" || key == "strokeEnd" {
-            fromValue = 0 as AnyObject!
+            fromValue = NSNumber(value: 0)
         }
         
         if layer.presentation() != nil {
-            fromValue = layer.presentation()!.value(forKey: key) as AnyObject!
+            fromValue = layer.presentation()!.value(forKey: key) as AnyObject
         }
         
         arcAnimation.fromValue = fromValue
@@ -299,7 +328,7 @@ open class ARPieChart: UIView {
             textLayer.alignmentMode = kCAAlignmentCenter
             layer.addSublayer(textLayer)
         }
-
+        
         textLayer.font = CGFont(labelFont.fontName as NSString)
         textLayer.fontSize = labelFont.pointSize
         textLayer.string = ""
@@ -391,7 +420,7 @@ open class ARPieChart: UIView {
     }
     
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let anyTouch: UITouch = touches.first! as UITouch {
+        if let anyTouch: UITouch = touches.first {
             let selectedIndex = getSelectedLayerIndexOnTouch(anyTouch)
             handleLayerSelection(self.selectedLayerIndex, toIndex: selectedIndex)
         }
