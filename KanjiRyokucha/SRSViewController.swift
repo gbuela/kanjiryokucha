@@ -61,6 +61,7 @@ struct ReviewTypeSetup {
     let action: StartAction
 }
 
+
 protocol ReviewEngineProtocol: class {
     var reviewTitle: MutableProperty<String?> { get }
     var reviewColor: MutableProperty<UIColor> { get }
@@ -72,28 +73,19 @@ protocol ReviewEngineProtocol: class {
     var shouldEnableReview: MutableProperty<Bool> { get }
     var shouldEnableSubmit: MutableProperty<Bool> { get }
     var reviewAction: ReviewAction! { get }
-    var submitAction: SubmitAction! { get }
     var cancelAction: ButtonAction! { get }
     var emptySessionAttempt: MutableProperty<Bool> { get }
+    func saveFetchedCards(response: Response)
+   
+}
+
+protocol SRSEngineProtocol: ReviewEngineProtocol {
+    var submitAction: SubmitAction! { get }
     var chunkSubmitProducers: MutableProperty<[SignalProducer<Response, FetchError>]> { get }
     var isSubmitting: MutableProperty<Bool> { get }
-   
-    func fetchMissingCards(cardModels: [CardModel], completion:((CardDataModel) -> ())?)
-    func saveFetchedCards(response: Response)
 }
 
 extension ReviewEngineProtocol {
-    static func fetchActionProducer(entries:[ReviewEntry]) -> SignalProducer<Response,FetchError> {
-        let unansweredEntries = entries.filter {$0.rawAnswer == CardAnswer.unanswered.rawValue}
-        guard unansweredEntries.count > 0 else { return SignalProducer.empty }
-        
-        let ids = unansweredEntries.map {$0.cardId}
-        
-        log("fetching ids: \(ids)")
-        let fetchRq = CardFetchRequest(cardIds: ids)
-        return fetchRq.requestProducer()!
-    }
-    
     func fetchMissingCards(cardModels: [CardModel], completion:((CardDataModel) -> ())?) {
         
         guard cardModels.count < reviewEntries.value.count else { return }
@@ -111,8 +103,23 @@ extension ReviewEngineProtocol {
                     let model = response.model as? CardDataModel {
                     completion(model)
                 }
-            }
+        }
     }
+
+}
+
+extension ReviewEngineProtocol {
+    static func fetchActionProducer(entries:[ReviewEntry]) -> SignalProducer<Response,FetchError> {
+        let unansweredEntries = entries.filter {$0.rawAnswer == CardAnswer.unanswered.rawValue}
+        guard unansweredEntries.count > 0 else { return SignalProducer.empty }
+        
+        let ids = unansweredEntries.map {$0.cardId}
+        
+        log("fetching ids: \(ids)")
+        let fetchRq = CardFetchRequest(cardIds: ids)
+        return fetchRq.requestProducer()!
+    }
+    
     
     func reviewStateMapper(entries: [ReviewEntry]) -> ReviewState? {
         if reviewInProgress.value {
@@ -137,7 +144,7 @@ extension ReviewEngineProtocol {
     }
 }
 
-class SRSReviewEngine: ReviewEngineProtocol {
+class SRSReviewEngine: SRSEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
     var refreshedSinceStartup = false
     

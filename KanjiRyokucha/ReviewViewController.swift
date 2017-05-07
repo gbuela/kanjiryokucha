@@ -201,10 +201,6 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
                                       action: reviewEngine.reviewAction,
                                       inputProperty: reviewEngine.reviewEntries)
         
-        submitStarter = SubmitStarter(control: submitButton,
-                                      action: reviewEngine.submitAction,
-                                      inputProperty: reviewEngine.reviewEntries)
-        
         cancelButton.reactive.isEnabled <~ reviewEngine.cancelAction.isEnabled
         
         cancelButton.tapReact { [weak self] _ in
@@ -234,19 +230,28 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
         }
         cancelButton.reactive.title(for: .normal) <~ pendingCount.map(ReviewViewController.cancelButtonFromPending)
         
-        performanceEmoji.reactive.isHidden <~ reviewEngine.isSubmitting
-        
-        reviewEngine.isSubmitting.uiReact { [weak self] submitting in
-            if submitting {
-                self?.activityIndicator.startAnimating()
-            } else {
-                self?.activityIndicator.stopAnimating()
-                if let tabController = self?.tabBarController,
-                    let tab = tabController.tabBar.items?[1] {
-                    tabController.delegate = self
-                    self?.studyTip.show(barItem: tab)
+        if let srsEngine = reviewEngine as? SRSEngineProtocol {
+            submitStarter = SubmitStarter(control: submitButton,
+                                          action: srsEngine.submitAction,
+                                          inputProperty: reviewEngine.reviewEntries)
+            
+            
+            performanceEmoji.reactive.isHidden <~ srsEngine.isSubmitting
+            
+            srsEngine.isSubmitting.uiReact { [weak self] submitting in
+                if submitting {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    if let tabController = self?.tabBarController,
+                        let tab = tabController.tabBar.items?[1] {
+                        tabController.delegate = self
+                        self?.studyTip.show(barItem: tab)
+                    }
                 }
             }
+        } else {
+            submitButton.isEnabled = false
         }
     }
     
