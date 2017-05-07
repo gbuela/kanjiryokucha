@@ -13,6 +13,13 @@ import Result
 
 var times = -1
 
+struct HeaderKeys {
+    static let location = "Location"
+    static let setCookie = "Set-Cookie"
+    static let contentType = "Content-Type"
+    static let charset = "charset"
+}
+
 enum FetchError : Error {
     case backendMessage(message:String)
     case connectionError(error:Error)
@@ -80,7 +87,7 @@ struct Response {
         var cookies: [String] = []
         for header in headers {
             if let key = header.key as? String,
-                key == "Set-Cookie",
+                key == HeaderKeys.setCookie,
                 let value = header.value as? String {
                 cookies.append(value)
             }
@@ -106,8 +113,6 @@ struct StatResult: Decodable {
         self.code = "code" <~~ json
     }
 }
-
-let contentTypeHeaderKey = "Content-Type"
 
 enum RequestMethod {
     case get

@@ -15,18 +15,14 @@ enum LoginState {
     case failure(String)
     
     func isLoggingIn() -> Bool {
-        switch self {
-        case .loggingIn: return true
-        default: return false
-        }
+        guard case .loggingIn = self else { return false }
+        return true
     }
     
     func isFailure() -> Bool {
-        switch self {
-        case .failure(_): return true
-        default: return false
-        }
-    }
+        guard case .failure(_) = self else { return false }
+        return true
+   }
 }
 
 struct LoginViewModel {
@@ -93,9 +89,9 @@ struct LoginViewModel {
             sp.startWithResult { (result: Result<Response, FetchError>) in
                 if let response = result.value {
                     if response.statusCode == httpStatusMovedTemp,
-                        let location = response.headers["Location"] as? String,
+                        let location = response.headers[Headers.location] as? String,
                         location.hasPrefix(koohiiHost) {
-                        if let cookie = response.headers["Set-Cookie"] as? String {
+                        if let cookie = response.headers[Headers.setCookie] as? String {
                             Response.latestCookies = [ cookie ]
                         }
                         handler(true, username)

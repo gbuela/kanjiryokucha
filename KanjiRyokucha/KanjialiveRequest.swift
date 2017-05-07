@@ -9,10 +9,13 @@
 import ReactiveSwift
 import Gloss
 
+extension HeaderKeys {
+    static let mashapeKey = "X-Mashape-Key"
+}
+
 let kanjialiveDomain = "kanjialive-api.p.mashape.com"
 let kanjialiveHost = "https://" + kanjialiveDomain
 fileprivate let endpoint = kanjialiveHost + "/api/public/"
-let mashapeHeaderKey = "X-Mashape-Key"
 
 protocol KanjialiveRequest : Request {}
 
@@ -87,10 +90,10 @@ private extension KanjialiveRequest {
         for header in headers {
             rq.setValue(header.value, forHTTPHeaderField: header.key)
         }
-        rq.setValue(ApiKeys.mashape, forHTTPHeaderField: mashapeHeaderKey)
+        rq.setValue(ApiKeys.mashape, forHTTPHeaderField: HeaderKeys.mashapeKey)
         
-        rq.setValue(contentTypeValue(contentType: contentType), forHTTPHeaderField: contentTypeHeaderKey)
-        rq.setValue("utf-8", forHTTPHeaderField: "charset") // TODO: needed?
+        rq.setValue(contentTypeValue(contentType: contentType), forHTTPHeaderField: HeaderKeys.contentType)
+        rq.setValue("utf-8", forHTTPHeaderField: HeaderKeys.charset) // TODO: needed?
         return rq
     }
 }

@@ -169,8 +169,8 @@ private extension KoohiiRequest {
             rq.setValue(header.value, forHTTPHeaderField: header.key)
         }
         
-        rq.setValue(contentTypeValue(contentType: contentType), forHTTPHeaderField: contentTypeHeaderKey)
-        rq.setValue("utf-8", forHTTPHeaderField: "charset")
+        rq.setValue(contentTypeValue(contentType: contentType), forHTTPHeaderField: HeaderKeys.contentType)
+        rq.setValue("utf-8", forHTTPHeaderField: HeaderKeys.charset)
         return rq
     }
 }
