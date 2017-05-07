@@ -11,13 +11,11 @@ import UIKit
 class CardFrontView: UIView {
 
     @IBOutlet weak var keywordLabel: UILabel!
-    @IBOutlet weak var tempImageView: UIImageView!
-    @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
-    @IBOutlet weak var drawHereLabel: UILabel!
+    @IBOutlet weak var drawingContainer: UIView!
     
     weak var buttonHandler: ButtonHandler?
 

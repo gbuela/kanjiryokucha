@@ -27,36 +27,9 @@
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfJ-tv-8Sx" userLabel="imageContainer">
                             <rect key="frame" x="0.0" y="42.5" width="344" height="344"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Uh-bZ-DKM" userLabel="mainImageView">
-                                    <rect key="frame" x="4" y="4" width="336" height="336"/>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="msD-T2-A2u" userLabel="tempImageView">
-                                    <rect key="frame" x="4" y="4" width="336" height="336"/>
-                                    <accessibility key="accessibilityConfiguration" identifier="tempImage"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="draw kanji here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDj-Kg-gEo">
-                                    <rect key="frame" x="0.0" y="0.0" width="344" height="344"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="kDj-Kg-gEo" firstAttribute="height" secondItem="HfJ-tv-8Sx" secondAttribute="height" id="0dB-NR-nTI"/>
-                                <constraint firstItem="kDj-Kg-gEo" firstAttribute="top" secondItem="HfJ-tv-8Sx" secondAttribute="top" id="1dS-rt-Sch"/>
-                                <constraint firstItem="2Uh-bZ-DKM" firstAttribute="top" secondItem="HfJ-tv-8Sx" secondAttribute="top" constant="4" id="AUg-y3-PE4"/>
-                                <constraint firstItem="msD-T2-A2u" firstAttribute="leading" secondItem="2Uh-bZ-DKM" secondAttribute="leading" id="E9c-Xe-rLf"/>
-                                <constraint firstItem="2Uh-bZ-DKM" firstAttribute="leading" secondItem="HfJ-tv-8Sx" secondAttribute="leading" constant="4" id="aN0-y0-j8S"/>
-                                <constraint firstItem="kDj-Kg-gEo" firstAttribute="leading" secondItem="HfJ-tv-8Sx" secondAttribute="leading" id="aV9-ac-kEm"/>
-                                <constraint firstItem="msD-T2-A2u" firstAttribute="width" secondItem="2Uh-bZ-DKM" secondAttribute="width" id="dhD-RE-i9I"/>
                                 <constraint firstAttribute="width" secondItem="HfJ-tv-8Sx" secondAttribute="height" multiplier="1:1" id="l4W-dE-QtN"/>
-                                <constraint firstAttribute="trailing" secondItem="2Uh-bZ-DKM" secondAttribute="trailing" constant="4" id="s9e-Yc-y6z"/>
-                                <constraint firstItem="msD-T2-A2u" firstAttribute="height" secondItem="2Uh-bZ-DKM" secondAttribute="height" id="xi8-BM-RVp"/>
-                                <constraint firstAttribute="bottom" secondItem="2Uh-bZ-DKM" secondAttribute="bottom" constant="4" id="xuk-Cx-4gF"/>
-                                <constraint firstItem="kDj-Kg-gEo" firstAttribute="width" secondItem="HfJ-tv-8Sx" secondAttribute="width" id="ytc-87-Flh"/>
-                                <constraint firstItem="msD-T2-A2u" firstAttribute="top" secondItem="2Uh-bZ-DKM" secondAttribute="top" id="zA7-uN-SYc"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0W-Pp-5iX">
@@ -154,13 +127,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="clearButton" destination="r1J-mA-xvB" id="Dup-SM-upB"/>
-                <outlet property="drawHereLabel" destination="kDj-Kg-gEo" id="ayy-Z4-u1J"/>
+                <outlet property="drawingContainer" destination="HfJ-tv-8Sx" id="b9f-P4-0gf"/>
                 <outlet property="flipButton" destination="F0W-Pp-5iX" id="tMR-g1-6Ac"/>
                 <outlet property="keywordLabel" destination="UFv-ZE-JGL" id="WNn-jM-lZI"/>
-                <outlet property="mainImageView" destination="2Uh-bZ-DKM" id="s3C-hY-Srq"/>
                 <outlet property="optionsButton" destination="5pW-rv-8IL" id="4rQ-1P-ZvU"/>
                 <outlet property="quitButton" destination="PsI-SZ-f41" id="PvI-3z-Jtl"/>
-                <outlet property="tempImageView" destination="msD-T2-A2u" id="FR4-kC-MwX"/>
             </connections>
             <point key="canvasLocation" x="18" y="-15"/>
         </view>

@@ -37,14 +37,10 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
     
     var currentFront: CardFrontView?
     var currentBack: CardBackView?
+    var drawingVC: DrawingViewController?
     var showingFront = true
     var currentPage = 0
     var totalCount = 0
-    
-    var lastPoint = CGPoint.zero
-    var brushWidth: CGFloat = 5.0
-    var opacity: CGFloat = 1.0
-    var swiped = false
     
     var isGradientSetup = false
     
@@ -178,6 +174,14 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         currentFront = frontView
         currentBack = backView
         
+        if let dvc = drawingVC {
+            remove(childViewController: dvc)
+        }
+        drawingVC = DrawingViewController()
+        if let dvc = drawingVC {
+            add(childViewController: dvc, insideView: frontView.drawingContainer)
+        }
+        
         findReading(card: card)
     }
     
@@ -230,7 +234,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 pageContainer.addSubview(backView)
                 pageContainer.layoutAttachAll(subview: backView)
                 
-                backView.drawingImageView.image = frontView.mainImageView.image
+                backView.drawingImageView.image = drawingVC?.mainImage.image
                 backView.readingsTextView.alpha = 0.0
                 
                 let options: UIViewAnimationOptions = global.useAnimations ? [.transitionFlipFromRight, .showHideTransitionViews] : []
@@ -254,7 +258,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         } else if button == backView.optionsButton {
             showBackOptions()
         } else if button == frontView.clearButton {
-            frontView.mainImageView.image = nil
+            drawingVC?.mainImage.image = nil
         } else if button == backView.yesButton {
             userAnswered(answer: .yes)
             pageForward()
@@ -439,79 +443,5 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         }
         let reviewAnswer = ReviewAnswer(cardId: card.cardId, answer: answer)
         delegate?.userDidAnswer(reviewAnswer: reviewAnswer)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let frontView = currentFront else {
-            return
-        }
-        
-        frontView.drawHereLabel.isHidden = true
-        
-        swiped = false
-        if let touch = touches.first {
-            lastPoint = touch.location(in: frontView.tempImageView)
-        }
-    }
-    
-    private func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
-        guard let frontView = currentFront else {
-            return
-        }
-        
-        let frame = frontView.tempImageView.frame
-        UIGraphicsBeginImageContext(frame.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        frontView.tempImageView.image?.draw(in:CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
-        
-        context?.move(to: fromPoint)
-        context?.addLine(to: toPoint)
-        
-        context?.setLineCap(.round)
-        context?.setLineWidth(brushWidth)
-        context?.setStrokeColor(red: 0, green: 0, blue: 0, alpha: 1.0)
-        context?.setBlendMode(.normal)
-        
-        context?.strokePath()
-        
-        frontView.tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        frontView.tempImageView.alpha = opacity
-        UIGraphicsEndImageContext()
-        
-    }
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let frontView = currentFront else {
-            return
-        }
-        
-        swiped = true
-        if let touch = touches.first {
-            let currentPoint = touch.location(in: frontView.tempImageView)
-            drawLineFrom(fromPoint: lastPoint, toPoint: currentPoint)
-            
-            lastPoint = currentPoint
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let frontView = currentFront else {
-            return
-        }
-        
-        if !swiped {
-            drawLineFrom(fromPoint: lastPoint, toPoint: lastPoint)
-        }
-        
-        let frame = frontView.tempImageView.frame
-        
-        // Merge tempImageView into mainImageView
-        UIGraphicsBeginImageContext(frame.size)
-        frontView.mainImageView.image?.draw(in:CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height), blendMode: .normal, alpha: 1.0)
-        frontView.tempImageView.image?.draw(in:CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height), blendMode: .normal, alpha: opacity)
-        frontView.mainImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        frontView.tempImageView.image = nil
     }
 }

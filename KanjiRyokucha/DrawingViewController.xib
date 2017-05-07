@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DrawingViewController" customModule="KanjiRyokucha" customModuleProvider="target">
+            <connections>
+                <outlet property="emptyImageLabel" destination="GCn-eN-Gib" id="2yi-r1-Q2A"/>
+                <outlet property="mainImage" destination="6L3-wi-gHK" id="pic-et-E14"/>
+                <outlet property="tempImage" destination="Elv-WF-PxC" id="Udu-w2-268"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6L3-wi-gHK">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Elv-WF-PxC">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="draw kanji here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCn-eN-Gib">
+                    <rect key="frame" x="129.5" y="184" width="115.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="6L3-wi-gHK" secondAttribute="bottom" id="6LD-SM-vgF"/>
+                <constraint firstItem="GCn-eN-Gib" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Fmc-bu-FXb"/>
+                <constraint firstAttribute="trailing" secondItem="6L3-wi-gHK" secondAttribute="trailing" id="SOh-LV-MtP"/>
+                <constraint firstItem="Elv-WF-PxC" firstAttribute="leading" secondItem="6L3-wi-gHK" secondAttribute="leading" id="Uqs-QP-oBu"/>
+                <constraint firstItem="Elv-WF-PxC" firstAttribute="top" secondItem="6L3-wi-gHK" secondAttribute="top" id="fJm-DZ-9Ru"/>
+                <constraint firstItem="GCn-eN-Gib" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jXz-aI-DXc"/>
+                <constraint firstItem="Elv-WF-PxC" firstAttribute="width" secondItem="6L3-wi-gHK" secondAttribute="width" id="p9m-OZ-pFN"/>
+                <constraint firstItem="6L3-wi-gHK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="roA-v5-V6L"/>
+                <constraint firstItem="Elv-WF-PxC" firstAttribute="height" secondItem="6L3-wi-gHK" secondAttribute="height" id="v75-OA-RRr"/>
+                <constraint firstItem="6L3-wi-gHK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yBJ-qh-q7n"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-2" y="-34"/>
+        </view>
+    </objects>
+</document>
