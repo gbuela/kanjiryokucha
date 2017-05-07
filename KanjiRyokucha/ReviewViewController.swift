@@ -23,8 +23,20 @@ extension PieChartItem {
     }
 }
 
-class ChartDataSource: ARPieChartItemDataSource {
-    var pieChartItems: [PieChartItem] = []
+class PerformanceChartDataSource: ARPieChartItemDataSource {
+    private var items: [PieChartItem] = []
+    
+    var pieChartItems: [PieChartItem] {
+        return items
+    }
+    
+    func set(yesCount: Int, noCount: Int, otherCount: Int, unansweredCount: Int) {
+        let yesItem = PieChartItem(value: yesCount, color: UIColor.pieYes)
+        let noItem = PieChartItem(value: noCount, color: UIColor.pieNo)
+        let otherItem = PieChartItem(value: otherCount, color: UIColor.pieOther)
+        let unansweredItem = PieChartItem(value: unansweredCount, color: UIColor.pieUnanswered)
+        items = [yesItem, noItem, otherItem, unansweredItem]
+    }
 }
 
 class SubmissionChartDataSource: ARPieChartItemDataSource {
@@ -120,7 +132,7 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
     private let reviewTip = TipView(.startReview)
     private let studyTip = TipView(.studyTab)
     
-    private let performanceDataSource = ChartDataSource()
+    private let performanceDataSource = PerformanceChartDataSource()
     private let submissionDataSource = SubmissionChartDataSource()
     
     var global: Global!
@@ -279,17 +291,10 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     private func loadPerformanceData(state: ReviewState?) {
-        let yesCount = state?.answeredYes ?? 0
-        let noCount = state?.answeredNo ?? 0
-        let otherCount = state?.answeredOther ?? 0
-        let unansweredCount = state?.totalUnanswered ?? 0
-        
-        let yesItem = PieChartItem(value: yesCount, color: UIColor.pieYes)
-        let noItem = PieChartItem(value: noCount, color: UIColor.pieNo)
-        let otherItem = PieChartItem(value: otherCount, color: UIColor.pieOther)
-        let unansweredItem = PieChartItem(value: unansweredCount, color: UIColor.pieUnanswered)
-        
-        performanceDataSource.pieChartItems = [yesItem, noItem, otherItem, unansweredItem]
+        performanceDataSource.set(yesCount: state?.answeredYes ?? 0,
+                                  noCount: state?.answeredNo ?? 0,
+                                  otherCount: state?.answeredOther ?? 0,
+                                  unansweredCount: state?.totalUnanswered ?? 0)
         
         let submitted = state?.totalSubmitted ?? 0
         let total = state?.totalCards ?? 0
