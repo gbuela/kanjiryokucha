@@ -89,9 +89,9 @@ struct LoginViewModel {
             sp.startWithResult { (result: Result<Response, FetchError>) in
                 if let response = result.value {
                     if response.statusCode == httpStatusMovedTemp,
-                        let location = response.headers[Headers.location] as? String,
+                        let location = response.headers[HeaderKeys.location] as? String,
                         location.hasPrefix(koohiiHost) {
-                        if let cookie = response.headers[Headers.setCookie] as? String {
+                        if let cookie = response.headers[HeaderKeys.setCookie] as? String {
                             Response.latestCookies = [ cookie ]
                         }
                         handler(true, username)
