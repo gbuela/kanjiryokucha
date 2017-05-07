@@ -17,8 +17,29 @@ struct Rating {
     let emoji: String
 }
 
+extension PieChartItem {
+    init(value: Int, color: UIColor, text: String? = nil) {
+        self.init(value: Float(value), color: color, text: text ?? "\(value)")
+    }
+}
+
 class ChartDataSource: ARPieChartItemDataSource {
     var pieChartItems: [PieChartItem] = []
+}
+
+class SubmissionChartDataSource: ARPieChartItemDataSource {
+    private var items: [PieChartItem] = []
+    
+    var pieChartItems: [PieChartItem] {
+        return items
+    }
+    
+    func set(submitted: Int, total: Int) {
+        let unsubmitted = max(total - submitted, 0)
+        let item0 = PieChartItem(value: submitted, color: UIColor.pieSubmitted, text: "")
+        let item1 = PieChartItem(value: unsubmitted, color: UIColor.pieUnsubmitted, text: "")
+        items = [item0, item1]
+    }
 }
 
 class ReviewViewController: UIViewController, UITabBarControllerDelegate {
@@ -100,7 +121,7 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
     private let studyTip = TipView(.studyTab)
     
     private let performanceDataSource = ChartDataSource()
-    private let submissionDataSource = ChartDataSource()
+    private let submissionDataSource = SubmissionChartDataSource()
     
     var global: Global!
 
@@ -149,11 +170,6 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
         
         performanceChart.dataSource = performanceDataSource
         submissionChart.dataSource = submissionDataSource
-        
-        submissionDataSource.pieChartItems = [
-            chartItem(value: 0, color: UIColor.pieSubmitted),
-            chartItem(value: 0, color: UIColor.pieUnsubmitted)
-        ]
         
         reviewLabel.textColor = .ryokuchaDark
         submitLabel.textColor = .ryokuchaDark
@@ -262,27 +278,21 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
         submissionChart.reloadData()
     }
     
-    private func chartItem(value: Int, color: UIColor) -> PieChartItem {
-        return PieChartItem(value: Float(value), color: color, text: "\(value)")
-    }
-    
     private func loadPerformanceData(state: ReviewState?) {
         let yesCount = state?.answeredYes ?? 0
         let noCount = state?.answeredNo ?? 0
         let otherCount = state?.answeredOther ?? 0
         let unansweredCount = state?.totalUnanswered ?? 0
         
-        let yesItem = chartItem(value: yesCount, color: UIColor.pieYes)
-        let noItem = chartItem(value: noCount, color: UIColor.pieNo)
-        let otherItem = chartItem(value: otherCount, color: UIColor.pieOther)
-        let unansweredItem = chartItem(value: unansweredCount, color: UIColor.pieUnanswered)
+        let yesItem = PieChartItem(value: yesCount, color: UIColor.pieYes)
+        let noItem = PieChartItem(value: noCount, color: UIColor.pieNo)
+        let otherItem = PieChartItem(value: otherCount, color: UIColor.pieOther)
+        let unansweredItem = PieChartItem(value: unansweredCount, color: UIColor.pieUnanswered)
         
         performanceDataSource.pieChartItems = [yesItem, noItem, otherItem, unansweredItem]
         
         let submitted = state?.totalSubmitted ?? 0
-        let unsubmitted = max((state?.totalCards ?? 0) - submitted, 0)
-        submissionDataSource.pieChartItems[0] = chartItem(value: submitted, color: UIColor.pieSubmitted)
-        submissionDataSource.pieChartItems[1] = chartItem(value: unsubmitted, color: UIColor.pieUnsubmitted)
-        
+        let total = state?.totalCards ?? 0
+        submissionDataSource.set(submitted: submitted, total: total)
     }
 }
