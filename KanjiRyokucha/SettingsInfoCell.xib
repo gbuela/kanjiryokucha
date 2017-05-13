@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,7 @@
                     <constraint firstItem="CNr-bD-bCL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="2Tg-wC-GAB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="0GM-wD-aKL" secondAttribute="trailing" constant="8" id="9ew-2k-pNz"/>
                     <constraint firstItem="CNr-bD-bCL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="qGa-bX-J9l"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CNr-bD-bCL" secondAttribute="bottom" constant="7.5" id="rxr-Op-KaI"/>
                     <constraint firstItem="0GM-wD-aKL" firstAttribute="top" secondItem="CNr-bD-bCL" secondAttribute="top" id="zAL-7W-f7v"/>
                 </constraints>
             </tableViewCellContentView>

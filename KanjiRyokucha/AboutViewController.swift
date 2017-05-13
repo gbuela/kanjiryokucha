@@ -23,6 +23,8 @@ class AboutViewController: UIViewController, UIWebViewDelegate {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
         }
+        
+        title = "About"
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {

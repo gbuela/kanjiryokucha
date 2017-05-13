@@ -45,6 +45,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             aboutCell
         ]
         
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
     }
     
@@ -126,16 +128,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch cells[indexPath.row] {
-        case is SettingsSwitchCell:
-            return 84
-        case is SeparatorCell:
+        if cells[indexPath.row] is SeparatorCell {
             return 30
-        case is SettingsInfoCell:
-            return 53
-        default:
-            return 45
         }
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
