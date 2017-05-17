@@ -145,7 +145,7 @@ extension KoohiiRequest {
 private extension KoohiiRequest {
     
     var isApiPublic: Bool {
-        return false
+        return true
     }
     
     var urlRequest: URLRequest? {
