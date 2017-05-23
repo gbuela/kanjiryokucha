@@ -271,6 +271,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         } else if button == backView.hardButton {
             userAnswered(answer: .hard)
             pageForward()
+        } else if button == backView.flipBackButton {
+            flipBack()
         }
     }
     
@@ -292,7 +294,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
         
         alertController.addAction(optionButtonStroke())
         alertController.addAction(optionButtonStudyPage())
-        alertController.addAction(optionButtonFlipBack())
         alertController.addAction(optionButtonSkip())
         alertController.addAction(optionButtonDelete())
         alertController.addAction(optionButtonCancel())
@@ -323,13 +324,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 sself.showingFront {
                 sself.pageBack()
             }
-        })
-    }
-    
-    private func optionButtonFlipBack() -> UIAlertAction {
-        return UIAlertAction(title: "Flip back", style: .default, handler: { [weak self] (action) -> Void in
-            log("Flip back tapped")
-            self?.flipBack()
         })
     }
     

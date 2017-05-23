@@ -19,6 +19,7 @@ class CardBackView : UIView {
     @IBOutlet weak var hardButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
+    @IBOutlet weak var flipBackButton: UIButton!
     
     weak var buttonHandler: ButtonHandler?
     
