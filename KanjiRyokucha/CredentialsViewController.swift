@@ -104,7 +104,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
     }
     
     @IBAction func signupPressed(_ sender: AnyObject) {
-        guard let url = URL(string: "http://kanji.koohii.com/account/create") else { return }
+        guard let url = URL(string: "https://kanji.koohii.com/account/create") else { return }
         let safariVC = SFSafariViewController(url: url)
         if #available(iOS 10.0, *) {
             safariVC.preferredBarTintColor = .ryokuchaDark

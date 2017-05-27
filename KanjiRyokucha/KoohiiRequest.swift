@@ -41,9 +41,9 @@ let koohiiDomain: String = {
 let koohiiProtocol: String = {
     switch buildType {
     case .production:
-        return "http"
+        return "https"
     default:
-        return "http"
+        return "https"
     }
 }()
 
