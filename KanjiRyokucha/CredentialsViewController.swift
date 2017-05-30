@@ -18,7 +18,7 @@ let usernameKey = "username"
 let passwordKey = "passwordKey"
 let httpStatusMovedTemp = 302
 
-class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeGuestDelegate {
+class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeGuestDelegate, BackendAccess {
     
     private class func notEmpty(string: String?) -> Bool {
         return string != nil && string != ""
@@ -104,7 +104,7 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
     }
     
     @IBAction func signupPressed(_ sender: AnyObject) {
-        guard let url = URL(string: "https://kanji.koohii.com/account/create") else { return }
+        guard let url = URL(string: backendHost + "/account/create") else { return }
         let safariVC = SFSafariViewController(url: url)
         if #available(iOS 10.0, *) {
             safariVC.preferredBarTintColor = .ryokuchaDark

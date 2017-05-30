@@ -255,7 +255,7 @@ class StudyEngine {
 }
 
 class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate, UISplitViewControllerDelegate {
+    UIViewControllerPreviewingDelegate, StudyPageDelegate, StudyCellDelegate, UISplitViewControllerDelegate, BackendAccess {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var submitButton: UIButton!
@@ -376,7 +376,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
             else { return nil }
         
-        let url = "https://kanji.koohii.com/study/kanji/" + encoded
+        let url = backendHost + "/study/kanji/" + encoded
         return StudyPageViewController.instanceForStudy(urlString: url,
                                                         keyword: entry.keyword,
                                                         isLearned: entry.learned,
@@ -526,7 +526,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let navigationVC = segue.destination as? UINavigationController,
             let studyPageVC = navigationVC.viewControllers[0] as? StudyPageViewController else { return }
         
-        let url = "https://kanji.koohii.com/study/kanji/" + encoded
+        let url = backendHost + "/study/kanji/" + encoded
         studyPageVC.setupInStudy(urlString: url,
                                  keyword: entry.keyword,
                                  isLearned: entry.learned,

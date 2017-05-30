@@ -34,9 +34,9 @@ struct LoginRequest: KoohiiRequest {
                  "commit" : "Login" ]
     }
     var headers: ParamSet {
-        return [ "Host" : koohiiDomain,
-                 "Origin" : koohiiHost,
-                 "Referer" : koohiiHost + apiMethod ]
+        return [ "Host" : backendDomain,
+                 "Origin" : backendHost,
+                 "Referer" : backendHost + apiMethod ]
     }
     
     let guestResult: String? = nil

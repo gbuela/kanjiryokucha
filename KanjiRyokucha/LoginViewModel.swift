@@ -25,7 +25,7 @@ enum LoginState {
    }
 }
 
-struct LoginViewModel {
+struct LoginViewModel : BackendAccess {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let state: MutableProperty<LoginState> = MutableProperty(.loggingIn)
     let credentialsRequired: MutableProperty<Bool> = MutableProperty(false)
@@ -90,7 +90,7 @@ struct LoginViewModel {
                 if let response = result.value {
                     if response.statusCode == httpStatusMovedTemp,
                         let location = response.headers[HeaderKeys.location] as? String,
-                        location.hasPrefix(koohiiHost) {
+                        location.hasPrefix(self.backendHost) {
                         if let cookie = response.headers[HeaderKeys.setCookie] as? String {
                             Response.latestCookies = [ cookie ]
                         }

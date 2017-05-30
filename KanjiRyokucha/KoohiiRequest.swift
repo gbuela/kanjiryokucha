@@ -27,34 +27,49 @@ let buildType: BuildType = {
     fatalError("Undefined or unknown BUILDTYPE in Info.plist!")
 }()
 
-let koohiiDomain: String = {
-    switch buildType {
-    case .production:
-        return "kanji.koohii.com"
-    case .development:
-        return "localhost:8888"
-    case .staging:
-        return "staging.koohii.com"
+protocol BackendAccess {
+    var backendDomain: String { get }
+    var backendProtocol: String { get }
+    var backendHost: String { get }
+}
+
+extension BackendAccess {
+    var backendDomain: String {
+        switch buildType {
+        case .production:
+            return "kanji.koohii.com"
+        case .development:
+            return "localhost:8888"
+        case .staging:
+            return "staging.koohii.com"
+        }
     }
-}()
-
-let koohiiProtocol: String = {
-    switch buildType {
-    case .production:
-        return "https"
-    default:
-        return "https"
+    
+    var backendProtocol: String {
+        switch buildType {
+        case .development:
+            return "http"
+        default:
+            return "https"
+        }
     }
-}()
+    
+    var backendHost: String {
+        return backendProtocol + "://" + backendDomain
+    }
+}
 
-let koohiiHost = koohiiProtocol + "://" + koohiiDomain
-fileprivate let endpoint = koohiiHost + "/api/v1/"
-
-protocol KoohiiRequest : Request {
+protocol KoohiiRequest : Request, BackendAccess {
+    var endpoint: String { get }
     var guestResult: String? { get }
 }
 
 extension KoohiiRequest {
+    
+    var endpoint: String {
+        return backendHost + "/api/v1/"
+    }
+    
     func guestProducer() -> SignalProducer<Response, FetchError>? {
         guard let result = guestResult,
             let data = result.data(using: .utf8) else { return nil }
@@ -151,7 +166,7 @@ private extension KoohiiRequest {
     var urlRequest: URLRequest? {
         let qsParams = sendApiKey && !isApiPublic ? querystringParams.merged(with: ["api_key":ApiKeys.koohii]) : querystringParams
         
-        let uriQs = (useEndpoint ? endpoint : koohiiHost) + apiMethod + "?" + joinParams(qsParams)
+        let uriQs = (useEndpoint ? endpoint : backendHost) + apiMethod + "?" + joinParams(qsParams)
         
         guard let url = URL(string: uriQs),
             let bodyParams = self.httpBodyParams else {

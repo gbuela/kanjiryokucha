@@ -42,6 +42,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         let instance = loadFromStoryboard()
         instance.urlToOpen = urlString
         instance.mode = .review
+        log("study page: " + urlString)
         return instance
     }
 
@@ -52,6 +53,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
                               isLearned: isLearned,
                               indexPath: indexPath,
                               delegate: delegate)
+        log("study page: " + urlString)
         return instance
     }
     
@@ -61,6 +63,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         self.mode = isLearned ? .studyLearned : .study
         self.indexPath = indexPath
         self.delegate = delegate
+        log("study page: " + urlString)
     }
     
     override func viewDidLoad() {

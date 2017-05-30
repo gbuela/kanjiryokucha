@@ -23,7 +23,7 @@ protocol ReviewDelegate: class {
     func userFinishedReview()
 }
 
-class PagedReviewViewController: UIViewController, ButtonHandler {
+class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess {
     
     var cards: [CardModel]?
     weak var delegate: ReviewDelegate?
@@ -402,7 +402,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler {
                 let scalar = UnicodeScalar(card.cardId),
                 let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
             
-            let urlString = "https://kanji.koohii.com/study/kanji/" + encoded
+            let urlString = sself.backendHost + "/study/kanji/" + encoded
             let studyPageVC = StudyPageViewController.instanceForReview(urlString: urlString)
             studyPageVC.title = card.keyword
             let navController = UINavigationController(rootViewController: studyPageVC)
