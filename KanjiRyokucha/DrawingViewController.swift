@@ -24,6 +24,24 @@ class DrawingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        makeImageSizeWithoutDecimals()
+    }
+    
+    /***
+     Needed to solve this issue:
+     https://stackoverflow.com/questions/42327719/strange-bug-with-drawing-in-uisplitviewcontroller
+     */
+    private func makeImageSizeWithoutDecimals() {
+        let roundedDownSize = floor(tempImage.frame.size.width)
+        log("Changing size \(tempImage.frame.size.width) to \(roundedDownSize)")
+        tempImage.frame.size.width = roundedDownSize
+        tempImage.frame.size.height = roundedDownSize
+        mainImage.frame.size.width = roundedDownSize
+        mainImage.frame.size.height = roundedDownSize
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emptyImageLabel.isHidden = true
