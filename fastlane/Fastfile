@@ -18,6 +18,7 @@ lane :beta do
   cert
   sigh
   increment_build_number
+  ENV["FASTLANE_XCODE_LIST_TIMEOUT"] = "120"
   gym(
     scheme: "KanjiRyokucha",
     export_method: "app-store",
