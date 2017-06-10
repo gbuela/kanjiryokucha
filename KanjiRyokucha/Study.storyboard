@@ -40,19 +40,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-re-820" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                <rect key="frame" x="107" y="8" width="160" height="55"/>
+                                <rect key="frame" x="126.5" y="8" width="121" height="55"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="v74-eD-eAg"/>
                                     <constraint firstAttribute="height" constant="55" id="xhD-vp-Tr7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="10"/>
                                 <inset key="titleEdgeInsets" minX="-1" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="submit changes"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06I-Ib-T2Q">
-                                <rect key="frame" x="107" y="42" width="160" height="21"/>
+                                <rect key="frame" x="126.5" y="42" width="121" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -65,7 +64,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVa-8w-Fjb" id="ErS-4q-F42">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="75.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrG-qb-0YI">
