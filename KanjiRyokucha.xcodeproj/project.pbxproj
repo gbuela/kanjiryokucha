@@ -67,7 +67,6 @@
 		C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331E1E64EF34004F67C4 /* SettingsSwitchCell.xib */; };
 		C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC251E4AA430006F2C0C /* FreeReviewViewController.xib */; };
 		C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
-		C409A1DB1E86011E006EEE77 /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */; };
 		C409A1DD1E86011E006EEE77 /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
@@ -105,7 +104,6 @@
 		C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */; };
 		C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
 		C43DCC461E57E4C1006F2C0C /* StudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC441E57E4C1006F2C0C /* StudyCell.swift */; };
-		C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */; };
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
 		C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
@@ -168,7 +166,6 @@
 		C44F75721E8F213300E00AD9 /* SettingsSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EF331E1E64EF34004F67C4 /* SettingsSwitchCell.xib */; };
 		C44F75741E8F213300E00AD9 /* FreeReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC251E4AA430006F2C0C /* FreeReviewViewController.xib */; };
 		C44F75751E8F213300E00AD9 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
-		C44F75761E8F213300E00AD9 /* StudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC451E57E4C1006F2C0C /* StudyCell.xib */; };
 		C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */; };
 		C44F75781E8F213300E00AD9 /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
@@ -306,7 +303,6 @@
 		C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyEntry.swift; sourceTree = "<group>"; };
 		C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyPageViewController.swift; sourceTree = "<group>"; };
 		C43DCC441E57E4C1006F2C0C /* StudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyCell.swift; sourceTree = "<group>"; };
-		C43DCC451E57E4C1006F2C0C /* StudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudyCell.xib; sourceTree = "<group>"; };
 		C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStatusRequest.swift; sourceTree = "<group>"; };
 		C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
@@ -449,7 +445,6 @@
 				C42BBAB41E1728E800361C89 /* ButtonHandler.swift */,
 				C43DCC201E47D07B006F2C0C /* KRButton.swift */,
 				C43DCC441E57E4C1006F2C0C /* StudyCell.swift */,
-				C43DCC451E57E4C1006F2C0C /* StudyCell.xib */,
 				C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */,
 				C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */,
 				C4EF331D1E64EF34004F67C4 /* SettingsSwitchCell.swift */,
@@ -799,7 +794,6 @@
 				C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */,
 				C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */,
 				C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */,
-				C409A1DB1E86011E006EEE77 /* StudyCell.xib in Resources */,
 				C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */,
 				C409A1DD1E86011E006EEE77 /* readings.csv in Resources */,
 				C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */,
@@ -829,7 +823,6 @@
 				C44F75721E8F213300E00AD9 /* SettingsSwitchCell.xib in Resources */,
 				C44F75741E8F213300E00AD9 /* FreeReviewViewController.xib in Resources */,
 				C44F75751E8F213300E00AD9 /* LoginViewController.xib in Resources */,
-				C44F75761E8F213300E00AD9 /* StudyCell.xib in Resources */,
 				C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */,
 				C44F75781E8F213300E00AD9 /* readings.csv in Resources */,
 				C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */,
@@ -866,7 +859,6 @@
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
-				C43DCC471E57E4C1006F2C0C /* StudyCell.xib in Resources */,
 				C42BBAB31E13220700361C89 /* PagedReviewViewController.xib in Resources */,
 				C43DCC391E51198B006F2C0C /* readings.csv in Resources */,
 				C43668D91DFB3A810080D768 /* CardFrontView.xib in Resources */,

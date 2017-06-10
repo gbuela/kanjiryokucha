@@ -18,21 +18,27 @@ class StudyCell: UITableViewCell {
     @IBOutlet weak var learnedButton: UIButton!
     
     weak var delegate: StudyCellDelegate?
-    var entry: StudyEntry?
+    var entry: StudyEntry? {
+        didSet {
+            updateUI()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        keywordLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        if #available(iOS 10.0, *) {
-            keywordLabel.adjustsFontForContentSizeCategory = true
-        }
+
+        learnedButton.setImage(UIImage(named: "circle"), for: .normal)
+        learnedButton.setImage(UIImage(named: "circlecheck"), for: .selected)
+        
+        updateUI()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    private func updateUI() {
+        guard let entry = entry,
+            let button = learnedButton else { return }
+        
+        button.isSelected = entry.learned
     }
     
     @IBAction func learnedTapped() {

@@ -439,9 +439,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.delegate = self
         
         let entry = engine.studyEntries().value[idx]
-        let image = entry.learned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
-       
-        cell.learnedButton.setBackgroundImage(image, for: .normal)
         
         let keyword = entry.keyword == "" ? "#\(entry.cardId)" : entry.keyword
         cell.keywordLabel?.text = keyword
@@ -498,13 +495,11 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let toLearned = !entry.learned
         
         guard !onlyToLearned || toLearned else { return }
-        
-        let image = toLearned ? UIImage(named: "circlecheck") : UIImage(named: "circle")
+
+        mark(entry: entry, learned: toLearned)
         
         let cell = tableView.cellForRow(at: indexPath) as! StudyCell
-        cell.learnedButton.setBackgroundImage(image, for: .normal)
-        
-        mark(entry: entry, learned: toLearned)
+        cell.entry = entry
         
         engine.triggerStudyEntries()
     }

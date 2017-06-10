@@ -65,15 +65,12 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVa-8w-Fjb" id="ErS-4q-F42">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrG-qb-0YI">
-                                                    <rect key="frame" x="80" y="15" width="42" height="46"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="46" id="Jry-5u-haj"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrG-qb-0YI">
+                                                    <rect key="frame" x="80" y="15" width="254" height="46"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -83,13 +80,15 @@
                                                         <constraint firstAttribute="width" constant="50" id="1EB-SK-ZpX"/>
                                                         <constraint firstAttribute="height" constant="50" id="EsZ-h5-Dx4"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="circle"/>
                                                     <connections>
                                                         <action selector="learnedTapped" destination="xVa-8w-Fjb" eventType="touchUpInside" id="Hx4-n4-arh"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JrG-qb-0YI" secondAttribute="trailing" id="0jq-eD-1bm"/>
+                                                <constraint firstItem="JrG-qb-0YI" firstAttribute="top" secondItem="ErS-4q-F42" secondAttribute="topMargin" constant="7" id="6vH-Fe-YBf"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JrG-qb-0YI" secondAttribute="bottom" constant="6.5" id="RZ0-eY-JlX"/>
                                                 <constraint firstItem="JrG-qb-0YI" firstAttribute="leading" secondItem="Ov6-Je-dnN" secondAttribute="trailing" constant="12" id="SM6-3f-Y6S"/>
                                                 <constraint firstItem="Ov6-Je-dnN" firstAttribute="leading" secondItem="ErS-4q-F42" secondAttribute="leadingMargin" constant="10" id="YeM-kD-jAH"/>
                                                 <constraint firstItem="Ov6-Je-dnN" firstAttribute="centerY" secondItem="JrG-qb-0YI" secondAttribute="centerY" id="je9-ZG-aik"/>
@@ -241,7 +240,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" width="36" height="36"/>
         <image name="kanjibkg.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
