@@ -23,6 +23,10 @@ class StudyCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        keywordLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        if #available(iOS 10.0, *) {
+            keywordLabel.adjustsFontForContentSizeCategory = true
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

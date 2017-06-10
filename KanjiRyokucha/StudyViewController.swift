@@ -281,6 +281,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.backgroundColor = .ryokuchaFaint
 
         tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 70
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "REFRESH", style: .plain, target: nil, action: nil)
 
@@ -418,7 +419,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 return 0
             }
         }
-        return 70
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
