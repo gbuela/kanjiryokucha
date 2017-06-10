@@ -141,6 +141,10 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
     func wireUp() {
         viewModel.wireUp()
         
+        if #available(iOS 10.0, *) {
+            startButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        }
+        
         viewModel.fromIndex <~ fromField.reactive.continuousTextValues.map(FreeReviewViewController.textToInt)
         viewModel.toIndex <~ toField.reactive.continuousTextValues.map(FreeReviewViewController.textToInt)
         viewModel.shuffleOn <~ shuffleSwitch.reactive.isOnValues
