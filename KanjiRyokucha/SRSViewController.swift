@@ -12,7 +12,6 @@ import ReactiveCocoa
 import Result
 import RealmSwift
 import Gloss
-import SwiftRater
 import EasyTipView
 
 let lastSatusRefreshKey = "lastSatusRefresh"
@@ -581,8 +580,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        SwiftRater.check()
-
         if engine.global.refreshNeeded {
             engine.refreshStatus()
         } else if engine.refreshedSinceStartup,

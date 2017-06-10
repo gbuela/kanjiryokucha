@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveSwift
+import SwiftRater
 
 fileprivate typealias ReviewStarter = ActionStarter<[ReviewEntry], Response, FetchError>
 fileprivate typealias SubmitStarter = ActionStarter<[ReviewEntry], [SignalProducer<Response, FetchError>], FetchError>
@@ -248,6 +249,8 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
                         tabController.delegate = self
                         self?.studyTip.show(barItem: tab)
                     }
+                    
+                    SwiftRater.check()
                 }
             }
         } else {
