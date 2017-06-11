@@ -64,7 +64,7 @@ struct LoginViewModel : BackendAccess {
     }
     
     private func setDefaultRealmForUser(username: String) {
-        var config = Realm.Configuration()
+        var config = Realm.ConfigurationWithMigration()
         
         config.fileURL = config.fileURL!.deletingLastPathComponent()
             .appendingPathComponent("\(username).realm")

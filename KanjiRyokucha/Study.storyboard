@@ -61,7 +61,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVa-8w-Fjb" id="ErS-4q-F42">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="75.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrG-qb-0YI">
@@ -69,6 +69,12 @@
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22g-5O-ZOw">
+                                                    <rect key="frame" x="312.5" y="45" width="21.5" height="16"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ov6-Je-dnN">
                                                     <rect key="frame" x="18" y="13" width="50" height="50"/>
@@ -84,6 +90,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="JrG-qb-0YI" secondAttribute="trailing" id="0jq-eD-1bm"/>
                                                 <constraint firstItem="JrG-qb-0YI" firstAttribute="top" secondItem="ErS-4q-F42" secondAttribute="topMargin" constant="7" id="6vH-Fe-YBf"/>
+                                                <constraint firstItem="22g-5O-ZOw" firstAttribute="bottom" secondItem="JrG-qb-0YI" secondAttribute="bottom" id="BVi-oV-ey6"/>
+                                                <constraint firstItem="22g-5O-ZOw" firstAttribute="trailing" secondItem="JrG-qb-0YI" secondAttribute="trailing" id="Gsz-9R-cBk"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JrG-qb-0YI" secondAttribute="bottom" constant="6.5" id="RZ0-eY-JlX"/>
                                                 <constraint firstItem="JrG-qb-0YI" firstAttribute="leading" secondItem="Ov6-Je-dnN" secondAttribute="trailing" constant="12" id="SM6-3f-Y6S"/>
                                                 <constraint firstItem="Ov6-Je-dnN" firstAttribute="leading" secondItem="ErS-4q-F42" secondAttribute="leadingMargin" constant="10" id="YeM-kD-jAH"/>
@@ -92,6 +100,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="frameNumLabel" destination="22g-5O-ZOw" id="lOj-hP-RU3"/>
                                             <outlet property="keywordLabel" destination="JrG-qb-0YI" id="4ga-Pq-sag"/>
                                             <outlet property="learnedButton" destination="Ov6-Je-dnN" id="0PT-UW-L35"/>
                                             <segue destination="W4v-nQ-ySV" kind="showDetail" identifier="open_study_detail" id="dSo-jb-Oew"/>

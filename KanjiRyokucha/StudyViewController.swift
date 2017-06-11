@@ -441,12 +441,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: studyCellId, for: indexPath) as! StudyCell
         
         cell.delegate = self
-        
-        let entry = engine.studyEntries().value[idx]
-        
-        let keyword = entry.keyword == "" ? "#\(entry.cardId)" : entry.keyword
-        cell.keywordLabel?.text = keyword
-        cell.entry = entry
+        cell.entry = engine.studyEntries().value[idx]
         
         return cell
     }

@@ -99,7 +99,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         defaults.set(nil, forKey: usernameKey)
         defaults.set(nil, forKey: passwordKey)
         
-        Realm.Configuration.defaultConfiguration = Realm.Configuration()
+        Realm.Configuration.defaultConfiguration = Realm.ConfigurationWithMigration()
         Global.username = ""
 
         if let cookies = HTTPCookieStorage.shared.cookies {

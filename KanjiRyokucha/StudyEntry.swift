@@ -10,6 +10,7 @@ import RealmSwift
 
 class StudyEntry : Object {
     dynamic var cardId = 0
+    let frameNum = RealmOptional<Int>()
     dynamic var keyword = ""
     dynamic var learned = false
     dynamic var synced = false

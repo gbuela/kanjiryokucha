@@ -196,7 +196,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light"/>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOn-7A-s74">
-                            <rect key="frame" x="418.66666666666674" y="9.6666666666666643" width="24.333333333333314" height="18"/>
+                            <rect key="frame" x="418.66666666666674" y="10" width="24.333333333333314" height="18"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>

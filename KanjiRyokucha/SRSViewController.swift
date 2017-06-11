@@ -341,6 +341,7 @@ class SRSReviewEngine: SRSEngineProtocol {
             for entry in entriesToSave {
                 if let card = model.cards.first(where: { entry.cardId == $0.cardId }) {
                     entry.keyword = card.keyword
+                    entry.frameNumber = card.frameNum
                 }
             }
         }
@@ -380,6 +381,7 @@ class SRSReviewEngine: SRSEngineProtocol {
                     if entry.cardAnswer == .no {
                         let studyEntry = StudyEntry()
                         studyEntry.cardId = entry.cardId
+                        studyEntry.frameNum.value = entry.frameNumber
                         studyEntry.keyword = entry.keyword
                         studyEntry.learned = false
                         studyEntry.synced = true

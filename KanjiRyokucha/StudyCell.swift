@@ -15,6 +15,7 @@ protocol StudyCellDelegate: class {
 class StudyCell: UITableViewCell {
     
     @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet weak var frameNumLabel: UILabel!
     @IBOutlet weak var learnedButton: UIButton!
     
     weak var delegate: StudyCellDelegate?
@@ -39,6 +40,15 @@ class StudyCell: UITableViewCell {
             let button = learnedButton else { return }
         
         button.isSelected = entry.learned
+        
+        keywordLabel?.text = entry.keyword == "" ? "#\(entry.cardId)" : entry.keyword
+
+        if let frameNum = entry.frameNum.value,
+            frameNum > 0 {
+            frameNumLabel?.text = "\(frameNum)"
+        } else {
+            frameNumLabel.text = ""
+        }
     }
     
     @IBAction func learnedTapped() {
