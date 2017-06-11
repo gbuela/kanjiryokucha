@@ -280,6 +280,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         alertController.addAction(optionButtonPreviousCard())
+        alertController.addAction(optionLookup())
         alertController.addAction(optionButtonSkip())
         alertController.addAction(optionButtonDelete())
         alertController.addAction(optionButtonCancel())
@@ -324,6 +325,17 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess 
                 sself.showingFront {
                 sself.pageBack()
             }
+        })
+    }
+    
+    private func optionLookup() -> UIAlertAction {
+        return UIAlertAction(title: "Dictionary look up", style: .default, handler: { [weak self] (action) in
+            log("Lookup tapped")
+            guard let currentPage = self?.currentPage,
+                let card = self?.cards?[currentPage] else { return }
+
+            let ref = UIReferenceLibraryViewController(term: card.keyword)
+            self?.present(ref, animated: true, completion: nil)
         })
     }
     

@@ -20,20 +20,20 @@
                     <rect key="frame" x="0.0" y="0.0" width="344" height="528"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="UFv-ZE-JGL">
-                            <rect key="frame" x="8" y="8" width="328" height="26.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <rect key="frame" x="8" y="8" width="328" height="20.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfJ-tv-8Sx" userLabel="imageContainer">
-                            <rect key="frame" x="0.0" y="42.5" width="344" height="344"/>
+                            <rect key="frame" x="0.0" y="36.5" width="344" height="344"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="HfJ-tv-8Sx" secondAttribute="height" multiplier="1:1" id="l4W-dE-QtN"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0W-Pp-5iX">
-                            <rect key="frame" x="0.0" y="411.5" width="344" height="116.5"/>
+                            <rect key="frame" x="0.0" y="405.5" width="344" height="122.5"/>
                             <accessibility key="accessibilityConfiguration" identifier="flipCard"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                             <state key="normal" title="flip">
@@ -44,7 +44,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-mA-xvB" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="8" y="394.5" width="55" height="44"/>
+                            <rect key="frame" x="8" y="388.5" width="55" height="44"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="0gy-uD-ddz"/>
@@ -56,7 +56,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsI-SZ-f41" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="281" y="394.5" width="55" height="44"/>
+                            <rect key="frame" x="281" y="388.5" width="55" height="44"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" identifier="frontQuit"/>
                             <constraints>
@@ -68,7 +68,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pW-rv-8IL" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="135" y="399" width="74" height="35"/>
+                            <rect key="frame" x="135" y="393" width="74" height="35"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="hE1-fK-qEv"/>
