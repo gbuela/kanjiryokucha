@@ -48,6 +48,12 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
         
         loginButton.isEnabled = false
         
+        if #available(iOS 10.0, *) {
+            loginButton.titleLabel?.adjustsFontForContentSizeCategory = true
+            signupButton.titleLabel?.adjustsFontForContentSizeCategory = true
+            guestButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        }
+
         wireUp()
     }
     
