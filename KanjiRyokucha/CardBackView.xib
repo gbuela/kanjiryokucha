@@ -20,8 +20,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdc-E5-ZX9" userLabel="Root view">
                     <rect key="frame" x="0.0" y="0.0" width="451" height="622"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59L-8V-wHH">
-                            <rect key="frame" x="8" y="7.9999999999999982" width="435" height="20.333333333333329"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59L-8V-wHH" customClass="LookupLabel" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <rect key="frame" x="8" y="7.9999999999999982" width="68" height="20.333333333333329"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -226,7 +226,6 @@
                         <constraint firstAttribute="trailing" secondItem="NLb-1T-Akn" secondAttribute="trailing" constant="8" id="fuy-5d-sjm"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="leading" secondItem="tdc-E5-ZX9" secondAttribute="leading" id="kVE-Mt-hUK"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="top" secondItem="SJc-5n-7rS" secondAttribute="top" constant="25" id="mSe-L2-5gg"/>
-                        <constraint firstAttribute="trailing" secondItem="59L-8V-wHH" secondAttribute="trailing" constant="8" id="qQ7-cI-g2r"/>
                         <constraint firstAttribute="trailing" secondItem="tkf-lp-AZA" secondAttribute="trailing" constant="8" id="txW-Hu-s2R"/>
                         <constraint firstItem="SJc-5n-7rS" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="leading" id="vQh-T0-gq3"/>
                         <constraint firstItem="DJ2-uF-VGx" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="bottom" constant="8" symbolic="YES" id="xc9-jd-urg"/>

@@ -9,7 +9,7 @@
 import UIKit
 
 class CardBackView : UIView {
-    @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet weak var keywordLabel: LookupLabel!
     @IBOutlet weak var kanjiLabel: UILabel!
     @IBOutlet weak var readingsTextView: UITextView!
     @IBOutlet weak var drawingImageView: UIImageView!

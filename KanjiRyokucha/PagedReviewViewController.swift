@@ -156,6 +156,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         let backView = CardBackView.loadFromNib()
         
         frontView.keywordLabel.delegate = self
+        backView.keywordLabel.delegate = self
         frontView.keywordLabel.text = card.keyword
         backView.keywordLabel.text = card.keyword
         if let scalar = UnicodeScalar(card.cardId) {
