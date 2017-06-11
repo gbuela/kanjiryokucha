@@ -159,6 +159,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         backView.keywordLabel.delegate = self
         frontView.keywordLabel.text = card.keyword
         backView.keywordLabel.text = card.keyword
+        backView.frameNumLabel.text = "\(card.frameNum)"
         if let scalar = UnicodeScalar(card.cardId) {
             backView.kanjiLabel.text = String(describing: scalar)
         } else {

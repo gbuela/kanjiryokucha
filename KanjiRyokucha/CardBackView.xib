@@ -195,9 +195,16 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light"/>
                         </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOn-7A-s74">
+                            <rect key="frame" x="418.66666666666674" y="9.6666666666666643" width="24.333333333333314" height="18"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="AOn-7A-s74" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="59L-8V-wHH" secondAttribute="trailing" constant="8" id="2nx-e2-S4d"/>
                         <constraint firstItem="DJ2-uF-VGx" firstAttribute="leading" secondItem="MFh-HD-qOr" secondAttribute="leading" id="5T4-bD-3Oh"/>
                         <constraint firstItem="59L-8V-wHH" firstAttribute="leading" secondItem="tdc-E5-ZX9" secondAttribute="leading" constant="8" id="5iV-Z0-fsQ"/>
                         <constraint firstItem="59L-8V-wHH" firstAttribute="top" secondItem="tdc-E5-ZX9" secondAttribute="top" constant="8" id="5ot-dx-r1c"/>
@@ -224,8 +231,10 @@
                         <constraint firstItem="MFh-HD-qOr" firstAttribute="leading" secondItem="59L-8V-wHH" secondAttribute="leading" id="dkK-v6-EuT"/>
                         <constraint firstItem="MFh-HD-qOr" firstAttribute="top" secondItem="59L-8V-wHH" secondAttribute="bottom" constant="8" symbolic="YES" id="dqD-ho-Mfq"/>
                         <constraint firstAttribute="trailing" secondItem="NLb-1T-Akn" secondAttribute="trailing" constant="8" id="fuy-5d-sjm"/>
+                        <constraint firstAttribute="trailing" secondItem="AOn-7A-s74" secondAttribute="trailing" constant="8" id="iLt-FC-dWR"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="leading" secondItem="tdc-E5-ZX9" secondAttribute="leading" id="kVE-Mt-hUK"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="top" secondItem="SJc-5n-7rS" secondAttribute="top" constant="25" id="mSe-L2-5gg"/>
+                        <constraint firstItem="AOn-7A-s74" firstAttribute="centerY" secondItem="59L-8V-wHH" secondAttribute="centerY" id="qmb-Ix-jyr"/>
                         <constraint firstAttribute="trailing" secondItem="tkf-lp-AZA" secondAttribute="trailing" constant="8" id="txW-Hu-s2R"/>
                         <constraint firstItem="SJc-5n-7rS" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="leading" id="vQh-T0-gq3"/>
                         <constraint firstItem="DJ2-uF-VGx" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="bottom" constant="8" symbolic="YES" id="xc9-jd-urg"/>
@@ -256,6 +265,7 @@
                 <outlet property="drawingImageView" destination="DJ2-uF-VGx" id="OPL-b8-XIf"/>
                 <outlet property="easyButton" destination="EOh-Ve-UCv" id="cEi-cL-rIr"/>
                 <outlet property="flipBackButton" destination="5w3-fh-qbf" id="jdY-bT-tOs"/>
+                <outlet property="frameNumLabel" destination="AOn-7A-s74" id="o3E-ft-cAM"/>
                 <outlet property="hardButton" destination="Ovc-78-r7W" id="SVn-P6-dDB"/>
                 <outlet property="kanjiLabel" destination="MFh-HD-qOr" id="kza-6d-l2c"/>
                 <outlet property="keywordLabel" destination="59L-8V-wHH" id="7vN-wi-eXB"/>

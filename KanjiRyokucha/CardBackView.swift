@@ -12,6 +12,7 @@ class CardBackView : UIView {
     @IBOutlet weak var keywordLabel: LookupLabel!
     @IBOutlet weak var kanjiLabel: UILabel!
     @IBOutlet weak var readingsTextView: UITextView!
+    @IBOutlet weak var frameNumLabel: UILabel!
     @IBOutlet weak var drawingImageView: UIImageView!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
