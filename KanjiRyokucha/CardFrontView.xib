@@ -19,8 +19,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJ8-iV-jte" userLabel="Root view">
                     <rect key="frame" x="0.0" y="0.0" width="344" height="528"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="UFv-ZE-JGL">
-                            <rect key="frame" x="8" y="8" width="328" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="UFv-ZE-JGL" customClass="LookupLabel" customModule="KanjiRyokucha" customModuleProvider="target">
+                            <rect key="frame" x="8" y="8" width="68" height="20.5"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -95,7 +95,6 @@
                             </userDefinedRuntimeAttributes>
                         </constraint>
                         <constraint firstItem="UFv-ZE-JGL" firstAttribute="top" secondItem="LJ8-iV-jte" secondAttribute="top" constant="8" id="M4X-Ug-jvQ"/>
-                        <constraint firstItem="PsI-SZ-f41" firstAttribute="trailing" secondItem="UFv-ZE-JGL" secondAttribute="trailing" id="S97-2x-KpL"/>
                         <constraint firstItem="HfJ-tv-8Sx" firstAttribute="leading" secondItem="LJ8-iV-jte" secondAttribute="leading" id="S9V-85-rZ4" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
@@ -104,10 +103,10 @@
                             </userDefinedRuntimeAttributes>
                         </constraint>
                         <constraint firstItem="UFv-ZE-JGL" firstAttribute="leading" secondItem="LJ8-iV-jte" secondAttribute="leading" constant="8" id="Suv-u6-n7D"/>
+                        <constraint firstAttribute="trailing" secondItem="PsI-SZ-f41" secondAttribute="trailing" constant="8" id="UTk-EL-2h7"/>
                         <constraint firstItem="F0W-Pp-5iX" firstAttribute="centerX" secondItem="LJ8-iV-jte" secondAttribute="centerX" id="Xk9-An-FFL"/>
                         <constraint firstItem="F0W-Pp-5iX" firstAttribute="top" secondItem="HfJ-tv-8Sx" secondAttribute="bottom" constant="25" id="aa3-bQ-UZX"/>
                         <constraint firstItem="5pW-rv-8IL" firstAttribute="centerX" secondItem="LJ8-iV-jte" secondAttribute="centerX" id="bCT-ZQ-obM"/>
-                        <constraint firstAttribute="trailing" secondItem="UFv-ZE-JGL" secondAttribute="trailing" constant="8" id="kOP-sb-R7q"/>
                         <constraint firstItem="HfJ-tv-8Sx" firstAttribute="top" secondItem="UFv-ZE-JGL" secondAttribute="bottom" constant="8" id="ld5-13-3hg"/>
                         <constraint firstItem="5pW-rv-8IL" firstAttribute="centerY" secondItem="r1J-mA-xvB" secondAttribute="centerY" id="tbJ-RU-pqm"/>
                         <constraint firstItem="F0W-Pp-5iX" firstAttribute="width" secondItem="HfJ-tv-8Sx" secondAttribute="width" id="uNa-NL-Ea8"/>

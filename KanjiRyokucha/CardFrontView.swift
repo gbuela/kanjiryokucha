@@ -10,7 +10,7 @@ import UIKit
 
 class CardFrontView: UIView {
 
-    @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet weak var keywordLabel: LookupLabel!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
