@@ -9,7 +9,7 @@ Kanji Ryokucha also includes a Study phase (enabled by default) where you can re
 
 ## Technical
 
-*Note: service API keys are not included as part of the public repo. You need to get those in order to be able to build the project. You should see a missing ApiKey.swift file that should go in the same folder where the main 'kanjiryokucha' folder sits.*
+*Note: service API keys are not included as part of the public repo. You need to get those in order to be able to build the project. You should see a missing ApiKey.swift file that should go in the main 'kanjiryokucha' folder.*
 
 The project is written in Swift and uses Cocoapods for dependencies.
 

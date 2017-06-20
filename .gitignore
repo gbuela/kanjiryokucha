@@ -12,6 +12,7 @@ ApiKeys.swift
 *.p12
 *.certSigningRequest
 *.mobileprovision
+**/.DS_Store
 
 ## Build generated
 build/
