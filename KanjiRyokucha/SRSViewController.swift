@@ -617,7 +617,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     func wireUp() {        
         reviewContainer.reactive.isHidden <~ engine.currentReviewType.map { $0 == nil }
         
-        reviewTypeStarters = Dictionary(elements: ReviewType.allTypes.map { [unowned self] reviewType in
+        reviewTypeStarters = Dictionary(elements: ReviewType.allTypes.map { reviewType in
             
             let button = self.topButton(for: reviewType)
             let view = self.topButtonView(for: reviewType)
