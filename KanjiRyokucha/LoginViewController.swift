@@ -46,8 +46,8 @@ class LoginViewController: UIViewController {
         retryButton.reactive.isHidden <~ viewModel.state.map { !$0.isFailure() }
         manualLoginButton.reactive.isHidden <~ viewModel.state.map { !$0.isFailure() }
         
-        errorMessageLabel.reactive.text <~ viewModel.state.map {
-            switch $0 {
+        errorMessageLabel.reactive.text <~ viewModel.state.map { (state: LoginState) -> String in
+            switch state {
             case .failure(let message): return message
             default: return ""
             }

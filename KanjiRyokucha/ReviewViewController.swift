@@ -220,7 +220,7 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
         }
         
         score <~ reviewEngine.reviewState.map(ReviewViewController.scoreFromState)
-        scoreLabel.reactive.text <~ score.map { pct in
+        scoreLabel.reactive.text <~ score.map { (pct:Int?) -> String in
             guard let pct = pct else { return "-" }
             return "\(pct)%"
         }

@@ -82,7 +82,7 @@ extension Property {
 }
 
 extension Action {
-    convenience init(handler: @escaping ((Void) -> Void)) {
+    convenience init(handler: @escaping (() -> Void)) {
         self.init { _ in
             return SignalProducer { (sink,disposable) in
                 handler()
@@ -91,7 +91,7 @@ extension Action {
         }
     }
     
-    convenience init<P: PropertyProtocol>(enabler property: P, handler: @escaping ((Void) -> Void)) where P.Value == Bool {
+    convenience init<P: PropertyProtocol>(enabler property: P, handler: @escaping (() -> Void)) where P.Value == Bool {
         self.init(enabledIf: property) { _ in
             return SignalProducer { (sink,disposable) in
                 handler()
