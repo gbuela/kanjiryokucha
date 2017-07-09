@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-struct GetStatusModel: Decodable {
+struct GetStatusModel: Gloss.Decodable {
     let newCards: Int
     let expiredCards: Int
     let failedCards: Int

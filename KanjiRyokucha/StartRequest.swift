@@ -25,7 +25,7 @@ extension ReviewType {
 fileprivate let itemsKey = "items"
 fileprivate let syncLimitKey = "limit_sync"
 
-struct CardIdsModel: Decodable {
+struct CardIdsModel: Gloss.Decodable {
     let ids: [Int]
     let syncLimit: Int
     

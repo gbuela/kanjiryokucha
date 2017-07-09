@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-struct AccountInfoModel: Decodable {
+struct AccountInfoModel: Gloss.Decodable {
     let username: String
     // ignoring other response fields... we only use this api for session check
     

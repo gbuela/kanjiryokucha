@@ -11,7 +11,7 @@ import Gloss
 
 internal let cardDataKey = "card_data"
 
-struct CardModel: Decodable {
+struct CardModel: Gloss.Decodable {
     let keyword: String
     let strokeCount: Int
     let frameNum: Int
@@ -31,7 +31,7 @@ struct CardModel: Decodable {
     }
 }
 
-struct CardDataModel: Decodable {
+struct CardDataModel: Gloss.Decodable {
     let cards: [CardModel]
     
     init?(json: JSON) {

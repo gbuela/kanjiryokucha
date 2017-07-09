@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-struct NoModel: Decodable {
+struct NoModel: Gloss.Decodable {
     init?(json: JSON) {
         return nil
     }

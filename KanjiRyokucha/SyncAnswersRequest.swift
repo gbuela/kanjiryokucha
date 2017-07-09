@@ -21,7 +21,7 @@ extension CardAnswer {
     }
 }
 
-struct CardSyncModel: Encodable {
+struct CardSyncModel: Gloss.Encodable {
     let cardId: Int
     let answer: CardAnswer
     
@@ -41,7 +41,7 @@ struct CardSyncModel: Encodable {
     }
 }
 
-fileprivate struct SyncRoot: Encodable {
+fileprivate struct SyncRoot: Gloss.Encodable {
     let answers: [CardSyncModel]
 
     func toJSON() -> JSON? {
@@ -52,7 +52,7 @@ fileprivate struct SyncRoot: Encodable {
     }
 }
 
-struct SyncResultModel: Decodable {
+struct SyncResultModel: Gloss.Decodable {
     let putIds: [Int]
     
     init?(json: JSON) {
@@ -82,7 +82,7 @@ struct SyncAnswersRequest: KoohiiRequest {
         }
     }
     
-    var jsonObject: Encodable? {
+    var jsonObject: Gloss.Encodable? {
         return SyncRoot(answers: answers)
     }
     

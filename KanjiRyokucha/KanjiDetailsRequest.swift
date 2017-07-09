@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-struct KanjiDetailsModel: Decodable {
+struct KanjiDetailsModel: Gloss.Decodable {
     let strokeCount: Int
     let meaning: String
     let onyomi: String

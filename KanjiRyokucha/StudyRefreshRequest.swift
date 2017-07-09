@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-struct StudyIdsModel: Decodable {
+struct StudyIdsModel: Gloss.Decodable {
     let ids: [Int]
     let learnedIds: [Int]
     

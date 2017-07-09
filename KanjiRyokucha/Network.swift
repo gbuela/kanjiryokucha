@@ -60,7 +60,7 @@ extension Data {
     }
 }
 
-extension Encodable {
+extension Gloss.Encodable {
     func toJsonData() -> Data? {
         guard let jsonDict = self.toJSON() else {
             return nil
@@ -78,7 +78,7 @@ struct Response {
     let statusCode: Int
     let string: String?
     let data: Data?
-    let model: Decodable?
+    let model: Gloss.Decodable?
     let headers: [AnyHashable : Any]
     
     static var latestCookies: [String]?
@@ -104,7 +104,7 @@ class NoRedirectSessionDelegate : NSObject, URLSessionTaskDelegate {
     }
 }
 
-struct StatResult: Decodable {
+struct StatResult: Gloss.Decodable {
     let status: String?
     let code: Int?
     
@@ -126,13 +126,13 @@ enum ContentType {
 typealias ParamSet = [String:String]
 
 protocol Request {
-    associatedtype ModelType: Decodable
+    associatedtype ModelType: Gloss.Decodable
     var apiMethod: String { get }
     var useEndpoint: Bool { get }
     var sendApiKey: Bool { get }
     var method: RequestMethod { get }
     var contentType: ContentType { get }
-    var jsonObject: Encodable? { get }
+    var jsonObject: Gloss.Encodable? { get }
     var querystringParams: ParamSet { get }
     var postParams: ParamSet { get }
     var headers: ParamSet { get }
@@ -142,7 +142,7 @@ protocol Request {
 
 extension Request {
     
-    var jsonObject: Encodable? {
+    var jsonObject: Gloss.Encodable? {
         return nil
     }
     

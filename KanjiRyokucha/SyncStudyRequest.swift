@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-fileprivate struct SyncRoot: Encodable {
+fileprivate struct SyncRoot: Gloss.Encodable {
     let learned: [Int]
     let notLearned: [Int]
     
@@ -21,7 +21,7 @@ fileprivate struct SyncRoot: Encodable {
     }
 }
 
-struct SyncStudyResultModel: Decodable {
+struct SyncStudyResultModel: Gloss.Decodable {
     let putLearned: [Int]
     let putNotLearned: [Int]
     
@@ -45,7 +45,7 @@ struct SyncStudyRequest: KoohiiRequest {
     let method = RequestMethod.post
     let contentType = ContentType.json
     
-    var jsonObject: Encodable? {
+    var jsonObject: Gloss.Encodable? {
         return SyncRoot(learned: learned, notLearned: notLearned)
     }
     
