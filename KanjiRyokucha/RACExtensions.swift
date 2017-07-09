@@ -56,7 +56,7 @@ extension MutableProperty {
 
 extension Signal {
     func uiReact(_ task:@escaping ((Value) -> Void)) {
-        observe(on: UIScheduler()).observe { (event:Event<Signal.Value, Signal.Error>) in
+        observe(on: UIScheduler()).observe { (event:Event) in
             if let value = event.value {
                 task(value)
             }
@@ -64,7 +64,7 @@ extension Signal {
     }
     
     func react(_ task:@escaping ((Value) -> Void)) {
-        observe { (event:Event<Signal.Value, Signal.Error>) in
+        observe { (event:Event) in
             if let value = event.value {
                 task(value)
             }

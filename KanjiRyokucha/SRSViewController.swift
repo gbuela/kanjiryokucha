@@ -220,7 +220,7 @@ class SRSReviewEngine: SRSEngineProtocol {
                                                 return max(ts, 0)
         }
         
-        statusAction = Action<Void, Response, FetchError>(enabledIf: shouldEnableStatus, { _ in
+        statusAction = Action<Void, Response, FetchError>(enabledIf: shouldEnableStatus, execute: { _ in
             return GetStatusRequest().requestProducer()!
         })
         statusAction.react { [weak self] response in
@@ -260,13 +260,13 @@ class SRSReviewEngine: SRSEngineProtocol {
             self?.cancelSession()
         }
         
-        reviewAction = ReviewAction(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
+        reviewAction = ReviewAction(enabledIf: shouldEnableReview, execute: SRSReviewEngine.fetchActionProducer)
         
         reviewAction.react { [weak self] response in
             self?.saveFetchedCards(response: response)
         }
         
-        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, SRSReviewEngine.submitActionProducer)
+        submitAction = SubmitAction(enabledIf: shouldEnableSubmit, execute: SRSReviewEngine.submitActionProducer)
         
         chunkSubmitProducers <~ submitAction.values
         chunkSubmitProducers.react { [weak self] in
@@ -294,7 +294,7 @@ class SRSReviewEngine: SRSEngineProtocol {
         log("chunk #\(chunkIndex)")
         let producer = chunkSubmitProducers.value[chunkIndex]
        
-        producer.start(Observer(value: { [weak self] response in
+        producer.start(Signal.Observer(value: { [weak self] response in
                 self?.completedSubmission(response: response)
             }, failed: { [weak self] _ in
                 // finished submitting chunks

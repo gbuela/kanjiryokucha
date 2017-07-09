@@ -80,7 +80,7 @@ class FreeViewModel: ReviewEngineProtocol {
         toReviewCount <~ reviewEntries.map { $0.count(answer: .unanswered) }
         shouldEnableReview <~ toReviewCount.map { $0 > 0 }
 
-        reviewAction = ReviewAction(enabledIf: shouldEnableReview, SRSReviewEngine.fetchActionProducer)
+        reviewAction = ReviewAction(enabledIf: shouldEnableReview, execute: SRSReviewEngine.fetchActionProducer)
         
         reviewState <~ reviewEntries.map { [unowned self] reviewEntries in
             self.reviewStateMapper(entries: reviewEntries)

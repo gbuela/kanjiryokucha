@@ -141,7 +141,10 @@ extension Action {
 }
 
 extension Action where Input == Void {
-	@available(*, unavailable, renamed:"init(state:execute:)")
+	@available(*, unavailable, renamed:"init(unwrapping:execute:)")
+	public convenience init<P: PropertyProtocol, T>(state: P, _ execute: @escaping (T) -> SignalProducer<Output, Error>) where P.Value == T? { fatalError() }
+
+	@available(*, unavailable, renamed:"init(unwrapping:execute:)")
 	public convenience init<P: PropertyProtocol, T>(input: P, _ execute: @escaping (T) -> SignalProducer<Output, Error>) where P.Value == T? { fatalError() }
 
 	@available(*, unavailable, renamed:"init(state:execute:)")
@@ -164,6 +167,12 @@ public protocol BindingTargetProtocol {}
 public protocol AtomicProtocol {}
 
 // MARK: Deprecated types in ReactiveSwift 1.x.
+@available(*, unavailable, renamed:"ValidationProperty.Result")
+public typealias ValidationResult<Value, Error: Swift.Error> = ValidatingProperty<Value, Error>.Result
+
+@available(*, unavailable, renamed:"ValidationProperty.Decision")
+public typealias ValidatorOutput<Value, Error: Swift.Error> = ValidatingProperty<Value, Error>.Decision
+
 extension Signal where Value == Bool {
 	@available(*, unavailable, renamed: "negate()")
 	public var negated: Signal<Bool, Error> {

@@ -1,21 +1,21 @@
 PODS:
-  - Crashlytics (3.8.4):
+  - Crashlytics (3.8.5):
     - Fabric (~> 1.6.3)
   - EasyTipView (1.0.2)
-  - Fabric (1.6.11)
+  - Fabric (1.6.12)
   - Gloss (1.2.4)
   - PKHUD (4.2.3)
-  - ReactiveCocoa (6.0.0-alpha.1):
-    - ReactiveSwift (= 2.0.0-alpha.2)
-  - ReactiveSwift (2.0.0-alpha.2):
+  - ReactiveCocoa (6.0.0-rc.2):
+    - ReactiveSwift (= 2.0.0-rc.2)
+  - ReactiveSwift (2.0.0-rc.2):
     - Result (~> 3.2)
-  - Realm (2.8.2):
-    - Realm/Headers (= 2.8.2)
-  - Realm/Headers (2.8.2)
-  - RealmSwift (2.8.2):
-    - Realm (= 2.8.2)
+  - Realm (2.8.3):
+    - Realm/Headers (= 2.8.3)
+  - Realm/Headers (2.8.3)
+  - RealmSwift (2.8.3):
+    - Realm (= 2.8.3)
   - Result (3.2.3)
-  - SwiftRater (0.1.5)
+  - SwiftRater (0.2.3)
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
@@ -38,21 +38,21 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ReactiveCocoa:
-    :commit: 808cf7f1b645fc695dda3563e7860b605ef35009
+    :commit: e5e5d6e849e2a5992b3cabe9d96c0a657c1bda85
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
 
 SPEC CHECKSUMS:
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
-  ReactiveCocoa: 90755603e3e827a1ca866ce90c10b5003c64ea3d
-  ReactiveSwift: 4403a51e9d99606889c698b99b63e5661523edc8
-  Realm: 0e262abf087c7054013e00579274f7e070486d4a
-  RealmSwift: 73565e91bc403c1149e4acf31ff9de506b2f9459
+  ReactiveCocoa: af016dc029f76fd8a270d7a33c55de9515d95d2b
+  ReactiveSwift: b8ea244bd66fd841151a9146d4e2601a9acbaddf
+  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
+  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
-  SwiftRater: 6c241e8facaa5a05c8247953017493f46b8e45e5
+  SwiftRater: 3c0f8136a011a616faa2a04c982d8d9d80b7741e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
 PODFILE CHECKSUM: 4b45c793ad1a3c5e34df6f4916dee058958b98b3

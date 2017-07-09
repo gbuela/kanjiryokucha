@@ -67,7 +67,7 @@ class StudyEngine {
             return unsynced.count > 0 && !submitting
         }
         
-        submitAction = StudySubmitAction(enabledIf: shouldEnableSubmit, StudyEngine.submitActionProducer)
+        submitAction = StudySubmitAction(enabledIf: shouldEnableSubmit, execute: StudyEngine.submitActionProducer)
         
         chunkSubmitProducers <~ submitAction.values
         chunkSubmitProducers.react { [weak self] in
@@ -148,7 +148,7 @@ class StudyEngine {
         log("chunk #\(chunkIndex)")
         let producer = chunkSubmitProducers.value[chunkIndex]
         
-        producer.start(Observer(value: { [weak self] response in
+        producer.start(Signal.Observer(value: { [weak self] response in
             self?.completedSubmission(response: response)
             }, failed: { [weak self] _ in
                 // finished submitting chunks

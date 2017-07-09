@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-public class SwiftRater: NSObject {
+@objc public class SwiftRater: NSObject {
 
     enum ButtonIndex: Int {
         case cancel = 0
@@ -70,6 +70,7 @@ public class SwiftRater: NSObject {
     public static var alertCancelTitle: String?
     public static var alertRateTitle: String?
     public static var alertRateLaterTitle: String?
+    public static var appName: String?
 
     public static var showLog: Bool = false
     public static var resetWhenAppUpdated: Bool = true
@@ -109,6 +110,9 @@ public class SwiftRater: NSObject {
     }
 
     private var mainAppName: String {
+        if let name = SwiftRater.appName {
+            return name
+        }
         if let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String {
             return name
         } else if let name = Bundle.main.infoDictionary?["CFBundleName"] as? String {
@@ -142,6 +146,7 @@ public class SwiftRater: NSObject {
     }
     
     public static func rateApp() {
+        NSLog("[SwiftRater] Trying to show review request dialog.")
         if #available(iOS 10.3, *), SwiftRater.useStoreKitIfAvailable {
             SKStoreReviewController.requestReview()
         } else {
@@ -199,6 +204,9 @@ public class SwiftRater: NSObject {
     }
 
     private func processVersionCheck(withResults results: [String: Any]) {
+        defer {
+            incrementUsageCount()
+        }
         guard let allResults = results["results"] as? [[String: Any]] else {
             self.postError(.appStoreDataRetrievalFailure, underlyingError: nil)
             return
@@ -216,8 +224,6 @@ public class SwiftRater: NSObject {
         }
 
         self.appID = appID
-        
-        incrementUsageCount()
     }
 
     private func iTunesURLFromString() throws -> URL {
@@ -276,6 +282,7 @@ public class SwiftRater: NSObject {
     }
 
     private func showRatingAlert() {
+        NSLog("[SwiftRater] Trying to show review request dialog.")
         if #available(iOS 10.3, *), SwiftRater.useStoreKitIfAvailable {
             SKStoreReviewController.requestReview()
             UsageDataManager.shared.isRateDone = true
