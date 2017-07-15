@@ -723,11 +723,11 @@ class SRSViewController: UIViewController, ReviewDelegate {
             return
         }
         
-        engine.reviewEntries.value = engine.reviewEntries.value
-        
         Database.write(object: reviewEntry) {
             reviewEntry.cardAnswer = reviewAnswer.answer
         }
+        
+        engine.reviewEntries.value = engine.reviewEntries.value
     }
 
     func userFinishedReview() {
