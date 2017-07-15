@@ -18,6 +18,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var cells: [UITableViewCell]!
     var aboutCell: UITableViewCell!
+    var whatsNewCell: UITableViewCell!
     var selectableCells: [UITableViewCell]!
     var username: String?
     var global: Global!
@@ -33,8 +34,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
         aboutCell = createDisclosureCell(title: "About")
+        whatsNewCell = createDisclosureCell(title: "What's new")
         
-        selectableCells = [aboutCell]
+        selectableCells = [aboutCell, whatsNewCell]
         
         cells = [
             createSeparatorCell(),
@@ -42,7 +44,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: { [weak self] in self?.switchedStudy(isOn: $0) }),
             createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
-            aboutCell
+            aboutCell,
+            whatsNewCell
         ]
         
         tableView.estimatedRowHeight = 60
@@ -121,10 +124,18 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = cells[indexPath.row]
         if cell == aboutCell {
-            let aboutPageVC = AboutViewController()
-            navigationController?.pushViewController(aboutPageVC, animated: true)
+            show(resourceName: "about", title: "About")
+        } else if cell == whatsNewCell {
+            show(resourceName: "whatsnew", title: "What's New")
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func show(resourceName: String, title: String) {
+        let webPageVC = WebViewController()
+        webPageVC.title = title
+        webPageVC.resourceName = resourceName
+        navigationController?.pushViewController(webPageVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
