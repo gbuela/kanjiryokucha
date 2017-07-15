@@ -311,12 +311,15 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
             let frontView = currentFront else {
                 return
         }
-        
+        pageContainer.addSubview(frontView)
+        pageContainer.layoutAttachAll(subview: frontView)
+
         if !showingFront {
-            UIView.transition(from: backView, to: frontView, duration: 0.5, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: { [weak self] _ in
+            let options: UIViewAnimationOptions = global.useAnimations ? [.transitionFlipFromLeft, .showHideTransitionViews] : []
+            
+            UIView.transition(from: backView, to: frontView, duration: 0.5, options: options, completion: { [weak self] _ in
                     self?.showingFront = true
             })
-
         }
     }
     
