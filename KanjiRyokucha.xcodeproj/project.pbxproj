@@ -755,6 +755,11 @@
 						DevelopmentTeam = UHVS3L828Q;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C4F213C71DEA532A00EF5214 = {
 						CreatedOnToolsVersion = 8.1;
