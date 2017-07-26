@@ -221,6 +221,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        guard !Global.isGuest(),
+            let engine = appController?.srsViewController.engine else {
+            log("BkgFetch: not a fetch scenario")
+            completionHandler(.noData)
+            return
+        }
+        
+        log("BkgFetch: fetching")
+        
+        let oldCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
+        
+        engine.statusAction.events.take(first: 1).react { event in
+            if let response = event.value {
+                if let model = response.model as? GetStatusModel {
+                    let newCount = model.expiredCards
+                    
+                    if newCount != oldCount {
+                        log("due count has changed: \(oldCount) -> \(newCount)")
+                        completionHandler(.newData)
+                    } else {
+                        log("due count hasn't changed: \(newCount)")
+                        completionHandler(.noData)
+                    }
+                } else {
+                    log("response model is not GetStatusModel")
+                    completionHandler(.failed)
+                }
+            } else {
+                log("didn't get a response")
+                completionHandler(.failed)
+            }
+        }
+
+        engine.refreshStatus()
+    }
 
 }
 
