@@ -236,28 +236,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         engine.statusAction.events.take(first: 1).react { event in
             if let response = event.value {
-                if let model = response.model as? GetStatusModel {
-                    let newCount = model.expiredCards
-                    
-                    if newCount != oldCount {
-                        log("due count has changed: \(oldCount) -> \(newCount)")
-                        completionHandler(.newData)
-                    } else {
-                        log("due count hasn't changed: \(newCount)")
-                        completionHandler(.noData)
-                    }
-                } else {
-                    log("response model is not GetStatusModel")
-                    completionHandler(.failed)
-                }
+                processFetch(response: response, oldCount: oldCount, completionHandler: completionHandler)
             } else {
-                log("didn't get a response")
-                completionHandler(.failed)
+                log("didn't get a response: session may have expired")
+                
+                // give it time to see if the fetch attempt has triggered auto reauthentication
+                let delayInSeconds = 10.0
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + delayInSeconds) { [weak self] in
+                    // one more try
+                    guard let engine = self?.appController?.srsViewController.engine else {
+                        log("BkgFetch: not a fetch scenario, desisting")
+                        completionHandler(.noData)
+                        return
+                    }
+                    log("BkgFetch: fetching again")
+                    engine.statusAction.events.take(first: 1).react { event in
+                        if let response = event.value {
+                            processFetch(response: response, oldCount: oldCount, completionHandler: completionHandler)
+                        } else {
+                            log("didn't get a response: failing")
+                            completionHandler(.failed)
+                        }
+                    }
+                    engine.refreshStatus()
+                }
             }
         }
-
         engine.refreshStatus()
     }
+}
 
+func processFetch(response: Response, oldCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    if let model = response.model as? GetStatusModel {
+        let newCount = model.expiredCards
+        
+        if newCount != oldCount {
+            log("due count has changed: \(oldCount) -> \(newCount)")
+            completionHandler(.newData)
+        } else {
+            log("due count hasn't changed: \(newCount)")
+            completionHandler(.noData)
+        }
+    } else {
+        log("response model is not GetStatusModel")
+        completionHandler(.failed)
+    }
 }
 
