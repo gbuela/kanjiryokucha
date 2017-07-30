@@ -52,15 +52,11 @@ fileprivate struct SyncRoot: Gloss.Encodable {
     }
 }
 
-struct SyncResultModel: Gloss.Decodable {
+struct SyncResultModel: Decodable {
     let putIds: [Int]
     
-    init?(json: JSON) {
-        guard let put: [Int] = "put" <~~ json else {
-            return nil
-        }
-  
-        putIds = put
+    enum CodingKeys: String, CodingKey {
+        case putIds = "put"
     }
 }
 

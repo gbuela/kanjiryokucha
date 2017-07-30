@@ -13,6 +13,8 @@ import Result
 
 var times = -1
 
+typealias Decodable = Swift.Decodable // FIXME: remove when getting rid of Gloss
+
 struct HeaderKeys {
     static let location = "Location"
     static let setCookie = "Set-Cookie"
@@ -78,7 +80,7 @@ struct Response {
     let statusCode: Int
     let string: String?
     let data: Data?
-    let model: Gloss.Decodable?
+    let model: Decodable?
     let headers: [AnyHashable : Any]
     
     static var latestCookies: [String]?
@@ -104,13 +106,13 @@ class NoRedirectSessionDelegate : NSObject, URLSessionTaskDelegate {
     }
 }
 
-struct StatResult: Gloss.Decodable {
+struct StatResult: Decodable {
     let status: String?
     let code: Int?
     
-    init?(json: JSON) {
-        self.status = "stat" <~~ json
-        self.code = "code" <~~ json
+    enum CodingKeys: String, CodingKey {
+        case status = "stat"
+        case code
     }
 }
 
@@ -126,7 +128,7 @@ enum ContentType {
 typealias ParamSet = [String:String]
 
 protocol Request {
-    associatedtype ModelType: Gloss.Decodable
+    associatedtype ModelType: Decodable
     var apiMethod: String { get }
     var useEndpoint: Bool { get }
     var sendApiKey: Bool { get }
@@ -159,9 +161,10 @@ extension Request {
     }
     
     func modelFrom(data: Data) -> ModelType? {
-        if let json = data.toJSON() {
-            return ModelType(json: json)
-        } else {
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode(ModelType.self, from: data)
+        } catch {
             return nil
         }
     }

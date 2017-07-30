@@ -89,6 +89,21 @@ extension KoohiiRequest {
 
 extension KoohiiRequest {
     
+    private func isSessionExpired(data: Data) -> Bool {
+        let decoder = JSONDecoder()
+        let statResult: StatResult
+        do {
+            statResult = try decoder.decode(StatResult.self, from: data)
+            if statResult.status == "fail",
+                statResult.code == 96 {
+                return true
+            }
+            return false
+        } catch {
+            return false
+        }
+    }
+    
     func requestProducer() -> SignalProducer<Response, FetchError>? {
         
         guard !Global.isGuest() else {
@@ -117,10 +132,7 @@ extension KoohiiRequest {
                     sink.send(error: .connectionError(error: error))
                 case (let data?, _):
                     log("task completed")
-                    if let json = data.toJSON(),
-                        let statResult = StatResult(json: json),
-                        statResult.status == "fail",
-                        statResult.code == 96 {
+                    if self.isSessionExpired(data: data) {
                         log("Session expired found in \(self.apiMethod)")
                         
                         if self is AccountInfoRequest {

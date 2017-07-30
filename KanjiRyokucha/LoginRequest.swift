@@ -7,12 +7,8 @@
 //
 
 import Foundation
-import Gloss
 
-struct NoModel: Gloss.Decodable {
-    init?(json: JSON) {
-        return nil
-    }
+struct NoModel: Decodable {
 }
 
 struct LoginRequest: KoohiiRequest {

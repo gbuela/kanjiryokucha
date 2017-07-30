@@ -7,46 +7,70 @@
 //
 
 import Foundation
-import Gloss
 
-struct KanjiDetailsModel: Gloss.Decodable {
+struct KanjiDetailsModel: Decodable {
     let strokeCount: Int
     let meaning: String
     let onyomi: String
     let kunyomi: String
     let videoUrl: String?
     
-    init?(json: JSON) {
-        guard let kanjiObject: JSON = "kanji" <~~ json,
-            let strokesObject: JSON = "strokes" <~~ kanjiObject,
-            let meaningObject: JSON = "meaning" <~~ kanjiObject,
-            let englishMeaning: String = "english" <~~ meaningObject,
-            let count: Int = "count" <~~ strokesObject else {
-                return nil
-        }
-        self.strokeCount = count
-        self.meaning = englishMeaning
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let kanjiContainer = try container.nestedContainer(keyedBy: KanjiCodingKeys.self, forKey: .kanji)
+        let strokesContainer = try kanjiContainer.nestedContainer(
+            keyedBy: SrokesCodingKeys.self, forKey: .strokes)
+        let meaningContainer = try kanjiContainer.nestedContainer(keyedBy: MeaningCodingKeys.self, forKey: .meaning)
         
-        if let onyomiObject: JSON = "onyomi" <~~ kanjiObject,
-            let onyomi: String = "katakana" <~~ onyomiObject {
-            self.onyomi = onyomi
-        } else {
+        do {
+            let onyomiContainer = try kanjiContainer.nestedContainer(keyedBy: OnyomiCodingKeys.self, forKey: .onyomi)
+            self.onyomi = try onyomiContainer.decodeIfPresent(String.self, forKey: .katakana) ?? ""
+        } catch {
             self.onyomi = ""
         }
         
-        if let kunyomiObject: JSON = "kunyomi" <~~ kanjiObject,
-            let kunyomi: String = "hiragana" <~~ kunyomiObject {
-            self.kunyomi = kunyomi
-        } else {
+        do {
+            let kunyomiContainer = try kanjiContainer.nestedContainer(keyedBy: KunyomiCodingKeys.self, forKey: .kunyomi)
+            self.kunyomi = try kunyomiContainer.decodeIfPresent(String.self, forKey: .hiragana) ?? ""
+        } catch {
             self.kunyomi = ""
         }
         
-        if let videoObject: JSON = "video" <~~ kanjiObject,
-            let mp4Url: String = "mp4" <~~ videoObject {
-            self.videoUrl = mp4Url
-        } else {
+        self.strokeCount = try strokesContainer.decode(Int.self, forKey: .count)
+        self.meaning = try meaningContainer.decode(String.self, forKey: .english)
+        
+        do {
+            let videoContainer = try kanjiContainer.nestedContainer(keyedBy: VideoCodingKeys.self, forKey: .video)
+            self.videoUrl = try videoContainer.decodeIfPresent(String.self, forKey: .mp4)
+        } catch {
             self.videoUrl = nil
         }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case kanji
+    }
+    enum KanjiCodingKeys: String, CodingKey {
+        case strokes
+        case meaning
+        case onyomi
+        case kunyomi
+        case video
+    }
+    enum SrokesCodingKeys: String, CodingKey {
+        case count
+    }
+    enum MeaningCodingKeys: String, CodingKey {
+        case english
+    }
+    enum OnyomiCodingKeys: String, CodingKey {
+        case katakana
+    }
+    enum KunyomiCodingKeys: String, CodingKey {
+        case hiragana
+    }
+    enum VideoCodingKeys: String, CodingKey {
+        case mp4
     }
 }
 

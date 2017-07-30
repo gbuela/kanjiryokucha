@@ -7,19 +7,14 @@
 //
 
 import Foundation
-import Gloss
 
-struct StudyIdsModel: Gloss.Decodable {
+struct StudyIdsModel: Decodable {
     let ids: [Int]
     let learnedIds: [Int]
     
-    init?(json: JSON) {
-        guard let items:[Int] = "items" <~~ json,
-            let learnedItems:[Int] = "learnedItems" <~~ json else {
-            return nil
-        }
-        ids = items
-        learnedIds = learnedItems
+    enum CodingKeys: String, CodingKey {
+        case ids = "items"
+        case learnedIds = "learnedItems"
     }
 }
 

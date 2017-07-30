@@ -21,17 +21,9 @@ fileprivate struct SyncRoot: Gloss.Encodable {
     }
 }
 
-struct SyncStudyResultModel: Gloss.Decodable {
+struct SyncStudyResultModel: Decodable {
     let putLearned: [Int]
     let putNotLearned: [Int]
-    
-    init?(json: JSON) {
-        guard let learned: [Int] = "putLearned" <~~ json,
-            let notLearned: [Int] = "putNotLearned" <~~ json else { return nil }
-        
-        putLearned = learned
-        putNotLearned = notLearned
-    }
 }
 
 struct SyncStudyRequest: KoohiiRequest {

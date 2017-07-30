@@ -7,42 +7,30 @@
 //
 
 import Foundation
-import Gloss
 
-internal let cardDataKey = "card_data"
-
-struct CardModel: Gloss.Decodable {
+struct CardModel: Decodable {
     let keyword: String
     let strokeCount: Int
     let frameNum: Int
     let cardId: Int
     
-    init?(json: JSON) {
-        guard let _keyword: String = "keyword" <~~ json,
-            let _strokeCount: Int = "strokecount" <~~ json,
-            let _frameNum: Int = "framenum" <~~ json,
-            let _cardId: Int = "id" <~~ json else {
-                return nil
-        }
-        keyword = _keyword
-        strokeCount = _strokeCount
-        frameNum = _frameNum
-        cardId = _cardId
+    enum CodingKeys: String, CodingKey {
+        case keyword
+        case strokeCount = "strokecount"
+        case frameNum = "framenum"
+        case cardId = "id"
     }
 }
 
-struct CardDataModel: Gloss.Decodable {
+struct CardDataModel: Decodable {
     let cards: [CardModel]
     
-    init?(json: JSON) {
-        guard let items:[CardModel] = cardDataKey <~~ json else {
-            return nil
-        }
-        cards = items
+    static func nullObject() -> CardDataModel {
+        return CardDataModel(cards: [])
     }
     
-    static func nullObject() -> CardDataModel {
-        return CardDataModel(json: [cardDataKey:[]])!
+    enum CodingKeys: String, CodingKey {
+        case cards = "card_data"
     }
 }
 

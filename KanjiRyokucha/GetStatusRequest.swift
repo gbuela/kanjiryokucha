@@ -7,25 +7,18 @@
 //
 
 import Foundation
-import Gloss
 
-struct GetStatusModel: Gloss.Decodable {
+struct GetStatusModel: Decodable {
     let newCards: Int
     let expiredCards: Int
     let failedCards: Int
     let learnedCards: Int
     
-    init?(json: JSON) {
-        guard let new: Int = "new_cards" <~~ json,
-            let expired: Int = "due_cards" <~~ json,
-            let failed: Int = "relearn_cards" <~~ json,
-            let learnedCards: Int = "learned_cards" <~~ json else {
-                return nil
-        }
-        self.newCards = new
-        self.expiredCards = expired
-        self.failedCards = failed
-        self.learnedCards = learnedCards
+    enum CodingKeys: String, CodingKey {
+        case newCards = "new_cards"
+        case expiredCards = "due_cards"
+        case failedCards = "relearn_cards"
+        case learnedCards = "learned_cards"
     }
 }
 

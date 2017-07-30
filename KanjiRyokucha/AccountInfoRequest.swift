@@ -7,18 +7,10 @@
 //
 
 import Foundation
-import Gloss
 
-struct AccountInfoModel: Gloss.Decodable {
+struct AccountInfoModel: Decodable {
     let username: String
     // ignoring other response fields... we only use this api for session check
-    
-    init?(json: JSON) {
-        guard let username: String = "username" <~~ json else {
-            return nil
-        }
-        self.username = username
-    }
 }
 
 struct AccountInfoRequest: KoohiiRequest {
