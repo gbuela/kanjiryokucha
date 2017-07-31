@@ -3,17 +3,16 @@ PODS:
     - Fabric (~> 1.6.3)
   - EasyTipView (1.0.2)
   - Fabric (1.6.12)
-  - Gloss (1.2.4)
   - PKHUD (4.2.3)
   - ReactiveCocoa (6.0.0-rc.2):
     - ReactiveSwift (= 2.0.0-rc.2)
   - ReactiveSwift (2.0.0-rc.2):
     - Result (~> 3.2)
-  - Realm (2.8.3):
-    - Realm/Headers (= 2.8.3)
-  - Realm/Headers (2.8.3)
-  - RealmSwift (2.8.3):
-    - Realm (= 2.8.3)
+  - Realm (2.9.0):
+    - Realm/Headers (= 2.9.0)
+  - Realm/Headers (2.9.0)
+  - RealmSwift (2.9.0):
+    - Realm (= 2.9.0)
   - Result (3.2.3)
   - SwiftRater (0.2.3)
   - UIColor_Hex_Swift (3.0.2)
@@ -22,9 +21,8 @@ DEPENDENCIES:
   - Crashlytics
   - EasyTipView (from `../../EasyTipView`)
   - Fabric
-  - Gloss (~> 1.1)
   - PKHUD (~> 4.0)
-  - ReactiveCocoa (from `https://github.com/ReactiveCocoa/ReactiveCocoa.git`, branch `master`)
+  - ReactiveCocoa (from `https://github.com/ReactiveCocoa/ReactiveCocoa.git`, tag `6.0.0-rc.2`)
   - RealmSwift
   - SwiftRater
   - UIColor_Hex_Swift (~> 3.0.2)
@@ -33,28 +31,27 @@ EXTERNAL SOURCES:
   EasyTipView:
     :path: "../../EasyTipView"
   ReactiveCocoa:
-    :branch: master
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
+    :tag: 6.0.0-rc.2
 
 CHECKOUT OPTIONS:
   ReactiveCocoa:
-    :commit: e5e5d6e849e2a5992b3cabe9d96c0a657c1bda85
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
+    :tag: 6.0.0-rc.2
 
 SPEC CHECKSUMS:
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
   EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
-  Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
   ReactiveCocoa: af016dc029f76fd8a270d7a33c55de9515d95d2b
   ReactiveSwift: b8ea244bd66fd841151a9146d4e2601a9acbaddf
-  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
-  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
+  Realm: f14ab1673502559cb16592ddb8f383c474c13e05
+  RealmSwift: 16ad2c187042c4934f49750375582fe508627dcb
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   SwiftRater: 3c0f8136a011a616faa2a04c982d8d9d80b7741e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 4b45c793ad1a3c5e34df6f4916dee058958b98b3
+PODFILE CHECKSUM: 8411a8f69018dfd6a5eb4b789da9eed47a835553
 
 COCOAPODS: 1.1.1

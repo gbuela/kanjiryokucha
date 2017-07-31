@@ -85,7 +85,6 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/EasyTipView/EasyTipView.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PKHUD/PKHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveSwift/ReactiveSwift.framework"
@@ -97,7 +96,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/EasyTipView/EasyTipView.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PKHUD/PKHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveSwift/ReactiveSwift.framework"

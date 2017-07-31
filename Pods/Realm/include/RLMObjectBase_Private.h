@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////
 //
-// Copyright 2014 Realm Inc.
+// Copyright 2017 Realm Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,24 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import <Realm/RLMObjectBase.h>
 
-#import <vector>
+NS_ASSUME_NONNULL_BEGIN
 
-namespace realm {
-    class Group;
-    class Query;
-    class SortDescriptor;
-}
+// RLMObjectBase private
+@interface RLMObjectBase ()
++ (void)initializeLinkedObjectSchemas;
+@end
 
-@class RLMObjectSchema, RLMProperty, RLMSchema, RLMSortDescriptor;
-class RLMClassInfo;
-
-extern NSString * const RLMPropertiesComparisonTypeMismatchException;
-extern NSString * const RLMUnsupportedTypesFoundInPropertyComparisonException;
-
-realm::Query RLMPredicateToQuery(NSPredicate *predicate, RLMObjectSchema *objectSchema,
-                                 RLMSchema *schema, realm::Group &group);
-
-// return property - throw for invalid column name
-RLMProperty *RLMValidatedProperty(RLMObjectSchema *objectSchema, NSString *columnName);
+NS_ASSUME_NONNULL_END

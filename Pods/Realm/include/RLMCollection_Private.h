@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////
 //
-// Copyright 2014 Realm Inc.
+// Copyright 2016 Realm Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,24 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import <Foundation/Foundation.h>
+#import <Realm/RLMCollection.h>
 
-#import <vector>
+#import <Realm/RLMRealm.h>
 
-namespace realm {
-    class Group;
-    class Query;
-    class SortDescriptor;
-}
+@protocol RLMFastEnumerable;
 
-@class RLMObjectSchema, RLMProperty, RLMSchema, RLMSortDescriptor;
-class RLMClassInfo;
-
-extern NSString * const RLMPropertiesComparisonTypeMismatchException;
-extern NSString * const RLMUnsupportedTypesFoundInPropertyComparisonException;
-
-realm::Query RLMPredicateToQuery(NSPredicate *predicate, RLMObjectSchema *objectSchema,
-                                 RLMSchema *schema, realm::Group &group);
-
-// return property - throw for invalid column name
-RLMProperty *RLMValidatedProperty(RLMObjectSchema *objectSchema, NSString *columnName);
+NSArray *RLMCollectionValueForKey(id<RLMFastEnumerable> collection, NSString *key);
+void RLMCollectionSetValueForKey(id<RLMFastEnumerable> collection, NSString *key, id value);
+FOUNDATION_EXTERN NSString *RLMDescriptionWithMaxDepth(NSString *name, id<RLMCollection> collection, NSUInteger depth);
