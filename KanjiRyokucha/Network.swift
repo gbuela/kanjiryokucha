@@ -8,12 +8,13 @@
 
 import Foundation
 import ReactiveSwift
-import Gloss
 import Result
+
+public typealias JSON = [String : Any]
 
 var times = -1
 
-typealias Decodable = Swift.Decodable // FIXME: remove when getting rid of Gloss
+struct NoInput: Encodable {}
 
 struct HeaderKeys {
     static let location = "Location"
@@ -62,17 +63,10 @@ extension Data {
     }
 }
 
-extension Gloss.Encodable {
+extension Encodable {
     func toJsonData() -> Data? {
-        guard let jsonDict = self.toJSON() else {
-            return nil
-        }
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: jsonDict, options: .prettyPrinted)
-            return jsonData
-        } catch {
-            return nil
-        }
+        let encoder = JSONEncoder()
+        return try? encoder.encode(self)
     }
 }
 
@@ -129,12 +123,13 @@ typealias ParamSet = [String:String]
 
 protocol Request {
     associatedtype ModelType: Decodable
+    associatedtype InputType: Encodable
     var apiMethod: String { get }
     var useEndpoint: Bool { get }
     var sendApiKey: Bool { get }
     var method: RequestMethod { get }
     var contentType: ContentType { get }
-    var jsonObject: Gloss.Encodable? { get }
+    var jsonObject: InputType? { get }
     var querystringParams: ParamSet { get }
     var postParams: ParamSet { get }
     var headers: ParamSet { get }
@@ -144,7 +139,7 @@ protocol Request {
 
 extension Request {
     
-    var jsonObject: Gloss.Encodable? {
+    var jsonObject: InputType? {
         return nil
     }
     

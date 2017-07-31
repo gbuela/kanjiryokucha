@@ -13,6 +13,7 @@ struct NoModel: Decodable {
 
 struct LoginRequest: KoohiiRequest {
     typealias ModelType = NoModel
+    typealias InputType = NoInput
     
     let apiMethod = "/login"
     let useEndpoint = false

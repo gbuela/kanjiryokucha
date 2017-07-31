@@ -15,6 +15,7 @@ struct AccountInfoModel: Decodable {
 
 struct AccountInfoRequest: KoohiiRequest {
     typealias ModelType = AccountInfoModel
+    typealias InputType = NoInput
     let apiMethod = "account/info"
     let useEndpoint = true
     let sendApiKey = true

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Gloss
 
 extension CardAnswer {
     var backendRequiresString: Bool {
@@ -21,34 +20,43 @@ extension CardAnswer {
     }
 }
 
-struct CardSyncModel: Gloss.Encodable {
+struct CardSyncModel {
     let cardId: Int
     let answer: CardAnswer
-    
-    func toJSON() -> JSON? {
-        var valueForBackend: Any
-        if answer.backendRequiresString,
-            let stringValue = answer.srtingForBackend {
-            valueForBackend = stringValue
-        } else {
-            valueForBackend = answer.intForBackend
-        }
-        
-        return jsonify([
-            "id" ~~> cardId,
-            "r" ~~> valueForBackend
-            ])
-    }
 }
 
-fileprivate struct SyncRoot: Gloss.Encodable {
-    let answers: [CardSyncModel]
-
-    func toJSON() -> JSON? {
-        return jsonify([
-            "time" ~~> Int(0),
-            "sync" ~~> answers.toJSONArray()
-            ])
+struct SyncAnswer: Encodable {
+    let cardSyncModel: CardSyncModel
+    
+    init(cardSyncModel: CardSyncModel) {
+        self.cardSyncModel = cardSyncModel
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(cardSyncModel.cardId, forKey: .id)
+        
+        if cardSyncModel.answer.backendRequiresString,
+            let stringValue = cardSyncModel.answer.srtingForBackend {
+            try container.encode(stringValue, forKey: .r)
+        } else {
+            try container.encode(cardSyncModel.answer.intForBackend, forKey: .r)
+        }
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case r
+    }
+}
+struct SyncAnswersRoot: Encodable {
+    
+    let time: Int
+    let sync: [SyncAnswer]
+    
+    init(answers: [CardSyncModel]) {
+        self.time = 0
+        self.sync = answers.map { SyncAnswer(cardSyncModel: $0) }
     }
 }
 
@@ -64,6 +72,7 @@ struct SyncAnswersRequest: KoohiiRequest {
     let answers: [CardSyncModel]
     
     typealias ModelType = SyncResultModel
+    typealias InputType = SyncAnswersRoot
     let apiMethod = "review/sync"
     let useEndpoint = true
     let sendApiKey = true
@@ -78,8 +87,8 @@ struct SyncAnswersRequest: KoohiiRequest {
         }
     }
     
-    var jsonObject: Gloss.Encodable? {
-        return SyncRoot(answers: answers)
+    var jsonObject: SyncAnswersRoot? {
+        return SyncAnswersRoot(answers: answers)
     }
     
     var guestResult: String? {

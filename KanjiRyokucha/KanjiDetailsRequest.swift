@@ -76,6 +76,7 @@ struct KanjiDetailsModel: Decodable {
 
 struct KanjiDetailsRequest: KanjialiveRequest {
     typealias ModelType = KanjiDetailsModel
+    typealias InputType = NoInput
     var apiMethod: String {
         return "kanji/" + kanji
     }

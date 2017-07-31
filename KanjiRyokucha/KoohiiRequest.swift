@@ -185,11 +185,9 @@ private extension KoohiiRequest {
                 return nil
         }
         
-        let jsonData = jsonObject?.toJsonData()
-        
         var rq = URLRequest(url: url)
         rq.httpMethod = self.httpMethod
-        rq.httpBody = contentType == .json ? jsonData : bodyParams
+        rq.httpBody = contentType == .json ? jsonObject?.toJsonData() : bodyParams
         rq.cachePolicy = .reloadIgnoringLocalCacheData
         
         for header in headers {

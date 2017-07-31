@@ -8,7 +8,8 @@
 
 import XCTest
 @testable import KanjiRyokucha
-import Gloss
+
+public typealias JSON = [String : Any]
 
 class KanjiRyokuchaTests: XCTestCase {
     
@@ -23,17 +24,11 @@ class KanjiRyokuchaTests: XCTestCase {
     }
     
     func testExample() {
-        let jori: JSON = ["id":495, "login":"pepito"]
-        let model = DummyModel(json: jori)
-        let j = model!.toJSON()!
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: j, options: .prettyPrinted)
-            let theJSONText = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)
-            print(theJSONText)
-
-        } catch {
-            
-        }
+        let model = DummyModel(ownerId: 495, username: "pepito")
+        let encoder = JSONEncoder()
+        let jsonData = try! encoder.encode(model)
+        let theJSONText = NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue)!
+        print(theJSONText)
     }
     
     func testPerformanceExample() {
@@ -45,20 +40,12 @@ class KanjiRyokuchaTests: XCTestCase {
     
 }
 
-struct DummyModel: Glossy {
+struct DummyModel: Codable {
     let ownerId: Int?
     let username: String?
     
-    init?(json: JSON) {
-        self.ownerId = "id" <~~ json
-        self.username = "login" <~~ json
+    enum CodingKeys: String, CodingKey {
+        case ownerId = "id"
+        case username = "login"
     }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "id" ~~> self.ownerId,
-            "login" ~~> self.username
-            ])
-    }
-
 }

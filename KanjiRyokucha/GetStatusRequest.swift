@@ -24,6 +24,7 @@ struct GetStatusModel: Decodable {
 
 struct GetStatusRequest: KoohiiRequest {
     typealias ModelType = GetStatusModel
+    typealias InputType = NoInput
     let apiMethod = "srs/info"
     let useEndpoint = true
     let sendApiKey = true

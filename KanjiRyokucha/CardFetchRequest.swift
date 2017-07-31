@@ -39,6 +39,7 @@ struct CardFetchRequest: KoohiiRequest {
     let cardFetchLimit = 10
     
     typealias ModelType = CardDataModel
+    typealias InputType = NoInput
     let apiMethod = "review/fetch"
     let useEndpoint = true
     let sendApiKey = true

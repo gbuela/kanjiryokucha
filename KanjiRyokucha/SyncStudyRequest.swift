@@ -7,18 +7,10 @@
 //
 
 import Foundation
-import Gloss
 
-fileprivate struct SyncRoot: Gloss.Encodable {
+struct SyncRoot: Encodable {
     let learned: [Int]
     let notLearned: [Int]
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "learned" ~~> learned,
-            "notLearned" ~~> notLearned
-        ])
-    }
 }
 
 struct SyncStudyResultModel: Decodable {
@@ -31,13 +23,14 @@ struct SyncStudyRequest: KoohiiRequest {
     let notLearned: [Int]
     
     typealias ModelType = SyncStudyResultModel
+    typealias InputType = SyncRoot
     let apiMethod = "study/sync"
     let useEndpoint = true
     let sendApiKey = true
     let method = RequestMethod.post
     let contentType = ContentType.json
     
-    var jsonObject: Gloss.Encodable? {
+    var jsonObject: SyncRoot? {
         return SyncRoot(learned: learned, notLearned: notLearned)
     }
     

@@ -7,7 +7,6 @@
 //
 
 import ReactiveSwift
-import Gloss
 
 extension HeaderKeys {
     static let mashapeKey = "X-Mashape-Key"
@@ -44,7 +43,7 @@ extension KanjialiveRequest {
                     
                     if model == nil,
                         let json = data.toJSON(),
-                        let error: String = "error" <~~ json {
+                        let error = json["error"] as? String {
                         sink.send(error: .backendMessage(message: error))
                     } else {
                         let resp = Response(statusCode: status,
@@ -80,11 +79,9 @@ private extension KanjialiveRequest {
                 return nil
         }
         
-        let jsonData = jsonObject?.toJsonData()
-        
         var rq = URLRequest(url: url)
         rq.httpMethod = self.httpMethod
-        rq.httpBody = contentType == .json ? jsonData : bodyParams
+        rq.httpBody = contentType == .json ? jsonObject?.toJsonData() : bodyParams
         rq.cachePolicy = .reloadIgnoringLocalCacheData
         
         for header in headers {

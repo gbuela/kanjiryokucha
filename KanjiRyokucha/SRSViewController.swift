@@ -11,7 +11,6 @@ import ReactiveSwift
 import ReactiveCocoa
 import Result
 import RealmSwift
-import Gloss
 import EasyTipView
 
 let lastSatusRefreshKey = "lastSatusRefresh"

@@ -72,6 +72,7 @@ struct SRSStartRequest: StartRequest {
     let qsParams: ParamSet
     
     typealias ModelType = CardIdsModel
+    typealias InputType = NoInput
 
     var querystringParams: ParamSet {
         return qsParams
@@ -108,6 +109,7 @@ struct FreeReviewStartRequest: StartRequest {
     let qsParams: ParamSet
     
     typealias ModelType = CardIdsModel
+    typealias InputType = NoInput
 
     var querystringParams: ParamSet {
         return qsParams
