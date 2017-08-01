@@ -2,7 +2,7 @@ platform :ios, ‘9.3’
 
 # Pods for KanjiRyokucha
 def shared_pods
-    pod "ReactiveCocoa", :git => "https://github.com/ReactiveCocoa/ReactiveCocoa.git", :tag => ‘6.0.0-rc.2’
+    pod "ReactiveCocoa", :git => "https://github.com/ReactiveCocoa/ReactiveCocoa.git", :branch => ‘master’
     pod 'UIColor_Hex_Swift', '~> 3.0.2'
     pod 'PKHUD', '~> 4.0'
     pod 'RealmSwift'
