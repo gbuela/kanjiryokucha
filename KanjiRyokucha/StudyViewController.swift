@@ -199,7 +199,7 @@ class StudyEngine {
     }
     
     private func updateStudyData(studyIds: StudyIdsModel) {
-        let oldStudyEntries = reviewEngine.studyEntries.value.map { ($0.cardId, $0.keyword) }
+        let oldStudyEntries = reviewEngine.studyEntries.value.map { ($0.cardId, $0.keyword, $0.frameNum.value) }
         
         let newStudyIds = studyIds.ids.filter { !studyIds.learnedIds.contains($0) }
         
@@ -209,9 +209,11 @@ class StudyEngine {
         Database.write { realm in
             newStudyIds.forEach { studyId in
                 var keyword = ""
+                var frameNum: Int? = nil
                 
                 if let oldEntry = oldStudyEntries.first(where:{ $0.0 == studyId }) {
                     keyword = oldEntry.1
+                    frameNum = oldEntry.2
                 }
                 
                 let studyEntry = StudyEntry()
@@ -219,6 +221,7 @@ class StudyEngine {
                 studyEntry.keyword = keyword
                 studyEntry.learned = false
                 studyEntry.synced = true
+                studyEntry.frameNum.value = frameNum
                 realm.add(studyEntry, update: false)
                 reviewEngine.studyEntries.value.append(studyEntry)
             }

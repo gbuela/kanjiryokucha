@@ -10,6 +10,10 @@ generated_fastfile_id "d678794c-2056-4801-893f-adf12bd3c66a"
 
 default_platform :ios
 
+before_all do |lane, options|
+  ENV['DEVELOPER_DIR'] = '/Applications/Xcode.app/Contents/Developer'
+end
+
 # Fastfile actions accept additional configuration, but
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
