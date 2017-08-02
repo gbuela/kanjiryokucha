@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -39,22 +39,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-re-820" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                                <rect key="frame" x="120" y="8" width="134" height="36"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ap-re-820" customClass="SubmitStudyButton" customModule="KanjiRyokucha" customModuleProvider="target">
+                                <rect key="frame" x="2" y="2" width="371" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Mke-ZD-hiC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="6" maxY="15"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="6" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="-1" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="submit changes"/>
+                                <state key="normal" title="submit changes">
+                                    <color key="titleColor" red="0.33732746860000001" green="0.41723941850000001" blue="0.071478846109999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06I-Ib-T2Q">
-                                <rect key="frame" x="120" y="26" width="134" height="18"/>
+                                <rect key="frame" x="351.5" y="23" width="9.5" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" red="0.54094521650000005" green="0.66909365109999996" blue="0.1146249371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.33732746860000001" green="0.41723941850000001" blue="0.071478846109999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="in5-4D-sgH">
-                                <rect key="frame" x="0.0" y="52" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="studyCellId" rowHeight="76" id="xVa-8w-Fjb" customClass="StudyCell" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -113,17 +117,17 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.33732746860000001" green="0.41723941850000001" blue="0.071478846109999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1ap-re-820" firstAttribute="top" secondItem="ach-qC-mSk" secondAttribute="topMargin" constant="8" id="0Yy-Ch-vKG"/>
-                            <constraint firstItem="1ap-re-820" firstAttribute="centerX" secondItem="ach-qC-mSk" secondAttribute="centerX" id="7bn-2G-dX3"/>
+                            <constraint firstItem="1ap-re-820" firstAttribute="top" secondItem="ach-qC-mSk" secondAttribute="topMargin" constant="2" id="0Yy-Ch-vKG"/>
+                            <constraint firstItem="1ap-re-820" firstAttribute="leading" secondItem="ach-qC-mSk" secondAttribute="leading" constant="2" id="6c2-wh-0rW"/>
+                            <constraint firstItem="06I-Ib-T2Q" firstAttribute="trailing" secondItem="1ap-re-820" secondAttribute="trailing" constant="-12" id="95M-XH-k28"/>
                             <constraint firstAttribute="trailing" secondItem="in5-4D-sgH" secondAttribute="trailing" id="EVQ-6c-7mU"/>
                             <constraint firstItem="Gu6-TV-TDs" firstAttribute="top" secondItem="in5-4D-sgH" secondAttribute="bottom" id="Lxy-nT-yUc"/>
-                            <constraint firstItem="in5-4D-sgH" firstAttribute="top" secondItem="1ap-re-820" secondAttribute="bottom" constant="8" id="h5t-uS-lZ2"/>
-                            <constraint firstItem="06I-Ib-T2Q" firstAttribute="leading" secondItem="1ap-re-820" secondAttribute="leading" id="iII-fB-uch"/>
+                            <constraint firstItem="in5-4D-sgH" firstAttribute="top" secondItem="1ap-re-820" secondAttribute="bottom" constant="2" id="h5t-uS-lZ2"/>
+                            <constraint firstItem="06I-Ib-T2Q" firstAttribute="centerY" secondItem="1ap-re-820" secondAttribute="centerY" id="ixz-D9-YiM"/>
+                            <constraint firstAttribute="trailing" secondItem="1ap-re-820" secondAttribute="trailing" constant="2" id="qtY-2v-Odp"/>
                             <constraint firstItem="in5-4D-sgH" firstAttribute="leading" secondItem="ach-qC-mSk" secondAttribute="leading" id="t8n-BY-tmF"/>
-                            <constraint firstItem="06I-Ib-T2Q" firstAttribute="bottom" secondItem="1ap-re-820" secondAttribute="bottom" id="xAL-gn-YC3"/>
-                            <constraint firstItem="06I-Ib-T2Q" firstAttribute="width" secondItem="1ap-re-820" secondAttribute="width" id="zwy-Fu-kxE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FHx-Ct-lG7"/>
@@ -135,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ygz-Yh-6fJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887" y="-443"/>
+            <point key="canvasLocation" x="885.60000000000002" y="-443.02848575712147"/>
         </scene>
         <!--Study Page View Controller-->
         <scene sceneID="QmW-OB-iDG">
