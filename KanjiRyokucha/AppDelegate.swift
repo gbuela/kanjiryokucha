@@ -231,6 +231,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Background fetch
+    
+    var bkgTask: BackgroundTask?
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
@@ -243,6 +245,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         log("BkgFetch: fetching")
         
+        bkgTask = BackgroundTask(application: UIApplication.shared)
+        bkgTask?.begin()
+
         let oldCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
         
         engine.statusAction.events.take(first: 1).react { event in
@@ -257,6 +262,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     guard let engine = self.appController?.srsViewController.engine else {
                         log("BkgFetch: engine not found, desisting")
                         completionHandler(.noData)
+                        self.bkgTask?.end()
+                        self.bkgTask = nil
                         return
                     }
                     log("waited a while, deciding now on current status")
@@ -277,6 +284,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             log("due count hasn't changed: \(newCount)")
             completionHandler(.noData)
         }
+        bkgTask?.end()
+        bkgTask = nil
     }
     
     func processFetch(response: Response, oldCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -286,6 +295,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             log("response model is not GetStatusModel")
             completionHandler(.failed)
+            bkgTask?.end()
+            bkgTask = nil
         }
     }
 }

@@ -78,6 +78,9 @@
 		C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
 		C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C410E92F1E626AAE006C6837 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */; };
+		C41ABB441F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
+		C41ABB451F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
+		C41ABB461F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
 		C42BBAA91E0F187900361C89 /* CardFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAA81E0F187900361C89 /* CardFetchRequest.swift */; };
 		C42BBAAB1E10484100361C89 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAAA1E10484100361C89 /* CardBackView.xib */; };
 		C42BBAAD1E10485700361C89 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAAC1E10485700361C89 /* CardBackView.swift */; };
@@ -284,6 +287,7 @@
 		C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStudyCell.swift; sourceTree = "<group>"; };
 		C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStudyCell.xib; sourceTree = "<group>"; };
 		C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		C41ABB431F3607EB00960F8F /* BackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		C42BBAA81E0F187900361C89 /* CardFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFetchRequest.swift; sourceTree = "<group>"; };
 		C42BBAAA1E10484100361C89 /* CardBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardBackView.xib; sourceTree = "<group>"; };
 		C42BBAAC1E10485700361C89 /* CardBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBackView.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 				C4F213C31DEA532900EF5214 /* Info.plist */,
 				C409A1E61E860320006EEE77 /* DEV-Info.plist */,
 				C44F75811E8F218D00E00AD9 /* Staging-Info.plist */,
+				C41ABB431F3607EB00960F8F /* BackgroundTask.swift */,
 			);
 			path = KanjiRyokucha;
 			sourceTree = "<group>";
@@ -1121,6 +1126,7 @@
 				C409A1A01E86011E006EEE77 /* ReviewViewController.swift in Sources */,
 				C409A1A11E86011E006EEE77 /* SettingsInfoCell.swift in Sources */,
 				C409A1A21E86011E006EEE77 /* GetStatusRequest.swift in Sources */,
+				C41ABB451F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A861F1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9C1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C409A1A31E86011E006EEE77 /* Network.swift in Sources */,
@@ -1183,6 +1189,7 @@
 				C44F75361E8F213300E00AD9 /* ReviewViewController.swift in Sources */,
 				C44F75371E8F213300E00AD9 /* SettingsInfoCell.swift in Sources */,
 				C44F75381E8F213300E00AD9 /* GetStatusRequest.swift in Sources */,
+				C41ABB461F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A86201EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9D1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C44F75391E8F213300E00AD9 /* Network.swift in Sources */,
@@ -1254,6 +1261,7 @@
 				C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */,
 				C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */,
 				C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */,
+				C41ABB441F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A861E1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9B1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */,
