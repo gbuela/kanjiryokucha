@@ -58,6 +58,7 @@ class Global : Object {
     let reviewType = RealmOptional<Int>()
     dynamic var useAnimations = true
     dynamic var useStudyPhase = true
+    dynamic var useNotifications = false
     dynamic var syncLimit = defaultSyncLimit
 
     override static func primaryKey() -> String? {

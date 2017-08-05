@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             createSeparatorCell(),
             createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: { [weak self] in self?.switchedAnimations(isOn: $0) }),
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: { [weak self] in self?.switchedStudy(isOn: $0) }),
-            createSeparatorCell(),
+            createSwitchCell(title: "Use Notifications", subtitle: "Get notified when your due card count changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) }),            createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
             aboutCell,
             whatsNewCell
@@ -64,6 +64,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             global.useStudyPhase = isOn
             global.studyPhaseProperty.value = isOn
             GuestData.useStudyPhase = isOn
+        }
+    }
+
+    private func switchedNotifications(isOn: Bool) {
+        Database.write(object: global) {
+            global.useNotifications = isOn
         }
     }
     
