@@ -95,15 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var fromBackground: Bool = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.badge]) { (granted, error) in
-                // Enable or disable features based on authorization.
-            }
-            center.delegate = self
-        }
-        
+
         initFabric()
         
         SwiftRater.showLaterButton = true
@@ -248,11 +240,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()
 
+        let useNotifications = engine.global.useNotifications
         let oldCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
         
         engine.statusAction.events.take(first: 1).react { event in
             if let response = event.value {
-                self.processFetch(response: response, oldCount: oldCount, completionHandler: completionHandler)
+                self.processFetch(response: response,
+                                  oldCount: oldCount,
+                                  useNotifications: useNotifications,
+                                  completionHandler: completionHandler)
             } else {
                 log("didn't get a response: session may have expired")
                 
@@ -269,29 +265,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     log("waited a while, deciding now on current status")
                     
                     let newCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
-                    self.resolveStatus(oldCount: oldCount, newCount: newCount, completionHandler: completionHandler)
+                    self.resolveStatus(oldCount: oldCount,
+                                       newCount: newCount,
+                                       useNotifications: useNotifications,
+                                       completionHandler: completionHandler)
                 }
             }
         }
         engine.refreshStatus()
     }
     
-    func resolveStatus(oldCount: Int, newCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if newCount != oldCount {
+    func resolveStatus(oldCount: Int, newCount: Int, useNotifications: Bool, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if newCount != oldCount && newCount > 0 {
             log("due count has changed: \(oldCount) -> \(newCount)")
+            if useNotifications {
+                notifyNewDueCount(count: newCount)
+            }
             completionHandler(.newData)
         } else {
             log("due count hasn't changed: \(newCount)")
-            completionHandler(.noData)
+            
+            //////////////////
+            // FIXME: for testing only -- should just complete with .noData
+            if useNotifications {
+                notifyNewDueCount(count: newCount)
+            }
+            completionHandler(.newData)
+            //////////////////
+            
+            //completionHandler(.noData)
         }
         bkgTask?.end()
         bkgTask = nil
     }
     
-    func processFetch(response: Response, oldCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func processFetch(response: Response, oldCount: Int, useNotifications: Bool, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let model = response.model as? GetStatusModel {
             let newCount = model.expiredCards
-            resolveStatus(oldCount: oldCount, newCount: newCount, completionHandler: completionHandler)
+            resolveStatus(oldCount: oldCount,
+                          newCount: newCount,
+                          useNotifications: useNotifications,
+                          completionHandler: completionHandler)
         } else {
             log("response model is not GetStatusModel")
             completionHandler(.failed)
@@ -299,17 +313,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             bkgTask = nil
         }
     }
+    
+    private func notifyNewDueCount(count: Int) {
+        guard #available(iOS 10.0, *) else { return }
+
+        let content = UNMutableNotificationContent()
+        if Global.username != "" {
+            content.body = "\(Global.username.capitalized), you have \(count) due cards to review"
+        } else {
+            content.body = "You have \(count) due cards to review"
+        }
+        content.sound = UNNotificationSound.default()
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.badge])
-    }
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
-    }
-}
+
