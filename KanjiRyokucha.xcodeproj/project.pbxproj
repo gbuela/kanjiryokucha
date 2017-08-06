@@ -78,6 +78,9 @@
 		C410E92C1E623C5C006C6837 /* EmptyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */; };
 		C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */; };
 		C410E92F1E626AAE006C6837 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */; };
+		C41ABB441F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
+		C41ABB451F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
+		C41ABB461F3607EB00960F8F /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41ABB431F3607EB00960F8F /* BackgroundTask.swift */; };
 		C42BBAA91E0F187900361C89 /* CardFetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAA81E0F187900361C89 /* CardFetchRequest.swift */; };
 		C42BBAAB1E10484100361C89 /* CardBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAAA1E10484100361C89 /* CardBackView.xib */; };
 		C42BBAAD1E10485700361C89 /* CardBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BBAAC1E10485700361C89 /* CardBackView.swift */; };
@@ -284,6 +287,7 @@
 		C410E92A1E623C5C006C6837 /* EmptyStudyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStudyCell.swift; sourceTree = "<group>"; };
 		C410E92B1E623C5C006C6837 /* EmptyStudyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyStudyCell.xib; sourceTree = "<group>"; };
 		C410E92E1E626AAE006C6837 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		C41ABB431F3607EB00960F8F /* BackgroundTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
 		C42BBAA81E0F187900361C89 /* CardFetchRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFetchRequest.swift; sourceTree = "<group>"; };
 		C42BBAAA1E10484100361C89 /* CardBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardBackView.xib; sourceTree = "<group>"; };
 		C42BBAAC1E10485700361C89 /* CardBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBackView.swift; sourceTree = "<group>"; };
@@ -570,6 +574,7 @@
 				C4F213C31DEA532900EF5214 /* Info.plist */,
 				C409A1E61E860320006EEE77 /* DEV-Info.plist */,
 				C44F75811E8F218D00E00AD9 /* Staging-Info.plist */,
+				C41ABB431F3607EB00960F8F /* BackgroundTask.swift */,
 			);
 			path = KanjiRyokucha;
 			sourceTree = "<group>";
@@ -755,6 +760,11 @@
 						DevelopmentTeam = UHVS3L828Q;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C4F213C71DEA532A00EF5214 = {
 						CreatedOnToolsVersion = 8.1;
@@ -1116,6 +1126,7 @@
 				C409A1A01E86011E006EEE77 /* ReviewViewController.swift in Sources */,
 				C409A1A11E86011E006EEE77 /* SettingsInfoCell.swift in Sources */,
 				C409A1A21E86011E006EEE77 /* GetStatusRequest.swift in Sources */,
+				C41ABB451F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A861F1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9C1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C409A1A31E86011E006EEE77 /* Network.swift in Sources */,
@@ -1178,6 +1189,7 @@
 				C44F75361E8F213300E00AD9 /* ReviewViewController.swift in Sources */,
 				C44F75371E8F213300E00AD9 /* SettingsInfoCell.swift in Sources */,
 				C44F75381E8F213300E00AD9 /* GetStatusRequest.swift in Sources */,
+				C41ABB461F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A86201EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9D1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C44F75391E8F213300E00AD9 /* Network.swift in Sources */,
@@ -1249,6 +1261,7 @@
 				C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */,
 				C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */,
 				C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */,
+				C41ABB441F3607EB00960F8F /* BackgroundTask.swift in Sources */,
 				C48A861E1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9B1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */,
@@ -1364,6 +1377,134 @@
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
+		};
+		C44CB80F1F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		C44CB8101F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4D39AC289B6F58C83133728 /* Pods-KanjiRyokucha.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 15;
+				DEVELOPMENT_TEAM = UHVS3L828Q;
+				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = AdHoc;
+		};
+		C44CB8111F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E19D674597B665F97AB6A4DA /* Pods-KanjiRyokucha-DEV.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UHVS3L828Q;
+				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = AdHoc;
+		};
+		C44CB8121F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E2FD38E1C3978AF7752543A /* Pods-KanjiRyokucha-Staging.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UHVS3L828Q;
+				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = AdHoc;
+		};
+		C44CB8131F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50CBBB87816EA91E30D7DD6A /* Pods-KanjiRyokuchaTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KanjiRyokucha.app/KanjiRyokucha";
+			};
+			name = AdHoc;
+		};
+		C44CB8141F3683430054B2D8 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = KanjiRyokucha;
+			};
+			name = AdHoc;
 		};
 		C44F757D1E8F213300E00AD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1531,7 +1672,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1556,7 +1697,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1608,6 +1749,7 @@
 			buildConfigurations = (
 				C409A1E21E86011E006EEE77 /* Debug */,
 				C409A1E31E86011E006EEE77 /* Release */,
+				C44CB8111F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1617,6 +1759,7 @@
 			buildConfigurations = (
 				C44F757D1E8F213300E00AD9 /* Debug */,
 				C44F757E1E8F213300E00AD9 /* Release */,
+				C44CB8121F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1626,6 +1769,7 @@
 			buildConfigurations = (
 				C48A85E91EB5646D00778445 /* Debug */,
 				C48A85EA1EB5646D00778445 /* Release */,
+				C44CB8141F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1635,6 +1779,7 @@
 			buildConfigurations = (
 				C4F213CF1DEA532A00EF5214 /* Debug */,
 				C4F213D01DEA532A00EF5214 /* Release */,
+				C44CB80F1F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1644,6 +1789,7 @@
 			buildConfigurations = (
 				C4F213D21DEA532A00EF5214 /* Debug */,
 				C4F213D31DEA532A00EF5214 /* Release */,
+				C44CB8101F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1653,6 +1799,7 @@
 			buildConfigurations = (
 				C4F213D51DEA532A00EF5214 /* Debug */,
 				C4F213D61DEA532A00EF5214 /* Release */,
+				C44CB8131F3683430054B2D8 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

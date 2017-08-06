@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class SeparatorCell: UITableViewCell {}
 
@@ -19,6 +20,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var cells: [UITableViewCell]!
     var aboutCell: UITableViewCell!
     var whatsNewCell: UITableViewCell!
+    var notifCell: SettingsSwitchCell!
     var selectableCells: [UITableViewCell]!
     var username: String?
     var global: Global!
@@ -38,10 +40,18 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         selectableCells = [aboutCell, whatsNewCell]
         
+        notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when due count changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
+        
+        if #available(iOS 10.0, *) {
+        } else {
+            notifCell.uiswitch.isEnabled = false
+        }
+        
         cells = [
             createSeparatorCell(),
             createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: { [weak self] in self?.switchedAnimations(isOn: $0) }),
             createSwitchCell(title: "Use Study phase", subtitle: "Only cards marked as learned are available for red pile review", state: global.useStudyPhase, handler: { [weak self] in self?.switchedStudy(isOn: $0) }),
+            notifCell,
             createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
             aboutCell,
@@ -51,6 +61,21 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // If notifications were un-granted, turn the feature off
+        if global.useNotifications,
+            #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { (settings) in
+                if settings.authorizationStatus == .denied {
+                    self.revertEnablingNotifications()
+                }
+            }
+        }
     }
     
     private func switchedAnimations(isOn: Bool) {
@@ -64,6 +89,54 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             global.useStudyPhase = isOn
             global.studyPhaseProperty.value = isOn
             GuestData.useStudyPhase = isOn
+        }
+    }
+    private func switchedNotifications2(isOn: Bool) {
+        self.finishEnablingNotifications(isOn)
+    }
+    private func switchedNotifications(isOn: Bool) {
+        guard #available(iOS 10.0, *) else { return }
+        
+        if isOn {
+            let center = UNUserNotificationCenter.current()
+            center.getNotificationSettings { (settings) in
+                switch settings.authorizationStatus {
+                case .notDetermined:
+                    center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+                        if !granted || error != nil {
+                            self.revertEnablingNotifications()
+                        } else {
+                            self.finishEnablingNotifications(isOn)
+                        }
+                    }
+                case .authorized:
+                    self.finishEnablingNotifications(isOn)
+                case .denied:
+                    self.confirm(title: "Need notifications permission",
+                            message: "To enable this feature you need to grant notifications permision on your device's settings page for Kanji Ryokucha",
+                        yesOption: "Get me there",
+                        noOption: "Not now") { _ in
+                            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                    }
+                    self.revertEnablingNotifications()
+                }
+            }
+        } else {
+            finishEnablingNotifications(isOn)
+        }
+    }
+    
+    private func revertEnablingNotifications() {
+        DispatchQueue.main.async {
+            self.notifCell.uiswitch.isOn = false
+        }
+    }
+    
+    private func finishEnablingNotifications(_ isOn: Bool) {
+        DispatchQueue.main.async {
+            Database.write(object: self.global) {
+                self.global.useNotifications = isOn
+            }
         }
     }
     
@@ -153,3 +226,4 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return cells[indexPath.row]
     }
 }
+

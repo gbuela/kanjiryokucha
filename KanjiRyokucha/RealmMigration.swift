@@ -12,10 +12,12 @@ import RealmSwift
 extension Realm {
     class func ConfigurationWithMigration() -> Realm.Configuration {
         return Realm.Configuration(
-            schemaVersion: 1,
+            schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 1) {
+                if oldSchemaVersion < 1 {
                     // adding frameNum to StudyEntry
+                } else if oldSchemaVersion < 2 {
+                    // adding useNotifications to Global
                 }
         })
     }
