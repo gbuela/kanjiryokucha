@@ -96,6 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        application.setMinimumBackgroundFetchInterval(14400)
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        }
+        
         initFabric()
         
         SwiftRater.showLaterButton = true
@@ -284,16 +290,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.newData)
         } else {
             log("due count hasn't changed: \(newCount)")
-            
-            //////////////////
-            // FIXME: for testing only -- should just complete with .noData
-            if useNotifications {
-                notifyNewDueCount(count: newCount)
-            }
-            completionHandler(.newData)
-            //////////////////
-            
-            //completionHandler(.noData)
+            completionHandler(.noData)
         }
         bkgTask?.end()
         bkgTask = nil
@@ -331,4 +328,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.badge])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+}
