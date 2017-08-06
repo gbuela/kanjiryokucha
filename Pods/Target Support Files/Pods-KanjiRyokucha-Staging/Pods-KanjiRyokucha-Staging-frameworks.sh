@@ -107,3 +107,15 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftRater/SwiftRater.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIColor_Hex_Swift/UIColor_Hex_Swift.framework"
 fi
+if [[ "$CONFIGURATION" == "AdHoc" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/EasyTipView/EasyTipView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Gloss/Gloss.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PKHUD/PKHUD.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ReactiveSwift/ReactiveSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftRater/SwiftRater.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UIColor_Hex_Swift/UIColor_Hex_Swift.framework"
+fi
