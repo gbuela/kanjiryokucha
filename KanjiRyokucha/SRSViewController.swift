@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import ReactiveSwift
 import ReactiveCocoa
 import Result
@@ -225,6 +226,7 @@ class SRSReviewEngine: SRSEngineProtocol {
         })
         statusAction.react { [weak self] response in
             self?.updateCardCount(response: response)
+            self?.setAppBadge(response: response)
             UserDefaults().set(Int(Date().timeIntervalSince1970), forKey: lastSatusRefreshKey)
             self?.refreshedSinceStartup = true
         }
@@ -465,6 +467,28 @@ class SRSReviewEngine: SRSEngineProtocol {
 
             reviewTypeSetups[.failed]?.cardCount.value = model.failedCards
             reviewTypeSetups[.failed]?.learnedCount.value = model.learnedCards
+        }
+    }
+    
+    private func setAppBadge(response: Response) {
+        if let model = response.model as? GetStatusModel {
+            if #available(iOS 10.0, *) {
+                
+                let content = UNMutableNotificationContent()
+                content.badge = model.expiredCards as NSNumber
+                
+                // This is a workaround. Alerts with just a 0 badge value won't fire.
+                // Adding a title gets them fired.
+                if model.expiredCards == 0 {
+                    content.title = "zero"
+                }
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request)
+                
+            }
         }
     }
 

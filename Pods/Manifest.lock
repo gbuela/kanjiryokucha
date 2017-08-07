@@ -5,15 +5,15 @@ PODS:
   - Fabric (1.6.12)
   - Gloss (1.2.4)
   - PKHUD (4.2.3)
-  - ReactiveCocoa (6.0.0-rc.2):
-    - ReactiveSwift (= 2.0.0-rc.2)
-  - ReactiveSwift (2.0.0-rc.2):
+  - ReactiveCocoa (6.0.0):
+    - ReactiveSwift (~> 2.0)
+  - ReactiveSwift (2.0.0):
     - Result (~> 3.2)
-  - Realm (2.8.3):
-    - Realm/Headers (= 2.8.3)
-  - Realm/Headers (2.8.3)
-  - RealmSwift (2.8.3):
-    - Realm (= 2.8.3)
+  - Realm (2.9.1):
+    - Realm/Headers (= 2.9.1)
+  - Realm/Headers (2.9.1)
+  - RealmSwift (2.9.1):
+    - Realm (= 2.9.1)
   - Result (3.2.3)
   - SwiftRater (0.2.3)
   - UIColor_Hex_Swift (3.0.2)
@@ -38,7 +38,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ReactiveCocoa:
-    :commit: e5e5d6e849e2a5992b3cabe9d96c0a657c1bda85
+    :commit: bb31e7f94c5555ed9af0069cdc91662e8bee15e5
     :git: https://github.com/ReactiveCocoa/ReactiveCocoa.git
 
 SPEC CHECKSUMS:
@@ -47,10 +47,10 @@ SPEC CHECKSUMS:
   Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   Gloss: 4e036074610fdb993abcb958ebcd7332588e2333
   PKHUD: c7692163a09875cbf15827dc581df3c5cf7f1015
-  ReactiveCocoa: af016dc029f76fd8a270d7a33c55de9515d95d2b
-  ReactiveSwift: b8ea244bd66fd841151a9146d4e2601a9acbaddf
-  Realm: 3601ef091c8c499a31101d8563b991e75546cdce
-  RealmSwift: 8183818515471b01a99abdd2970f8e4fd52b6f4a
+  ReactiveCocoa: d1d367c48ace12ece7237bad233c4778fc6611bc
+  ReactiveSwift: 36339167e571774d936482d0f6512f5118a74731
+  Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
+  RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   SwiftRater: 3c0f8136a011a616faa2a04c982d8d9d80b7741e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
