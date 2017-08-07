@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         selectableCells = [aboutCell, whatsNewCell]
         
-        notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when due count changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
+        notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when the due count has changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
         
         if #available(iOS 10.0, *) {
         } else {

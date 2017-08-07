@@ -12,6 +12,7 @@ default_platform :ios
 
 before_all do |lane, options|
   ENV['DEVELOPER_DIR'] = '/Applications/Xcode.app/Contents/Developer'
+  ENV['FASTLANE_ITUNES_TRANSPORTER_USE_SHELL_SCRIPT'] = '1'
 end
 
 # Fastfile actions accept additional configuration, but
