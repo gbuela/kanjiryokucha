@@ -17,7 +17,7 @@ extension Realm {
                 if oldSchemaVersion < 1 {
                     // adding frameNum to StudyEntry
                 } else if oldSchemaVersion < 2 {
-                    // adding useNotifications to Global
+                    // adding useNotifications, latestDueCount to Global
                 }
         })
     }

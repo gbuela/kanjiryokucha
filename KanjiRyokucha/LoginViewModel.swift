@@ -100,7 +100,11 @@ struct LoginViewModel : BackendAccess {
                         handler(false, nil)
                     }
                 } else {
-                    self.state.value = .failure("Apparently we're offline ☹️")
+                    if let fe = result.error {
+                        self.state.value = .failure("\(fe.errorText())  🔥")
+                    } else {
+                        self.state.value = .failure("Apparently we're offline ☹️")
+                    }
                     handler(false, nil)
                 }
             }

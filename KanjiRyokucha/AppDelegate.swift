@@ -237,6 +237,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard !Global.isGuest(),
             let engine = appController?.srsViewController.engine else {
             log("BkgFetch: not a fetch scenario")
+            notify(message: "no engine available")
             completionHandler(.noData)
             return
         }
@@ -290,6 +291,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.newData)
         } else {
             log("due count hasn't changed: \(newCount)")
+            notify(message: "due count hasn't changed: \(newCount)")
             completionHandler(.noData)
         }
         bkgTask?.end()
@@ -305,6 +307,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                           completionHandler: completionHandler)
         } else {
             log("response model is not GetStatusModel")
+            notify(message: "response model is " + response.model.debugDescription)
             completionHandler(.failed)
             bkgTask?.end()
             bkgTask = nil
@@ -320,6 +323,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             content.body = "You have \(count) due cards to review"
         }
+        content.sound = UNNotificationSound.default()
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+    
+    private func notify(message: String) {
+        guard #available(iOS 10.0, *) else { return }
+
+        let content = UNMutableNotificationContent()
+        content.body = message
         content.sound = UNNotificationSound.default()
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)

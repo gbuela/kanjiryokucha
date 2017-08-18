@@ -283,6 +283,14 @@ class SRSReviewEngine: SRSEngineProtocol {
 
         reviewInProgress <~ currentReviewType.map { $0 != nil }
         
+        reviewTypeSetups[.expired]?.cardCount.react { [weak self] count in
+            if let sself = self {
+                Database.write(object: sself.global) {
+                    sself.global.latestDueCount = count
+                }
+            }
+        }
+        
         reviewTitle <~ currentReviewType.map(SRSReviewEngine.titleFromReviewType)
         reviewColor <~ currentReviewType.map { $0?.colors.enabledColor ?? .ryokuchaDark}
     }

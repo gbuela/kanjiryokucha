@@ -205,6 +205,9 @@
 		C48E4B551ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
 		C48E4B561ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
 		C48E4B571ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
+		C4973DCB1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
+		C4973DCC1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
+		C4973DCD1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
 		C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
 		C4AC9B471E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */; };
@@ -347,6 +350,7 @@
 		C48A86241EBED47600778445 /* UIViewControllerContainment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerContainment.swift; sourceTree = "<group>"; };
 		C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStudyRequest.swift; sourceTree = "<group>"; };
 		C48E4B541ED91A6D00A31A7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFetcher.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4A593641E79C99A0098CB99 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeGuestViewController.swift; sourceTree = "<group>"; };
@@ -494,6 +498,7 @@
 				C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */,
 				C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */,
 				C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */,
+				C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1139,6 +1144,7 @@
 				C4E76F9C1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C409A1A31E86011E006EEE77 /* Network.swift in Sources */,
 				C409A1A41E86011E006EEE77 /* SettingsViewController.swift in Sources */,
+				C4973DCC1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C409A1A51E86011E006EEE77 /* SettingsSwitchCell.swift in Sources */,
 				C409A1A61E86011E006EEE77 /* LoginRequest.swift in Sources */,
 				C409A1A71E86011E006EEE77 /* ColorStateButton.swift in Sources */,
@@ -1202,6 +1208,7 @@
 				C4E76F9D1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C44F75391E8F213300E00AD9 /* Network.swift in Sources */,
 				C44F753A1E8F213300E00AD9 /* SettingsViewController.swift in Sources */,
+				C4973DCD1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C44F753B1E8F213300E00AD9 /* SettingsSwitchCell.swift in Sources */,
 				C44F753C1E8F213300E00AD9 /* LoginRequest.swift in Sources */,
 				C44F753D1E8F213300E00AD9 /* ColorStateButton.swift in Sources */,
@@ -1274,6 +1281,7 @@
 				C4E76F9B1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */,
 				C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */,
+				C4973DCB1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C4EF331F1E64EF34004F67C4 /* SettingsSwitchCell.swift in Sources */,
 				C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */,
 				C43668E31E0372830080D768 /* ColorStateButton.swift in Sources */,
@@ -1438,7 +1446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1680,7 +1688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1705,7 +1713,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
