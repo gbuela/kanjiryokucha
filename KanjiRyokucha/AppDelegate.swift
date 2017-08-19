@@ -270,7 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             completionHandler(.newData)
         } else {
             log("due count hasn't changed: \(newCount)")
-            notify(message: "due count hasn't changed: \(newCount)")
             completionHandler(.noData)
         }
     }
@@ -278,26 +277,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func notifyNewDueCount(count: Int) {
         guard #available(iOS 10.0, *) else { return }
 
-        let content = UNMutableNotificationContent()
+        let message: String
         if Global.username != "" {
-            content.body = "\(Global.username.capitalized), you have \(count) due cards to review"
+            message = "\(Global.username.capitalized), you have \(count) due cards to review"
         } else {
-            content.body = "You have \(count) due cards to review"
+            message = "You have \(count) due cards to review"
         }
-        content.sound = UNNotificationSound.default()
-        content.badge = count as NSNumber
-       
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        notify(message: message, badgeCount: count as NSNumber)
     }
     
-    private func notify(message: String) {
+    private func notify(message: String, badgeCount: NSNumber?) {
         guard #available(iOS 10.0, *) else { return }
 
         let content = UNMutableNotificationContent()
         content.body = message
         content.sound = UNNotificationSound.default()
+        content.badge = badgeCount
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
