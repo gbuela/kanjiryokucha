@@ -231,13 +231,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Background fetch
     
     var bkgTask: BackgroundTask?
+    var bkgFetcher: BackgroundFetcher?
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        guard !Global.isGuest(),
-            let engine = appController?.srsViewController.engine else {
-            log("BkgFetch: not a fetch scenario")
-            notify(message: "no engine available")
+        guard !Global.isGuest() else {
             completionHandler(.noData)
             return
         }
@@ -246,74 +244,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()
-
-        let useNotifications = engine.global.useNotifications
-        let oldCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
         
-        engine.statusAction.events.take(first: 1).react { event in
-            if let response = event.value {
-                self.processFetch(response: response,
-                                  oldCount: oldCount,
-                                  useNotifications: useNotifications,
-                                  completionHandler: completionHandler)
-            } else {
-                log("didn't get a response: session may have expired")
-                
-                // give it time to see if the fetch attempt has triggered auto reauthentication + statusAction
-                let delayInSeconds = 10.0
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + delayInSeconds) {
-                    guard let engine = self.appController?.srsViewController.engine else {
-                        log("BkgFetch: engine not found, desisting")
-                        completionHandler(.noData)
-                        self.bkgTask?.end()
-                        self.bkgTask = nil
-                        return
-                    }
-                    log("waited a while, deciding now on current status")
-                    
-                    let newCount = engine.reviewTypeSetups[.expired]?.cardCount.value ?? 0
-                    self.resolveStatus(oldCount: oldCount,
-                                       newCount: newCount,
-                                       useNotifications: useNotifications,
-                                       completionHandler: completionHandler)
-                }
+        bkgFetcher = BackgroundFetcher { [weak self] fetcherResult in
+            switch fetcherResult {
+            case .failure, .notChecked:
+                completionHandler(.noData)
+            case .success(let oldCount, let newCount):
+                self?.resolveStatus(oldCount: oldCount,
+                                    newCount: newCount,
+                                    completionHandler: completionHandler)
             }
+            
+            self?.bkgTask?.end()
+            self?.bkgTask = nil
+            self?.bkgFetcher = nil
         }
-        engine.refreshStatus()
+        
+        bkgFetcher?.start()
     }
     
-    func resolveStatus(oldCount: Int, newCount: Int, useNotifications: Bool, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func resolveStatus(oldCount: Int, newCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if newCount != oldCount && newCount > 0 {
             log("due count has changed: \(oldCount) -> \(newCount)")
-            if useNotifications {
-                notifyNewDueCount(count: newCount)
-            }
+            notifyNewDueCount(count: newCount)
             completionHandler(.newData)
         } else {
             log("due count hasn't changed: \(newCount)")
             notify(message: "due count hasn't changed: \(newCount)")
             completionHandler(.noData)
         }
-        bkgTask?.end()
-        bkgTask = nil
     }
-    
-    func processFetch(response: Response, oldCount: Int, useNotifications: Bool, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let model = response.model as? GetStatusModel {
-            let newCount = model.expiredCards
-            resolveStatus(oldCount: oldCount,
-                          newCount: newCount,
-                          useNotifications: useNotifications,
-                          completionHandler: completionHandler)
-        } else {
-            log("response model is not GetStatusModel")
-            notify(message: "response model is " + response.model.debugDescription)
-            completionHandler(.failed)
-            bkgTask?.end()
-            bkgTask = nil
-        }
-    }
-    
+
     private func notifyNewDueCount(count: Int) {
         guard #available(iOS 10.0, *) else { return }
 
@@ -324,7 +285,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             content.body = "You have \(count) due cards to review"
         }
         content.sound = UNNotificationSound.default()
-        
+        content.badge = count as NSNumber
+       
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
@@ -336,7 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let content = UNMutableNotificationContent()
         content.body = message
         content.sound = UNNotificationSound.default()
-        
+
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
