@@ -236,18 +236,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
         guard !Global.isGuest() else {
+            log("Guest mode / NODATA")
             completionHandler(.noData)
             return
         }
-        
-        log("BkgFetch: fetching")
         
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()
         
         bkgFetcher = BackgroundFetcher { [weak self] fetcherResult in
+            log("Completed BackgroundFetcher with \(fetcherResult)")
             switch fetcherResult {
             case .failure, .notChecked:
+                log("NODATA")
                 completionHandler(.noData)
             case .success(let oldCount, let newCount):
                 self?.resolveStatus(oldCount: oldCount,
@@ -265,11 +266,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func resolveStatus(oldCount: Int, newCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if newCount != oldCount && newCount > 0 {
-            log("due count has changed: \(oldCount) -> \(newCount)")
             notifyNewDueCount(count: newCount)
+            log("due count has changed: \(oldCount) -> \(newCount) / NEWDATA")
             completionHandler(.newData)
         } else {
-            log("due count hasn't changed: \(newCount)")
+            log("due count hasn't changed: \(newCount) / NODATA")
             completionHandler(.noData)
         }
     }
@@ -297,6 +298,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
+        
+        log("Notifying --> \(message)")
     }
 }
 

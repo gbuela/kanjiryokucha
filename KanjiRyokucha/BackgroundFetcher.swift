@@ -38,22 +38,26 @@ class BackgroundFetcher {
     }
 
     func start() {
+        log("Starting BackgroundFetcher")
         loginViewModel.state.react { [weak self] loginState in
             switch loginState {
             case .loggedIn:
+                log("Logged in!")
                 if Database.getGlobal().useNotifications {
                     self?.getCurrentStatus()
                 } else {
                     self?.completion(.notChecked)
                 }
                 break
-            case .failure(_):
+            case let .failure(err):
+                log("Login failed with: \(err)")
                 self?.completion(.failure)
                 break
             default:
                 break
             }
         }
+        log("Autologin...")
         loginViewModel.autologin()
     }
     
@@ -67,17 +71,21 @@ class BackgroundFetcher {
         
         statusAction?.react { [weak self] response in
             if let model = response.model as? GetStatusModel {
+                log("Status succeeded!")
                 self?.completion(.success(oldCount: oldCount, newCount: model.expiredCards))
             } else {
+                log("Status not getting expected model")
                 self?.completion(.failure)
             }
         }
-        statusAction?.errors.react { [weak self] _ in
+        statusAction?.errors.react { [weak self] err in
+            log("Status failed with: \(err)")
             self?.completion(.failure)
         }
         
         let delayInSeconds = 3.0
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + delayInSeconds) {
+            log("Getting status...")
             self.statusAction?.apply().start()
         }
     }
