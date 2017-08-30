@@ -78,12 +78,15 @@ class BackgroundFetcher {
                 self?.completion(.failure)
             }
         }
+        statusAction?.completed.react {
+            log("Status completed")
+        }
         statusAction?.errors.react { [weak self] err in
             log("Status failed with: \(err)")
             self?.completion(.failure)
         }
         
-        let delayInSeconds = 3.0
+        let delayInSeconds = 4.0
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + delayInSeconds) {
             log("Getting status...")
             self.statusAction?.apply().start()

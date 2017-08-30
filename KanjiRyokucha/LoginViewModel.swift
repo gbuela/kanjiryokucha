@@ -94,19 +94,19 @@ struct LoginViewModel : BackendAccess {
                         if let cookie = response.headers[HeaderKeys.setCookie] as? String {
                             Response.latestCookies = [ cookie ]
                         }
-                        self.state.value = .loggedIn
                         handler(true, username)
+                        self.state.value = .loggedIn
                     } else {
-                        self.state.value = .failure("Could not login 🤔")
                         handler(false, nil)
+                        self.state.value = .failure("Could not login 🤔")
                     }
                 } else {
+                    handler(false, nil)
                     if let fe = result.error {
                         self.state.value = .failure("\(fe.errorText())  🔥")
                     } else {
                         self.state.value = .failure("Apparently we're offline ☹️")
                     }
-                    handler(false, nil)
                 }
             }
         }
