@@ -266,6 +266,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func resolveStatus(oldCount: Int, newCount: Int, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if newCount != oldCount && newCount > 0 {
+            
+            let global = Database.getGlobal()
+            Database.write(object: global) {
+                global.latestDueCount = newCount
+            }
+            global.refreshNeeded = true
+
             notifyNewDueCount(count: newCount)
             log("due count has changed: \(oldCount) -> \(newCount) / NEWDATA")
             completionHandler(.newData)
