@@ -1470,7 +1470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1712,7 +1712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1737,7 +1737,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
