@@ -19,6 +19,7 @@ class BackgroundTask {
     }
     
     func begin() {
+        log("Beginning BackgroundTask")
         self.identifier = application.beginBackgroundTask {
             self.end()
         }
@@ -26,6 +27,7 @@ class BackgroundTask {
     
     func end() {
         if (identifier != UIBackgroundTaskInvalid) {
+            log("Ending BackgroundTask")
             application.endBackgroundTask(identifier)
         }
         

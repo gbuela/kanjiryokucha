@@ -205,6 +205,9 @@
 		C48E4B551ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
 		C48E4B561ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
 		C48E4B571ED91A6E00A31A7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C48E4B541ED91A6D00A31A7F /* Settings.bundle */; };
+		C4973DCB1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
+		C4973DCC1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
+		C4973DCD1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
 		C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
 		C4AC9B471E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */; };
@@ -235,6 +238,15 @@
 		C4C0AE421EA98E6E006CF493 /* Study.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE411EA98E6E006CF493 /* Study.storyboard */; };
 		C4C0AE431EA98E6E006CF493 /* Study.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE411EA98E6E006CF493 /* Study.storyboard */; };
 		C4C0AE441EA98E6F006CF493 /* Study.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4C0AE411EA98E6E006CF493 /* Study.storyboard */; };
+		C4C491ED1F4CFAB5009A95BD /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491EB1F4CFAB5009A95BD /* LogsViewController.swift */; };
+		C4C491EE1F4CFAB5009A95BD /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491EB1F4CFAB5009A95BD /* LogsViewController.swift */; };
+		C4C491EF1F4CFAB5009A95BD /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491EB1F4CFAB5009A95BD /* LogsViewController.swift */; };
+		C4C491F01F4CFAB5009A95BD /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C491EC1F4CFAB5009A95BD /* LogsViewController.xib */; };
+		C4C491F11F4CFAB5009A95BD /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C491EC1F4CFAB5009A95BD /* LogsViewController.xib */; };
+		C4C491F21F4CFAB5009A95BD /* LogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C491EC1F4CFAB5009A95BD /* LogsViewController.xib */; };
+		C4C491F41F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491F31F4CFE3B009A95BD /* DebugLogsManager.swift */; };
+		C4C491F51F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491F31F4CFE3B009A95BD /* DebugLogsManager.swift */; };
+		C4C491F61F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C491F31F4CFE3B009A95BD /* DebugLogsManager.swift */; };
 		C4E76F9B1EEDB9BE00A49959 /* LookupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */; };
 		C4E76F9C1EEDB9BE00A49959 /* LookupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */; };
 		C4E76F9D1EEDB9BE00A49959 /* LookupLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */; };
@@ -347,6 +359,7 @@
 		C48A86241EBED47600778445 /* UIViewControllerContainment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerContainment.swift; sourceTree = "<group>"; };
 		C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncStudyRequest.swift; sourceTree = "<group>"; };
 		C48E4B541ED91A6D00A31A7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFetcher.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4A593641E79C99A0098CB99 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeGuestViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +373,9 @@
 		C4C0AE3C1EA17A75006CF493 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = SOURCE_ROOT; };
 		C4C0AE411EA98E6E006CF493 /* Study.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Study.storyboard; sourceTree = "<group>"; };
+		C4C491EB1F4CFAB5009A95BD /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		C4C491EC1F4CFAB5009A95BD /* LogsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogsViewController.xib; sourceTree = "<group>"; };
+		C4C491F31F4CFE3B009A95BD /* DebugLogsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugLogsManager.swift; sourceTree = "<group>"; };
 		C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookupLabel.swift; sourceTree = "<group>"; };
 		C4E76F9E1EEDC9A200A49959 /* RealmMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmMigration.swift; sourceTree = "<group>"; };
 		C4EF33191E64EB37004F67C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -494,6 +510,7 @@
 				C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */,
 				C48C9D5E1E88764000679F72 /* SyncStudyRequest.swift */,
 				C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */,
+				C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -534,6 +551,7 @@
 				C4C0AE321EA17128006CF493 /* Log.swift */,
 				C48A86241EBED47600778445 /* UIViewControllerContainment.swift */,
 				C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */,
+				C4C491F31F4CFE3B009A95BD /* DebugLogsManager.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -624,6 +642,8 @@
 				C4C0AE411EA98E6E006CF493 /* Study.storyboard */,
 				C48A861C1EBECEAB00778445 /* DrawingViewController.swift */,
 				C48A861D1EBECEAB00778445 /* DrawingViewController.xib */,
+				C4C491EB1F4CFAB5009A95BD /* LogsViewController.swift */,
+				C4C491EC1F4CFAB5009A95BD /* LogsViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -819,6 +839,7 @@
 				C409A1CF1E86011E006EEE77 /* EmptyStudyCell.xib in Resources */,
 				C409A1D01E86011E006EEE77 /* SettingsViewController.xib in Resources */,
 				C4C0AE3A1EA17A2A006CF493 /* fabric.apikey in Resources */,
+				C4C491F11F4CFAB5009A95BD /* LogsViewController.xib in Resources */,
 				C4C0AE431EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C409A1D21E86011E006EEE77 /* SettingsInfoCell.xib in Resources */,
 				C409A1D41E86011E006EEE77 /* CredentialsViewController.xib in Resources */,
@@ -849,6 +870,7 @@
 				C44F75681E8F213300E00AD9 /* EmptyStudyCell.xib in Resources */,
 				C44F75691E8F213300E00AD9 /* SettingsViewController.xib in Resources */,
 				C4C0AE3B1EA17A2A006CF493 /* fabric.apikey in Resources */,
+				C4C491F21F4CFAB5009A95BD /* LogsViewController.xib in Resources */,
 				C4C0AE441EA98E6F006CF493 /* Study.storyboard in Resources */,
 				C44F756B1E8F213300E00AD9 /* SettingsInfoCell.xib in Resources */,
 				C44F756D1E8F213300E00AD9 /* CredentialsViewController.xib in Resources */,
@@ -886,6 +908,7 @@
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
 				C4EF331C1E64EB38004F67C4 /* SettingsViewController.xib in Resources */,
 				C4C0AE391EA17A2A006CF493 /* fabric.apikey in Resources */,
+				C4C491F01F4CFAB5009A95BD /* LogsViewController.xib in Resources */,
 				C4C0AE421EA98E6E006CF493 /* Study.storyboard in Resources */,
 				C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */,
 				C4FFBEEC1E05CC4A0061CB18 /* CredentialsViewController.xib in Resources */,
@@ -1135,10 +1158,12 @@
 				C409A1A11E86011E006EEE77 /* SettingsInfoCell.swift in Sources */,
 				C409A1A21E86011E006EEE77 /* GetStatusRequest.swift in Sources */,
 				C41ABB451F3607EB00960F8F /* BackgroundTask.swift in Sources */,
+				C4C491F51F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */,
 				C48A861F1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9C1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C409A1A31E86011E006EEE77 /* Network.swift in Sources */,
 				C409A1A41E86011E006EEE77 /* SettingsViewController.swift in Sources */,
+				C4973DCC1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C409A1A51E86011E006EEE77 /* SettingsSwitchCell.swift in Sources */,
 				C409A1A61E86011E006EEE77 /* LoginRequest.swift in Sources */,
 				C409A1A71E86011E006EEE77 /* ColorStateButton.swift in Sources */,
@@ -1164,6 +1189,7 @@
 				C4C0AE341EA17128006CF493 /* Log.swift in Sources */,
 				C409A1B81E86011E006EEE77 /* Global.swift in Sources */,
 				C409A1BA1E86011E006EEE77 /* StudyEntry.swift in Sources */,
+				C4C491EE1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
 				C4E76FA01EEDC9A200A49959 /* RealmMigration.swift in Sources */,
 				C4C0AE301EA079D2006CF493 /* TipView.swift in Sources */,
@@ -1198,10 +1224,12 @@
 				C44F75371E8F213300E00AD9 /* SettingsInfoCell.swift in Sources */,
 				C44F75381E8F213300E00AD9 /* GetStatusRequest.swift in Sources */,
 				C41ABB461F3607EB00960F8F /* BackgroundTask.swift in Sources */,
+				C4C491F61F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */,
 				C48A86201EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9D1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C44F75391E8F213300E00AD9 /* Network.swift in Sources */,
 				C44F753A1E8F213300E00AD9 /* SettingsViewController.swift in Sources */,
+				C4973DCD1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C44F753B1E8F213300E00AD9 /* SettingsSwitchCell.swift in Sources */,
 				C44F753C1E8F213300E00AD9 /* LoginRequest.swift in Sources */,
 				C44F753D1E8F213300E00AD9 /* ColorStateButton.swift in Sources */,
@@ -1227,6 +1255,7 @@
 				C4C0AE351EA17128006CF493 /* Log.swift in Sources */,
 				C44F754F1E8F213300E00AD9 /* Global.swift in Sources */,
 				C44F75521E8F213300E00AD9 /* StudyEntry.swift in Sources */,
+				C4C491EF1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C44F75531E8F213300E00AD9 /* UIViewExtensions.swift in Sources */,
 				C4E76FA11EEDC9A200A49959 /* RealmMigration.swift in Sources */,
 				C4C0AE311EA079D2006CF493 /* TipView.swift in Sources */,
@@ -1270,10 +1299,12 @@
 				C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */,
 				C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */,
 				C41ABB441F3607EB00960F8F /* BackgroundTask.swift in Sources */,
+				C4C491F41F4CFE3B009A95BD /* DebugLogsManager.swift in Sources */,
 				C48A861E1EBECEAC00778445 /* DrawingViewController.swift in Sources */,
 				C4E76F9B1EEDB9BE00A49959 /* LookupLabel.swift in Sources */,
 				C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */,
 				C4EF331B1E64EB38004F67C4 /* SettingsViewController.swift in Sources */,
+				C4973DCB1F46713C007088B9 /* BackgroundFetcher.swift in Sources */,
 				C4EF331F1E64EF34004F67C4 /* SettingsSwitchCell.swift in Sources */,
 				C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */,
 				C43668E31E0372830080D768 /* ColorStateButton.swift in Sources */,
@@ -1299,6 +1330,7 @@
 				C4C0AE331EA17128006CF493 /* Log.swift in Sources */,
 				C4758A071DF63F8D0019AF57 /* Global.swift in Sources */,
 				C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */,
+				C4C491ED1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,
 				C4E76F9F1EEDC9A200A49959 /* RealmMigration.swift in Sources */,
 				C4C0AE2F1EA079D2006CF493 /* TipView.swift in Sources */,
@@ -1438,7 +1470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -1680,7 +1712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 22;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1705,7 +1737,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Germán Buela (UHVS3L828Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

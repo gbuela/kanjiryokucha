@@ -20,6 +20,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var cells: [UITableViewCell]!
     var aboutCell: UITableViewCell!
     var whatsNewCell: UITableViewCell!
+    var debugCell: UITableViewCell?
     var notifCell: SettingsSwitchCell!
     var selectableCells: [UITableViewCell]!
     var username: String?
@@ -37,8 +38,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         aboutCell = createDisclosureCell(title: "About")
         whatsNewCell = createDisclosureCell(title: "What's new")
+        #if DEBUG
+            debugCell = createDisclosureCell(title: "Debug 🐞")
+        #endif
         
-        selectableCells = [aboutCell, whatsNewCell]
+        selectableCells = [aboutCell, whatsNewCell, debugCell].flatMap{$0}
         
         notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when the due count has changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
         
@@ -55,8 +59,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
             aboutCell,
-            whatsNewCell
-        ]
+            whatsNewCell,
+            debugCell
+            ].flatMap{$0}
         
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -200,6 +205,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             show(resourceName: "about", title: "About")
         } else if cell == whatsNewCell {
             show(resourceName: "whatsnew", title: "What's New")
+        } else if cell == debugCell {
+            let logsVC = LogsViewController()
+            navigationController?.pushViewController(logsVC, animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

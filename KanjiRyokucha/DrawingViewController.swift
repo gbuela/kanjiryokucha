@@ -36,7 +36,6 @@ class DrawingViewController: UIViewController {
      */
     private func makeImageSizeWithoutDecimals() {
         let roundedDownSize = floor(tempImage.frame.size.width)
-        log("Changing size \(tempImage.frame.size.width) to \(roundedDownSize)")
         tempImage.frame.size.width = roundedDownSize
         tempImage.frame.size.height = roundedDownSize
         mainImage.frame.size.width = roundedDownSize
