@@ -12,6 +12,7 @@ import Result
 
 enum LoginState {
     case loggingIn
+    case loggedIn
     case failure(String)
     
     func isLoggingIn() -> Bool {
@@ -26,15 +27,12 @@ enum LoginState {
 }
 
 struct LoginViewModel : BackendAccess {
-    let window = UIWindow(frame: UIScreen.main.bounds)
     let state: MutableProperty<LoginState> = MutableProperty(.loggingIn)
     let credentialsRequired: MutableProperty<Bool> = MutableProperty(false)
     
-    func start() {
-        autologinOrPrompt()
-    }
-    
-    func autologinOrPrompt() {
+    let sendLoginNotification: Bool
+ 
+    func autologin() {
         let defaults = UserDefaults()
         if let username = defaults.object(forKey: usernameKey) as? String,
             let password = defaults.object(forKey: passwordKey) as? String {
@@ -59,7 +57,9 @@ struct LoginViewModel : BackendAccess {
         if success,
             let username = username {
             setDefaultRealmForUser(username: username)
-            NotificationCenter.default.post(name: NSNotification.Name(sessionStartedNotification), object: username)
+            if sendLoginNotification {
+                NotificationCenter.default.post(name: NSNotification.Name(sessionStartedNotification), object: username)
+            }
         }
     }
     
@@ -95,13 +95,18 @@ struct LoginViewModel : BackendAccess {
                             Response.latestCookies = [ cookie ]
                         }
                         handler(true, username)
+                        self.state.value = .loggedIn
                     } else {
-                        self.state.value = .failure("Could not login 🤔")
                         handler(false, nil)
+                        self.state.value = .failure("Could not login 🤔")
                     }
                 } else {
-                    self.state.value = .failure("Apparently we're offline ☹️")
                     handler(false, nil)
+                    if let fe = result.error {
+                        self.state.value = .failure("\(fe.errorText())  🔥")
+                    } else {
+                        self.state.value = .failure("Apparently we're offline ☹️")
+                    }
                 }
             }
         }

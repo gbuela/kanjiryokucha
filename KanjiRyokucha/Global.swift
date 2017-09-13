@@ -60,6 +60,7 @@ class Global : Object {
     dynamic var useStudyPhase = true
     dynamic var useNotifications = false
     dynamic var syncLimit = defaultSyncLimit
+    dynamic var latestDueCount = 0
 
     override static func primaryKey() -> String? {
         return "id"

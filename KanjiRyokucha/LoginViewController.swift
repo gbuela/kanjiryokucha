@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var retryButton: UIButton!
     @IBOutlet weak var manualLoginButton: UIButton!
     
-    let viewModel = LoginViewModel()
+    let viewModel = LoginViewModel(sendLoginNotification: true)
     var started = false
 
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         if !started {
             started = true
-            viewModel.start()
+            viewModel.autologin()
         }
     }
     
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
         }
         
         retryButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in
-            self?.viewModel.autologinOrPrompt()
+            self?.viewModel.autologin()
         }
         
         manualLoginButton.reactive.controlEvents(.touchUpInside).react { [weak self] _ in

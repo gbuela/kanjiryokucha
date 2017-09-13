@@ -11,5 +11,6 @@ import Foundation
 func log(_ string: String) {
     #if DEBUG
         print(string)
+        DebugLogsManager().write(log: string)
     #endif
 }

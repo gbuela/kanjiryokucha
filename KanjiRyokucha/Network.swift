@@ -28,6 +28,19 @@ enum FetchError : Error {
     case connectionError(error:Error)
     case parseError
     case notAuthenticated
+    
+    func errorText() -> String {
+        switch self {
+        case .backendMessage(let message):
+            return "backend: \(message)"
+        case .connectionError(let error):
+            return "error: \(error.localizedDescription)"
+        case .parseError:
+            return "parse"
+        case .notAuthenticated:
+            return "not authenticated"
+        }
+    }
 }
 
 extension FetchError {
