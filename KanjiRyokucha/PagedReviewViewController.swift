@@ -297,6 +297,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         
         alertController.addAction(optionButtonStroke())
         alertController.addAction(optionButtonStudyPage())
+        alertController.addAction(optionButtonJisho())
         alertController.addAction(optionButtonSkip())
         alertController.addAction(optionButtonDelete())
         alertController.addAction(optionButtonCancel())
@@ -404,6 +405,28 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         player = nil
     }
 
+    private func optionButtonJisho() -> UIAlertAction {
+        return UIAlertAction(title: "Jisho.org", style: .default, handler: { [weak self] (action) -> Void in
+            log("Jisho page tapped")
+            
+            guard let sself = self,
+                let card = sself.cards?[sself.currentPage],
+                let scalar = UnicodeScalar(card.cardId),
+                let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+            
+            let urlString =  "http://jisho.org/search/" + encoded
+            guard let url = URL(string: urlString)
+                else { return }
+            let safariVC = SFSafariViewController(url: url)
+            if #available(iOS 10.0, *) {
+                safariVC.preferredBarTintColor = .ryokuchaDark
+                safariVC.preferredControlTintColor = .white
+            } else {
+                safariVC.view.tintColor = .ryokuchaDark
+            }
+            sself.present(safariVC, animated: true, completion: nil)
+        })
+    }
     private func optionButtonStudyPage() -> UIAlertAction {
         return UIAlertAction(title: "Study page", style: .default, handler: { [weak self] (action) -> Void in
             log("Study page tapped")
