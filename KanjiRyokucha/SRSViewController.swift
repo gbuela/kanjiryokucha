@@ -479,7 +479,10 @@ class SRSReviewEngine: SRSEngineProtocol {
     
     private func setAppBadge(response: Response) {
         if let model = response.model as? GetStatusModel {
-            if #available(iOS 10.0, *) {
+            if #available(iOS 11.0, *) {
+                // Workaround below actually fires an alert notification in iOS 11 >:P
+                UIApplication.shared.applicationIconBadgeNumber = model.expiredCards
+            } else if #available(iOS 10.0, *) {
                 
                 let content = UNMutableNotificationContent()
                 content.badge = model.expiredCards as NSNumber
