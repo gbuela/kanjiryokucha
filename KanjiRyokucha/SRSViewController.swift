@@ -576,6 +576,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var newButton: UIButton!
     @IBOutlet weak var failedButton: UIButton!
     @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
@@ -748,6 +749,12 @@ class SRSViewController: UIViewController, ReviewDelegate {
             let count = studyEntries.filter({ !$0.learned && $0.synced }).count
             let badge = studyPhase && count > 0 ? "\(count)" : nil
             self?.tabBarController?.tabBar.items![1].badgeValue = badge
+        }
+        
+        twitterButton.reactive.controlEvents(.touchUpInside).uiReact { _ in
+            if let url = URL(string: "https://twitter.com/kanji_ryokucha") {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
 

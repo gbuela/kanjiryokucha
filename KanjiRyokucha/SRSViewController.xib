@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,7 @@
                 <outlet property="newView" destination="61K-rn-FdX" id="Lh7-ZJ-4kZ"/>
                 <outlet property="refreshButton" destination="lOr-1a-dGS" id="TgA-6Q-4Zo"/>
                 <outlet property="reviewContainer" destination="aSJ-QZ-DOD" id="NNy-b7-hy5"/>
+                <outlet property="twitterButton" destination="gAJ-ux-uci" id="Gse-gR-oYf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -179,9 +180,19 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOr-1a-dGS">
-                    <rect key="frame" x="115" y="390" width="90" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="113.5" y="390" width="93" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                     <state key="normal" title="refresh status">
+                        <color key="titleColor" red="0.49938017213853447" green="0.61768196202531644" blue="0.10581740830677744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAJ-ux-uci">
+                    <rect key="frame" x="112.5" y="429" width="95" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="@kanji_ryokucha">
                         <color key="titleColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <state key="disabled">
@@ -247,7 +258,9 @@
                 <constraint firstItem="kTh-nf-C0G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="YAZ-Wl-1hS"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aOF-He-g4M"/>
+                <constraint firstItem="gAJ-ux-uci" firstAttribute="top" secondItem="lOr-1a-dGS" secondAttribute="bottom" constant="10" id="c3P-ww-gMu"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iAa-PJ-FEz"/>
+                <constraint firstItem="gAJ-ux-uci" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rrR-T2-cA4"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="leading" secondItem="BWI-X9-MOk" secondAttribute="leading" id="vlt-yW-txb"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w36-pw-nKg"/>
                 <constraint firstItem="u6p-5U-MRq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="wS5-wG-7gw"/>
