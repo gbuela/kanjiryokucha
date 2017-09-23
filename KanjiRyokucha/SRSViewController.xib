@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -7,6 +7,8 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,13 +36,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="u6p-5U-MRq" userLabel="New Stack View">
-                    <rect key="frame" x="115" y="-10" width="90" height="125"/>
+                    <rect key="frame" x="115" y="20" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61K-rn-FdX" userLabel="New view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="95"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BgW-lN-6Bb" userLabel="newBtn">
-                                    <rect key="frame" x="0.0" y="20" width="90" height="71"/>
+                                    <rect key="frame" x="0.0" y="5" width="90" height="86"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                     <state key="normal" title="0"/>
                                 </button>
@@ -56,7 +58,7 @@
                                 <constraint firstItem="8Fy-J3-xNT" firstAttribute="centerX" secondItem="61K-rn-FdX" secondAttribute="centerX" id="9lu-AS-3oa"/>
                                 <constraint firstAttribute="trailing" secondItem="BgW-lN-6Bb" secondAttribute="trailing" id="Vwr-vN-Kq0"/>
                                 <constraint firstAttribute="width" constant="90" id="Zuq-ro-8lH"/>
-                                <constraint firstItem="BgW-lN-6Bb" firstAttribute="top" secondItem="61K-rn-FdX" secondAttribute="top" constant="20" id="in2-4l-rkd"/>
+                                <constraint firstItem="BgW-lN-6Bb" firstAttribute="top" secondItem="61K-rn-FdX" secondAttribute="top" constant="5" id="in2-4l-rkd"/>
                                 <constraint firstAttribute="bottom" secondItem="BgW-lN-6Bb" secondAttribute="bottom" constant="4" id="vao-J0-bOP"/>
                                 <constraint firstAttribute="bottom" secondItem="8Fy-J3-xNT" secondAttribute="bottom" constant="4" id="zio-LE-2Ax" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                                     <userDefinedRuntimeAttributes>
@@ -78,15 +80,16 @@
                         <constraint firstAttribute="height" constant="125" id="6pI-TF-Gtw"/>
                         <constraint firstAttribute="width" constant="90" id="plk-nV-kNW"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="Xgq-Fe-u2d"/>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-nf-C0G" userLabel="Due Stack View">
-                    <rect key="frame" x="-15" y="-10" width="90" height="125"/>
+                    <rect key="frame" x="-15" y="20" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKn-E9-G3C" userLabel="Due view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="95"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Us4-8R-olo" userLabel="dueBtn">
-                                    <rect key="frame" x="0.0" y="20" width="90" height="71"/>
+                                    <rect key="frame" x="0.0" y="5" width="90" height="86"/>
                                     <accessibility key="accessibilityConfiguration" identifier="topDue"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                     <state key="normal" title="0"/>
@@ -108,7 +111,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </constraint>
-                                <constraint firstItem="Us4-8R-olo" firstAttribute="top" secondItem="GKn-E9-G3C" secondAttribute="top" constant="20" id="Udk-aU-ksM"/>
+                                <constraint firstItem="Us4-8R-olo" firstAttribute="top" secondItem="GKn-E9-G3C" secondAttribute="top" constant="5" id="Udk-aU-ksM"/>
                                 <constraint firstAttribute="width" constant="90" id="c9m-hc-p6a"/>
                                 <constraint firstAttribute="bottom" secondItem="Us4-8R-olo" secondAttribute="bottom" constant="4" id="h9o-JD-xtZ"/>
                                 <constraint firstAttribute="trailing" secondItem="Us4-8R-olo" secondAttribute="trailing" id="lj3-H7-8by"/>
@@ -125,15 +128,16 @@
                         <constraint firstAttribute="height" constant="125" id="vs2-aF-Y19"/>
                         <constraint firstAttribute="width" constant="90" id="ydG-RR-ZD9"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="Adb-sl-lc2"/>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9OS-pm-Jhm" userLabel="Failed Stack View">
-                    <rect key="frame" x="245" y="-10" width="90" height="125"/>
+                    <rect key="frame" x="245" y="20" width="90" height="125"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dg-30-VUX" userLabel="Failed view">
                             <rect key="frame" x="0.0" y="0.0" width="90" height="125"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-Em-Qkj" userLabel="failedBtn">
-                                    <rect key="frame" x="0.0" y="20" width="90" height="101"/>
+                                    <rect key="frame" x="0.0" y="5" width="90" height="116"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                     <state key="normal" title="0"/>
                                 </button>
@@ -147,7 +151,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="90" id="2Mj-Cb-q7c"/>
                                 <constraint firstAttribute="bottom" secondItem="qzQ-Em-Qkj" secondAttribute="bottom" constant="4" id="52J-hQ-Nv8"/>
-                                <constraint firstItem="qzQ-Em-Qkj" firstAttribute="top" secondItem="2dg-30-VUX" secondAttribute="top" constant="20" id="MbL-sm-fux"/>
+                                <constraint firstItem="qzQ-Em-Qkj" firstAttribute="top" secondItem="2dg-30-VUX" secondAttribute="top" constant="5" id="MbL-sm-fux"/>
                                 <constraint firstItem="jyK-gU-xy2" firstAttribute="centerX" secondItem="2dg-30-VUX" secondAttribute="centerX" id="R1N-mq-Idn"/>
                                 <constraint firstAttribute="trailing" secondItem="qzQ-Em-Qkj" secondAttribute="trailing" id="f1a-Zg-Kjq"/>
                                 <constraint firstItem="qzQ-Em-Qkj" firstAttribute="leading" secondItem="2dg-30-VUX" secondAttribute="leading" id="uPe-XH-fLB"/>
@@ -171,6 +175,7 @@
                         <constraint firstAttribute="height" constant="125" id="KtH-pW-X0e"/>
                         <constraint firstAttribute="width" constant="90" id="qWB-49-wal"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="jiz-42-dfZ"/>
                 </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kanjibkg.png" translatesAutoresizingMaskIntoConstraints="NO" id="BWI-X9-MOk">
                     <rect key="frame" x="10" y="90" width="300" height="300"/>
@@ -204,7 +209,7 @@
                     <color key="color" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSJ-QZ-DOD" userLabel="Review container">
-                    <rect key="frame" x="20" y="120" width="280" height="350"/>
+                    <rect key="frame" x="20" y="150" width="280" height="350"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="338" id="6xi-8r-KEt"/>
                         <constraint firstAttribute="height" constant="350" id="ypg-Ku-32Z" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
@@ -231,12 +236,13 @@
             <constraints>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="0NH-1P-cRT"/>
                 <constraint firstAttribute="trailing" secondItem="aSJ-QZ-DOD" secondAttribute="trailing" constant="20" symbolic="YES" id="2DN-J1-3iM"/>
-                <constraint firstItem="9OS-pm-Jhm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="5KS-da-1aj"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="top" id="6WS-DB-Geh"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="height" secondItem="BWI-X9-MOk" secondAttribute="height" id="AnR-bY-50A"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="top" secondItem="u6p-5U-MRq" secondAttribute="bottom" constant="5" id="F22-W7-SpJ"/>
+                <constraint firstItem="kTh-nf-C0G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="Hd9-Z8-o8P"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Ihb-WW-U3Y"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="Itg-Uk-oO9"/>
+                <constraint firstItem="9OS-pm-Jhm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="L4w-KK-l6i"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="top" secondItem="BWI-X9-MOk" secondAttribute="bottom" id="Lpx-aI-OPY" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="📱3¨5_const">
@@ -255,15 +261,14 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </constraint>
-                <constraint firstItem="kTh-nf-C0G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="YAZ-Wl-1hS"/>
                 <constraint firstItem="lOr-1a-dGS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEQ-tJ-Lxt"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="aOF-He-g4M"/>
                 <constraint firstItem="gAJ-ux-uci" firstAttribute="top" secondItem="lOr-1a-dGS" secondAttribute="bottom" constant="10" id="c3P-ww-gMu"/>
                 <constraint firstItem="BWI-X9-MOk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iAa-PJ-FEz"/>
+                <constraint firstItem="u6p-5U-MRq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="iub-hR-nDu"/>
                 <constraint firstItem="gAJ-ux-uci" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rrR-T2-cA4"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="leading" secondItem="BWI-X9-MOk" secondAttribute="leading" id="vlt-yW-txb"/>
                 <constraint firstItem="aSJ-QZ-DOD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w36-pw-nKg"/>
-                <constraint firstItem="u6p-5U-MRq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-10" id="wS5-wG-7gw"/>
                 <constraint firstItem="Uij-v0-a4Q" firstAttribute="width" secondItem="BWI-X9-MOk" secondAttribute="width" id="yJY-TV-soW"/>
                 <constraint firstItem="9OS-pm-Jhm" firstAttribute="leading" secondItem="u6p-5U-MRq" secondAttribute="trailing" constant="40" id="zSK-lA-yOg" customClass="LayoutConstraint" customModule="KanjiRyokucha" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
@@ -276,6 +281,7 @@
                     </userDefinedRuntimeAttributes>
                 </constraint>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="TUV-m1-tcZ"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Ihb-WW-U3Y"/>

@@ -690,10 +690,8 @@ class SRSViewController: UIViewController, ReviewDelegate {
             }
             
             self.engine.currentReviewType.uiReact { rtyp in
-                UIView.animate(withDuration: 0.3) {
-                    padding.constant = rtyp == reviewType ? 0 : 30
-                    view.layoutIfNeeded()
-                }
+                padding.constant = rtyp == reviewType ? 0 : 30
+                view.layoutIfNeeded()
             }
 
             return (reviewType, starter)
