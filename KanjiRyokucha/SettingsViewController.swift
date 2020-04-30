@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             ].flatMap{$0}
         
         tableView.estimatedRowHeight = 60
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
     }
     
@@ -121,9 +121,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                             message: "To enable this feature you need to grant notifications permision on your device's settings page for Kanji Ryokucha",
                         yesOption: "Get me there",
                         noOption: "Not now") { _ in
-                            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
                     }
                     self.revertEnablingNotifications()
+                case .provisional:
+                    // FIXME: ver que onda
+                    break
                 }
             }
         } else {
@@ -223,7 +226,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if cells[indexPath.row] is SeparatorCell {
             return 30
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

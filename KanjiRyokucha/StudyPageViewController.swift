@@ -125,13 +125,13 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         set { super.hidesBottomBarWhenPushed = newValue }
     }
     
-    func learnedTapped() {
+    @objc func learnedTapped() {
         if let indexPath = indexPath {
             delegate?.studyPageMarkLearnedTapped(indexPath: indexPath)
         }
     }
     
-    func okTapped() {
+    @objc func okTapped() {
         dismiss(animated: true, completion: nil)
     }
     

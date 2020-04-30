@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     func confirm(title: String, message: String, yesOption: String, noOption: String, yesHandler: @escaping ((UIAlertAction) -> ())) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: yesOption, style: .default, handler: yesHandler))
         

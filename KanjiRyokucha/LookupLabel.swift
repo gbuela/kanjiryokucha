@@ -33,7 +33,7 @@ class LookupLabel: UILabel {
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.showMenu)))
     }
     
-    func showMenu(sender: AnyObject?) {
+    @objc func showMenu(sender: AnyObject?) {
         self.becomeFirstResponder()
         
         let menu = UIMenuController.shared
@@ -47,7 +47,7 @@ class LookupLabel: UILabel {
         }
     }
     
-    func dictionaryLookup(_ sender: Any?) {
+    @objc func dictionaryLookup(_ sender: Any?) {
         log("looking up")
         if let term = text {
             delegate?.lookupRequested(forTerm: term)

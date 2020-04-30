@@ -111,8 +111,8 @@ public final class UIScheduler: Scheduler {
 	}()
 
 	deinit {
-		queueLength.deinitialize()
-		queueLength.deallocate(capacity: 1)
+		queueLength.deinitialize(count: 1)
+		queueLength.deallocate()
 	}
 	#endif
 
@@ -177,6 +177,33 @@ public final class UIScheduler: Scheduler {
 	}
 }
 
+/// A `Hashable` wrapper for `DispatchSourceTimer`. `Hashable` conformance is
+/// based on the identity of the wrapper object rather than the wrapped
+/// `DispatchSourceTimer`, so two wrappers wrapping the same timer will *not*
+/// be equal.
+private final class DispatchSourceTimerWrapper: Hashable {
+	private let value: DispatchSourceTimer
+	
+	#if swift(>=4.1.50)
+	fileprivate func hash(into hasher: inout Hasher) {
+		hasher.combine(ObjectIdentifier(self))
+	}
+	#else
+	fileprivate var hashValue: Int {
+		return ObjectIdentifier(self).hashValue
+	}
+	#endif
+	
+	fileprivate init(_ value: DispatchSourceTimer) {
+		self.value = value
+	}
+	
+	fileprivate static func ==(lhs: DispatchSourceTimerWrapper, rhs: DispatchSourceTimerWrapper) -> Bool {
+		// Note that this isn't infinite recursion thanks to `===`.
+		return lhs === rhs
+	}
+}
+
 /// A scheduler backed by a serial GCD queue.
 public final class QueueScheduler: DateScheduler {
 	/// A singleton `QueueScheduler` that always targets the main thread's GCD
@@ -193,10 +220,13 @@ public final class QueueScheduler: DateScheduler {
 
 	public let queue: DispatchQueue
 	
+	private var timers: Atomic<Set<DispatchSourceTimerWrapper>>
+	
 	internal init(internalQueue: DispatchQueue) {
 		queue = internalQueue
+		timers = Atomic(Set())
 	}
-	
+
 	/// Initializes a scheduler that will target the given queue with its
 	/// work.
 	///
@@ -326,14 +356,34 @@ public final class QueueScheduler: DateScheduler {
 			flags: DispatchSource.TimerFlags(rawValue: UInt(0)),
 			queue: queue
 		)
+
+		#if swift(>=4.0)
+		timer.schedule(wallDeadline: wallTime(with: date),
+		               repeating: interval,
+		               leeway: leeway)
+		#else
 		timer.scheduleRepeating(wallDeadline: wallTime(with: date),
 		                        interval: interval,
 		                        leeway: leeway)
+		#endif
+
 		timer.setEventHandler(handler: action)
 		timer.resume()
 
-		return AnyDisposable {
+		let wrappedTimer = DispatchSourceTimerWrapper(timer)
+		
+		timers.modify { timers in
+			timers.insert(wrappedTimer)
+		}
+
+		return AnyDisposable { [weak self] in
 			timer.cancel()
+			
+			if let scheduler = self {
+				scheduler.timers.modify { timers in
+					timers.remove(wrappedTimer)
+				}
+			}
 		}
 	}
 }
@@ -350,7 +400,7 @@ public final class TestScheduler: DateScheduler {
 		}
 
 		func less(_ rhs: ScheduledAction) -> Bool {
-			return date.compare(rhs.date) == .orderedAscending
+			return date < rhs.date
 		}
 	}
 
@@ -521,10 +571,10 @@ public final class TestScheduler: DateScheduler {
 	public func advance(to newDate: Date) {
 		lock.lock()
 
-		assert(currentDate.compare(newDate) != .orderedDescending)
+		assert(currentDate <= newDate)
 
 		while scheduledActions.count > 0 {
-			if newDate.compare(scheduledActions[0].date) == .orderedAscending {
+			if newDate < scheduledActions[0].date {
 				break
 			}
 
@@ -544,7 +594,7 @@ public final class TestScheduler: DateScheduler {
 	public func run() {
 		advance(to: Date.distantFuture)
 	}
-	
+
 	/// Rewinds the virtualized clock by the given interval.
 	/// This simulates that user changes device date.
 	///
@@ -552,12 +602,12 @@ public final class TestScheduler: DateScheduler {
 	///   - interval: An interval by which the current date will be retreated.
 	public func rewind(by interval: DispatchTimeInterval) {
 		lock.lock()
-		
+
 		let newDate = currentDate.addingTimeInterval(-interval)
-		assert(currentDate.compare(newDate) != .orderedAscending)
+		assert(currentDate >= newDate)
 		_currentDate = newDate
-		
+
 		lock.unlock()
-		
+
 	}
 }

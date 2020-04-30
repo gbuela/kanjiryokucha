@@ -9,8 +9,6 @@
 import UIKit
 import UserNotifications
 import SwiftRater
-import Fabric
-import Crashlytics
 import ReactiveSwift
 import PKHUD
 
@@ -94,15 +92,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var appController: AppController?
     var fromBackground: Bool = false
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = self
         }
-        
-        initFabric()
         
         SwiftRater.showLaterButton = true
     #if DEBUG
@@ -127,19 +123,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().isTranslucent = true
         
         UIBarButtonItem.appearance()
-            .setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)], for: UIControlState.normal)
+            .setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)], for: UIControl.State.normal)
         
         UIToolbar.appearance().barTintColor = .ryokuchaDark
         UIToolbar.appearance().backgroundColor = .ryokuchaDark
         
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().barTintColor = .ryokuchaDark
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.black], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: .selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
 
         if #available(iOS 10, *) {
             UITabBarItem.appearance().badgeColor = .ryokuchaLighter
-            let badgeTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+            let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
             UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
         }
         
@@ -148,14 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         startAutologin()
         
         return true
-    }
-    
-    private func initFabric() {
-        guard let resourceUrl = Bundle.main.url(forResource: "fabric", withExtension: "apikey") else { return }
-        let fabricApiKey = try! String(contentsOf: resourceUrl)
-        let whiteSpace = CharacterSet.whitespacesAndNewlines
-        let trimmedApiKey = fabricApiKey.trimmingCharacters(in: whiteSpace)
-        Crashlytics.start(withAPIKey: trimmedApiKey)
     }
     
     func startAutologin() {
@@ -299,7 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let content = UNMutableNotificationContent()
         content.body = message
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound.default
         content.badge = badgeCount
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)

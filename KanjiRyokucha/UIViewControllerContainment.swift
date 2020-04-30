@@ -10,16 +10,16 @@ import UIKit
 
 extension UIViewController {
     func add(childViewController viewController: UIViewController, insideView view: UIView) {
-        addChildViewController(viewController)
+        addChild(viewController)
         view.addSubview(viewController.view)
         viewController.view.frame = view.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
     }
     
     func remove(childViewController viewController: UIViewController) {
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveSwift
+import Result
 import PKHUD
 
 class FreeViewModel: ReviewEngineProtocol {    
@@ -88,6 +89,7 @@ class FreeViewModel: ReviewEngineProtocol {
 
         cancelAction = Action { [weak self] _ in
             self?.cancelSession()
+            return SignalProducer<Bool, NoError>.empty
         }
     }
     
@@ -176,9 +178,9 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
         viewModel.reviewInProgress.uiReact { [weak self] inProgress in
             guard inProgress else {
                 if let vc = self?.reviewViewController {
-                    vc.willMove(toParentViewController: nil)
+                    vc.willMove(toParent: nil)
                     vc.view.removeFromSuperview()
-                    vc.removeFromParentViewController()
+                    vc.removeFromParent()
                     self?.reviewViewController = nil
                     self?.reviewContainer.isHidden = true
                     self?.formView.isHidden = false
@@ -189,10 +191,10 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
             if let sself = self {
                 let rvc = ReviewViewController(engine: sself.viewModel, delegate: sself)
                 sself.reviewViewController = rvc
-                sself.addChildViewController(rvc)
+                sself.addChild(rvc)
                 rvc.view.frame = sself.reviewContainer.bounds
                 sself.reviewContainer.addSubview(rvc.view)
-                rvc.didMove(toParentViewController: sself)
+                rvc.didMove(toParent: sself)
                 self?.reviewContainer.isHidden = false
                 self?.formView.isHidden = true
             }

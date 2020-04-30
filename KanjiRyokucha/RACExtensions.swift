@@ -17,7 +17,7 @@ public protocol StarterControl {
     var isEnabledTarget: BindingTarget<Bool> { get }
     func addTarget(_ target: Any?,
                    action: Selector,
-                   for controlEvents: UIControlEvents)
+                   for controlEvents: UIControl.Event)
     func tapReact(_ task:@escaping ((UIControl) -> Void))
 }
 
@@ -36,7 +36,7 @@ extension UIBarButtonItem: StarterControl {
     }
     public func addTarget(_ target: Any?,
                    action: Selector,
-                   for controlEvents: UIControlEvents) {
+                   for controlEvents: UIControl.Event) {
         self.target = target as AnyObject?
         self.action = action
     }
@@ -160,7 +160,7 @@ public struct ActionStarter<Input, Output, Error: Swift.Error> {
     public let action: Action<Input, Output, Error>
     private let control: StarterControl
     
-    private init(control:StarterControl, action:Action<Input, Output, Error>, cocoaAction: CocoaAction<StarterControl>, controlEvents: UIControlEvents, syncEnabled: Bool) {
+    private init(control:StarterControl, action:Action<Input, Output, Error>, cocoaAction: CocoaAction<StarterControl>, controlEvents: UIControl.Event, syncEnabled: Bool) {
         self.action = action
         self.control = control
         self.cocoaAction = cocoaAction
@@ -172,7 +172,7 @@ public struct ActionStarter<Input, Output, Error: Swift.Error> {
         }
     }
     
-    public init(control:StarterControl, action:Action<Input, Output, Error>, inputProperty: MutableProperty<Input>, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
+    public init(control:StarterControl, action:Action<Input, Output, Error>, inputProperty: MutableProperty<Input>, controlEvents: UIControl.Event = .touchUpInside, syncEnabled: Bool = true) {
         
         self.init(control: control,
                   action: action,
@@ -184,7 +184,7 @@ public struct ActionStarter<Input, Output, Error: Swift.Error> {
         )
     }
     
-    public init(control:StarterControl, action:Action<Input, Output, Error>, input:Input, controlEvents: UIControlEvents = .touchUpInside, syncEnabled: Bool = true) {
+    public init(control:StarterControl, action:Action<Input, Output, Error>, input:Input, controlEvents: UIControl.Event = .touchUpInside, syncEnabled: Bool = true) {
         
         self.init(control: control,
                   action: action,

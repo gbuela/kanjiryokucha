@@ -333,13 +333,13 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         submitLabel.reactive.text <~ engine.unsyncedEntries.map { "\($0.count)" }
         
         submitStarter = SubmitStarter(control: submitButton,
-                                      action: engine.submitAction,
+                                      action: engine!.submitAction,
                                       inputProperty: engine.unsyncedEntries)
         
         let leftButton = navigationItem.leftBarButtonItem!
 
         refreshStarter = RefreshStarter(control: leftButton,
-                                        action: engine.refreshAction,
+                                        action: engine!.refreshAction,
                                         input: ())
         
         Property.combineLatest(engine.dataRefreshed,
@@ -366,7 +366,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.reloadData()
     }
     
-    func learnedTapped() {
+    @objc func learnedTapped() {
         confirm(title: "Mark all as learned",
                 message: "Are you sure?",
                 yesOption: "Yes",
@@ -426,7 +426,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 return 0
             }
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

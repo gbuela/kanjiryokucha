@@ -2,14 +2,12 @@ platform :ios, ‘9.3’
 
 # Pods for KanjiRyokucha
 def shared_pods
-    pod "ReactiveCocoa", :git => "https://github.com/ReactiveCocoa/ReactiveCocoa.git", :branch => ‘master’
-    pod 'UIColor_Hex_Swift', '~> 3.0.2'
-    pod 'PKHUD', '~> 4.0'
-    pod 'RealmSwift'
-    pod 'SwiftRater'
-    pod 'EasyTipView', :path => '../../EasyTipView' # '~> 1.0.2'
-    pod 'Fabric'
-    pod 'Crashlytics'
+    pod "ReactiveCocoa", '~> 9.0.0'
+    pod 'UIColor_Hex_Swift', '~> 4.2.0'
+    pod 'PKHUD', '~> 5.2.0'
+    pod 'RealmSwift', '~> 3.17.1'
+    pod 'SwiftRater', '~> 1.3.0'
+    pod 'EasyTipView', '~> 2.0.4'
 end
 
 target 'KanjiRyokucha' do
@@ -36,7 +34,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = ‘3.0’
+      config.build_settings['SWIFT_VERSION'] = ‘4.2’
     end
   end
 end

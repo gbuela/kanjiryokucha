@@ -51,16 +51,16 @@ class Global : Object {
         return username == guestUsername
     }
     
-    dynamic var refreshNeeded = false
+    @objc dynamic var refreshNeeded = false
     let studyPhaseProperty = MutableProperty(true)
     
-    dynamic var id = 0
+    @objc dynamic var id = 0
     let reviewType = RealmOptional<Int>()
-    dynamic var useAnimations = true
-    dynamic var useStudyPhase = true
-    dynamic var useNotifications = false
-    dynamic var syncLimit = defaultSyncLimit
-    dynamic var latestDueCount = 0
+    @objc dynamic var useAnimations = true
+    @objc dynamic var useStudyPhase = true
+    @objc dynamic var useNotifications = false
+    @objc dynamic var syncLimit = defaultSyncLimit
+    @objc dynamic var latestDueCount = 0
 
     override static func primaryKey() -> String? {
         return "id"

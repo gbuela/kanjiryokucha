@@ -8,18 +8,8 @@
 
 import UIKit
 
-/**
- MissingHashMarkAsPrefix:   "Invalid RGB string, missing '#' as prefix"
- UnableToScanHexValue:      "Scan hex error"
- MismatchedHexStringLength: "Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8"
- */
-public enum UIColorInputError : Error {
-    case missingHashMarkAsPrefix,
-    unableToScanHexValue,
-    mismatchedHexStringLength
-}
 
-extension UIColor {
+@objc extension UIColor {
     /**
      The shorthand three-digit hexadecimal representation of color.
      #RGB defines to the color #RRGGBB.
@@ -84,17 +74,21 @@ extension UIColor {
      */
     public convenience init(rgba_throws rgba: String) throws {
         guard rgba.hasPrefix("#") else {
-            throw UIColorInputError.missingHashMarkAsPrefix
+            let error = UIColorInputError.missingHashMarkAsPrefix(rgba)
+            print(error.localizedDescription)
+            throw error
         }
         
-        let hexString: String = rgba.substring(from: rgba.characters.index(rgba.startIndex, offsetBy: 1))
+        let hexString: String = String(rgba[String.Index.init(encodedOffset: 1)...])
         var hexValue:  UInt32 = 0
         
         guard Scanner(string: hexString).scanHexInt32(&hexValue) else {
-            throw UIColorInputError.unableToScanHexValue
+            let error = UIColorInputError.unableToScanHexValue(rgba)
+            print(error.localizedDescription)
+            throw error
         }
         
-        switch (hexString.characters.count) {
+        switch (hexString.count) {
         case 3:
             self.init(hex3: UInt16(hexValue))
         case 4:
@@ -104,7 +98,9 @@ extension UIColor {
         case 8:
             self.init(hex8: hexValue)
         default:
-            throw UIColorInputError.mismatchedHexStringLength
+            let error = UIColorInputError.mismatchedHexStringLength(rgba)
+            print(error.localizedDescription)
+            throw error
         }
     }
     
@@ -122,16 +118,22 @@ extension UIColor {
     }
     
     /**
-     Hex string of a UIColor instance.
+     Hex string of a UIColor instance, throws error.
      
      - parameter includeAlpha: Whether the alpha should be included.
      */
-    public func hexString(_ includeAlpha: Bool = true) -> String {
+    public func hexStringThrows(_ includeAlpha: Bool = true) throws -> String  {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
         var a: CGFloat = 0
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        guard r >= 0 && r <= 1 && g >= 0 && g <= 1 && b >= 0 && b <= 1 else {
+            let error = UIColorInputError.unableToOutputHexStringForWideDisplayColor
+            print(error.localizedDescription)
+            throw error
+        }
         
         if (includeAlpha) {
             return String(format: "#%02X%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255), Int(a * 255))
@@ -139,29 +141,16 @@ extension UIColor {
             return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
         }
     }
-}
-
-extension String {
+    
     /**
-     Convert argb string to rgba string.
+     Hex string of a UIColor instance, fails to empty string.
+     
+     - parameter includeAlpha: Whether the alpha should be included.
      */
-    public func argb2rgba() -> String? {
-        guard self.hasPrefix("#") else {
-            return nil
+    public func hexString(_ includeAlpha: Bool = true) -> String  {
+        guard let hexString = try? hexStringThrows(includeAlpha) else {
+            return ""
         }
-        
-        let hexString: String = self.substring(from: self.characters.index(self.startIndex, offsetBy: 1))
-        switch (hexString.characters.count) {
-        case 4:
-            return "#"
-                + hexString.substring(from: self.characters.index(self.startIndex, offsetBy: 1))
-                + hexString.substring(to: self.characters.index(self.startIndex, offsetBy: 1))
-        case 8:
-            return "#"
-                + hexString.substring(from: self.characters.index(self.startIndex, offsetBy: 2))
-                + hexString.substring(to: self.characters.index(self.startIndex, offsetBy: 2))
-        default:
-            return nil
-        }
+        return hexString
     }
 }

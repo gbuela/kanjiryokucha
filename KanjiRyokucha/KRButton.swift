@@ -24,7 +24,7 @@ protocol ButtonColoring: class {
     var backgroundColor: UIColor? { get set }
     
     func setTitleColor(_ color: UIColor?,
-                       for state: UIControlState)
+                       for state: UIControl.State)
     
     func resolveBackground()
 }

@@ -104,7 +104,8 @@ class TipView : EasyTipViewDelegate {
     }
     
     func rearrange() {
-        tip?.rearrange()
+        // FIXME: ver que onda
+//        tip?.rearrange()
     }
     
     @objc private func controlTapped() {

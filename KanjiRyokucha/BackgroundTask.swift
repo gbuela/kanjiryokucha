@@ -4,7 +4,7 @@ import UIKit
 
 class BackgroundTask {
     private let application: UIApplication
-    private var identifier = UIBackgroundTaskInvalid
+    private var identifier = UIBackgroundTaskIdentifier.invalid
     
     init(application: UIApplication) {
         self.application = application
@@ -26,11 +26,11 @@ class BackgroundTask {
     }
     
     func end() {
-        if (identifier != UIBackgroundTaskInvalid) {
+        if (identifier != UIBackgroundTaskIdentifier.invalid) {
             log("Ending BackgroundTask")
             application.endBackgroundTask(identifier)
         }
         
-        identifier = UIBackgroundTaskInvalid
+        identifier = UIBackgroundTaskIdentifier.invalid
     }
 }

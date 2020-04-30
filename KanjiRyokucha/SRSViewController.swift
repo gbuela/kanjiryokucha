@@ -257,7 +257,7 @@ class SRSReviewEngine: SRSEngineProtocol {
             self.reviewStateMapper(entries: reviewEntries)
         }
         
-        cancelAction = Action(enabler: shouldEnableCancel) { [weak self] _ in
+        cancelAction = Action(enabler: shouldEnableCancel) { [weak self] in
             self?.cancelSession()
         }
         
@@ -700,9 +700,9 @@ class SRSViewController: UIViewController, ReviewDelegate {
         engine.currentReviewType.uiReact { [weak self] reviewType in
             guard let _ = reviewType else {
                 if let vc = self?.reviewViewController {
-                    vc.willMove(toParentViewController: nil)
+                    vc.willMove(toParent: nil)
                     vc.view.removeFromSuperview()
-                    vc.removeFromParentViewController()
+                    vc.removeFromParent()
                     self?.reviewViewController = nil
                     self?.reviewContainer.isHidden = true
                     self?.submitTip.dismiss()
@@ -713,10 +713,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
             if let sself = self {
                 let rvc = ReviewViewController(engine: sself.engine, delegate: sself)
                 sself.reviewViewController = rvc
-                sself.addChildViewController(rvc)
+                sself.addChild(rvc)
                 rvc.view.frame = sself.reviewContainer.bounds
                 sself.reviewContainer.addSubview(rvc.view)
-                rvc.didMove(toParentViewController: sself)
+                rvc.didMove(toParent: sself)
                 self?.reviewContainer.isHidden = false
             }
         }
@@ -726,7 +726,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
         }
         
         refreshStarter = RefreshStarter(control: refreshButton,
-                                        action: engine.statusAction,
+                                        action: engine!.statusAction,
                                         input: ())
 
         mainActivityIndicator.reactive.isAnimating <~ engine.statusAction.isExecuting

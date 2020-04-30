@@ -5,7 +5,7 @@ import enum Result.NoError
 extension Reactive where Base: UIControl {
 	/// The current associated action of `self`, with its registered event mask
 	/// and its disposable.
-	internal var associatedAction: Atomic<(action: CocoaAction<Base>, controlEvents: UIControlEvents, disposable: Disposable)?> {
+	internal var associatedAction: Atomic<(action: CocoaAction<Base>, controlEvents: UIControl.Event, disposable: Disposable)?> {
 		return associatedValue { _ in Atomic(nil) }
 	}
 
@@ -17,7 +17,7 @@ extension Reactive where Base: UIControl {
 	///   - controlEvents: The control event mask.
 	///	  - disposable: An outside disposable that will be bound to the scope of
 	///					the given `action`.
-	internal func setAction(_ action: CocoaAction<Base>?, for controlEvents: UIControlEvents, disposable: Disposable? = nil) {
+	internal func setAction(_ action: CocoaAction<Base>?, for controlEvents: UIControl.Event, disposable: Disposable? = nil) {
 		associatedAction.modify { associatedAction in
 			associatedAction?.disposable.dispose()
 
@@ -48,7 +48,7 @@ extension Reactive where Base: UIControl {
 	///   - controlEvents: The control event mask.
 	///
 	/// - returns: A signal that sends the control each time the control event occurs.
-	public func controlEvents(_ controlEvents: UIControlEvents) -> Signal<Base, NoError> {
+	public func controlEvents(_ controlEvents: UIControl.Event) -> Signal<Base, NoError> {
 		return mapControlEvents(controlEvents, { $0 })
 	}
 
@@ -71,8 +71,8 @@ extension Reactive where Base: UIControl {
 	///
 	/// - returns: A signal that sends the reduced value from the control each time the
 	///            control event occurs.
-	public func mapControlEvents<Value>(_ controlEvents: UIControlEvents, _ transform: @escaping (Base) -> Value) -> Signal<Value, NoError> {
-		return Signal { observer in
+	public func mapControlEvents<Value>(_ controlEvents: UIControl.Event, _ transform: @escaping (Base) -> Value) -> Signal<Value, NoError> {
+		return Signal { observer, signalLifetime in
 			let receiver = CocoaTarget(observer) { transform($0 as! Base) }
 			base.addTarget(receiver,
 			               action: #selector(receiver.invoke),
@@ -80,7 +80,7 @@ extension Reactive where Base: UIControl {
 
 			let disposable = lifetime.ended.observeCompleted(observer.sendCompleted)
 
-			return AnyDisposable { [weak base = self.base] in
+			signalLifetime.observeEnded { [weak base] in
 				disposable?.dispose()
 
 				base?.removeTarget(receiver,
@@ -91,7 +91,7 @@ extension Reactive where Base: UIControl {
 	}
 
 	@available(*, unavailable, renamed: "controlEvents(_:)")
-	public func trigger(for controlEvents: UIControlEvents) -> Signal<(), NoError> {
+	public func trigger(for controlEvents: UIControl.Event) -> Signal<(), NoError> {
 		fatalError()
 	}
 

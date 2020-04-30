@@ -95,8 +95,7 @@ public final class Action<Input, Output, Error: Swift.Error> {
 	public init<State: PropertyProtocol>(state: State, enabledIf isEnabled: @escaping (State.Value) -> Bool, execute: @escaping (State.Value, Input) -> SignalProducer<Output, Error>) {
 		let isUserEnabled = isEnabled
 
-		deinitToken = Lifetime.Token()
-		lifetime = Lifetime(deinitToken)
+		(lifetime, deinitToken) = Lifetime.make()
 
 		// `Action` retains its state property.
 		lifetime.observeEnded { _ = state }
@@ -134,14 +133,12 @@ public final class Action<Input, Output, Error: Swift.Error> {
 			}
 		}
 
-		let disposable = state.producer.startWithValues { value in
+		lifetime += state.producer.startWithValues { value in
 			modifyActionState { state in
 				state.value = value
 				state.isUserEnabled = isUserEnabled(value)
 			}
 		}
-
-		lifetime.observeEnded(disposable.dispose)
 
 		self.execute = { action, input in
 			return SignalProducer { observer, lifetime in
@@ -161,7 +158,7 @@ public final class Action<Input, Output, Error: Swift.Error> {
 				}
 
 				let interruptHandle = execute(state, input).start { event in
-					observer.action(event.mapError(ActionError.producerFailed))
+					observer.send(event.mapError(ActionError.producerFailed))
 					action.eventsObserver.send(value: event)
 				}
 
@@ -221,6 +218,24 @@ public final class Action<Input, Output, Error: Swift.Error> {
 			execute(state!, input)
 		}
 	}
+
+	/// Initializes an `Action` that uses a `ValidatingProperty` as its state.
+	///
+	/// When the `Action` is asked to start executing, a unit of work (represented by
+	/// a `SignalProducer`) is created by invoking `execute` with the latest value
+	/// of the state and the `input` that was passed to `apply()`.
+	///
+	/// If the `ValidatingProperty` does not hold a valid value, the `Action` would be
+	/// disabled until it's valid.
+	///
+	/// - parameters:
+	///   - state: A `ValidatingProperty` to be the state of the `Action`.
+	///   - execute: A closure that produces a unit of work, as `SignalProducer`, to
+	///              be executed by the `Action`.
+	public convenience init<T, E>(validated state: ValidatingProperty<T, E>, execute: @escaping (T, Input) -> SignalProducer<Output, Error>) {
+		self.init(unwrapping: state.result.map { $0.value }, execute: execute)
+	}
+	
 
 	/// Initializes an `Action` that would always be enabled.
 	///
@@ -295,6 +310,25 @@ extension Action where Input == Void {
 			execute(state)
 		}
 	}
+	
+	/// Initializes an `Action` that uses a `ValidatingProperty` as its state.
+	///
+	/// When the `Action` is asked to start executing, a unit of work (represented by
+	/// a `SignalProducer`) is created by invoking `execute` with the latest value
+	/// of the state and the `input` that was passed to `apply()`.
+	///
+	/// If the `ValidatingProperty` does not hold a valid value, the `Action` would be
+	/// disabled until it's valid.
+	///
+	/// - parameters:
+	///   - state: A `ValidatingProperty` to be the state of the `Action`.
+	///   - execute: A closure that produces a unit of work, as `SignalProducer`, to
+	///              be executed by the `Action`.
+	public convenience init<T, E>(validated state: ValidatingProperty<T, E>, execute: @escaping (T) -> SignalProducer<Output, Error>) {
+		self.init(validated: state) { state, _ in
+			execute(state)
+		}
+	}
 
 	/// Initializes an `Action` that uses a property as its state.
 	///
@@ -337,3 +371,6 @@ extension ActionError where Error: Equatable {
 		}
 	}
 }
+
+extension ActionError: Equatable where Error: Equatable {}
+

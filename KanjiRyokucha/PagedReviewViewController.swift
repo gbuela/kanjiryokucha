@@ -240,7 +240,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
                 backView.drawingImageView.image = drawingVC?.mainImage.image
                 backView.readingsTextView.alpha = 0.0
                 
-                let options: UIViewAnimationOptions = global.useAnimations ? [.transitionFlipFromRight, .showHideTransitionViews] : []
+                let options: UIView.AnimationOptions = global.useAnimations ? [.transitionFlipFromRight, .showHideTransitionViews] : []
                 
                 UIView.transition(from: frontView, to: backView, duration: 0.5, options: options, completion: { _ in
                     backView.readingsTextView.setContentOffset(CGPoint.zero, animated: false)
@@ -316,7 +316,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         pageContainer.layoutAttachAll(subview: frontView)
 
         if !showingFront {
-            let options: UIViewAnimationOptions = global.useAnimations ? [.transitionFlipFromLeft, .showHideTransitionViews] : []
+            let options: UIView.AnimationOptions = global.useAnimations ? [.transitionFlipFromLeft, .showHideTransitionViews] : []
             
             UIView.transition(from: backView, to: frontView, duration: 0.5, options: options, completion: { [weak self] _ in
                     self?.showingFront = true
@@ -388,7 +388,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         let playerController = AVPlayerViewController()
         
         playerController.player = player
-        addChildViewController(playerController)
+        addChild(playerController)
         videoContainer.addSubview(playerController.view)
         playerController.view.frame = videoContainer.bounds
         playerController.view.backgroundColor = .ryokuchaFaint

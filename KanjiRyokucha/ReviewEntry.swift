@@ -19,12 +19,12 @@ enum CardAnswer: Int {
 }
 
 class ReviewEntry : Object {
-    dynamic var cardId = 0
-    dynamic var rawAnswer = 0
-    dynamic var keyword = ""
-    dynamic var frameNumber = 0
-    dynamic var strokeCount = 0
-    dynamic var submitted = false
+    @objc dynamic var cardId = 0
+    @objc dynamic var rawAnswer = 0
+    @objc dynamic var keyword = ""
+    @objc dynamic var frameNumber = 0
+    @objc dynamic var strokeCount = 0
+    @objc dynamic var submitted = false
     
     var cardAnswer: CardAnswer {
         get {

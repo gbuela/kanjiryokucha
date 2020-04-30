@@ -293,7 +293,7 @@ open class ARPieChart: UIView {
         
         arcAnimation.fromValue = fromValue
         arcAnimation.toValue = toValue
-        arcAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        arcAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
         layer.add(arcAnimation, forKey: key)
         layer.setValue(toValue, forKey: key)
     }
@@ -313,19 +313,19 @@ open class ARPieChart: UIView {
             layer.strokeColor = dataSource?.pieChart(self, colorForSliceAtIndex: index).cgColor
         }
         
-        createArcAnimationForLayer(layer, key: "strokeStart", toValue: strokeStart as AnyObject!)
-        createArcAnimationForLayer(layer, key: "strokeEnd", toValue: strokeEnd as AnyObject!)
+        createArcAnimationForLayer(layer, key: "strokeStart", toValue: strokeStart as AnyObject)
+        createArcAnimationForLayer(layer, key: "strokeEnd", toValue: strokeEnd as AnyObject)
         
         /// Custom text layer for description
         var textLayer: CATextLayer!
         
         if layer.sublayers != nil {
-            textLayer = layer.sublayers!.first as! CATextLayer
+            textLayer = layer.sublayers!.first as? CATextLayer
         } else {
             textLayer = CATextLayer()
             textLayer.contentsScale = UIScreen.main.scale
             textLayer.isWrapped = true
-            textLayer.alignmentMode = kCAAlignmentCenter
+            textLayer.alignmentMode = CATextLayerAlignmentMode.center
             layer.addSublayer(textLayer)
         }
         
@@ -337,7 +337,7 @@ open class ARPieChart: UIView {
             textLayer.string = dataSource?.pieChart(self, descriptionForSliceAtIndex: index)
         }
         
-        let size: CGSize = (textLayer.string! as AnyObject).size(attributes: [NSFontAttributeName: labelFont])
+        let size: CGSize = (textLayer.string! as AnyObject).size(withAttributes: [NSAttributedString.Key.font: labelFont])
         textLayer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
         if (strokeEnd - strokeStart) * CGFloat(Float.pi) * 2 * strokeRadius < max(size.width, size.height) {
