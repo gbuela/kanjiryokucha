@@ -31,6 +31,7 @@ struct AppController {
     let studyEngine = StudyEngine()
     let srsViewController = SRSViewController()
     let settingsViewController = SettingsViewController()
+    let splitDelegate = SplitDelegate()
     
     let sessionCheckAction: Action<Void, Response, FetchError>!
 
@@ -47,6 +48,7 @@ struct AppController {
         let studyNav = studySplitVC.viewControllers[0] as! UINavigationController
         let studyMaster = studyNav.viewControllers[0] as! StudyViewController
         
+        studySplitVC.delegate = splitDelegate
         srsViewController.engine = reviewEngine
         studyEngine.reviewEngine = reviewEngine
         studyMaster.engine = studyEngine
@@ -82,6 +84,12 @@ struct AppController {
                 HUD.hide()
             }
         }
+    }
+}
+
+class SplitDelegate: UISplitViewControllerDelegate {
+    func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+        return true
     }
 }
 
