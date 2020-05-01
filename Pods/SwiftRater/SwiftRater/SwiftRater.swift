@@ -65,6 +65,8 @@ import StoreKit
 
     @objc public static var showLaterButton: Bool = true
 
+    @objc public static var countryCode: String?
+
     @objc public static var alertTitle: String?
     @objc public static var alertMessage: String?
     @objc public static var alertCancelTitle: String?
@@ -81,7 +83,7 @@ import StoreKit
         return UsageDataManager.shared.isRateDone
     }
     
-    fileprivate var appID: Int?
+    @objc public static var appID: String?
 
     private static var appVersion: String {
         get {
@@ -149,18 +151,14 @@ import StoreKit
             return false
         }
         
-        SwiftRater.shared.showRatingAlert(host: host)
+        SwiftRater.shared.showRatingAlert(host: host, force: false)
         return true
     }
     
-    @objc public static func rateApp() {
+    @objc public static func rateApp(host: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) {
         NSLog("[SwiftRater] Trying to show review request dialog.")
-        if #available(iOS 10.3, *), SwiftRater.useStoreKitIfAvailable {
-            SKStoreReviewController.requestReview()
-        } else {
-            SwiftRater.shared.rateAppWithAppStore()
-        }
-        
+        SwiftRater.shared.showRatingAlert(host: host, force: true)
+
         UsageDataManager.shared.isRateDone = true
     }
 
@@ -169,15 +167,19 @@ import StoreKit
     }
 
     private func perform() {
-        // get appID and version from itunes
-        do {
-            let url = try iTunesURLFromString()
-            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 30)
-            URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                self.processResults(withData: data, response: response, error: error)
-            }).resume()
-        } catch let error {
-            postError(.malformedURL, underlyingError: error)
+        if SwiftRater.appName != nil {
+            incrementUsageCount()
+        } else {
+            // If not set, get appID and version from itunes
+            do {
+                let url = try iTunesURLFromString()
+                let request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 30)
+                URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                    self.processResults(withData: data, response: response, error: error)
+                }).resume()
+            } catch let error {
+                postError(.malformedURL, underlyingError: error)
+            }
         }
     }
 
@@ -231,14 +233,18 @@ import StoreKit
             return
         }
 
-        self.appID = appID
+        SwiftRater.appID = String(appID)
     }
 
     private func iTunesURLFromString() throws -> URL {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "itunes.apple.com"
-        components.path = "/lookup"
+        if let countryCode = SwiftRater.countryCode {
+            components.path = "/\(countryCode)/lookup"
+        } else {
+            components.path = "/lookup"
+        }
 
         let items: [URLQueryItem] = [URLQueryItem(name: "bundleId", value: Bundle.bundleID())]
 
@@ -289,9 +295,9 @@ import StoreKit
         UsageDataManager.shared.incrementSignificantUseCount()
     }
 
-    private func showRatingAlert(host: UIViewController?) {
+    private func showRatingAlert(host: UIViewController?, force: Bool) {
         NSLog("[SwiftRater] Trying to show review request dialog.")
-        if #available(iOS 10.3, *), SwiftRater.useStoreKitIfAvailable {
+        if #available(iOS 10.3, *), SwiftRater.useStoreKitIfAvailable, !force {
             SKStoreReviewController.requestReview()
             UsageDataManager.shared.isRateDone = true
         } else {
@@ -328,7 +334,7 @@ import StoreKit
         #if arch(i386) || arch(x86_64)
             print("APPIRATER NOTE: iTunes App Store is not supported on the iOS simulator. Unable to open App Store page.");
         #else
-            guard let appId = self.appID else { return }
+            guard let appId = SwiftRater.appID else { return }
             let reviewURL = "itms-apps://itunes.apple.com/app/id\(appId)?action=write-review";
             guard let url = URL(string: reviewURL) else { return }
             UIApplication.shared.openURL(url)

@@ -8,7 +8,6 @@
 
 import UIKit
 import ReactiveSwift
-import Result
 import PKHUD
 
 class FreeViewModel: ReviewEngineProtocol {    
@@ -89,7 +88,7 @@ class FreeViewModel: ReviewEngineProtocol {
 
         cancelAction = Action { [weak self] _ in
             self?.cancelSession()
-            return SignalProducer<Bool, NoError>.empty
+            return SignalProducer<Bool, Never>.empty
         }
     }
     

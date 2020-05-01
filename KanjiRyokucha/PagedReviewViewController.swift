@@ -44,8 +44,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
     
     var isGradientSetup = false
     
-    let strokeTip = TipView(.strokeOrder)
-    
     var player: AVPlayer?
     
     var global: Global!
@@ -68,7 +66,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupGradient()
-        strokeTip.rearrange()
     }
     
     private func setupGradient() {
@@ -249,8 +246,6 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
                     }
                 })
                 showingFront = false
-                
-                strokeTip.show(control: backView.optionsButton, parent: backView)
             }
         } else if button == frontView.quitButton ||
             button == backView.quitButton {

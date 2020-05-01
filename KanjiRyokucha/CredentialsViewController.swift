@@ -8,7 +8,6 @@
 
 import UIKit
 import PKHUD
-import Result
 import ReactiveSwift
 import SafariServices
 

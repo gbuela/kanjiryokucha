@@ -9,7 +9,6 @@
 import Foundation
 import ReactiveSwift
 import ReactiveCocoa
-import Result
 
 import PKHUD
 
@@ -110,11 +109,11 @@ extension Action {
 }
 
 extension Signal {
-    func noErrorSignal() -> Signal<Value,NoError> {
+    func noErrorSignal() -> Signal<Value,Never> {
         return self.flatMapError(errorSkipper)
     }
-    private func errorSkipper(error: Error) -> SignalProducer<Value,NoError> {
-        return SignalProducer<Value, NoError>.empty
+    private func errorSkipper(error: Error) -> SignalProducer<Value,Never> {
+        return SignalProducer<Value, Never>.empty
     }
 
 }
@@ -127,26 +126,12 @@ extension SignalProducer {
      
      - returns: a non-failing version of the input SignalProducer
      */
-    func noErrorSignalProducer() -> SignalProducer<Value,NoError> {
-        return self.flatMapError { error -> SignalProducer<Value,NoError> in
-            return SignalProducer<Value, NoError>.empty
+    func noErrorSignalProducer() -> SignalProducer<Value,Never> {
+        return self.flatMapError { error -> SignalProducer<Value,Never> in
+            return SignalProducer<Value, Never>.empty
         }
     }
 
-}
-
-extension UITextField {
-    
-    /**
-     Facilitates getting the UITextField text signal as required for binding to a PropertyType
-     
-     - returns: a non-failing text SignalProducer
-     */
-    func propertyBindingTextSignal() -> SignalProducer<String,NoError> {
-        return self.propertyBindingTextSignal()
-            .noErrorSignalProducer()
-            .map { $0 }
-    }
 }
 
 /** 
@@ -223,7 +208,7 @@ public struct ActionStarter<Input, Output, Error: Swift.Error> {
             .observeValues { e in handler(e) }
     }
     
-    static public func mergeErrors(controlActions:[ActionStarter]) -> Signal<Error,NoError> {
+    static public func mergeErrors(controlActions:[ActionStarter]) -> Signal<Error,Never> {
         return Signal.merge(controlActions.map {$0.action.errors})
     }
 }

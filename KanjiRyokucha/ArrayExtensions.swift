@@ -13,7 +13,7 @@ extension Array where Element: Equatable {
     func removing(_ objects: [Element]) ->[Element] {
         var newArray = self
         objects.forEach {
-            if let index = newArray.index(of: $0) {
+            if let index = newArray.firstIndex(of: $0) {
                 newArray.remove(at: index)
             }
         }

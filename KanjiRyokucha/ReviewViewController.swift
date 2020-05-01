@@ -55,7 +55,7 @@ class SubmissionChartDataSource: ARPieChartItemDataSource {
     }
 }
 
-class ReviewViewController: UIViewController, UITabBarControllerDelegate {
+class ReviewViewController: UIViewController {
 
     private class func scoreFromState(_ state: ReviewState?) -> Int? {
         guard let state = state,
@@ -130,9 +130,6 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
     
     private let score: MutableProperty<Int?> = MutableProperty(nil)
     
-    private let reviewTip = TipView(.startReview)
-    private let studyTip = TipView(.studyTab)
-    
     private let performanceDataSource = PerformanceChartDataSource()
     private let submissionDataSource = SubmissionChartDataSource()
     
@@ -156,14 +153,6 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
         setUp()
         wireUp()
         refreshCharts(state: reviewEngine.reviewState.value)
-        
-        reviewTip.show(control: reviewButton, parent: view)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        reviewTip.rearrange()
-        studyTip.rearrange()
     }
 
     func setUp() {
@@ -244,22 +233,12 @@ class ReviewViewController: UIViewController, UITabBarControllerDelegate {
                     self?.activityIndicator.startAnimating()
                 } else {
                     self?.activityIndicator.stopAnimating()
-                    if let tabController = self?.tabBarController,
-                        let tab = tabController.tabBar.items?[1] {
-                        tabController.delegate = self
-                        self?.studyTip.show(barItem: tab)
-                    }
-                    
                     SwiftRater.check()
                 }
             }
         } else {
             submitButton.isEnabled = false
         }
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        studyTip.dismiss()
     }
     
     private func presentPagedReview(model: CardDataModel) {

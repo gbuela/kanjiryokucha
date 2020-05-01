@@ -8,7 +8,6 @@
 
 import ReactiveSwift
 import RealmSwift
-import Result
 
 enum LoginState {
     case loggingIn
@@ -87,7 +86,8 @@ struct LoginViewModel : BackendAccess {
         if let sp = loginRq.requestProducer()?.observe(on: UIScheduler()) {
             
             sp.startWithResult { (result: Result<Response, FetchError>) in
-                if let response = result.value {
+                switch result {
+                case .success(let response):
                     if response.statusCode == httpStatusMovedTemp,
                         let location = response.headers[HeaderKeys.location] as? String,
                         location.hasPrefix(self.backendHost) {
@@ -100,13 +100,9 @@ struct LoginViewModel : BackendAccess {
                         handler(false, nil)
                         self.state.value = .failure("Could not login 🤔")
                     }
-                } else {
+                case .failure(let error):
                     handler(false, nil)
-                    if let fe = result.error {
-                        self.state.value = .failure("\(fe.errorText())  🔥")
-                    } else {
-                        self.state.value = .failure("Apparently we're offline ☹️")
-                    }
+                    self.state.value = .failure("\(error.errorText())  🔥")
                 }
             }
         }

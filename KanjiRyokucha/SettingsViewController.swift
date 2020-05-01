@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             debugCell = createDisclosureCell(title: "Debug 🐞")
         #endif
         
-        selectableCells = [aboutCell, whatsNewCell, debugCell].flatMap{$0}
+        selectableCells = [aboutCell, whatsNewCell, debugCell].compactMap{$0}
         
         notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when the due count has changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
         
@@ -61,7 +61,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             aboutCell,
             whatsNewCell,
             debugCell
-            ].flatMap{$0}
+            ].compactMap{$0}
         
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableView.automaticDimension
@@ -124,7 +124,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                             UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
                     }
                     self.revertEnablingNotifications()
-                case .provisional:
+                @unknown default:
                     // FIXME: ver que onda
                     break
                 }

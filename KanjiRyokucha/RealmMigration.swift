@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 extension Realm {
-    class func ConfigurationWithMigration() -> Realm.Configuration {
+    static func ConfigurationWithMigration() -> Realm.Configuration {
         return Realm.Configuration(
             schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in

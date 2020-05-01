@@ -10,9 +10,7 @@ import UIKit
 import UserNotifications
 import ReactiveSwift
 import ReactiveCocoa
-import Result
 import RealmSwift
-import EasyTipView
 
 let lastSatusRefreshKey = "lastSatusRefresh"
 
@@ -47,7 +45,7 @@ extension Dictionary {
 
 typealias StartAction = Action<ReviewType, Response, FetchError>
 typealias StartStarter = ActionStarter<ReviewType, Response, FetchError>
-typealias ButtonAction = Action<Bool, Bool, NoError>
+typealias ButtonAction = Action<Bool, Bool, Never>
 typealias ReviewAction = Action<[ReviewEntry], Response, FetchError>
 typealias SubmitAction = Action<[ReviewEntry], [SignalProducer<Response,FetchError>], FetchError>
 fileprivate typealias RefreshStarter = ActionStarter<Void, Response, FetchError>
@@ -147,7 +145,7 @@ class SRSReviewEngine: SRSEngineProtocol {
     var statusAction: Action<Void, Response, FetchError>!
     var refreshedSinceStartup = false
     
-    private var startSignals: [Signal<StartedSession,NoError>] = []
+    private var startSignals: [Signal<StartedSession,Never>] = []
     private var startedSession: MutableProperty<StartedSession?> = MutableProperty(nil)
 
     let reviewTitle: MutableProperty<String?> = MutableProperty(nil)
@@ -379,9 +377,9 @@ class SRSReviewEngine: SRSEngineProtocol {
                     if entry.cardAnswer == .no || entry.cardAnswer == .skip {
                         studyEntry.learned = false
                         studyEntry.synced = false
-                        realm.add(studyEntry, update: true)
+                        realm.add(studyEntry, update: .all)
                     } else {
-                        if let index = studyEntries.value.index(of: studyEntry) {
+                        if let index = studyEntries.value.firstIndex(of: studyEntry) {
                             studyEntries.value.remove(at: index)
                         }
                         realm.delete(studyEntry)
@@ -394,7 +392,7 @@ class SRSReviewEngine: SRSEngineProtocol {
                         studyEntry.keyword = entry.keyword
                         studyEntry.learned = false
                         studyEntry.synced = true
-                        realm.add(studyEntry, update: false)
+                        realm.add(studyEntry, update: .error)
                         studyEntries.value.append(studyEntry)
                     }
                 }
@@ -405,7 +403,7 @@ class SRSReviewEngine: SRSEngineProtocol {
         log("-> completed")
     }
     
-    private func startSignalCreator(from reviewType:ReviewType) -> Signal<StartedSession,NoError> {
+    private func startSignalCreator(from reviewType:ReviewType) -> Signal<StartedSession,Never> {
         let setup = reviewTypeSetups[reviewType]!
         let validValues = setup.action.values.filter { response in
             return response.model is CardIdsModel
@@ -503,7 +501,7 @@ class SRSReviewEngine: SRSEngineProtocol {
     }
 
     private func shouldEnableStartSignal(countProperty: MutableProperty<Int>,
-                                         reviewType: ReviewType) -> Signal<Bool, NoError> {
+                                         reviewType: ReviewType) -> Signal<Bool, Never> {
         
         let result = Property.combineLatest(countProperty, currentReviewType)
             .map { (count:Int, inProgressReview:ReviewType?) -> Bool in
@@ -583,9 +581,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
    
     private var reviewTypeStarters: [ReviewType: StartStarter]!
     private var refreshStarter: RefreshStarter!
-    
-    private let srsTip = TipView(.srsButtons)
-    private let submitTip = TipView(.submitAnswers)
 
     private class func buttonColorsFromReviewType(_ reviewType: ReviewType?) -> ButtonColors {
         if let reviewType = reviewType {
@@ -632,12 +627,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
         engine.studyEntries.value = engine.studyEntries.value
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        srsTip.rearrange()
-        submitTip.rearrange()
-    }
-    
     func setUp() {
         for reviewType in ReviewType.allTypes {
             let view = self.topButtonView(for: reviewType)
@@ -645,8 +634,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
         }
         reviewContainer.roundedCorners()
         self.view.backgroundColor = .ryokuchaFaint
-    
-        srsTip.show(control: dueButton, parent: view)
     }
     
     func wireUp() {        
@@ -705,7 +692,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
                     vc.removeFromParent()
                     self?.reviewViewController = nil
                     self?.reviewContainer.isHidden = true
-                    self?.submitTip.dismiss()
                 }
                 return
             }
@@ -772,9 +758,6 @@ class SRSViewController: UIViewController, ReviewDelegate {
     func userFinishedReview() {
         log("finished review")
         engine.reviewEntries.value = engine.reviewEntries.value
-        if let submitButton = reviewViewController?.submitButton {
-            submitTip.show(control: submitButton, parent: view)            
-        }
     }
     
     func topButtonView(for reviewType: ReviewType) -> UIView {

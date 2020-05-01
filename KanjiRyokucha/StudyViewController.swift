@@ -133,7 +133,7 @@ class StudyEngine {
             model.cards.forEach { fetchedCard in
                 if let card = studyCards.first(where: {$0.cardId == fetchedCard.cardId}) {
                     card.keyword = fetchedCard.keyword
-                    realm.add(card, update: true)
+                    realm.add(card, update: .all)
                 }
             }
         }
@@ -222,7 +222,7 @@ class StudyEngine {
                 studyEntry.learned = false
                 studyEntry.synced = true
                 studyEntry.frameNum.value = frameNum
-                realm.add(studyEntry, update: false)
+                realm.add(studyEntry, update: .error)
                 reviewEngine.studyEntries.value.append(studyEntry)
             }
         }
@@ -241,7 +241,7 @@ class StudyEngine {
     private func confirmSync(entry: StudyEntry, learned: Bool, realm: Realm) {
         entry.learned = learned
         entry.synced = true
-        realm.add(entry, update: true)
+        realm.add(entry, update: .all)
         log("confirmed sync \(entry.cardId)")
     }
     
@@ -272,8 +272,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     private var refreshStarter: RefreshStarter!
     private let isProcessing: MutableProperty<Bool> = MutableProperty(false)
     
-    private let studyPhaseTip = TipView(.studyPhase)
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -301,13 +299,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         splitViewController?.preferredDisplayMode = .allVisible
         splitViewController?.delegate = self
- 
-        studyPhaseTip.show(control: submitButton, parent: view)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        studyPhaseTip.rearrange()
     }
 
     private func createEmptyCell(text: String) -> EmptyStudyCell {
@@ -485,7 +476,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func studyCellMarkLearnedTapped(entry: StudyEntry) {
-        if let index = engine.studyEntries().value.index(of: entry) {
+        if let index = engine.studyEntries().value.firstIndex(of: entry) {
             markLearned(indexPath: IndexPath(row: index + 1, section: 0))
         }
     }

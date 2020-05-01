@@ -3,7 +3,8 @@
 [![Version](https://img.shields.io/cocoapods/v/SwiftRater.svg?style=flat)](http://cocoapods.org/pods/SwiftRater)
 [![License](https://img.shields.io/cocoapods/l/SwiftRater.svg?style=flat)](http://cocoapods.org/pods/SwiftRater)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftRater.svg?style=flat)](http://cocoapods.org/pods/SwiftRater)
-[![Bitrise](https://www.bitrise.io/app/cdf69e74ec7cb02e/status.svg?token=6LUF4w3ew_nTr21Jgeri4A&branch=master)](https://www.bitrise.io/)
+[![Build Status](https://app.bitrise.io/app/55becad13fb442f0/status.svg?token=xvASA1R9AsaeRnPDE7ZLUQ&branch=master)](https://app.bitrise.io/app/55becad13fb442f0)
+[![codebeat badge](https://codebeat.co/badges/a7a60a68-81df-4015-bf04-52a8fb621952)](https://codebeat.co/projects/github-com-takecian-swiftrater-master)
 
 SwiftRater is a class that you can drop into any iPhone app that will help remind your users to review your app on the App Store/in your app.
 
@@ -34,7 +35,7 @@ pod "SwiftRater"
 ```
 ### Carthage
 
-SwiftRoutes is compatible with [Carthage](https://github.com/Carthage/Carthage). Add it to your `Cartfile`:
+SwiftRater is compatible with [Carthage](https://github.com/Carthage/Carthage). Add it to your `Cartfile`:
 
 ```ruby
 github "takecian/SwiftRater"
@@ -94,13 +95,13 @@ func postComment() {
 
 ```
 
-4(Optional).Call `SwiftRater.rateApp()` to let your users to review your app on the App Store/in your app directly.
+4(Optional).Call `SwiftRater.rateApp(host:)` to let your users to review your app on the App Store/in your app directly.
 
 ```
 func rateButtonDidClick(sender: UIButton) {
     // do something ..
 
-	SwiftRater.rateApp()
+	SwiftRater.rateApp(host: self)
 }
 
 ```
@@ -134,6 +135,39 @@ You can customize text in review request dialog for iOS10.2 or before devices. S
 - SwiftRater.alertRateLaterTitle
 - SwiftRater.appName
 
+## Country code
+
+If your app is only avaiable for some coutnries, please add country code at Setup phase.
+
+```
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SwiftRater.daysUntilPrompt = 7
+        SwiftRater.usesUntilPrompt = 10
+
+        SwiftRater.countryCode = "fr"
+
+        SwiftRater.debugMode = true
+        SwiftRater.appLaunched()
+        return true
+    }
+```
+
+## App ID
+
+Optional, you can set App ID explicitly. If not, SwiftRater will get App ID from appstore by bundle ID.
+
+```
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SwiftRater.daysUntilPrompt = 7
+        SwiftRater.usesUntilPrompt = 10
+
+        SwiftRater.appID = "1104775712"
+
+        SwiftRater.debugMode = true
+        SwiftRater.appLaunched()
+        return true
+    }
+```
 ## Demo
 
 You can find Demo app in this repo.

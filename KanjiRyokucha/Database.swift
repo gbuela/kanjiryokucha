@@ -43,7 +43,7 @@ struct Database {
             let realm = try Realm()
             try realm.write {
                 closure()
-                realm.add(object, update: true)
+                realm.add(object, update: .all)
             }
         } catch {
             // TODO: db fail
@@ -56,7 +56,7 @@ struct Database {
             let realm = try Realm()
             try realm.write {
                 closure(realm)
-                realm.add(objects, update: true)
+                realm.add(objects, update: .all)
             }
         } catch {
             // TODO: db fail

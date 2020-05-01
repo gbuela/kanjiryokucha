@@ -223,9 +223,6 @@
 		C4AC9B531EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4AC9B541EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4BDE9301DEA5E2F00D25325 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDE92F1DEA5E2F00D25325 /* Network.swift */; };
-		C4C0AE2F1EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
-		C4C0AE301EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
-		C4C0AE311EA079D2006CF493 /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE2E1EA079D2006CF493 /* TipView.swift */; };
 		C4C0AE331EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
 		C4C0AE341EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
 		C4C0AE351EA17128006CF493 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0AE321EA17128006CF493 /* Log.swift */; };
@@ -364,7 +361,6 @@
 		C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
 		C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		C4C0AE2E1EA079D2006CF493 /* TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
 		C4C0AE321EA17128006CF493 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = SOURCE_ROOT; };
 		C4C0AE411EA98E6E006CF493 /* Study.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Study.storyboard; sourceTree = "<group>"; };
@@ -542,7 +538,6 @@
 				C43DCC221E481030006F2C0C /* LayoutConstraint.swift */,
 				C43DCC3A1E511CCA006F2C0C /* StreamReader.swift */,
 				C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */,
-				C4C0AE2E1EA079D2006CF493 /* TipView.swift */,
 				C4C0AE321EA17128006CF493 /* Log.swift */,
 				C48A86241EBED47600778445 /* UIViewControllerContainment.swift */,
 				C4E76F9A1EEDB9BE00A49959 /* LookupLabel.swift */,
@@ -767,13 +762,14 @@
 					};
 					C48A85E01EB5646C00778445 = {
 						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C4F213B31DEA532900EF5214;
 					};
 					C4F213B31DEA532900EF5214 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = UHVS3L828Q;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -783,6 +779,7 @@
 					};
 					C4F213C71DEA532A00EF5214 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C4F213B31DEA532900EF5214;
 					};
@@ -980,25 +977,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 			);
@@ -1027,25 +1020,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 			);
@@ -1079,25 +1068,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 			);
@@ -1158,7 +1143,6 @@
 				C4C491EE1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C409A1BB1E86011E006EEE77 /* UIViewExtensions.swift in Sources */,
 				C4E76FA01EEDC9A200A49959 /* RealmMigration.swift in Sources */,
-				C4C0AE301EA079D2006CF493 /* TipView.swift in Sources */,
 				C409A1BC1E86011E006EEE77 /* LoginViewModel.swift in Sources */,
 				C409A1BD1E86011E006EEE77 /* PagedReviewViewController.swift in Sources */,
 				C409A1BE1E86011E006EEE77 /* Extensions.swift in Sources */,
@@ -1224,7 +1208,6 @@
 				C4C491EF1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C44F75531E8F213300E00AD9 /* UIViewExtensions.swift in Sources */,
 				C4E76FA11EEDC9A200A49959 /* RealmMigration.swift in Sources */,
-				C4C0AE311EA079D2006CF493 /* TipView.swift in Sources */,
 				C44F75541E8F213300E00AD9 /* LoginViewModel.swift in Sources */,
 				C44F75551E8F213300E00AD9 /* PagedReviewViewController.swift in Sources */,
 				C44F75561E8F213300E00AD9 /* Extensions.swift in Sources */,
@@ -1299,7 +1282,6 @@
 				C4C491ED1F4CFAB5009A95BD /* LogsViewController.swift in Sources */,
 				C43668DF1DFB4AFD0080D768 /* UIViewExtensions.swift in Sources */,
 				C4E76F9F1EEDC9A200A49959 /* RealmMigration.swift in Sources */,
-				C4C0AE2F1EA079D2006CF493 /* TipView.swift in Sources */,
 				C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */,
 				C42BBAB21E13220700361C89 /* PagedReviewViewController.swift in Sources */,
 				C4F213DA1DEA54D500EF5214 /* Extensions.swift in Sources */,
@@ -1445,7 +1427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1493,7 +1475,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KanjiRyokucha.app/KanjiRyokucha";
 			};
 			name = AdHoc;
@@ -1508,7 +1490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = KanjiRyokucha;
 			};
 			name = AdHoc;
@@ -1556,7 +1538,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = KanjiRyokucha;
 			};
 			name = Debug;
@@ -1571,7 +1553,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = KanjiRyokucha;
 			};
 			name = Release;
@@ -1691,7 +1673,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1714,7 +1696,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1730,7 +1712,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KanjiRyokucha.app/KanjiRyokucha";
 			};
 			name = Debug;
@@ -1745,7 +1727,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KanjiRyokucha.app/KanjiRyokucha";
 			};
 			name = Release;

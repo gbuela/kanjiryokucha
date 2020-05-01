@@ -9,12 +9,12 @@
 import ReactiveSwift
 
 extension HeaderKeys {
-    static let mashapeKey = "X-Mashape-Key"
-    static let mashapeHost = "X-Mashape-Host"
+    static let mashapeKey = "x-rapidapi-key"
+    static let mashapeHost = "x-rapidapi-host"
 }
 
-let mashapeHost = "kanjialive-api.p.mashape.com"
-let kanjialiveDomain = "kanjialive-api.p.mashape.com"
+let mashapeHost = "kanjialive-api.p.rapidapi.com"
+let kanjialiveDomain = "kanjialive-api.p.rapidapi.com"
 let kanjialiveHost = "https://" + kanjialiveDomain
 fileprivate let endpoint = kanjialiveHost + "/api/public/"
 
