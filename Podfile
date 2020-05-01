@@ -1,4 +1,4 @@
-platform :ios, ‘10.3’
+platform :ios, ‘11.4’
 
 # Pods for KanjiRyokucha
 def shared_pods

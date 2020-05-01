@@ -148,6 +148,7 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        reviewContainer.backgroundColor = .background
         global = Database.getGlobal()
         
         setUp()

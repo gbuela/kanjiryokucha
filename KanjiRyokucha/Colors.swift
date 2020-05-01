@@ -22,22 +22,22 @@ struct ButtonColors {
     }
 }
 
-let expiredColors = ButtonColors(enabledColor: UIColor("#FF9800"),
+let expiredColors = ButtonColors(enabledColor: UIColor(named: "expired") ?? UIColor("#FF9800"),
                                  disabledColor: UIColor("#FF980055"))
 
-let newColors = ButtonColors(enabledColor: UIColor("#0277BD"),
+let newColors = ButtonColors(enabledColor: UIColor(named: "new") ?? UIColor("#0277BD"),
                              disabledColor: UIColor("#0277BD55"))
 
-let failedColors = ButtonColors(enabledColor: UIColor("#F44336"),
+let failedColors = ButtonColors(enabledColor:  UIColor(named: "failed") ?? UIColor("#F44336"),
                              disabledColor: UIColor("#F4433655"))
 
 extension UIColor {
     static var ryokuchaDark: UIColor {
-        return UIColor("#88B319")
+        return UIColor(named: "dark") ?? UIColor("#88B319")
     }
     
     static var ryokuchaLight: UIColor {
-        return UIColor("#D1EBB1")
+        return UIColor(named: "light") ?? UIColor.white
     }
     
     static var ryokuchaTranslucent: UIColor {
@@ -48,8 +48,16 @@ extension UIColor {
         return UIColor("#DFFFBB")
     }
     
+    static var grayIsh: UIColor {
+        return UIColor.systemGray
+    }
+    
+    static var background: UIColor {
+        return UIColor(named: "background") ?? UIColor.white
+    }
+    
     static var ryokuchaFaint: UIColor {
-        return UIColor("#EEFFEF")
+        return UIColor(named: "faint") ?? UIColor.black
     }
     
     static var pieYes: UIColor {
@@ -57,19 +65,23 @@ extension UIColor {
     }
     
     static var pieNo: UIColor {
-        return UIColor("#E66351")
+        return UIColor(named: "pieNo") ?? UIColor("#E66351")
     }
     
     static var pieOther: UIColor {
-        return UIColor("#97BCD0")
+        return UIColor(named: "pieOther") ?? UIColor("#97BCD0")
     }
     
     static var pieUnanswered: UIColor {
-        return UIColor("#BCBDBB")
+        return UIColor(named: "pieUnanswered") ?? UIColor("#BCBDBB")
     }
     
     static var pieSubmitted: UIColor {
-        return UIColor.darkGray
+        return UIColor(named: "pieSubmitted") ?? UIColor.darkGray
+    }
+    
+    static var canvas: UIColor {
+        return UIColor(named: "canvas") ?? UIColor.darkGray
     }
     
     static var pieUnsubmitted: UIColor {
