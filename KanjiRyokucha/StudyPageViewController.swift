@@ -70,6 +70,8 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         
         edgesForExtendedLayout = []
+        
+        containerView.backgroundColor = .background
 
         if case .study = mode {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "MARK LEARNED", style: .plain, target: self, action: #selector(learnedTapped))

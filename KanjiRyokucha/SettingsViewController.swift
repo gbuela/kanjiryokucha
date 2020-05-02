@@ -14,6 +14,7 @@ class SeparatorCell: UITableViewCell {}
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +32,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         edgesForExtendedLayout = []
         title = "Settings"
+        
+        headerView.backgroundColor = .background
         
         usernameLabel.text = username == guestUsername ? "guest user" : username
         

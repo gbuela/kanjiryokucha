@@ -49,7 +49,7 @@ extension ButtonColoring {
 struct Schemes {
     static let krButton =
         ButtonColorScheme(nonHighlightedEnabled: .ryokuchaFaint,
-                          nonHighlightedDisabled: .white,
+                          nonHighlightedDisabled: .grayIsh,
                           highlighted: .ryokuchaDark,
                           normalTitle: .ryokuchaDark,
                           highlightedTitle: .white,
@@ -57,7 +57,7 @@ struct Schemes {
     
     static let submitStudyButton =
         ButtonColorScheme(nonHighlightedEnabled: .ryokuchaFaint,
-                          nonHighlightedDisabled: .white,
+                          nonHighlightedDisabled: .background,
                           highlighted: .ryokuchaLight,
                           normalTitle: .ryokuchaDark,
                           highlightedTitle: .white,

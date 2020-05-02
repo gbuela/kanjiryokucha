@@ -21,12 +21,16 @@ class CardBackView : UIView {
     @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var flipBackButton: UIButton!
+    @IBOutlet weak var rootView: UIView!
     
     weak var buttonHandler: ButtonHandler?
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         easyButton.titleLabel?.adjustsFontSizeToFitWidth = true
         hardButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        rootView.backgroundColor = .background
+        drawingImageView.backgroundColor = .canvas
     }
     
     @IBAction func buttonTapped(_ sender: UIControl) {

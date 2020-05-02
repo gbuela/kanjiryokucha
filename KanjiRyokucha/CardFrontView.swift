@@ -16,10 +16,16 @@ class CardFrontView: UIView {
     @IBOutlet weak var quitButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
     @IBOutlet weak var drawingContainer: UIView!
+    @IBOutlet weak var rootView: UIView!
     
     weak var buttonHandler: ButtonHandler?
 
     @IBAction func buttonTapped(_ sender: UIControl) {
         buttonHandler?.handle(button: sender)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        rootView.backgroundColor = .background
     }
 }
