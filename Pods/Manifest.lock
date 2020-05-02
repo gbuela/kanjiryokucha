@@ -1,0 +1,51 @@
+PODS:
+  - PKHUD (5.3.0)
+  - ReactiveCocoa (10.2.0):
+    - ReactiveSwift (~> 6.2)
+  - ReactiveSwift (6.2.1)
+  - Realm (4.4.1):
+    - Realm/Headers (= 4.4.1)
+  - Realm/Headers (4.4.1)
+  - RealmSwift (4.4.1):
+    - Realm (= 4.4.1)
+  - SwiftRater (1.8.0)
+  - UIColor_Hex_Swift (5.1.6)
+
+DEPENDENCIES:
+  - PKHUD (~> 5.3.0)
+  - ReactiveCocoa (~> 10.2.0)
+  - RealmSwift (~> 4.4.0)
+  - SwiftRater (~> 1.8.0)
+  - UIColor_Hex_Swift (from `https://github.com/yeahdongcn/UIColor-Hex-Swift`, branch `master`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PKHUD
+    - ReactiveCocoa
+    - ReactiveSwift
+    - Realm
+    - RealmSwift
+    - SwiftRater
+
+EXTERNAL SOURCES:
+  UIColor_Hex_Swift:
+    :branch: master
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
+
+CHECKOUT OPTIONS:
+  UIColor_Hex_Swift:
+    :commit: a4bbc96a671682e0aea1dfaed91d9043f30b6022
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
+
+SPEC CHECKSUMS:
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
+  ReactiveSwift: 07ddf579f4eb3ee3bd656214f0461aaf2c0fd639
+  Realm: 4eb04d7487bd43c0581256f40b424eafb711deff
+  RealmSwift: 3eb8924ff7100df5928c7602f71d0fec51e7c9c5
+  SwiftRater: 6094fa6e9b3866ff8beca0a871b4b5f9ab896a6d
+  UIColor_Hex_Swift: e9d400d774c9b31d82801ca76b5301a38086f590
+
+PODFILE CHECKSUM: ea207a784909186d367fd1819b95b0603cfb262f
+
+COCOAPODS: 1.7.1
