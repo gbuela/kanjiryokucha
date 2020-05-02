@@ -57,7 +57,7 @@ struct Schemes {
     
     static let submitStudyButton =
         ButtonColorScheme(nonHighlightedEnabled: .ryokuchaFaint,
-                          nonHighlightedDisabled: .white,
+                          nonHighlightedDisabled: .background,
                           highlighted: .ryokuchaLight,
                           normalTitle: .ryokuchaDark,
                           highlightedTitle: .white,

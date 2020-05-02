@@ -2,11 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "circle.pdf"
+      "filename" : "circle2.png"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "original",
+    "preserves-vector-representation" : true
   }
 }

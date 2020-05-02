@@ -280,6 +280,8 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         title = "Study"
         edgesForExtendedLayout = []
         view.backgroundColor = .ryokuchaFaint
+        
+        submitLabel.textColor = .grayIsh
 
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 70

@@ -28,10 +28,9 @@ class StudyCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
         learnedButton.setImage(UIImage(named: "circle"), for: .normal)
         learnedButton.setImage(UIImage(named: "circlecheck"), for: .selected)
-        
+        frameNumLabel.backgroundColor = .background
         updateUI()
     }
     
