@@ -47,15 +47,16 @@ struct AppController {
         let studySplitVC = studyStoryboard.instantiateViewController(withIdentifier: "studySplit") as! UISplitViewController
         let studyNav = studySplitVC.viewControllers[0] as! UINavigationController
         let studyMaster = studyNav.viewControllers[0] as! StudyViewController
+
+        srsViewController.engine = reviewEngine
+        studyEngine.reviewEngine = reviewEngine
+        studyMaster.engine = studyEngine
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             studySplitVC.preferredDisplayMode = .allVisible
         } else {
             studySplitVC.delegate = splitDelegate
         }
-        srsViewController.engine = reviewEngine
-        studyEngine.reviewEngine = reviewEngine
-        studyMaster.engine = studyEngine
         
         settingsViewController.username = username
         settingsViewController.global = reviewEngine.global
