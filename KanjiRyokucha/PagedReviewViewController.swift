@@ -164,6 +164,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         }
         
         backView.readingsTextView.text = ""
+        backView.strokeCountLabel.text = strokeCountText(card: card)
         
         pageContainer.addSubview(frontView)
         pageContainer.layoutAttachAll(subview: frontView)
@@ -203,12 +204,17 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
                 if let cardBack = self?.currentBack,
                     let line = foundLine,
                     let formatted = self?.formatReadings(line: line) {
+                    
                     DispatchQueue.main.async {
                         cardBack.readingsTextView.text = formatted
                     }
                 }
             }
         }
+    }
+    
+    private func strokeCountText(card: CardModel) -> String {
+        "stroke count: \(card.strokeCount)"
     }
     
     private func formatReadings(line: String) -> String {

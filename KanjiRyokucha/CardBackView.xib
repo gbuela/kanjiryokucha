@@ -31,8 +31,14 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="170"/>
                             </variation>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQu-Rw-j5o">
+                            <rect key="frame" x="8" y="178" width="41.666666666666664" height="20.333333333333343"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJ2-uF-VGx">
-                            <rect key="frame" x="8" y="186" width="150" height="150"/>
+                            <rect key="frame" x="8" y="206.33333333333337" width="150" height="150"/>
                             <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="DJ2-uF-VGx" secondAttribute="height" multiplier="1:1" id="pAY-7t-4jY"/>
@@ -51,7 +57,7 @@
                             </variation>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLb-1T-Akn" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="166" y="276" width="277" height="50"/>
+                            <rect key="frame" x="166" y="296.33333333333331" width="277" height="50"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" identifier="answerNo" label="no"/>
                             <constraints>
@@ -73,7 +79,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3e-L7-iyw" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
-                            <rect key="frame" x="166" y="196" width="277" height="50"/>
+                            <rect key="frame" x="166" y="216.33333333333334" width="277" height="50.000000000000028"/>
                             <color key="backgroundColor" red="0.53333333329999999" green="0.70196078429999997" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                             <accessibility key="accessibilityConfiguration" identifier="answerYes" label="yes"/>
                             <constraints>
@@ -95,7 +101,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5w3-fh-qbf">
-                            <rect key="frame" x="0.0" y="381" width="451" height="241"/>
+                            <rect key="frame" x="0.0" y="401.33333333333331" width="451" height="220.66666666666669"/>
                             <accessibility key="accessibilityConfiguration" identifier="flipCard"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                             <state key="normal" title="flip back">
@@ -106,7 +112,7 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="SJc-5n-7rS">
-                            <rect key="frame" x="8" y="356" width="435" height="44"/>
+                            <rect key="frame" x="8" y="376.33333333333331" width="435" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-Ve-UCv" customClass="KRButton" customModule="KanjiRyokucha" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
@@ -222,6 +228,7 @@
                         <constraint firstItem="NLb-1T-Akn" firstAttribute="leading" secondItem="R3e-L7-iyw" secondAttribute="leading" id="VLg-7w-QBx"/>
                         <constraint firstItem="tkf-lp-AZA" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="top" id="WlP-Ql-icf"/>
                         <constraint firstAttribute="bottom" secondItem="5w3-fh-qbf" secondAttribute="bottom" id="Ze1-M7-JB1"/>
+                        <constraint firstItem="DJ2-uF-VGx" firstAttribute="top" secondItem="QQu-Rw-j5o" secondAttribute="bottom" constant="8" symbolic="YES" id="cXP-Q5-r9o"/>
                         <constraint firstAttribute="trailing" secondItem="R3e-L7-iyw" secondAttribute="trailing" constant="8" id="dPe-Rz-dkd"/>
                         <constraint firstItem="R3e-L7-iyw" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="trailing" constant="8" symbolic="YES" id="dd6-fA-hW1"/>
                         <constraint firstItem="MFh-HD-qOr" firstAttribute="leading" secondItem="59L-8V-wHH" secondAttribute="leading" id="dkK-v6-EuT"/>
@@ -230,10 +237,11 @@
                         <constraint firstAttribute="trailing" secondItem="AOn-7A-s74" secondAttribute="trailing" constant="8" id="iLt-FC-dWR"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="leading" secondItem="tdc-E5-ZX9" secondAttribute="leading" id="kVE-Mt-hUK"/>
                         <constraint firstItem="5w3-fh-qbf" firstAttribute="top" secondItem="SJc-5n-7rS" secondAttribute="top" constant="25" id="mSe-L2-5gg"/>
+                        <constraint firstItem="QQu-Rw-j5o" firstAttribute="leading" secondItem="MFh-HD-qOr" secondAttribute="leading" id="q5i-Ua-P8u"/>
                         <constraint firstItem="AOn-7A-s74" firstAttribute="centerY" secondItem="59L-8V-wHH" secondAttribute="centerY" id="qmb-Ix-jyr"/>
                         <constraint firstAttribute="trailing" secondItem="tkf-lp-AZA" secondAttribute="trailing" constant="8" id="txW-Hu-s2R"/>
                         <constraint firstItem="SJc-5n-7rS" firstAttribute="leading" secondItem="DJ2-uF-VGx" secondAttribute="leading" id="vQh-T0-gq3"/>
-                        <constraint firstItem="DJ2-uF-VGx" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="bottom" constant="8" symbolic="YES" id="xc9-jd-urg"/>
+                        <constraint firstItem="QQu-Rw-j5o" firstAttribute="top" secondItem="MFh-HD-qOr" secondAttribute="bottom" id="xG4-LP-X6k"/>
                         <constraint firstItem="DJ2-uF-VGx" firstAttribute="width" secondItem="tdc-E5-ZX9" secondAttribute="width" multiplier="0.5" id="z4s-yi-oxv"/>
                     </constraints>
                     <variation key="default">
@@ -270,6 +278,7 @@
                 <outlet property="quitButton" destination="U9V-En-UcJ" id="dl5-tw-3St"/>
                 <outlet property="readingsTextView" destination="tkf-lp-AZA" id="eDD-4U-nTA"/>
                 <outlet property="rootView" destination="tdc-E5-ZX9" id="kdW-1w-MMe"/>
+                <outlet property="strokeCountLabel" destination="QQu-Rw-j5o" id="rqU-Ck-4zZ"/>
                 <outlet property="yesButton" destination="R3e-L7-iyw" id="SLN-Wu-vBC"/>
             </connections>
             <point key="canvasLocation" x="71.5" y="31"/>

@@ -11,6 +11,7 @@ import UIKit
 class CardBackView : UIView {
     @IBOutlet weak var keywordLabel: LookupLabel!
     @IBOutlet weak var kanjiLabel: UILabel!
+    @IBOutlet weak var strokeCountLabel: UILabel!
     @IBOutlet weak var readingsTextView: UITextView!
     @IBOutlet weak var frameNumLabel: UILabel!
     @IBOutlet weak var drawingImageView: UIImageView!
