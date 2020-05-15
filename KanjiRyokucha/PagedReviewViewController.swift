@@ -415,7 +415,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
                 let scalar = UnicodeScalar(card.cardId),
                 let encoded = String(scalar).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
             
-            let urlString =  "http://jisho.org/search/" + encoded
+            let urlString =  "http://jisho.org/search/" + encoded + "%20%23kanji"
             guard let url = URL(string: urlString)
                 else { return }
             let safariVC = SFSafariViewController(url: url)
