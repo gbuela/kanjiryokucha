@@ -386,6 +386,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
     
     private func playVideo(url: NSURL){
         player = AVPlayer(url: url as URL)
+        player?.isMuted = true
         let playerController = AVPlayerViewController()
         
         playerController.player = player

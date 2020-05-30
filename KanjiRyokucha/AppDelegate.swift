@@ -11,6 +11,7 @@ import UserNotifications
 import SwiftRater
 import ReactiveSwift
 import PKHUD
+import AVKit
 
 struct TabModel {
     let title: String
@@ -113,6 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UNUserNotificationCenter.current().delegate = self
         }
         
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
+        try? AVAudioSession.sharedInstance().setActive(true)
+
         SwiftRater.showLaterButton = true
     #if DEBUG
         SwiftRater.daysUntilPrompt = 1
