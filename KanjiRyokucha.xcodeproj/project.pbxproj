@@ -15,6 +15,9 @@
 		C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
+		C409428B24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
+		C409428C24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
+		C409428D24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
 		C409A19D1E86011E006EEE77 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C409A19E1E86011E006EEE77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F213B71DEA532900EF5214 /* AppDelegate.swift */; };
@@ -281,6 +284,7 @@
 		9FB3B08744D80BAD612D8535 /* Pods-KanjiRyokucha-DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-DEV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV.debug.xcconfig"; sourceTree = "<group>"; };
 		B31B883FDB21D3CF5937BBFE /* Pods-KanjiRyokucha-Staging.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-Staging.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging.adhoc.xcconfig"; sourceTree = "<group>"; };
 		C405FC4A1F19A71800566CC2 /* whatsnew.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = whatsnew.rtf; sourceTree = "<group>"; };
+		C409428A24CFA02000E41F27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
 		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
@@ -558,6 +562,7 @@
 		C4F213B61DEA532900EF5214 /* KanjiRyokucha */ = {
 			isa = PBXGroup;
 			children = (
+				C409428A24CFA02000E41F27 /* GoogleService-Info.plist */,
 				C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */,
 				C4C0AE361EA1739B006CF493 /* Utils */,
 				C4FFBEED1E060E670061CB18 /* Resources */,
@@ -814,6 +819,7 @@
 				C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */,
 				C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */,
 				C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */,
+				C409428C24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
 				C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */,
 				C409A1DD1E86011E006EEE77 /* readings.csv in Resources */,
 				C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */,
@@ -843,6 +849,7 @@
 				C44F75721E8F213300E00AD9 /* SettingsSwitchCell.xib in Resources */,
 				C44F75741E8F213300E00AD9 /* FreeReviewViewController.xib in Resources */,
 				C44F75751E8F213300E00AD9 /* LoginViewController.xib in Resources */,
+				C409428D24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
 				C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */,
 				C44F75781E8F213300E00AD9 /* readings.csv in Resources */,
 				C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */,
@@ -879,6 +886,7 @@
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
+				C409428B24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
 				C42BBAB31E13220700361C89 /* PagedReviewViewController.xib in Resources */,
 				C43DCC391E51198B006F2C0C /* readings.csv in Resources */,
 				C43668D91DFB3A810080D768 /* CardFrontView.xib in Resources */,
@@ -956,23 +964,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -999,23 +1013,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha/Pods-KanjiRyokucha-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1047,23 +1067,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRater/SwiftRater.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1396,7 +1422,7 @@
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = "3.4 RC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1641,7 +1667,7 @@
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = "3.4 RC";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1667,7 +1693,7 @@
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = "3.4 RC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

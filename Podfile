@@ -7,6 +7,7 @@ def shared_pods
     pod 'PKHUD', '~> 5.3.0'
     pod 'RealmSwift', '~> 4.4.0'
     pod 'SwiftRater', '~> 1.8.0'
+    pod 'Firebase/Analytics'
 end
 
 target 'KanjiRyokucha' do

@@ -12,6 +12,7 @@ import SwiftRater
 import ReactiveSwift
 import PKHUD
 import AVKit
+import Firebase
 
 struct TabModel {
     let title: String
@@ -117,6 +118,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = self
         }
+        
+        FirebaseApp.configure()
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
         try? AVAudioSession.sharedInstance().setActive(true)
