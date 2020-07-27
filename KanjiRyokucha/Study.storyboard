@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17115"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="fXB-jE-SOq">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Fu-aH-bWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="7L8-vv-4f6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wrl-xC-ZDX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -19,7 +20,6 @@
                         <segue destination="aYY-8n-3kT" kind="relationship" relationship="rootViewController" id="DWE-0F-Wfo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Fu-aH-bWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="142" y="-443"/>
         </scene>
@@ -61,23 +61,23 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xVa-8w-Fjb" id="ErS-4q-F42">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrG-qb-0YI">
-                                                    <rect key="frame" x="87" y="18" width="254" height="40"/>
+                                                    <rect key="frame" x="88" y="18" width="252" height="40"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22g-5O-ZOw">
-                                                    <rect key="frame" x="319.5" y="42" width="21.5" height="16"/>
+                                                    <rect key="frame" x="318.5" y="42" width="21.5" height="16"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ov6-Je-dnN">
-                                                    <rect key="frame" x="25" y="13" width="50" height="50"/>
+                                                    <rect key="frame" x="26" y="13" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="1EB-SK-ZpX"/>
                                                         <constraint firstAttribute="height" constant="50" id="EsZ-h5-Dx4"/>
@@ -212,23 +212,10 @@
             </objects>
             <point key="canvasLocation" x="886" y="259"/>
         </scene>
-        <!--Split View Controller-->
-        <scene sceneID="hln-dP-qru">
-            <objects>
-                <splitViewController storyboardIdentifier="studySplit" id="jdB-uJ-6vu" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="7L8-vv-4f6" kind="relationship" relationship="masterViewController" id="Zun-pU-SmD"/>
-                        <segue destination="W4v-nQ-ySV" kind="relationship" relationship="detailViewController" id="hje-NF-JIQ"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bEy-yZ-Onr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-980" y="-171"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="MCM-q2-cl8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W4v-nQ-ySV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="studyDetailNav" automaticallyAdjustsScrollViewInsets="NO" id="W4v-nQ-ySV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IwH-i6-2se">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -247,7 +234,4 @@
     <resources>
         <image name="kanjibkg.png" width="500" height="500"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="dSo-jb-Oew"/>
-    </inferredMetricsTieBreakers>
 </document>

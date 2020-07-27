@@ -45,9 +45,13 @@ struct AppController {
     }
     
     func start(username: String) {
-        let studySplitVC = studyStoryboard.instantiateViewController(withIdentifier: "studySplit") as! UISplitViewController
-        let studyNav = studySplitVC.viewControllers[0] as! UINavigationController
-        let studyMaster = studyNav.viewControllers[0] as! StudyViewController
+        let studyMaster = studyStoryboard.instantiateViewController(withIdentifier: "studyMaster") as! StudyViewController
+        let studyDetailNav = studyStoryboard.instantiateViewController(withIdentifier: "studyDetailNav") as! UINavigationController
+        let studyNav = UINavigationController(rootViewController: studyMaster)
+        //        let detailNav = studyDetail.navigationController!
+        
+        let studySplitVC = UISplitViewController()
+        studySplitVC.viewControllers = [studyNav, studyDetailNav]
 
         srsViewController.engine = reviewEngine
         studyEngine.reviewEngine = reviewEngine
@@ -95,7 +99,7 @@ struct AppController {
 
 class SplitDelegate: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        return true
+        true
     }
 }
 
