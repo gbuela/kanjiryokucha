@@ -216,10 +216,10 @@ class ReviewViewController: UIViewController {
         }
         performanceEmoji.reactive.text <~ score.map(ReviewViewController.emojiRatingFromScore)
         
-        let pendingCount = reviewEngine.toSubmitCount.zip(with: reviewEngine.toReviewCount).map { (a,b) -> Int in
-            return a + b
-        }
-        cancelButton.reactive.title(for: .normal) <~ pendingCount.map(ReviewViewController.cancelButtonFromPending)
+        let pendingCount = reviewEngine.toSubmitCount.zip(with: reviewEngine.toReviewCount).map({ (a,b) -> Int in
+            a + b
+        })
+        cancelButton.reactive.title(for: .normal) <~ pendingCount.map { ReviewViewController.cancelButtonFromPending($0) }
         
         if let srsEngine = reviewEngine as? SRSEngineProtocol {
             submitStarter = SubmitStarter(control: submitButton,

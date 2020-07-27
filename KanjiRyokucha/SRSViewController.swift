@@ -502,11 +502,10 @@ class SRSReviewEngine: SRSEngineProtocol {
 
     private func shouldEnableStartSignal(countProperty: MutableProperty<Int>,
                                          reviewType: ReviewType) -> Signal<Bool, Never> {
-        
         let result = Property.combineLatest(countProperty, currentReviewType)
-            .map { (count:Int, inProgressReview:ReviewType?) -> Bool in
+            .map({ (count:Int, inProgressReview:ReviewType?) -> Bool in
                 return inProgressReview == nil && count > 0
-        }
+        })
         return result.signal
     }
 
