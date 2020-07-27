@@ -53,20 +53,5 @@ struct CardFetchRequest: KoohiiRequest {
         let ids = cardIds.prefix(cardFetchLimit).map { String($0) }
         let items = ids.joined(separator: ",")
         qsParams = [ "items": items ]
-        
-        if Global.isGuest() {
-            let guestCards = cardIds.map { id -> String in
-                let card = GuestData.cardModel(forId: id)
-                return "{\"keyword\":\"\(card.keyword)\",\"strokecount\":\(card.strokeCount), \"framenum\":\(card.frameNum),\"id\":\(id)}"
-            }
-            
-            let guestCardsString = guestCards.joined(separator: ",")
-            
-            self.guestResult = "{\"stat\":\"ok\",\"card_data\":[\(guestCardsString)],\"dbg_generation_time\":\"562\"}"
-        } else {
-            self.guestResult = nil
-        }
     }
-    
-    let guestResult: String?
 }

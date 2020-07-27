@@ -33,17 +33,4 @@ struct SyncStudyRequest: KoohiiRequest {
     var jsonObject: SyncRoot? {
         return SyncRoot(learned: learned, notLearned: notLearned)
     }
-    
-    var guestResult: String? {
-        if Global.isGuest() { updateGuestData() }
-        return "{ \"putLearned\": \(learned.description), \"putNotLearned\": \(notLearned.description)}"
-    }
-    
-    private func updateGuestData() {
-        GuestData.failedIds.append(contentsOf: learned)
-        GuestData.studyIds = GuestData.studyIds.removing(learned)
-        
-        GuestData.studyIds.append(contentsOf: notLearned)
-        GuestData.failedIds = GuestData.failedIds.removing(notLearned)
-    }
 }

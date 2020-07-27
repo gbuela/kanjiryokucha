@@ -11,13 +11,11 @@ import PKHUD
 import ReactiveSwift
 import SafariServices
 
-let guestUsername = "@"
-
 let usernameKey = "username"
 let passwordKey = "passwordKey"
 let httpStatusMovedTemp = 302
 
-class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeGuestDelegate, BackendAccess {
+class CredentialsViewController: UIViewController, UITextFieldDelegate, BackendAccess {
     
     private class func notEmpty(string: String?) -> Bool {
         return string != nil && string != ""
@@ -30,7 +28,6 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
     @IBOutlet weak var storeSwitch: UISwitch!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
-    @IBOutlet weak var guestButton: UIButton!
     
     var enteredCredentialsCallback: ((String, String) -> ())?
     
@@ -50,7 +47,6 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
         if #available(iOS 10.0, *) {
             loginButton.titleLabel?.adjustsFontForContentSizeCategory = true
             signupButton.titleLabel?.adjustsFontForContentSizeCategory = true
-            guestButton.titleLabel?.adjustsFontForContentSizeCategory = true
         }
 
         wireUp()
@@ -118,18 +114,5 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, WelcomeG
             safariVC.view.tintColor = .ryokuchaDark
         }
         present(safariVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func guestPressed() {
-        let welcomeVC = WelcomeGuestViewController()
-        welcomeVC.delegate = self
-        present(welcomeVC, animated: true, completion: nil)
-    }
-    
-    func enteringAsGuest() {
-        GuestData.reset()
-        dismiss(animated: true) { [weak self] in
-            self?.enteredCredentialsCallback?(guestUsername, "")
-        }
     }
 }

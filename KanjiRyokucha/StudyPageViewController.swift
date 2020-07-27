@@ -81,14 +81,8 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         
         activityIndicator.isHidden = true
         
-        if let _ = urlToOpen,
-            Global.isGuest() {
-            showAlert("Sorry!\nStudy page is not avilable in Guest mode")
-        }
-        
         if let urlToOpen = urlToOpen,
-            let url = URL(string: urlToOpen),
-            !Global.isGuest() {
+            let url = URL(string: urlToOpen) {
             var request = URLRequest(url: url)
 
             if let latestCookies = Response.latestCookies {

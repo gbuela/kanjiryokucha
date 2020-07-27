@@ -21,12 +21,4 @@ struct AccountInfoRequest: KoohiiRequest {
     let sendApiKey = true
     let method = RequestMethod.get
     let contentType = ContentType.form
-    
-    let guestResult: String? = {
-        if Global.isGuest() {
-            return "{\"stat\":\"ok\",\"username\":\"guest\"}"
-        } else {
-            return nil
-        }
-    }()
 }

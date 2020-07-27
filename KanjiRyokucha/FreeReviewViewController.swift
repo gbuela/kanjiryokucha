@@ -157,14 +157,8 @@ class FreeReviewViewController: UIViewController, ReviewDelegate {
                                         action: viewModel.startAction!,
                                         input: false)
         
-        if Global.isGuest() {
-            startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
-                self?.showAlert("Sorry!\nFree reviews not avilable in Guest mode")
-            }
-        } else {
-            startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
-                self?.view.endEditing(true)
-            }
+        startButton.reactive.controlEvents(.touchDown).uiReact { [weak self] response in
+            self?.view.endEditing(true)
         }
         
         viewModel.startAction.errors.uiReact { [weak self] error in

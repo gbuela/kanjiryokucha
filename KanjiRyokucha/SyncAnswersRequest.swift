@@ -81,30 +81,9 @@ struct SyncAnswersRequest: KoohiiRequest {
     
     init(answers: [CardSyncModel]) {
         self.answers = answers
-        
-        if Global.isGuest() {
-            guestSync()
-        }
     }
     
     var jsonObject: SyncAnswersRoot? {
         return SyncAnswersRoot(answers: answers)
-    }
-    
-    var guestResult: String? {
-        let allIds = answers.map {$0.cardId}
-        return "{ \"put\": \(allIds) }"
-    }
-    
-    func guestSync() {
-        let nos = answers.filter({ $0.answer == .no }).map{$0.cardId}
-        let yeses = answers.filter({ $0.answer == .yes || $0.answer == .easy ||  $0.answer == .hard }).map{$0.cardId}
-        let dels = answers.filter({ $0.answer == .delete }).map{$0.cardId}
-        
-        let answered = nos + yeses + dels
-        
-        GuestData.dueIds = GuestData.dueIds.removing(answered)
-        GuestData.failedIds = GuestData.failedIds.removing(answered)
-        GuestData.studyIds = nos
     }
 }

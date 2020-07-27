@@ -47,10 +47,6 @@ class Global : Object {
     static let requestDelaySeconds = 1.0
     static var latestRequestDate: Date?
     
-    static func isGuest() -> Bool {
-        return username == guestUsername
-    }
-    
     @objc dynamic var refreshNeeded = false
     let studyPhaseProperty = MutableProperty(true)
     

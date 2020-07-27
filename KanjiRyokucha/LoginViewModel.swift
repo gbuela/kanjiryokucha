@@ -44,11 +44,6 @@ struct LoginViewModel : BackendAccess {
     func attemptLogin(withUsername username: String, password: String) {
         state.value = .loggingIn
         
-        guard username != guestUsername else {
-            loginHandler(success: true, username: username)
-            return
-        }
-        
         callLogin(username: username, password: password, handler: loginHandler)
     }
     
@@ -70,13 +65,6 @@ struct LoginViewModel : BackendAccess {
         
         Realm.Configuration.defaultConfiguration = config
         Global.username = username
-        
-        if Global.isGuest() {
-            let realm = try! Realm()
-            try! realm.write {
-                realm.deleteAll()
-            }
-        }
     }
     
     private func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {

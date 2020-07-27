@@ -217,8 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fromBackground = false
             log("Coming from bkg")
             
-            if !Global.isGuest(),
-                let latest = Global.latestRequestDate,
+            if let latest = Global.latestRequestDate,
                 let controller = appController {
                 let elapsed = Int(Date().timeIntervalSince(latest))
                 log("Elapsed since last rq: \(elapsed)")
@@ -243,12 +242,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var bkgFetcher: BackgroundFetcher?
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        guard !Global.isGuest() else {
-            log("Guest mode / NODATA")
-            completionHandler(.noData)
-            return
-        }
         
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()

@@ -35,6 +35,4 @@ struct LoginRequest: KoohiiRequest {
                  "Origin" : backendHost,
                  "Referer" : backendHost + apiMethod ]
     }
-    
-    let guestResult: String? = nil
 }

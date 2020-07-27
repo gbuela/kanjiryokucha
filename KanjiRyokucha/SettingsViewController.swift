@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         headerView.backgroundColor = .background
         
-        usernameLabel.text = username == guestUsername ? "guest user" : username
+        usernameLabel.text = username
         
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
@@ -96,7 +96,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         Database.write(object: global) {
             global.useStudyPhase = isOn
             global.studyPhaseProperty.value = isOn
-            GuestData.useStudyPhase = isOn
         }
     }
     private func switchedNotifications2(isOn: Bool) {

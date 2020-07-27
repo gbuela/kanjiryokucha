@@ -189,7 +189,6 @@
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
-		C48A85E41EB5646D00778445 /* Kanji_Ryokucha_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */; };
 		C48A85EC1EB5687F00778445 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */; };
 		C48A861E1EBECEAC00778445 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A861C1EBECEAB00778445 /* DrawingViewController.swift */; };
 		C48A861F1EBECEAC00778445 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A861C1EBECEAB00778445 /* DrawingViewController.swift */; };
@@ -210,15 +209,6 @@
 		C4973DCD1F46713C007088B9 /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */; };
 		C4A593651E79C99A0098CB99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A593631E79C99A0098CB99 /* LoginViewController.swift */; };
 		C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4A593641E79C99A0098CB99 /* LoginViewController.xib */; };
-		C4AC9B471E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */; };
-		C4AC9B481E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */; };
-		C4AC9B491E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */; };
-		C4AC9B4A1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */; };
-		C4AC9B4B1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */; };
-		C4AC9B4C1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */; };
-		C4AC9B4E1E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
-		C4AC9B4F1E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
-		C4AC9B501E9DBA3900A87088 /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */; };
 		C4AC9B521EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4AC9B531EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
 		C4AC9B541EA0470B00A87088 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */; };
@@ -345,7 +335,6 @@
 		C4758A061DF63F8D0019AF57 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoRequest.swift; sourceTree = "<group>"; };
 		C48A85E11EB5646D00778445 /* Kanji Ryokucha UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kanji Ryokucha UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kanji_Ryokucha_UITests.swift; sourceTree = "<group>"; };
 		C48A85E51EB5646D00778445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		C48A861C1EBECEAB00778445 /* DrawingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewController.swift; sourceTree = "<group>"; };
@@ -356,9 +345,6 @@
 		C4973DCA1F46713C007088B9 /* BackgroundFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundFetcher.swift; sourceTree = "<group>"; };
 		C4A593631E79C99A0098CB99 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4A593641E79C99A0098CB99 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeGuestViewController.swift; sourceTree = "<group>"; };
-		C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeGuestViewController.xib; sourceTree = "<group>"; };
-		C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
 		C4AC9B511EA0470B00A87088 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		C4BDE92F1DEA5E2F00D25325 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C4C0AE321EA17128006CF493 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -513,7 +499,6 @@
 				C43668BD1DF9C95F0080D768 /* ReviewEntry.swift */,
 				C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */,
 				C4603DF21E6B27C800A56C9A /* Database.swift */,
-				C4AC9B4D1E9DBA3900A87088 /* GuestData.swift */,
 				C4E76F9E1EEDC9A200A49959 /* RealmMigration.swift */,
 			);
 			name = Database;
@@ -523,7 +508,6 @@
 			isa = PBXGroup;
 			children = (
 				C48A85EB1EB5687F00778445 /* SnapshotHelper.swift */,
-				C48A85E31EB5646D00778445 /* Kanji_Ryokucha_UITests.swift */,
 				C48A85E51EB5646D00778445 /* Info.plist */,
 			);
 			path = "Kanji Ryokucha UITests";
@@ -625,8 +609,6 @@
 				C458FE701E7F288A00A34FD9 /* WebViewController.swift */,
 				C458FE711E7F288B00A34FD9 /* WebViewController.xib */,
 				C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */,
-				C4AC9B451E9B078400A87088 /* WelcomeGuestViewController.swift */,
-				C4AC9B461E9B078400A87088 /* WelcomeGuestViewController.xib */,
 				C4C0AE411EA98E6E006CF493 /* Study.storyboard */,
 				C48A861C1EBECEAB00778445 /* DrawingViewController.swift */,
 				C48A861D1EBECEAB00778445 /* DrawingViewController.xib */,
@@ -815,7 +797,6 @@
 			files = (
 				C409A1CB1E86011E006EEE77 /* LaunchScreen.storyboard in Resources */,
 				C409A1CC1E86011E006EEE77 /* CardBackView.xib in Resources */,
-				C4AC9B4B1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */,
 				C48E4B561ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86221EBECEAC00778445 /* DrawingViewController.xib in Resources */,
 				C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */,
@@ -845,7 +826,6 @@
 			files = (
 				C44F75641E8F213300E00AD9 /* LaunchScreen.storyboard in Resources */,
 				C44F75651E8F213300E00AD9 /* CardBackView.xib in Resources */,
-				C4AC9B4C1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */,
 				C48E4B571ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86231EBECEAC00778445 /* DrawingViewController.xib in Resources */,
 				C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */,
@@ -882,7 +862,6 @@
 			files = (
 				C4F213C21DEA532900EF5214 /* LaunchScreen.storyboard in Resources */,
 				C42BBAAB1E10484100361C89 /* CardBackView.xib in Resources */,
-				C4AC9B4A1E9B078400A87088 /* WelcomeGuestViewController.xib in Resources */,
 				C48E4B551ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86211EBECEAC00778445 /* DrawingViewController.xib in Resources */,
 				C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */,
@@ -1098,11 +1077,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4AC9B4F1E9DBA3900A87088 /* GuestData.swift in Sources */,
 				C409A19D1E86011E006EEE77 /* Database.swift in Sources */,
 				C409A19E1E86011E006EEE77 /* Colors.swift in Sources */,
 				C48A86261EBED47600778445 /* UIViewControllerContainment.swift in Sources */,
-				C4AC9B481E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */,
 				C44F752C1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */,
 				C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */,
 				C409A1A01E86011E006EEE77 /* ReviewViewController.swift in Sources */,
@@ -1163,11 +1140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4AC9B501E9DBA3900A87088 /* GuestData.swift in Sources */,
 				C44F75321E8F213300E00AD9 /* Database.swift in Sources */,
 				C44F75331E8F213300E00AD9 /* Colors.swift in Sources */,
 				C48A86271EBED47600778445 /* UIViewControllerContainment.swift in Sources */,
-				C4AC9B491E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */,
 				C44F75341E8F213300E00AD9 /* StudyViewController.swift in Sources */,
 				C44F75351E8F213300E00AD9 /* AppDelegate.swift in Sources */,
 				C44F75361E8F213300E00AD9 /* ReviewViewController.swift in Sources */,
@@ -1228,7 +1203,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C48A85E41EB5646D00778445 /* Kanji_Ryokucha_UITests.swift in Sources */,
 				C48A85EC1EB5687F00778445 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1237,11 +1211,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4AC9B4E1E9DBA3900A87088 /* GuestData.swift in Sources */,
 				C4603DF31E6B27C800A56C9A /* Database.swift in Sources */,
 				C4758A041DF395F00019AF57 /* Colors.swift in Sources */,
 				C48A86251EBED47600778445 /* UIViewControllerContainment.swift in Sources */,
-				C4AC9B471E9B078400A87088 /* WelcomeGuestViewController.swift in Sources */,
 				C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */,
 				C4F213B81DEA532900EF5214 /* AppDelegate.swift in Sources */,
 				C43DCC2A1E4D4828006F2C0C /* ReviewViewController.swift in Sources */,

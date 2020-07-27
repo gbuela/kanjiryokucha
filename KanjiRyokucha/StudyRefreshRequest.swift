@@ -26,9 +26,4 @@ struct StudyRefreshRequest: KoohiiRequest {
     let sendApiKey = true
     let method = RequestMethod.get
     let contentType = ContentType.form
-    
-    var guestResult: String? {
-        let allFailed = GuestData.failedIds + GuestData.studyIds
-        return "{\"items\": \(allFailed.description), \"learnedItems\": \(GuestData.failedIds)}"
-    }
 }

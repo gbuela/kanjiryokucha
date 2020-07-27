@@ -61,29 +61,12 @@ extension BackendAccess {
 
 protocol KoohiiRequest : Request, BackendAccess {
     var endpoint: String { get }
-    var guestResult: String? { get }
 }
 
 extension KoohiiRequest {
     
     var endpoint: String {
         return backendHost + "/api/v1/"
-    }
-    
-    func guestProducer() -> SignalProducer<Response, FetchError>? {
-        guard let result = guestResult,
-            let data = result.data(using: .utf8) else { return nil }
-        let model = self.modelFrom(data: data)
-        let resp = Response(statusCode: 200,
-                            string: result,
-                            data: data,
-                            model: model,
-                            headers: headers)
-
-        return SignalProducer { sink, disposable in
-            sink.send(value: resp)
-            sink.sendCompleted()
-        }
     }
 }
 
@@ -105,11 +88,6 @@ extension KoohiiRequest {
     }
     
     func requestProducer() -> SignalProducer<Response, FetchError>? {
-        
-        guard !Global.isGuest() else {
-            return guestProducer()
-        }
-        
         guard let rq = self.urlRequest else {
             return nil
         }
