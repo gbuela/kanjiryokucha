@@ -1341,6 +1341,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1358,6 +1359,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1442,6 +1444,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1458,6 +1461,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1504,6 +1508,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1521,6 +1526,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
