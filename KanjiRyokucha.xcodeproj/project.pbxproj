@@ -15,9 +15,6 @@
 		C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
-		C409428B24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
-		C409428C24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
-		C409428D24CFA02000E41F27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C409428A24CFA02000E41F27 /* GoogleService-Info.plist */; };
 		C409A19D1E86011E006EEE77 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C409A19E1E86011E006EEE77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F213B71DEA532900EF5214 /* AppDelegate.swift */; };
@@ -178,6 +175,9 @@
 		C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C42BBAB11E13220700361C89 /* PagedReviewViewController.xib */; };
 		C44F75781E8F213300E00AD9 /* readings.csv in Resources */ = {isa = PBXBuildFile; fileRef = C43DCC381E51198B006F2C0C /* readings.csv */; };
 		C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43668D81DFB3A810080D768 /* CardFrontView.xib */; };
+		C4502F4C26399CE1003D25AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4502F4B26399CE1003D25AF /* GoogleService-Info.plist */; };
+		C4502F4D26399CE1003D25AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4502F4B26399CE1003D25AF /* GoogleService-Info.plist */; };
+		C4502F4E26399CE1003D25AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4502F4B26399CE1003D25AF /* GoogleService-Info.plist */; };
 		C458FE6E1E7F1B9000A34FD9 /* SettingsInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */; };
 		C458FE6F1E7F1B9000A34FD9 /* SettingsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */; };
 		C458FE721E7F288B00A34FD9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C458FE701E7F288A00A34FD9 /* WebViewController.swift */; };
@@ -284,7 +284,6 @@
 		9FB3B08744D80BAD612D8535 /* Pods-KanjiRyokucha-DEV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-DEV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-DEV/Pods-KanjiRyokucha-DEV.debug.xcconfig"; sourceTree = "<group>"; };
 		B31B883FDB21D3CF5937BBFE /* Pods-KanjiRyokucha-Staging.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KanjiRyokucha-Staging.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-KanjiRyokucha-Staging/Pods-KanjiRyokucha-Staging.adhoc.xcconfig"; sourceTree = "<group>"; };
 		C405FC4A1F19A71800566CC2 /* whatsnew.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = whatsnew.rtf; sourceTree = "<group>"; };
-		C409428A24CFA02000E41F27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
 		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
@@ -326,6 +325,7 @@
 		C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		C44F757F1E8F213300E00AD9 /* KanjiRyokucha-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44F75811E8F218D00E00AD9 /* Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Staging-Info.plist"; sourceTree = "<group>"; };
+		C4502F4B26399CE1003D25AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C458FE6C1E7F1B9000A34FD9 /* SettingsInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoCell.swift; sourceTree = "<group>"; };
 		C458FE6D1E7F1B9000A34FD9 /* SettingsInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsInfoCell.xib; sourceTree = "<group>"; };
 		C458FE701E7F288A00A34FD9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -537,6 +537,7 @@
 		C4F213AB1DEA532800EF5214 = {
 			isa = PBXGroup;
 			children = (
+				C4502F4B26399CE1003D25AF /* GoogleService-Info.plist */,
 				C48E4B541ED91A6D00A31A7F /* Settings.bundle */,
 				C4F213B61DEA532900EF5214 /* KanjiRyokucha */,
 				C4F213CB1DEA532A00EF5214 /* KanjiRyokuchaTests */,
@@ -562,7 +563,6 @@
 		C4F213B61DEA532900EF5214 /* KanjiRyokucha */ = {
 			isa = PBXGroup;
 			children = (
-				C409428A24CFA02000E41F27 /* GoogleService-Info.plist */,
 				C4C0AE3D1EA184F7006CF493 /* ApiKeys.swift */,
 				C4C0AE361EA1739B006CF493 /* Utils */,
 				C4FFBEED1E060E670061CB18 /* Resources */,
@@ -819,7 +819,7 @@
 				C409A1D81E86011E006EEE77 /* SettingsSwitchCell.xib in Resources */,
 				C409A1D91E86011E006EEE77 /* FreeReviewViewController.xib in Resources */,
 				C409A1DA1E86011E006EEE77 /* LoginViewController.xib in Resources */,
-				C409428C24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
+				C4502F4D26399CE1003D25AF /* GoogleService-Info.plist in Resources */,
 				C409A1DC1E86011E006EEE77 /* PagedReviewViewController.xib in Resources */,
 				C409A1DD1E86011E006EEE77 /* readings.csv in Resources */,
 				C409A1DE1E86011E006EEE77 /* CardFrontView.xib in Resources */,
@@ -849,7 +849,7 @@
 				C44F75721E8F213300E00AD9 /* SettingsSwitchCell.xib in Resources */,
 				C44F75741E8F213300E00AD9 /* FreeReviewViewController.xib in Resources */,
 				C44F75751E8F213300E00AD9 /* LoginViewController.xib in Resources */,
-				C409428D24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
+				C4502F4E26399CE1003D25AF /* GoogleService-Info.plist in Resources */,
 				C44F75771E8F213300E00AD9 /* PagedReviewViewController.xib in Resources */,
 				C44F75781E8F213300E00AD9 /* readings.csv in Resources */,
 				C44F75791E8F213300E00AD9 /* CardFrontView.xib in Resources */,
@@ -886,7 +886,7 @@
 				C4EF33201E64EF34004F67C4 /* SettingsSwitchCell.xib in Resources */,
 				C43DCC271E4AA431006F2C0C /* FreeReviewViewController.xib in Resources */,
 				C4A593661E79C99A0098CB99 /* LoginViewController.xib in Resources */,
-				C409428B24CFA02000E41F27 /* GoogleService-Info.plist in Resources */,
+				C4502F4C26399CE1003D25AF /* GoogleService-Info.plist in Resources */,
 				C42BBAB31E13220700361C89 /* PagedReviewViewController.xib in Resources */,
 				C43DCC391E51198B006F2C0C /* readings.csv in Resources */,
 				C43668D91DFB3A810080D768 /* CardFrontView.xib in Resources */,
