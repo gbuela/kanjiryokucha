@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -185,10 +185,15 @@
 		C458FE751E7F29B900A34FD9 /* about.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C458FE741E7F29B900A34FD9 /* about.rtf */; };
 		C4603DF11E6B0D9F00A56C9A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF01E6B0D9F00A56C9A /* LoginViewModel.swift */; };
 		C4603DF31E6B27C800A56C9A /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
+		C4735D702771275700F2A927 /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = C4735D6F2771275700F2A927 /* PKHUD */; };
+		C4735D732771280200F2A927 /* SwiftRater in Frameworks */ = {isa = PBXBuildFile; productRef = C4735D722771280200F2A927 /* SwiftRater */; };
+		C4735D7627712A3D00F2A927 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4735D7527712A3D00F2A927 /* RealmSwift */; };
+		C4735D7927712B2E00F2A927 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C4735D7827712B2E00F2A927 /* ReactiveCocoa */; };
 		C47589FD1DF3659C0019AF57 /* SRSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47589FB1DF3659C0019AF57 /* SRSViewController.swift */; };
 		C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C4758A041DF395F00019AF57 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C4758A071DF63F8D0019AF57 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
+		C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; };
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
@@ -408,7 +413,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4735D7627712A3D00F2A927 /* RealmSwift in Frameworks */,
+				C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */,
+				C4735D702771275700F2A927 /* PKHUD in Frameworks */,
 				5A9EC3B51B37CF3904719066 /* Pods_KanjiRyokucha.framework in Frameworks */,
+				C4735D732771280200F2A927 /* SwiftRater in Frameworks */,
+				C4735D7927712B2E00F2A927 /* ReactiveCocoa in Frameworks */,
 				04CF94B89D490710ACB110FD /* Pods_KanjiRyokucha.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -708,6 +718,13 @@
 			dependencies = (
 			);
 			name = KanjiRyokucha;
+			packageProductDependencies = (
+				C48646AA27712603007775FE /* UIColorHexSwift */,
+				C4735D6F2771275700F2A927 /* PKHUD */,
+				C4735D722771280200F2A927 /* SwiftRater */,
+				C4735D7527712A3D00F2A927 /* RealmSwift */,
+				C4735D7827712B2E00F2A927 /* ReactiveCocoa */,
+			);
 			productName = KanjiRyokucha;
 			productReference = C4F213B41DEA532900EF5214 /* KanjiRyokucha.app */;
 			productType = "com.apple.product-type.application";
@@ -745,7 +762,7 @@
 						DevelopmentTeam = UHVS3L828Q;
 					};
 					C44F752F1E8F213300E00AD9 = {
-						DevelopmentTeam = UHVS3L828Q;
+						ProvisioningStyle = Automatic;
 					};
 					C48A85E01EB5646C00778445 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -782,6 +799,13 @@
 				Base,
 			);
 			mainGroup = C4F213AB1DEA532800EF5214;
+			packageReferences = (
+				C48646A927712603007775FE /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */,
+				C4735D6E2771275700F2A927 /* XCRemoteSwiftPackageReference "PKHUD" */,
+				C4735D712771280200F2A927 /* XCRemoteSwiftPackageReference "SwiftRater" */,
+				C4735D7427712A3D00F2A927 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				C4735D7727712B2E00F2A927 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
+			);
 			productRefGroup = C4F213B51DEA532900EF5214 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1340,7 +1364,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
@@ -1358,7 +1385,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1404,7 +1434,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1423,7 +1454,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1443,7 +1477,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1457,13 +1494,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
@@ -1475,7 +1518,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1490,7 +1537,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1504,14 +1555,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1522,13 +1579,19 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1540,7 +1603,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1555,7 +1622,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				INFOPLIST_FILE = "Kanji Ryokucha UITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gbuela.Kanji-Ryokucha-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1652,7 +1723,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1672,7 +1744,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
@@ -1698,7 +1773,10 @@
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1716,7 +1794,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1731,7 +1813,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = KanjiRyokuchaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1803,6 +1889,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4735D6E2771275700F2A927 /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		C4735D712771280200F2A927 /* XCRemoteSwiftPackageReference "SwiftRater" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/takecian/SwiftRater";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C4735D7427712A3D00F2A927 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C4735D7727712B2E00F2A927 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		C48646A927712603007775FE /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yeahdongcn/UIColor-Hex-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4735D6F2771275700F2A927 /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4735D6E2771275700F2A927 /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
+		};
+		C4735D722771280200F2A927 /* SwiftRater */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4735D712771280200F2A927 /* XCRemoteSwiftPackageReference "SwiftRater" */;
+			productName = SwiftRater;
+		};
+		C4735D7527712A3D00F2A927 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4735D7427712A3D00F2A927 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		C4735D7827712B2E00F2A927 /* ReactiveCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4735D7727712B2E00F2A927 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
+			productName = ReactiveCocoa;
+		};
+		C48646AA27712603007775FE /* UIColorHexSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C48646A927712603007775FE /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */;
+			productName = UIColorHexSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4F213AC1DEA532900EF5214 /* Project object */;
 }

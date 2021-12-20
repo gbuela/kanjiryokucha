@@ -1,6 +1,6 @@
 {
   "name": "UIColor_Hex_Swift",
-  "version": "5.1.6",
+  "version": "5.1.7",
   "summary": "Convenience method for creating autoreleased color using RGBA hex string.",
   "homepage": "https://github.com/yeahdongcn/UIColor-Hex-Swift",
   "license": {
@@ -11,14 +11,14 @@
     "R0CKSTAR": "yeahdongcn@gmail.com"
   },
   "platforms": {
-    "ios": "8.0",
+    "ios": "12.0",
     "tvos": "9.0",
     "watchos": "2.1",
     "osx": "10.9"
   },
   "source": {
     "git": "https://github.com/yeahdongcn/UIColor-Hex-Swift.git",
-    "tag": "5.1.6"
+    "tag": "5.1.7"
   },
   "source_files": "HEXColor/*.{h,swift}",
   "ios": {

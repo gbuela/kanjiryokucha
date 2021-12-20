@@ -3,11 +3,6 @@ platform :ios, ‘11.4’
 # Pods for KanjiRyokucha
 def shared_pods
     pod "ReactiveCocoa", '~> 10.2.0'
-    pod 'UIColor_Hex_Swift', :git => 'https://github.com/yeahdongcn/UIColor-Hex-Swift', :branch => 'master'
-    pod 'PKHUD', '~> 5.3.0'
-    pod 'RealmSwift', '~> 4.4.0'
-    pod 'SwiftRater', '~> 1.8.0'
-    pod 'Firebase/Analytics'
 end
 
 target 'KanjiRyokucha' do
