@@ -6,6 +6,7 @@
 //  Copyright © 2016 German Buela. All rights reserved.
 //
 
+import Foundation
 import RealmSwift
 
 enum CardAnswer: Int {

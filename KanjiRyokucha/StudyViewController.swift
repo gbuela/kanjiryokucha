@@ -292,14 +292,10 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         emptyStudyCell = createEmptyCell(text: "no kanji to learn")
         
-        if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
-        }
-        
         wireUp()
         engine.triggerStudyEntries()
         
-        splitViewController?.preferredDisplayMode = .allVisible
+        splitViewController?.preferredDisplayMode = .oneBesideSecondary
         splitViewController?.delegate = self
     }
 
@@ -399,7 +395,6 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         vc.preferredContentSize = CGSize(width: 0.0, height: 400.0)
         vc.isPreviewing.value = true
-        previewingContext.sourceRect = cell.frame
         return vc
     }
     

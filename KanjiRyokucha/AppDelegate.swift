@@ -12,7 +12,6 @@ import SwiftRater
 import ReactiveSwift
 import PKHUD
 import AVKit
-import Firebase
 
 struct TabModel {
     let title: String
@@ -59,7 +58,7 @@ struct AppController {
         studyMaster.engine = studyEngine
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            studySplitVC.preferredDisplayMode = .allVisible
+            studySplitVC.preferredDisplayMode = .oneBesideSecondary
         } else {
             studySplitVC.delegate = splitDelegate
         }
@@ -118,8 +117,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().delegate = self
         }
-        
-        FirebaseApp.configure()
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
         try? AVAudioSession.sharedInstance().setActive(true)
@@ -220,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fromBackground = false
             log("Coming from bkg")
             
-            if let latest = Global.latestRequestDate,
+            if let latest: Date = Global.latestRequestDate,
                 let controller = appController {
                 let elapsed = Int(Date().timeIntervalSince(latest))
                 log("Elapsed since last rq: \(elapsed)")

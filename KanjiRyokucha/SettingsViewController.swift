@@ -123,9 +123,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                             message: "To enable this feature you need to grant notifications permision on your device's settings page for Kanji Ryokucha",
                         yesOption: "Get me there",
                         noOption: "Not now") { _ in
-                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     }
                     self.revertEnablingNotifications()
+                case .provisional,  .ephemeral:
+                    break
+                    
                 @unknown default:
                     // FIXME: ver que onda
                     break

@@ -18,7 +18,7 @@ struct ReviewAnswer {
     let answer: CardAnswer
 }
 
-protocol ReviewDelegate: class {
+protocol ReviewDelegate: AnyObject {
     func userDidAnswer(reviewAnswer: ReviewAnswer)
     func userFinishedReview()
 }
