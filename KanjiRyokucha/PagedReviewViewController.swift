@@ -420,12 +420,10 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
             guard let url = URL(string: urlString)
                 else { return }
             let safariVC = SFSafariViewController(url: url)
-            if #available(iOS 10.0, *) {
-                safariVC.preferredBarTintColor = .ryokuchaDark
-                safariVC.preferredControlTintColor = .white
-            } else {
-                safariVC.view.tintColor = .ryokuchaDark
-            }
+
+            safariVC.preferredBarTintColor = .ryokuchaDark
+            safariVC.preferredControlTintColor = .white
+
             sself.present(safariVC, animated: true, completion: nil)
         })
     }

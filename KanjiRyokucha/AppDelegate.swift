@@ -12,6 +12,7 @@ import SwiftRater
 import ReactiveSwift
 import PKHUD
 import AVKit
+import BackgroundTasks
 
 struct TabModel {
     let title: String
@@ -103,20 +104,22 @@ class SplitDelegate: UISplitViewControllerDelegate {
     }
 }
 
+let bgTaskIdentifier = "com.gbuela.KanjiRyokucha.bg"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var appController: AppController?
     var fromBackground: Bool = false
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: bgTaskIdentifier, using: nil) { task in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
         }
+        
+        UNUserNotificationCenter.current().delegate = self
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
         try? AVAudioSession.sharedInstance().setActive(true)
@@ -153,18 +156,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barTintColor = .ryokuchaDark
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
-
-        if #available(iOS 10, *) {
-            UITabBarItem.appearance().badgeColor = .ryokuchaLighter
-            let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-            UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
-        }
+        
+        UITabBarItem.appearance().badgeColor = .ryokuchaLighter
+        let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
         
         subscribeNotifications()
         
         startAutologin()
         
         return true
+    }
+    
+    private func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: bgTaskIdentifier)
+        
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 5 * 60) // Refresh after 5 minutes.
+        
+        try? BGTaskScheduler.shared.submit(request)
     }
     
     func startAutologin() {
@@ -204,6 +213,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        scheduleAppRefresh()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -240,8 +251,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var bkgTask: BackgroundTask?
     var bkgFetcher: BackgroundFetcher?
-
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+    private func handleAppRefresh(task: BGAppRefreshTask) {
+        scheduleAppRefresh() // schedules next refresh while the app remains in bkg
         
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()
@@ -251,11 +263,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch fetcherResult {
             case .failure, .notChecked:
                 log("NODATA")
-                completionHandler(.noData)
+                task.setTaskCompleted(success: false)
             case .success(let oldCount, let newCount):
                 self?.resolveStatus(oldCount: oldCount,
                                     newCount: newCount,
-                                    completionHandler: completionHandler)
+                                    completionHandler: { fetchResult in
+                    task.setTaskCompleted(success: fetchResult == .newData)
+                })
             }
             
             self?.bkgTask?.end()
@@ -285,8 +299,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func notifyNewDueCount(count: Int) {
-        guard #available(iOS 10.0, *) else { return }
-
         let message: String
         if Global.username != "" {
             message = "\(Global.username.capitalized), you have \(count) due cards to review"
@@ -297,8 +309,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func notify(message: String, badgeCount: NSNumber?) {
-        guard #available(iOS 10.0, *) else { return }
-
         let content = UNMutableNotificationContent()
         content.body = message
         content.sound = UNNotificationSound.default

@@ -44,10 +44,8 @@ class CredentialsViewController: UIViewController, UITextFieldDelegate, BackendA
         
         loginButton.isEnabled = false
         
-        if #available(iOS 10.0, *) {
-            loginButton.titleLabel?.adjustsFontForContentSizeCategory = true
-            signupButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        }
+        loginButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        signupButton.titleLabel?.adjustsFontForContentSizeCategory = true
 
         wireUp()
     }

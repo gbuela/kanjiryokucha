@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C402B4CA2774D0EE007745A9 /* UIColorHexSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
@@ -185,7 +186,7 @@
 		C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C4758A041DF395F00019AF57 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C4758A071DF63F8D0019AF57 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
-		C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; };
+		C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
@@ -266,6 +267,20 @@
 			remoteInfo = KanjiRyokucha;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C402B4CB2774D0EF007745A9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C402B4CA2774D0EE007745A9 /* UIColorHexSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C405FC4A1F19A71800566CC2 /* whatsnew.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = whatsnew.rtf; sourceTree = "<group>"; };
@@ -650,6 +665,7 @@
 				C4F213B01DEA532900EF5214 /* Sources */,
 				C4F213B11DEA532900EF5214 /* Frameworks */,
 				C4F213B21DEA532900EF5214 /* Resources */,
+				C402B4CB2774D0EF007745A9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

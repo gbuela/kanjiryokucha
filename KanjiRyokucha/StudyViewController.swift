@@ -315,9 +315,7 @@ class StudyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        if #available(iOS 10.0, *) {
-            submitButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        }
+        submitButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         submitLabel.reactive.text <~ engine.unsyncedEntries.map { "\($0.count)" }
         

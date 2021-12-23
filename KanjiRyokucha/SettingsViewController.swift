@@ -49,11 +49,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when the due count has changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
         
-        if #available(iOS 10.0, *) {
-        } else {
-            notifCell.uiswitch.isEnabled = false
-        }
-        
         cells = [
             createSeparatorCell(),
             createSwitchCell(title: "Animate cards", subtitle: "Use animations when reviewing cards.", state: global.useAnimations, handler: { [weak self] in self?.switchedAnimations(isOn: $0) }),
@@ -75,8 +70,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(animated)
         
         // If notifications were un-granted, turn the feature off
-        if global.useNotifications,
-            #available(iOS 10.0, *) {
+        if global.useNotifications {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { (settings) in
                 if settings.authorizationStatus == .denied {
@@ -102,8 +96,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         self.finishEnablingNotifications(isOn)
     }
     private func switchedNotifications(isOn: Bool) {
-        guard #available(iOS 10.0, *) else { return }
-        
         if isOn {
             let center = UNUserNotificationCenter.current()
             center.getNotificationSettings { (settings) in
