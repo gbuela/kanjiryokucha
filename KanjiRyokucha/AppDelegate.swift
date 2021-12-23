@@ -18,6 +18,7 @@ struct TabModel {
     let title: String
     let imageName: String
     let viewController: UIViewController
+    let tag: Int
 }
 
 let sessionExpiredNotification = "sessionExpiredNotification"
@@ -71,19 +72,26 @@ struct AppController {
         reviewEngine.wireUp()
 
         let tabs: [TabModel] = [
-            TabModel(title: "Review", imageName: "tabreview", viewController: srsViewController),
-            TabModel(title: "Study", imageName: "tabstudy", viewController: studySplitVC),
-            TabModel(title: "Free review", imageName: "tabfree", viewController: FreeReviewViewController()),
-            TabModel(title: "Settings", imageName: "tabsettings", viewController: settingsNav)
+            TabModel(title: "Review", imageName: "square.stack", viewController: srsViewController, tag: 0),
+            TabModel(title: "Study", imageName: "eyeglasses", viewController: studySplitVC, tag: 1),
+            TabModel(title: "Free review", imageName: "square.stack", viewController: FreeReviewViewController(), tag: 2),
+            TabModel(title: "Settings", imageName: "gear", viewController: settingsNav, tag: 3)
         ]
 
         tabBarController.viewControllers = tabs.map { $0.viewController }
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
+
         window.rootViewController = tabBarController
         
         for tab in tabs {
             tab.viewController.tabBarItem = UITabBarItem(title: tab.title,
-                                                         image: UIImage(named:tab.imageName)?.withRenderingMode(.alwaysOriginal),
-                                                         selectedImage: UIImage(named:"sel-" + tab.imageName))
+                                                         image: UIImage(systemName: tab.imageName),
+                                                         tag: tab.tag)
         }
         
         window.makeKeyAndVisible()
@@ -152,15 +160,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().barTintColor = .ryokuchaDark
         UIToolbar.appearance().backgroundColor = .ryokuchaDark
         
-        UITabBar.appearance().tintColor = .white
-        UITabBar.appearance().barTintColor = .ryokuchaDark
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
-        
-        UITabBarItem.appearance().badgeColor = .ryokuchaLighter
-        let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
-        
+        UITabBar.appearance().tintColor = .label
+
         subscribeNotifications()
         
         startAutologin()
