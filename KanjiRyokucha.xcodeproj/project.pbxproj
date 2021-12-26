@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C402B4CA2774D0EE007745A9 /* UIColorHexSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
-		C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
-		C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C405FC4A1F19A71800566CC2 /* whatsnew.rtf */; };
 		C409A19D1E86011E006EEE77 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C409A19E1E86011E006EEE77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F213B71DEA532900EF5214 /* AppDelegate.swift */; };
@@ -283,7 +280,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C405FC4A1F19A71800566CC2 /* whatsnew.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = whatsnew.rtf; sourceTree = "<group>"; };
 		C409A1E41E86011E006EEE77 /* KanjiRyokucha-DEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KanjiRyokucha-DEV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C409A1E61E860320006EEE77 /* DEV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEV-Info.plist"; sourceTree = "<group>"; };
 		C409A1F01E870B06006EEE77 /* StudyRefreshRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyRefreshRequest.swift; sourceTree = "<group>"; };
@@ -598,7 +594,6 @@
 			children = (
 				C43DCC381E51198B006F2C0C /* readings.csv */,
 				C458FE741E7F29B900A34FD9 /* about.rtf */,
-				C405FC4A1F19A71800566CC2 /* whatsnew.rtf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -780,7 +775,6 @@
 				C409A1CC1E86011E006EEE77 /* CardBackView.xib in Resources */,
 				C48E4B561ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86221EBECEAC00778445 /* DrawingViewController.xib in Resources */,
-				C405FC4C1F19A71800566CC2 /* whatsnew.rtf in Resources */,
 				C409A1CD1E86011E006EEE77 /* about.rtf in Resources */,
 				C409A1CE1E86011E006EEE77 /* ReviewViewController.xib in Resources */,
 				C409A1CF1E86011E006EEE77 /* EmptyStudyCell.xib in Resources */,
@@ -809,7 +803,6 @@
 				C44F75651E8F213300E00AD9 /* CardBackView.xib in Resources */,
 				C48E4B571ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86231EBECEAC00778445 /* DrawingViewController.xib in Resources */,
-				C405FC4D1F19A71800566CC2 /* whatsnew.rtf in Resources */,
 				C44F75661E8F213300E00AD9 /* about.rtf in Resources */,
 				C44F75671E8F213300E00AD9 /* ReviewViewController.xib in Resources */,
 				C44F75681E8F213300E00AD9 /* EmptyStudyCell.xib in Resources */,
@@ -845,7 +838,6 @@
 				C42BBAAB1E10484100361C89 /* CardBackView.xib in Resources */,
 				C48E4B551ED91A6E00A31A7F /* Settings.bundle in Resources */,
 				C48A86211EBECEAC00778445 /* DrawingViewController.xib in Resources */,
-				C405FC4B1F19A71800566CC2 /* whatsnew.rtf in Resources */,
 				C458FE751E7F29B900A34FD9 /* about.rtf in Resources */,
 				C43DCC2B1E4D4828006F2C0C /* ReviewViewController.xib in Resources */,
 				C410E92D1E623C5C006C6837 /* EmptyStudyCell.xib in Resources */,
