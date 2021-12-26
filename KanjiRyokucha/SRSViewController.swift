@@ -562,6 +562,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var failedButton: UIButton!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var vfButton: UIButton!
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
@@ -726,6 +727,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
             if let url = URL(string: "https://twitter.com/kanji_ryokucha") {
                 UIApplication.shared.open(url)
             }
+        }
+        
+        vfButton.reactive.controlEvents(.touchUpInside).uiReact { _ in
+            UIApplication.shared.open(URL(string: "https://apps.apple.com/ar/app/vinyl-fetish-music-player/id1490719457")!)
         }
     }
 
