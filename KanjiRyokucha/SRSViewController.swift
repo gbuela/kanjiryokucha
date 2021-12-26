@@ -355,11 +355,17 @@ class SRSReviewEngine: SRSEngineProtocol {
     }
     
     private func completedSubmission(response: Response) {
-        guard let model = response.model as? SyncResultModel else {
+        guard let model = response.model as? SyncResultModel,
+            model.stat == "ok" else {
             log("service temporarily unavailable!")
             return
         }
-        let syncedIds = model.putIds
+        let syncedIds: [Int]
+        if let originatingRequest = response.originatingRequest as? SyncAnswersRequest {
+            syncedIds = originatingRequest.answers.map { $0.cardId }
+        } else {
+            syncedIds = []
+        }
         let entries = reviewEntries.value
         log("reviewEntries.value \(entries.count) ids")
         

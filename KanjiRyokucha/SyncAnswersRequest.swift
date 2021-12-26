@@ -43,11 +43,7 @@ struct SyncAnswersRoot: Encodable {
 }
 
 struct SyncResultModel: Decodable {
-    let putIds: [Int]
-    
-    enum CodingKeys: String, CodingKey {
-        case putIds = "put"
-    }
+    let stat: String
 }
 
 struct SyncAnswersRequest: KoohiiRequest {

@@ -88,6 +88,7 @@ struct Response {
     let data: Data?
     let model: Decodable?
     let headers: [AnyHashable : Any]
+    let originatingRequest: Any?
     
     static var latestCookies: [String]?
     
