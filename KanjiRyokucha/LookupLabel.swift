@@ -10,7 +10,7 @@ import UIKit
 
 // Based on: https://stackoverflow.com/a/42587549/17138
 
-protocol LookupLabelDelegate: class {
+protocol LookupLabelDelegate: AnyObject {
     func lookupRequested(forTerm term: String)
 }
 

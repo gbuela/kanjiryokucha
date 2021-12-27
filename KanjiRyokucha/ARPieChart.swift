@@ -32,7 +32,7 @@ import QuartzCore
 /**
 *  MARK: ARPieChart datasource
 */
-public protocol ARPieChartDataSource: class {
+public protocol ARPieChartDataSource: AnyObject {
     
     func numberOfSlicesInPieChart(_ pieChart: ARPieChart) -> Int
     
@@ -75,7 +75,7 @@ public extension ARPieChartItemDataSource {
 /**
 *  MARK: ARPieChart delegate
 */
-public protocol ARPieChartDelegate: class {
+public protocol ARPieChartDelegate: AnyObject {
     
     func pieChart(_ pieChart: ARPieChart, itemSelectedAtIndex index: Int)
     

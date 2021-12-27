@@ -115,9 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-        }
+        UNUserNotificationCenter.current().delegate = self
         
         FirebaseApp.configure()
         
@@ -157,11 +155,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
 
-        if #available(iOS 10, *) {
-            UITabBarItem.appearance().badgeColor = .ryokuchaLighter
-            let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-            UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
-        }
+        UITabBarItem.appearance().badgeColor = .ryokuchaLighter
+        let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
         
         subscribeNotifications()
         
@@ -288,8 +284,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func notifyNewDueCount(count: Int) {
-        guard #available(iOS 10.0, *) else { return }
-
         let message: String
         if Global.username != "" {
             message = "\(Global.username.capitalized), you have \(count) due cards to review"
@@ -300,8 +294,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func notify(message: String, badgeCount: NSNumber?) {
-        guard #available(iOS 10.0, *) else { return }
-
         let content = UNMutableNotificationContent()
         content.body = message
         content.sound = UNNotificationSound.default

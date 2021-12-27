@@ -59,7 +59,7 @@ struct ReviewTypeSetup {
 }
 
 
-protocol ReviewEngineProtocol: class {
+protocol ReviewEngineProtocol: AnyObject {
     var reviewTitle: MutableProperty<String?> { get }
     var reviewColor: MutableProperty<UIColor> { get }
     var reviewInProgress: MutableProperty<Bool> { get }
@@ -477,26 +477,8 @@ class SRSReviewEngine: SRSEngineProtocol {
     
     private func setAppBadge(response: Response) {
         if let model = response.model as? GetStatusModel {
-            if #available(iOS 11.0, *) {
-                // Workaround below actually fires an alert notification in iOS 11 >:P
-                UIApplication.shared.applicationIconBadgeNumber = model.expiredCards
-            } else if #available(iOS 10.0, *) {
-                
-                let content = UNMutableNotificationContent()
-                content.badge = model.expiredCards as NSNumber
-                
-                // This is a workaround. Alerts with just a 0 badge value won't fire.
-                // Adding a title gets them fired.
-                if model.expiredCards == 0 {
-                    content.title = "zero"
-                }
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                UNUserNotificationCenter.current().add(request)
-                
-            }
+            // Workaround below actually fires an alert notification in iOS 11 >:P
+            UIApplication.shared.applicationIconBadgeNumber = model.expiredCards
         }
     }
 
@@ -736,7 +718,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
         
         twitterButton.reactive.controlEvents(.touchUpInside).uiReact { _ in
             if let url = URL(string: "https://twitter.com/kanji_ryokucha") {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url)
             }
         }
     }

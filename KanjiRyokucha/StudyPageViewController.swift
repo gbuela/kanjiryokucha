@@ -16,7 +16,7 @@ enum StudyPageMode {
     case review
 }
 
-protocol StudyPageDelegate: class {
+protocol StudyPageDelegate: AnyObject {
     func studyPageMarkLearnedTapped(indexPath: IndexPath)
 }
 

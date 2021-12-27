@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol StudyCellDelegate: class {
+protocol StudyCellDelegate: AnyObject {
     func studyCellMarkLearnedTapped(entry: StudyEntry)
 }
 

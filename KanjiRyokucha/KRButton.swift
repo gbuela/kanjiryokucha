@@ -17,7 +17,7 @@ struct ButtonColorScheme {
     let disabledTitle: UIColor
 }
 
-protocol ButtonColoring: class {
+protocol ButtonColoring: AnyObject {
     var scheme: ButtonColorScheme { get }
     var isEnabled: Bool { get }
     var isHighlighted: Bool { get }
