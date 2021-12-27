@@ -8,18 +8,6 @@
 
 import Foundation
 
-extension CardAnswer {
-    var backendRequiresString: Bool {
-        return self == .hard
-    }
-    var srtingForBackend: String? {
-        return self == .hard ? "h" : nil
-    }
-    var intForBackend: Int {
-        return self.rawValue
-    }
-}
-
 struct CardSyncModel {
     let cardId: Int
     let answer: CardAnswer
@@ -35,13 +23,7 @@ struct SyncAnswer: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(cardSyncModel.cardId, forKey: .id)
-        
-        if cardSyncModel.answer.backendRequiresString,
-            let stringValue = cardSyncModel.answer.srtingForBackend {
-            try container.encode(stringValue, forKey: .r)
-        } else {
-            try container.encode(cardSyncModel.answer.intForBackend, forKey: .r)
-        }
+        try container.encode(cardSyncModel.answer.srtingForBackend, forKey: .r)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -61,11 +43,7 @@ struct SyncAnswersRoot: Encodable {
 }
 
 struct SyncResultModel: Decodable {
-    let putIds: [Int]
-    
-    enum CodingKeys: String, CodingKey {
-        case putIds = "put"
-    }
+    let stat: String
 }
 
 struct SyncAnswersRequest: KoohiiRequest {

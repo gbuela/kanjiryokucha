@@ -20,7 +20,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var cells: [UITableViewCell]!
     var aboutCell: UITableViewCell!
-    var whatsNewCell: UITableViewCell!
     var debugCell: UITableViewCell?
     var notifCell: SettingsSwitchCell!
     var selectableCells: [UITableViewCell]!
@@ -40,12 +39,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let versionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
 
         aboutCell = createDisclosureCell(title: "About")
-        whatsNewCell = createDisclosureCell(title: "What's new")
         #if DEBUG
             debugCell = createDisclosureCell(title: "Debug 🐞")
         #endif
         
-        selectableCells = [aboutCell, whatsNewCell, debugCell].compactMap{$0}
+        selectableCells = [aboutCell, debugCell].compactMap{$0}
         
         notifCell = createSwitchCell(title: "Notifications", subtitle: "Sets the app's badge and notifies you when the due count has changed", state: global.useNotifications, handler: { [weak self] in self?.switchedNotifications(isOn: $0) })
         
@@ -57,7 +55,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             createSeparatorCell(),
             createInfoCell(title: "Version", value: versionNumber),
             aboutCell,
-            whatsNewCell,
             debugCell
             ].compactMap{$0}
         
@@ -115,9 +112,12 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                             message: "To enable this feature you need to grant notifications permision on your device's settings page for Kanji Ryokucha",
                         yesOption: "Get me there",
                         noOption: "Not now") { _ in
-                            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
+                            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     }
                     self.revertEnablingNotifications()
+                case .provisional,  .ephemeral:
+                    break
+                    
                 @unknown default:
                     // FIXME: ver que onda
                     break
@@ -200,8 +200,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = cells[indexPath.row]
         if cell == aboutCell {
             show(resourceName: "about", title: "About")
-        } else if cell == whatsNewCell {
-            show(resourceName: "whatsnew", title: "What's New")
         } else if cell == debugCell {
             let logsVC = LogsViewController()
             navigationController?.pushViewController(logsVC, animated: true)

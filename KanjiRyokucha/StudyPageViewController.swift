@@ -108,7 +108,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         
         if mode == .study || mode == .studyLearned,
             splitViewController?.isCollapsed == false,
-            splitViewController?.displayMode == .allVisible {
+            splitViewController?.displayMode == .oneBesideSecondary {
             toolbarHeightConstraint.constant = 0
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
         } else {
@@ -134,7 +134,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
     @IBAction func openInSafari() {
         if let urlToOpen = urlToOpen,
             let url = URL(string: urlToOpen) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }
     }
     

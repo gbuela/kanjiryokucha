@@ -6,6 +6,7 @@
 //  Copyright © 2017 German Buela. All rights reserved.
 //
 
+import Foundation
 import ReactiveSwift
 
 extension HeaderKeys {
@@ -52,7 +53,8 @@ extension KanjialiveRequest {
                                             string: String(data:data, encoding:.utf8),
                                             data: data,
                                             model: model,
-                                            headers: headers)
+                                            headers: headers,
+                                            originatingRequest: nil)
                         sink.send(value: resp)
                         sink.sendCompleted()
                     }

@@ -12,12 +12,13 @@ import SwiftRater
 import ReactiveSwift
 import PKHUD
 import AVKit
-import Firebase
+import BackgroundTasks
 
 struct TabModel {
     let title: String
     let imageName: String
     let viewController: UIViewController
+    let tag: Int
 }
 
 let sessionExpiredNotification = "sessionExpiredNotification"
@@ -59,7 +60,7 @@ struct AppController {
         studyMaster.engine = studyEngine
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            studySplitVC.preferredDisplayMode = .allVisible
+            studySplitVC.preferredDisplayMode = .oneBesideSecondary
         } else {
             studySplitVC.delegate = splitDelegate
         }
@@ -71,19 +72,26 @@ struct AppController {
         reviewEngine.wireUp()
 
         let tabs: [TabModel] = [
-            TabModel(title: "Review", imageName: "tabreview", viewController: srsViewController),
-            TabModel(title: "Study", imageName: "tabstudy", viewController: studySplitVC),
-            TabModel(title: "Free review", imageName: "tabfree", viewController: FreeReviewViewController()),
-            TabModel(title: "Settings", imageName: "tabsettings", viewController: settingsNav)
+            TabModel(title: "Review", imageName: "square.stack", viewController: srsViewController, tag: 0),
+            TabModel(title: "Study", imageName: "eyeglasses", viewController: studySplitVC, tag: 1),
+            TabModel(title: "Free review", imageName: "square.stack", viewController: FreeReviewViewController(), tag: 2),
+            TabModel(title: "Settings", imageName: "gear", viewController: settingsNav, tag: 3)
         ]
 
         tabBarController.viewControllers = tabs.map { $0.viewController }
+        
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
+
         window.rootViewController = tabBarController
         
         for tab in tabs {
             tab.viewController.tabBarItem = UITabBarItem(title: tab.title,
-                                                         image: UIImage(named:tab.imageName)?.withRenderingMode(.alwaysOriginal),
-                                                         selectedImage: UIImage(named:"sel-" + tab.imageName))
+                                                         image: UIImage(systemName: tab.imageName),
+                                                         tag: tab.tag)
         }
         
         window.makeKeyAndVisible()
@@ -104,20 +112,22 @@ class SplitDelegate: UISplitViewControllerDelegate {
     }
 }
 
+let bgTaskIdentifier = "com.gbuela.KanjiRyokucha.bg"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var appController: AppController?
     var fromBackground: Bool = false
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: bgTaskIdentifier, using: nil) { task in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+        }
         
         UNUserNotificationCenter.current().delegate = self
-        
-        FirebaseApp.configure()
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.mixWithOthers])
         try? AVAudioSession.sharedInstance().setActive(true)
@@ -150,20 +160,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().barTintColor = .ryokuchaDark
         UIToolbar.appearance().backgroundColor = .ryokuchaDark
         
-        UITabBar.appearance().tintColor = .white
-        UITabBar.appearance().barTintColor = .ryokuchaDark
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        UITabBar.appearance().tintColor = .label
 
-        UITabBarItem.appearance().badgeColor = .ryokuchaLighter
-        let badgeTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UITabBarItem.appearance().setBadgeTextAttributes(badgeTextAttributes, for: .normal)
-        
         subscribeNotifications()
         
         startAutologin()
         
         return true
+    }
+    
+    private func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: bgTaskIdentifier)
+        
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 5 * 60) // Refresh after 5 minutes.
+        
+        try? BGTaskScheduler.shared.submit(request)
     }
     
     func startAutologin() {
@@ -203,6 +214,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        scheduleAppRefresh()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -216,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fromBackground = false
             log("Coming from bkg")
             
-            if let latest = Global.latestRequestDate,
+            if let latest: Date = Global.latestRequestDate,
                 let controller = appController {
                 let elapsed = Int(Date().timeIntervalSince(latest))
                 log("Elapsed since last rq: \(elapsed)")
@@ -239,8 +252,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var bkgTask: BackgroundTask?
     var bkgFetcher: BackgroundFetcher?
-
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    
+    private func handleAppRefresh(task: BGAppRefreshTask) {
+        scheduleAppRefresh() // schedules next refresh while the app remains in bkg
         
         bkgTask = BackgroundTask(application: UIApplication.shared)
         bkgTask?.begin()
@@ -250,11 +264,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch fetcherResult {
             case .failure, .notChecked:
                 log("NODATA")
-                completionHandler(.noData)
+                task.setTaskCompleted(success: false)
             case .success(let oldCount, let newCount):
                 self?.resolveStatus(oldCount: oldCount,
                                     newCount: newCount,
-                                    completionHandler: completionHandler)
+                                    completionHandler: { fetchResult in
+                    task.setTaskCompleted(success: fetchResult == .newData)
+                })
             }
             
             self?.bkgTask?.end()

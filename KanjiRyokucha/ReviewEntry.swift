@@ -6,6 +6,7 @@
 //  Copyright © 2016 German Buela. All rights reserved.
 //
 
+import Foundation
 import RealmSwift
 
 enum CardAnswer: Int {
@@ -16,6 +17,26 @@ enum CardAnswer: Int {
     case delete = 4
     case skip = 5
     case hard = 6
+    
+    // new API accepts strings - keep ints inernally for back compatibility with locally saved answers
+    var srtingForBackend: String? {
+        switch self {
+        case .no:
+            return "no"
+        case .yes:
+            return "yes"
+        case .easy:
+            return "easy"
+        case .delete:
+            return "delete"
+        case .skip:
+            return "skip"
+        case .hard:
+            return "hard"
+        case .unanswered:
+            return nil
+        }
+    }
 }
 
 class ReviewEntry : Object {

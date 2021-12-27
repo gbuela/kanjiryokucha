@@ -1,6 +1,0 @@
-framework module Pods_KanjiRyokucha_DEV {
-  umbrella header "Pods-KanjiRyokucha-DEV-umbrella.h"
-
-  export *
-  module * { export * }
-}

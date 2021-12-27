@@ -6,6 +6,7 @@
 //  Copyright © 2017 German Buela. All rights reserved.
 //
 
+import Foundation
 import ReactiveSwift
 
 enum BuildType {
@@ -130,7 +131,8 @@ extension KoohiiRequest {
                                             string: String(data:data, encoding:.utf8),
                                             data: data,
                                             model: model,
-                                            headers: headers)
+                                            headers: headers,
+                                            originatingRequest: self)
                         resp.saveCookies()
                         sink.send(value: resp)
                         sink.sendCompleted()

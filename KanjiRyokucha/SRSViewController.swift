@@ -94,8 +94,8 @@ extension ReviewEngineProtocol {
         _ = fetchProducer
             .noErrorSignalProducer()
             .start(on: QueueScheduler(qos: .default, name: "fetchQueue"))
-            .startWithValues { [weak self] response in
-                self?.saveFetchedCards(response: response)
+            .startWithValues { response in
+                self.saveFetchedCards(response: response)
                 if let completion = completion,
                     let model = response.model as? CardDataModel {
                     completion(model)
@@ -355,11 +355,17 @@ class SRSReviewEngine: SRSEngineProtocol {
     }
     
     private func completedSubmission(response: Response) {
-        guard let model = response.model as? SyncResultModel else {
+        guard let model = response.model as? SyncResultModel,
+            model.stat == "ok" else {
             log("service temporarily unavailable!")
             return
         }
-        let syncedIds = model.putIds
+        let syncedIds: [Int]
+        if let originatingRequest = response.originatingRequest as? SyncAnswersRequest {
+            syncedIds = originatingRequest.answers.map { $0.cardId }
+        } else {
+            syncedIds = []
+        }
         let entries = reviewEntries.value
         log("reviewEntries.value \(entries.count) ids")
         
@@ -556,6 +562,7 @@ class SRSViewController: UIViewController, ReviewDelegate {
     @IBOutlet weak var failedButton: UIButton!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var vfButton: UIButton!
     @IBOutlet weak var duePadding: NSLayoutConstraint!
     @IBOutlet weak var newPadding: NSLayoutConstraint!
     @IBOutlet weak var failedPadding: NSLayoutConstraint!
@@ -720,6 +727,10 @@ class SRSViewController: UIViewController, ReviewDelegate {
             if let url = URL(string: "https://twitter.com/kanji_ryokucha") {
                 UIApplication.shared.open(url)
             }
+        }
+        
+        vfButton.reactive.controlEvents(.touchUpInside).uiReact { _ in
+            UIApplication.shared.open(URL(string: "https://apps.apple.com/ar/app/vinyl-fetish-music-player/id1490719457")!)
         }
     }
 

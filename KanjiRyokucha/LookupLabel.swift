@@ -42,8 +42,7 @@ class LookupLabel: UILabel {
         menu.menuItems = [menuItem]
         
         if !menu.isMenuVisible {
-            menu.setTargetRect(bounds, in: self)
-            menu.setMenuVisible(true, animated: true)
+            menu.showMenu(from: self, rect: bounds)
         }
     }
     
@@ -61,7 +60,7 @@ class LookupLabel: UILabel {
         
         let menu = UIMenuController.shared
         
-        menu.setMenuVisible(false, animated: true)
+        menu.hideMenu()
     }
     
     override var canBecomeFirstResponder: Bool {
