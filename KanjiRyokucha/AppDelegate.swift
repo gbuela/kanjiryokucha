@@ -98,7 +98,7 @@ struct AppController {
         
         sessionCheckAction.isExecuting.uiReact { executing in
             if executing {
-                HUD.show(.systemActivity)
+                HUD.show(.systemActivity, onView: window)
             } else {
                 HUD.hide()
             }
