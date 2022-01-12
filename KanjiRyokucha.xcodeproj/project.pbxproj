@@ -1202,7 +1202,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1505,7 +1505,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 56;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
@@ -1534,7 +1534,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: gbuela+apple@gmail.com (VPDU69ZYE9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 56;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
