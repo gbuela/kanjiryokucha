@@ -1,70 +1,68 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "PKHUD",
-        "repositoryURL": "https://github.com/pkluz/PKHUD",
-        "state": {
-          "branch": null,
-          "revision": "8fd26f23057c6bebd6695524b1c3e05e93aba571",
-          "version": "5.4.0"
-        }
-      },
-      {
-        "package": "ReactiveCocoa",
-        "repositoryURL": "https://github.com/ReactiveCocoa/ReactiveCocoa",
-        "state": {
-          "branch": "master",
-          "revision": "8a5b07b18c6abb8e12fb845bf742675dc4914ed8",
-          "version": null
-        }
-      },
-      {
-        "package": "ReactiveSwift",
-        "repositoryURL": "https://github.com/ReactiveCocoa/ReactiveSwift",
-        "state": {
-          "branch": null,
-          "revision": "efb2f0a6f6c8739cce8fb14148a5bd3c83f2f91d",
-          "version": "7.0.0"
-        }
-      },
-      {
-        "package": "RealmDatabase",
-        "repositoryURL": "https://github.com/realm/realm-core",
-        "state": {
-          "branch": null,
-          "revision": "6b81f1a7a2d421f9e0b9e7f04e76bcf736a54409",
-          "version": "11.9.0"
-        }
-      },
-      {
-        "package": "Realm",
-        "repositoryURL": "https://github.com/realm/realm-swift",
-        "state": {
-          "branch": null,
-          "revision": "9dff9f2862240d521ad6ad599541269177ddb993",
-          "version": "10.22.0"
-        }
-      },
-      {
-        "package": "SwiftRater",
-        "repositoryURL": "https://github.com/takecian/SwiftRater",
-        "state": {
-          "branch": null,
-          "revision": "3002392aab212ab5e68c80ba9f8d5c0ef035c260",
-          "version": "1.9.1"
-        }
-      },
-      {
-        "package": "UIColorHexSwift",
-        "repositoryURL": "https://github.com/yeahdongcn/UIColor-Hex-Swift",
-        "state": {
-          "branch": null,
-          "revision": "304ae671f4db4208a13999bbe026b1869ad614de",
-          "version": "5.1.7"
-        }
+  "pins" : [
+    {
+      "identity" : "pkhud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pkluz/PKHUD",
+      "state" : {
+        "revision" : "8fd26f23057c6bebd6695524b1c3e05e93aba571",
+        "version" : "5.4.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "reactivecocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveCocoa/ReactiveCocoa",
+      "state" : {
+        "branch" : "master",
+        "revision" : "1b014240bad02886b6954796f949765e34327212"
+      }
+    },
+    {
+      "identity" : "reactiveswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveCocoa/ReactiveSwift",
+      "state" : {
+        "revision" : "40c465af19b993344e84355c00669ba2022ca3cd",
+        "version" : "7.1.1"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "e836317e8238bd32f06086dd7ce6768ef574beb6",
+        "version" : "13.22.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift",
+      "state" : {
+        "revision" : "8249489f28d36f9f37ed076c95029059c60b556d",
+        "version" : "10.43.0"
+      }
+    },
+    {
+      "identity" : "swiftrater",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/takecian/SwiftRater",
+      "state" : {
+        "revision" : "3002392aab212ab5e68c80ba9f8d5c0ef035c260",
+        "version" : "1.9.1"
+      }
+    },
+    {
+      "identity" : "uicolor-hex-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yeahdongcn/UIColor-Hex-Swift",
+      "state" : {
+        "revision" : "f37f97bc1a5b545b39ab5330e133e56fa4f38cff",
+        "version" : "5.1.9"
+      }
+    }
+  ],
+  "version" : 2
 }

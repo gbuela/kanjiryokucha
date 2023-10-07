@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C402B4CA2774D0EE007745A9 /* UIColorHexSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C409A19D1E86011E006EEE77 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4603DF21E6B27C800A56C9A /* Database.swift */; };
 		C409A19E1E86011E006EEE77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C409A19F1E86011E006EEE77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F213B71DEA532900EF5214 /* AppDelegate.swift */; };
@@ -103,6 +102,7 @@
 		C43DCC3D1E552ED8006F2C0C /* StudyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC3C1E552ED8006F2C0C /* StudyEntry.swift */; };
 		C43DCC421E57D6B4006F2C0C /* StudyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC401E57D6B3006F2C0C /* StudyPageViewController.swift */; };
 		C43DCC461E57E4C1006F2C0C /* StudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43DCC441E57E4C1006F2C0C /* StudyCell.swift */; };
+		C43E80C52AD1BB4B001640B2 /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C43E80C42AD1BB4B001640B2 /* UIColorHexSwift */; };
 		C44D2ACD1DF33BFE00EB935F /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACC1DF33BFE00EB935F /* LoginRequest.swift */; };
 		C44D2ACF1DF3475E00EB935F /* GetStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44D2ACE1DF3475D00EB935F /* GetStatusRequest.swift */; };
 		C44F752B1E8DDEDE00E00AD9 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F75291E8DDEDE00E00AD9 /* StudyViewController.swift */; };
@@ -183,7 +183,6 @@
 		C47589FE1DF3659C0019AF57 /* SRSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47589FC1DF3659C0019AF57 /* SRSViewController.xib */; };
 		C4758A041DF395F00019AF57 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A031DF395F00019AF57 /* Colors.swift */; };
 		C4758A071DF63F8D0019AF57 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4758A061DF63F8D0019AF57 /* Global.swift */; };
-		C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C48646AA27712603007775FE /* UIColorHexSwift */; settings = {ATTRIBUTES = (Required, ); }; };
 		C48A85DA1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DB1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
 		C48A85DC1EB4DCEE00778445 /* AccountInfoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A85D91EB4DCED00778445 /* AccountInfoRequest.swift */; };
@@ -272,7 +271,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C402B4CA2774D0EE007745A9 /* UIColorHexSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,7 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4735D7627712A3D00F2A927 /* RealmSwift in Frameworks */,
-				C48646AB27712603007775FE /* UIColorHexSwift in Frameworks */,
+				C43E80C52AD1BB4B001640B2 /* UIColorHexSwift in Frameworks */,
 				C4735D702771275700F2A927 /* PKHUD in Frameworks */,
 				C4735D732771280200F2A927 /* SwiftRater in Frameworks */,
 				C4735D7927712B2E00F2A927 /* ReactiveCocoa in Frameworks */,
@@ -668,11 +666,11 @@
 			);
 			name = KanjiRyokucha;
 			packageProductDependencies = (
-				C48646AA27712603007775FE /* UIColorHexSwift */,
 				C4735D6F2771275700F2A927 /* PKHUD */,
 				C4735D722771280200F2A927 /* SwiftRater */,
 				C4735D7527712A3D00F2A927 /* RealmSwift */,
 				C4735D7827712B2E00F2A927 /* ReactiveCocoa */,
+				C43E80C42AD1BB4B001640B2 /* UIColorHexSwift */,
 			);
 			productName = KanjiRyokucha;
 			productReference = C4F213B41DEA532900EF5214 /* KanjiRyokucha.app */;
@@ -1107,12 +1105,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1127,12 +1125,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1205,12 +1203,12 @@
 				CURRENT_PROJECT_VERSION = 58;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1227,12 +1225,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/DEV-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaDEV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1248,12 +1246,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1307,12 +1305,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1330,12 +1328,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = "$(SRCROOT)/KanjiRyokucha/Staging-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokuchaSTAGING;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1509,12 +1507,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1537,12 +1535,12 @@
 				CURRENT_PROJECT_VERSION = 58;
 				DEVELOPMENT_TEAM = UHVS3L828Q;
 				INFOPLIST_FILE = KanjiRyokucha/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.5.2;
+				MARKETING_VERSION = 4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gbuela.KanjiRyokucha;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1697,6 +1695,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C43E80C42AD1BB4B001640B2 /* UIColorHexSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C48646A927712603007775FE /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */;
+			productName = UIColorHexSwift;
+		};
 		C4735D6F2771275700F2A927 /* PKHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4735D6E2771275700F2A927 /* XCRemoteSwiftPackageReference "PKHUD" */;
@@ -1716,11 +1719,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C4735D7727712B2E00F2A927 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
 			productName = ReactiveCocoa;
-		};
-		C48646AA27712603007775FE /* UIColorHexSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C48646A927712603007775FE /* XCRemoteSwiftPackageReference "UIColor-Hex-Swift" */;
-			productName = UIColorHexSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
