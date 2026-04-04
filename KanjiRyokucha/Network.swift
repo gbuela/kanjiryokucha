@@ -48,7 +48,7 @@ extension FetchError {
         case .connectionError(error: let error): return error.localizedDescription
         case .parseError: return "Error parsing result"
         case .notAuthenticated: return "No active session! You need to login"
-        case .backendMessage: return "Stroke order not available for this kanji"
+        case .backendMessage(let message): return message
         }
     }
 }
@@ -120,6 +120,18 @@ struct StatResult: Decodable {
     enum CodingKeys: String, CodingKey {
         case status = "stat"
         case code
+    }
+}
+
+struct StatErrorResult: Decodable {
+    let status: String?
+    let code: Int?
+    let message: String?
+
+    enum CodingKeys: String, CodingKey {
+        case status = "stat"
+        case code
+        case message
     }
 }
 

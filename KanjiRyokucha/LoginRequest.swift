@@ -15,7 +15,7 @@ struct LoginRequest: KoohiiRequest {
     typealias ModelType = NoModel
     typealias InputType = NoInput
     
-    let apiMethod = "/login"
+    let apiMethod: String
     let useEndpoint = false
     let sendApiKey = false
     let method = RequestMethod.post
@@ -23,12 +23,39 @@ struct LoginRequest: KoohiiRequest {
     
     let username: String
     let password: String
+    let usernameFieldName: String
+    let passwordFieldName: String
+    let extraParams: ParamSet
+    let submitParams: ParamSet
+    
+    init(username: String,
+         password: String,
+         usernameFieldName: String = "username",
+         passwordFieldName: String = "password",
+         extraParams: ParamSet = [:],
+         submitParams: ParamSet = [:],
+         apiMethod: String = "/login") {
+        self.username = username
+        self.password = password
+        self.usernameFieldName = usernameFieldName
+        self.passwordFieldName = passwordFieldName
+        self.extraParams = extraParams
+        self.submitParams = submitParams
+        self.apiMethod = apiMethod
+    }
     
     var postParams: ParamSet {
-        return [ "username" : username,
-                 "password" : password,
-                 "referer" : "@homepage",
-                 "commit" : "Login" ]
+        var params = [ usernameFieldName : username,
+                       passwordFieldName : password,
+                       "referer" : "@homepage",
+                       "commit" : "Login" ]
+        extraParams.forEach { key, value in
+            params[key] = value
+        }
+        submitParams.forEach { key, value in
+            params[key] = value
+        }
+        return params
     }
     var headers: ParamSet {
         return [ "Host" : backendDomain,

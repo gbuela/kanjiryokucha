@@ -711,6 +711,12 @@ class SRSViewController: UIViewController, ReviewDelegate {
                 tabBarItem.badgeValue = model.expiredCards > 0 ? "\(model.expiredCards)" : nil
             }
         }
+
+        engine.statusAction.errors.uiReact { [weak self] error in
+            if case .backendMessage = error {
+                self?.presentServiceUnavailableAlert(message: error.uiMessage)
+            }
+        }
         
         engine.toStudyCount.combineLatest(with: engine.global.studyPhaseProperty).uiReact { [weak self] (count, studyPhase) in
             let badge = studyPhase && count > 0 ? "\(count)" : nil
@@ -732,6 +738,19 @@ class SRSViewController: UIViewController, ReviewDelegate {
         vfButton.reactive.controlEvents(.touchUpInside).uiReact { _ in
             UIApplication.shared.open(URL(string: "https://apps.apple.com/ar/app/vinyl-fetish-music-player/id1490719457")!)
         }
+    }
+
+    private func presentServiceUnavailableAlert(message: String) {
+        let alert = UIAlertController(title: "Service unavailable",
+                                      message: message,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+            self?.engine.refreshStatus()
+        }))
+        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
+            NotificationCenter.default.post(name: Notification.Name(sessionExpiredNotification), object: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     func userDidAnswer(reviewAnswer: ReviewAnswer) {
