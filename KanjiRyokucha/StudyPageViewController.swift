@@ -106,13 +106,26 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
             containerView.addConstraints([height, width])
         }
         
-        if mode == .study || mode == .studyLearned,
-            splitViewController?.isCollapsed == false,
-            splitViewController?.displayMode == .oneBesideSecondary {
-            toolbarHeightConstraint.constant = 0
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
+        let isPad = traitCollection.userInterfaceIdiom == .pad
+
+        if mode == .study || mode == .studyLearned {
+            if isPad {
+                toolbarHeightConstraint.constant = 0
+                toolbar.isHidden = true
+                navigationItem.leftBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
+            } else {
+                toolbar.isHidden = false
+                navigationItem.leftBarButtonItem = nil
+                toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+            }
         } else {
-            toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+            if isPad {
+                toolbarHeightConstraint.constant = 0
+                toolbar.isHidden = true
+            } else {
+                toolbar.isHidden = false
+                toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
+            }
         }
     }
     
