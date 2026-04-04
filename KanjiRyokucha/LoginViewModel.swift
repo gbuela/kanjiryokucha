@@ -69,6 +69,7 @@ struct LoginViewModel : BackendAccess {
     }
     
     private func callLogin(username:String, password:String, handler:@escaping ((Bool,String?) -> Void)) {
+        clearSessionCookies()
         let loginPageRequest = LoginPageRequest()
         if let sp = loginPageRequest.requestProducer()?.observe(on: UIScheduler()) {
             sp.startWithResult { (result: Result<Response, FetchError>) in
@@ -187,6 +188,15 @@ struct LoginViewModel : BackendAccess {
             handler(false, nil)
             self.state.value = .failure("Could not login 🤔")
         }
+    }
+
+    private func clearSessionCookies() {
+        let storage = HTTPCookieStorage.shared
+        let allCookies = storage.cookies ?? []
+        for cookie in allCookies where cookie.domain.contains(backendDomain) {
+            storage.deleteCookie(cookie)
+        }
+        Response.latestCookies = nil
     }
 
     private func fetchRedirectTargetIfNeeded(location: String, completion: @escaping () -> Void) {
