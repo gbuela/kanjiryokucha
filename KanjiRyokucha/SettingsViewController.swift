@@ -29,6 +29,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBarAppearance()
         edgesForExtendedLayout = []
         title = "Settings"
         
@@ -170,6 +171,18 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = SeparatorCell()
         cell.backgroundColor = .ryokuchaLight
         return cell
+    }
+    
+    private func configureNavigationBarAppearance() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .ryokuchaDark
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+        }
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     @IBAction func logoutTapped() {

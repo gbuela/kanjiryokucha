@@ -69,6 +69,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBarAppearance()
         edgesForExtendedLayout = []
         
         containerView.backgroundColor = .background
@@ -133,6 +134,11 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
         get { return true }
         set { super.hidesBottomBarWhenPushed = newValue }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationBarAppearance()
+    }
     
     @objc func learnedTapped() {
         if let indexPath = indexPath {
@@ -142,6 +148,30 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
     
     @objc func okTapped() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func configureNavigationBarAppearance() {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .ryokuchaDark
+
+            navigationItem.standardAppearance = appearance
+            navigationItem.scrollEdgeAppearance = appearance
+
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+
+            if #available(iOS 15.0, *) {
+                navigationItem.compactScrollEdgeAppearance = appearance
+                navigationController?.navigationBar.compactScrollEdgeAppearance = appearance
+            }
+        } else {
+            navigationController?.navigationBar.barTintColor = .ryokuchaDark
+            navigationController?.navigationBar.backgroundColor = .ryokuchaDark
+        }
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     @IBAction func openInSafari() {

@@ -45,12 +45,33 @@ struct AppController {
             return AccountInfoRequest().requestProducer()!
         }
     }
+
+    private func configureNavigationBarAppearance(for navigationController: UINavigationController) {
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .ryokuchaDark
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+            navigationController.navigationBar.compactAppearance = appearance
+            if #available(iOS 15.0, *) {
+                navigationController.navigationBar.compactScrollEdgeAppearance = appearance
+            }
+        } else {
+            navigationController.navigationBar.barTintColor = .ryokuchaDark
+            navigationController.navigationBar.backgroundColor = .ryokuchaDark
+        }
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.view.backgroundColor = .ryokuchaDark
+    }
     
     func start(username: String) {
         let studyMaster = studyStoryboard.instantiateViewController(withIdentifier: "studyMaster") as! StudyViewController
         let studyDetailNav = studyStoryboard.instantiateViewController(withIdentifier: "studyDetailNav") as! UINavigationController
         let studyNav = UINavigationController(rootViewController: studyMaster)
         //        let detailNav = studyDetail.navigationController!
+
+        configureNavigationBarAppearance(for: studyDetailNav)
         
         let studySplitVC = UISplitViewController()
         studySplitVC.viewControllers = [studyNav, studyDetailNav]
@@ -86,6 +107,7 @@ struct AppController {
         tabBarController.tabBar.standardAppearance = appearance
         tabBarController.tabBar.scrollEdgeAppearance = appearance
 
+        window.backgroundColor = .ryokuchaDark
         window.rootViewController = tabBarController
         
         for tab in tabs {
@@ -152,7 +174,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backgroundColor = .ryokuchaDark
         UINavigationBar.appearance().barTintColor = .ryokuchaDark
         UINavigationBar.appearance().tintColor = .black
-        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().isTranslucent = false
+
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .ryokuchaDark
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            if #available(iOS 15.0, *) {
+                UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+            }
+        }
         
         UIBarButtonItem.appearance()
             .setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)], for: UIControl.State.normal)
