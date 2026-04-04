@@ -47,6 +47,9 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
     var player: AVPlayer?
     
     var global: Global!
+    private var pageContainerTopConstraint: NSLayoutConstraint?
+    private var pageContainerBottomConstraint: NSLayoutConstraint?
+    private var hasLoggedPageContainerConstraints = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +59,7 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         view.backgroundColor = .ryokuchaTranslucent
         
         videoPanel.isHidden = true
+        constrainPageContainerToSafeArea()
         
         if let reviewCount = reviewEngine?.toReviewCount.value {
             totalCount = reviewCount
@@ -66,6 +70,8 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupGradient()
+        enforcePageContainerConstraintsIfNeeded()
+        logPageContainerConstraintsIfNeeded()
     }
     
     private func setupGradient() {
@@ -77,6 +83,62 @@ class PagedReviewViewController: UIViewController, ButtonHandler, BackendAccess,
         gradient.locations = [0.0, 1.0]
         gradientView.layer.insertSublayer(gradient, at: 0)
         isGradientSetup = true
+    }
+
+    private func constrainPageContainerToSafeArea() {
+        guard traitCollection.userInterfaceIdiom == .phone else { return }
+
+        let constraintsToDeactivate = view.constraints.filter { constraint in
+            let involvesPageContainer = (constraint.firstItem as? UIView == pageContainer) || (constraint.secondItem as? UIView == pageContainer)
+            guard involvesPageContainer else { return false }
+            return constraint.firstAttribute == .top || constraint.secondAttribute == .top ||
+                constraint.firstAttribute == .centerY || constraint.secondAttribute == .centerY ||
+                constraint.firstAttribute == .height || constraint.secondAttribute == .height
+        }
+        NSLayoutConstraint.deactivate(constraintsToDeactivate)
+
+        let topConstant: CGFloat = 12
+        if #available(iOS 11.0, *) {
+            pageContainerTopConstraint = pageContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topConstant)
+        } else {
+            pageContainerTopConstraint = pageContainer.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: topConstant)
+        }
+        pageContainerTopConstraint?.isActive = true
+
+        pageContainerBottomConstraint = pageContainer.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -2)
+        pageContainerBottomConstraint?.isActive = true
+    }
+
+    private func enforcePageContainerConstraintsIfNeeded() {
+        guard traitCollection.userInterfaceIdiom == .phone else { return }
+
+        let constraintsToDeactivate = view.constraints.filter { constraint in
+            if constraint == pageContainerTopConstraint || constraint == pageContainerBottomConstraint { return false }
+            let involvesPageContainer = (constraint.firstItem as? UIView == pageContainer) || (constraint.secondItem as? UIView == pageContainer)
+            guard involvesPageContainer else { return false }
+            return constraint.firstAttribute == .top || constraint.secondAttribute == .top ||
+                constraint.firstAttribute == .centerY || constraint.secondAttribute == .centerY ||
+                constraint.firstAttribute == .height || constraint.secondAttribute == .height ||
+                constraint.firstAttribute == .bottom || constraint.secondAttribute == .bottom
+        }
+        NSLayoutConstraint.deactivate(constraintsToDeactivate)
+    }
+
+    private func logPageContainerConstraintsIfNeeded() {
+        guard !hasLoggedPageContainerConstraints else { return }
+        guard traitCollection.userInterfaceIdiom == .phone else { return }
+        hasLoggedPageContainerConstraints = true
+
+        let relatedConstraints = view.constraints.filter { constraint in
+            (constraint.firstItem as? UIView == pageContainer) || (constraint.secondItem as? UIView == pageContainer)
+        }
+        log("PageContainer frame: \(pageContainer.frame)")
+        if #available(iOS 11.0, *) {
+            log("Safe area insets: \(view.safeAreaInsets)")
+        }
+        relatedConstraints.forEach { constraint in
+            log("Constraint: \(constraint)")
+        }
     }
 
     private func pageForward() {
