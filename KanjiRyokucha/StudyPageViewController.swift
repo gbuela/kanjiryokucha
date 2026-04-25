@@ -123,6 +123,7 @@ class StudyPageViewController: UIViewController, WKNavigationDelegate {
             if isPad {
                 toolbarHeightConstraint.constant = 0
                 toolbar.isHidden = true
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OPEN IN SAFARI", style: .plain, target: self, action: #selector(openInSafari))
             } else {
                 toolbar.isHidden = false
                 toolbarHeightConstraint.reactive.constant <~ isPreviewing.map { $0 ? 0 : 46 }
